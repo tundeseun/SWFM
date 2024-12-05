@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Manager Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Store Manager Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Store Dashboard]
+
+            %% Staff Management Flow
+            Dashboard --> StaffMgmt{Manage Staff}
+            StaffMgmt -->|Yes| ScheduleShifts[Create/Update Shift Schedules]
+            ScheduleShifts --> TrackAttendance[Monitor Staff Attendance]
+            TrackAttendance --> ApproveRequests[Approve Overtime/Shift Changes]
+            ApproveRequests --> StaffEnd((End Staff Management))
+            StaffMgmt -->|No| SkipStaff[Skip Staff Tasks]
+
+            %% Inventory Management Flow
+            Dashboard --> InventoryMgmt{Manage Inventory}
+            InventoryMgmt -->|Yes| ReviewStock[Monitor Stock Levels]
+            ReviewStock --> ApproveSubPOs[Approve Sub-POs from Section Managers]
+            ApproveSubPOs --> RequestWarehouse[Request Restocking from Warehouse]
+            RequestWarehouse --> ResolveStockIssues[Resolve Inventory Discrepancies]
+            ResolveStockIssues --> InventoryEnd((End Inventory Management))
+            InventoryMgmt -->|No| SkipInventory[Skip Inventory Tasks]
+
+            %% Customer Service Flow
+            Dashboard --> CustomerService{Handle Customer Issues}
+            CustomerService -->|Yes| ProcessRefunds[Approve Refunds or Exchanges]
+            ProcessRefunds --> ResolveComplaints[Resolve Customer Complaints]
+            ResolveComplaints --> LogIssues[Log Issues for Reporting]
+            LogIssues --> CustomerEnd((End Customer Service))
+            CustomerService -->|No| SkipCustomer[Skip Customer Tasks]
+
+            %% Sales Oversight Flow
+            Dashboard --> SalesMgmt{Monitor Sales}
+            SalesMgmt -->|Yes| ReviewPerformance[Analyze Daily Sales Performance]
+            ReviewPerformance --> AdjustPricing[Adjust Pricing for Promotions]
+            AdjustPricing --> ApproveDiscounts[Approve Discounts]
+            ApproveDiscounts --> SalesEnd((End Sales Oversight))
+            SalesMgmt -->|No| SkipSales[Skip Sales Tasks]
+
+            %% Reporting Flow
+            Dashboard --> Reporting{Generate Reports}
+            Reporting -->|Yes| FinancialReports[Generate Store Financial Reports]
+            FinancialReports --> StaffReports[Generate Staff Performance Reports]
+            StaffReports --> InventoryReports[Generate Inventory Movement Reports]
+            InventoryReports --> ReportingEnd((End Reporting Tasks))
+            Reporting -->|No| SkipReporting[Skip Reporting Tasks]
+
+            %% End Workflow
+            SkipStaff --> SkipInventory --> SkipCustomer --> SkipSales --> SkipReporting --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>

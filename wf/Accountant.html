@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Accountant Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Financial Dashboard]
+
+            %% Payroll Management Flow
+            Dashboard --> PayrollMgmt{Manage Payroll?}
+            PayrollMgmt -->|Yes| ReviewShifts[Review Staff Shifts and Hours]
+            ReviewShifts --> ProcessSalaries[Process Salaries and Bonuses]
+            ProcessSalaries --> TaxDeductions[Apply Tax Deductions]
+            TaxDeductions --> DistributePayslips[Generate and Distribute Payslips]
+            DistributePayslips --> PayrollEnd((End Payroll Management))
+            PayrollMgmt -->|No| SkipPayroll[Skip to Next Task]
+
+            %% Tax Compliance Flow
+            Dashboard --> TaxCompliance{Generate Tax Reports?}
+            TaxCompliance -->|Yes| ReviewTransactions[Review Taxable Transactions]
+            ReviewTransactions --> CalculateTax[Calculate Taxes for Reporting Period]
+            CalculateTax --> TaxReports[Generate Tax Compliance Reports]
+            TaxReports --> TaxEnd((End Tax Compliance))
+            TaxCompliance -->|No| SkipTax[Skip to Next Task]
+
+            %% Financial Reporting Flow
+            Dashboard --> FinancialReports{Generate Financial Reports?}
+            FinancialReports -->|Yes| PL[Generate Profit & Loss Statements]
+            PL --> ExpenseReports[Compile Expense Summaries]
+            ExpenseReports --> ExportReports[Export Reports for Compliance]
+            ExportReports --> FinReportsEnd((End Financial Reporting))
+            FinancialReports -->|No| SkipFinancialReports[Skip to Next Task]
+
+            %% Dispute Management Flow
+            Dashboard --> DisputeMgmt{Resolve Financial Disputes?}
+            DisputeMgmt -->|Yes| ReviewDiscrepancies[Review Discrepancies in Transactions]
+            ReviewDiscrepancies --> CorrectRecords[Make Adjustments or Corrections]
+            CorrectRecords --> NotifyAdmin[Notify Admin of Resolutions]
+            NotifyAdmin --> DisputeEnd((End Dispute Management))
+            DisputeMgmt -->|No| SkipDispute[Skip to Next Task]
+
+            %% Audit Flow
+            Dashboard --> Audit{Conduct Financial Audits?}
+            Audit -->|Yes| ReviewLogs[Review Financial Activity Logs]
+            ReviewLogs --> FlagIssues[Identify and Flag Irregularities]
+            FlagIssues --> ReportFindings[Report Findings to Super Admin]
+            ReportFindings --> AuditEnd((End Audit))
+            Audit -->|No| SkipAudit[Skip to Next Task]
+
+            %% End Workflow
+            SkipPayroll --> SkipTax --> SkipFinancialReports --> SkipDispute --> SkipAudit --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>

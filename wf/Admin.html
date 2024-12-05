@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Admin Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Admin Dashboard]
+            
+            %% Staff Management Flow
+            Dashboard --> StaffMgmt{Manage Staff?}
+            StaffMgmt -->|Yes| ScheduleShifts[Create/Update Shift Schedules]
+            ScheduleShifts --> TrackAttendance[Track Staff Attendance]
+            TrackAttendance --> ApproveRequests[Approve Overtime or Shift Requests]
+            ApproveRequests --> StaffEnd((End Staff Management))
+            StaffMgmt -->|No| SkipStaff[Skip to Next Task]
+
+            %% Inventory Management Flow
+            Dashboard --> InventoryMgmt{Manage Inventory?}
+            InventoryMgmt -->|Yes| MonitorStock[Monitor Inventory Levels]
+            MonitorStock --> Restocking[Approve Restocking Requests]
+            Restocking --> Transfers[Track Warehouse-to-Store Transfers]
+            Transfers --> InvEnd((End Inventory Management))
+            InventoryMgmt -->|No| SkipInventory[Skip to Next Task]
+
+            %% Financial Oversight Flow
+            Dashboard --> Finance{Oversee Financials?}
+            Finance -->|Yes| StoreRevenue[Review Store Revenue and Expenses]
+            StoreRevenue --> Refunds[Approve Refunds/Adjustments]
+            Refunds --> FinancialReports[Generate Financial Reports]
+            FinancialReports --> FinEnd((End Financial Oversight))
+            Finance -->|No| SkipFinance[Skip to Next Task]
+
+            %% Notifications and Escalations Flow
+            Dashboard --> Notifications{Handle Notifications?}
+            Notifications -->|Yes| ResolveEscalations[Resolve Escalations from Store Managers]
+            ResolveEscalations --> EscalateIssues[Escalate Critical Issues to Super Admin]
+            EscalateIssues --> NotifyEnd((End Notifications and Escalations))
+            Notifications -->|No| SkipNotifications[Skip to Next Task]
+
+            %% Communication Flow
+            Dashboard --> Comm{Send/Receive Messages?}
+            Comm -->|Yes| SendMessage[Send Announcements to Store Managers]
+            SendMessage --> RespondChats[Respond to In-App Messages]
+            RespondChats --> CommEnd((End Communication))
+            Comm -->|No| SkipComm[Skip to Next Task]
+
+            %% End Workflow
+            SkipStaff --> SkipInventory --> SkipFinance --> SkipNotifications --> SkipComm --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>
