@@ -10,9 +10,11 @@ class Product extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'code', 'Type_barcode', 'name', 'cost', 'price', 'unit_id', 'unit_sale_id', 'unit_purchase_id',
+        'code', 'Type_barcode', 'name', 'cost', 'unit_id', 'unit_sale_id', 'unit_purchase_id',
         'stock_alert', 'category_id', 'sub_category_id', 'is_variant','is_imei',
-        'tax_method', 'image', 'brand_id', 'is_active', 'note','type'
+        'tax_method', 'image', 'brand_id', 'is_active', 'note','type', 'stock_alert', 'TaxNet', 'stock_alert',
+        'bulk_units', 'individual_units', 'bulk_weight_lb', 'bulk_weight_oz', 'individual_weight_lb', 'individual_weight_oz',
+        'is_seasonal', 'seasonal_month', 'shelf', 'product_picture',
     ];
 
     protected $casts = [
@@ -26,9 +28,22 @@ class Product extends Model
         'brand_id' => 'integer',
         'is_active' => 'integer',
         'cost' => 'double',
-        'price' => 'double',
+        // 'price' => 'double',
         'stock_alert' => 'double',
         'TaxNet' => 'double',
+        'stock_alert' => 'double',
+        'TaxNet' => 'double',
+        'stock_alert',
+        'bulk_units'=>'integer',
+        'individual_units'=>'integer',
+        'bulk_weight_lb'=>'double',
+        'bulk_weight_oz'=>'double',
+        'individual_weight_lb'=>'double',
+        'individual_weight_oz'=>'double',
+        'is_seasonal'=>'boolean',
+        'seasonal_month'=>'boolean',
+        'shelf'=>'boolean',
+        'product_picture'=>'file',
     ];
 
     public function ProductVariant()
@@ -82,6 +97,11 @@ class Product extends Model
          return $this->belongsToMany(Product::class, 'combined_products', 'product_id', 'combined_product_id')
                      ->withPivot('quantity')
                      ->withTimestamps();
+     }
+
+     public function shelf()
+     {
+         return $this->belongsTo(Shelf::class);
      }
 
 }
