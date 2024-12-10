@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\ShelfController;
+use App\Http\Controllers\WarehouseInventoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -535,3 +538,15 @@ Route::get('sales_print_invoice/{id}', 'SalesController@Print_Invoice_POS');
 
 
 // Route::get('/available-modules', 'ModuleSettingsController@get_modules_enabled');
+
+Route::get('/shelves', [ShelfController::class, 'index']);
+Route::post('/shelves', [ShelfController::class, 'store']);
+// Route::get('/shelves', [ShelfController::class, 'index']);
+
+
+Route::get('/warehouse-items', [WarehouseInventoryController::class, 'index']);
+
+Route::get('/purchase-orders', [PurchaseOrderController::class, 'index']);
+Route::get('/purchase-orders/{id}', [PurchaseOrderController::class, 'show']);
+Route::post('/purchase-orders/{id}/fulfill', [PurchaseOrderController::class, 'fulfillOrder']);
+

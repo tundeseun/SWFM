@@ -16,12 +16,7 @@ class Product extends Model
         'code', 'Type_barcode', 'name', 'cost', 'unit_id', 'unit_sale_id', 'unit_purchase_id',
         'stock_alert', 'category_id', 'sub_category_id', 'is_variant', 'is_imei',
         'tax_method', 'image', 'brand_id', 'is_active', 'note', 'type', 'stock_alert', 'TaxNet', 'stock_alert',
-        'individual_units',
-        'bulk_weight',
-        'individual_weight',
-        'is_seasonal',
-        'seasonal_month',
-        'shelf_id',
+        'individual_units', 'bulk_weight', 'individual_weight', 'is_seasonal', 'seasonal_month', 'shelf_id',
         'images',
     ];
 
