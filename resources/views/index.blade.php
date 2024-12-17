@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel Vue App</title>
+    <title>SWFM ERP Solution - SouthWest Farmers Market</title>
     @vite(['resources/css/app.css', 'resources/js/app.js']) <!-- Include compiled CSS and JS -->
 </head>
 <body>
