@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="flex h-screen text-white">
       <Sidebar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" @toggle-sidebar="toggleSidebar" />
       <div class="flex-1 flex flex-col overflow-auto">
@@ -38,4 +38,4 @@ export default {
     }
   }
 }
-</script>
+</script> -->

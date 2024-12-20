@@ -1,9 +1,9 @@
 <template>
     <div class="flex h-screen text-white">
-      <Sidebar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" @toggle-sidebar="toggleSidebar" />
+      <Sidebar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" :isVisible="isSidebarVisible" />
       <div class="flex-1 flex flex-col overflow-auto">
-        <Navbar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" @toggle-sidebar="toggleSidebar" />
-        <div class="">
+        <Navbar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" :isVisible="isSidebarVisible" />
+        <div class="pt-32">
             <router-view />
         </div>
       </div>
@@ -15,7 +15,7 @@ import { ref } from 'vue';
 import Navbar from '@/components/Navbar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 
-
+const isSidebarVisible = ref(true);
 
 export default {
   components: {
