@@ -15,4 +15,7 @@ export default defineConfig({
             '@': '/resources/js', // Ensure proper alias for JS files
         },
     },
+    build: {
+        outDir: 'dist', // Specify the output directory
+    },
 });
