@@ -1,9 +1,12 @@
 <template>
     <div class="flex h-screen text-white">
       <Sidebar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" :isVisible="isSidebarVisible" />
-      <div class="flex-1 flex flex-col overflow-auto">
-        <Navbar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" :isVisible="isSidebarVisible" />
-        <div class="pt-32">
+      <div class="flex-1 flex flex-col">
+        <div class="">
+          <Navbar v-if="!isOnDashboardRoute" :is-open="sidebarOpen" :isVisible="isSidebarVisible" />
+        </div>
+
+        <div class="relative flex-1">
             <router-view />
         </div>
       </div>

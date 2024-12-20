@@ -6,6 +6,7 @@ import InventoryTableView from '@/views/InventoryTableView.vue';
 import PurchaseOrderView from '@/views/PurchaseOrderView.vue';
 import Dashboard from '@/components/Dashboard.vue';
 import Posview from '../views/Posview.vue';
+import ListProductView from '../views/ListProductView.vue';
 
 const routes = [
     { 
@@ -27,17 +28,22 @@ const routes = [
                 component: CreateProductView 
             },
             { 
-                path: 'create-shelves', 
+                path: 'products/all', 
+                name: 'ListProduct', 
+                component: ListProductView 
+            },
+            { 
+                path: 'shelves/create', 
                 name: 'CreateShelf', 
                 component: CreateShelfView 
             },
             { 
-                path: 'inventory-table', 
+                path: 'inventory/all', 
                 name: 'InventoryTable', 
                 component: InventoryTableView 
             },
             { 
-                path: 'purchase-order', 
+                path: 'orders/create', 
                 name: 'PurchaseOrder', 
                 component: PurchaseOrderView 
             },

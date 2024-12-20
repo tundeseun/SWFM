@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg overflow-hidden">
+    <div class=" bg-white rounded-lg">
       <!-- <h2 class="text-2xl font-bold p-6 bg-gray-50 border-b">Shelves List</h2> -->
       <div v-if="shelves.length === 0" class="p-6 text-center text-gray-500">
         No shelves created yet. Start by adding a new shelf!

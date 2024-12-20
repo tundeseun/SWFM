@@ -1,5 +1,5 @@
 <template>
-    <header class="fixed z-[200] w-full bg-white p-4 py-8 pb-7 flex items-center justify-between border-b border-gray-100">
+    <header class="fixed top-0 z-[200] w-full bg-white p-4 py-8 pb-7 flex items-center justify-between border-b border-gray-100">
       <button @click="$emit('toggle-sidebar')" class="">
       <MenuIcon class="h-8 w-8 text-gray-500" />
     </button>

@@ -1,4 +1,5 @@
 <template>
+   <main class="mt-20 mb-20">
     <form @submit.prevent="handleSubmit" class="max-w-4xl mx-auto p-6 space-y-8 text-black">
       <!-- First Section -->
       <div class="bg-white rounded-lg shadow-sm p-6 space-y-6 text-black">
@@ -338,6 +339,7 @@
         </button>
       </div>
     </form>
+   </main>
   </template>
   
   <script setup>
