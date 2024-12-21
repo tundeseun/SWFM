@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -89,53 +92,59 @@ class ProductController extends Controller
     ], 201);
 }
 
-    public function index()
-    {
+public function index(Request $request)
+{
+    $query = Product::query();
 
-        if ($request->filled('code')) {
-            $query->where('code', 'like', '%' . $request->code . '%');
-        }
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        }
-        if ($request->filled('category')) {
-            $query->whereHas('category', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->category . '%');
-            });
-        }
-        if ($request->filled('brand')) {
-            $query->whereHas('brand', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->brand . '%');
-            });
-        }
-        $products = Product::with(['brand', 'category', 'unit'])->get();
-
-        return response()->json([
-            'message' => 'Products retrieved successfully',
-            'data' => $products->map(function ($product) {
-                return [
-                    'id' => $product->id,
-                    'image' => $product->image,
-                    'name' => $product->name,
-                    'code' => $product->code,
-                    'brand' => $product->brand->name ?? null,
-                    'category' => $product->category->name ?? null,
-                    'unit' => $product->unit->name ?? null,
-                    'quantity' => $product->quantity,
-                    'action' => [
-                        'view_url' => url("/api/products/{$product->id}"),
-                        'update_url' => url("/api/products/{$product->id}"),
-                        'delete_url' => url("/api/products/{$product->id}")
-                    ]
-                ];
-            }),   // Paginated response
-            $products = $query->with(['brand', 'category', 'unit'])->paginate(10);
-
-            return response()->json($products);
-        }
-        ]);
-
+    if ($request->filled('code')) {
+        $query->where('code', 'like', '%' . $request->code . '%');
     }
+    if ($request->filled('name')) {
+        $query->where('name', 'like', '%' . $request->name . '%');
+    }
+    if ($request->filled('category')) {
+        $query->whereHas('category', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->category . '%');
+        });
+    }
+    if ($request->filled('brand')) {
+        $query->whereHas('brand', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->brand . '%');
+        });
+    }
+
+    $products = $query->with(['brand', 'category', 'unit'])->paginate(10);
+
+    $data = $products->map(function ($product) {
+        return [
+            'id' => $product->id,
+            'image' => $product->image,
+            'name' => $product->name,
+            'code' => $product->code,
+            'brand' => $product->brand->name ?? null,
+            'category' => $product->category->name ?? null,
+            'unit' => $product->unit->name ?? null,
+            'quantity' => $product->quantity,
+            'action' => [
+                'view_url' => url("/api/products/{$product->id}"),
+                'update_url' => url("/api/products/{$product->id}"),
+                'delete_url' => url("/api/products/{$product->id}")
+            ],
+        ];
+    });
+
+    return response()->json([
+        'message' => 'Products retrieved successfully',
+        'data' => $data,
+        'pagination' => [
+            'total' => $products->total(),
+            'per_page' => $products->perPage(),
+            'current_page' => $products->currentPage(),
+            'last_page' => $products->lastPage(),
+        ],
+    ]);
+}
+
 
     public function show($id)
     {

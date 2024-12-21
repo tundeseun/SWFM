@@ -93,6 +93,13 @@ Route::prefix('units')->group(function () {
     Route::delete('/{id}', [UnitController::class, 'destroy']);
 });
 
+Route::prefix('print-labels')->controller(PrintLabelController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/search', 'search'); 
+    Route::post('/update', 'update');
+    Route::post('/print', 'print');
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
