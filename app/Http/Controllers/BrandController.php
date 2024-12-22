@@ -10,11 +10,29 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = Brand::all();
-        return response()->json($brands);
+        $query = Brand::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%$search%");
+        }
+
+        if ($request->has(['sort', 'order'])) {
+            $query->orderBy($request->input('sort'), $request->input('order'));
+        }
+
+        // $brands = $query->get();
+
+        // return response()->json([
+        //     'brands' => $brands
+        // ], 200);
+
+        $brands = $query->paginate(10);
+        return response()->json($brands, 200);
     }
+
 
     /**
      * Show the form for creating a new resource.

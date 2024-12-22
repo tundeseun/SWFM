@@ -10,17 +10,29 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        $query = Category::query();
 
-    if ($categories->isEmpty()) {
-        return response()->json(['message' => 'No categories found'], 200);
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%$search%")
+                ->orWhere('code', 'like', "%$search%");
+        }
 
+        if ($request->has(['sort', 'order'])) {
+            $query->orderBy($request->input('sort'), $request->input('order'));
+        }
+
+        $categories = $query->get();
+
+        if ($categories->isEmpty()) {
+            return response()->json(['message' => 'No categories found'], 200);
+        }
+
+        return response()->json(['categories' => $categories], 200);
     }
 
-    return response()->json($categories);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +52,6 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
 
-        // Create a new category
         $category = Category::create([
             'code' => $request->input('code'),
             'name' => $request->input('name'),
@@ -50,7 +61,6 @@ class CategoryController extends Controller
             'message' => 'Category created successfully',
             'data' => $category,
         ], 201);
-
     }
 
     /**
@@ -88,7 +98,7 @@ class CategoryController extends Controller
         }
 
         $request->validate([
-            'code' => 'required|string|max:255|unique:categories,code,'. $category->id,
+            'code' => 'required|string|max:255|unique:categories,code,' . $category->id,
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
         ]);
 
@@ -126,15 +136,15 @@ class CategoryController extends Controller
     }
 
     public function restore($id)
-{
-    $category = Category::onlyTrashed()->find($id);
+    {
+        $category = Category::onlyTrashed()->find($id);
 
-    if (!$category) {
-        return response()->json(['message' => 'Category not found'], 404);
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        $category->restore();
+
+        return response()->json(['message' => 'Category restored successfully']);
     }
-
-    $category->restore(); // Restores the soft deleted category
-
-    return response()->json(['message' => 'Category restored successfully']);
-}
 }

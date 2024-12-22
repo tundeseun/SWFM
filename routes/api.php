@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShelfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\PrintLabelController;
 use App\Http\Controllers\TaxTypeController;
 use App\Http\Controllers\TypeController;
 
@@ -49,6 +50,8 @@ Route::prefix('categories')->controller(CategoryController::class)->group(functi
     Route::put('{id}', 'update');
     Route::delete('{id}', 'destroy');
     Route::get('trashed', 'trashed');
+    Route::patch('restore/{id}', 'restore');
+
 });
 
 Route::prefix('brands')->group(function () {
@@ -95,7 +98,7 @@ Route::prefix('units')->group(function () {
 
 Route::prefix('print-labels')->controller(PrintLabelController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/search', 'search'); 
+    Route::get('/search', 'search');
     Route::post('/update', 'update');
     Route::post('/print', 'print');
 });

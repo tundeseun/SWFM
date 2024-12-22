@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
 use App\Models\Product;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;

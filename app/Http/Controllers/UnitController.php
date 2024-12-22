@@ -7,11 +7,28 @@ use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $units = Unit::all(); 
-        return response()->json($units);
+        $query = Unit::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%");
+        }
+
+        if ($request->has(['sort', 'order'])) {
+            $sort = $request->input('sort');
+            $order = $request->input('order', 'asc');
+            $query->orderBy($sort, $order);
+        }
+
+        $perPage = $request->input('per_page', 10);
+        $units = $query->paginate($perPage);
+
+        return response()->json($units, 200);
     }
+
 
     public function store(Request $request)
     {
