@@ -1,9 +1,11 @@
 import Layout from '@/layout/Layout.vue'
-import CreateProductView from '@/views/CreateProductView.vue';
-import CreateShelfView from '@/views/CreateShelfView.vue';
-import InventoryTableView from '@/views/InventoryTableView.vue';
-import PurchaseOrderView from '@/views/PurchaseOrderView.vue';
-import Dashboard from '@/components/Dashboard.vue';
+import CreateProductView from '../js/views/CreateProductView.vue';
+import CreateShelfView from '../js/views/CreateShelfView.vue';
+import InventoryTableView from '../js/views/InventoryTableView.vue';
+import PurchaseOrderView from '../js/views/PurchaseOrderView.vue';
+import Dashboard from '../js/components/Dashboard.vue';
+import PosView from "../js/views/Posview.vue";
+
 
 const routes = [
     { 
@@ -18,6 +20,11 @@ const routes = [
                 path: 'dashboard', 
                 name: 'Dashboard', 
                 component: Dashboard 
+            },
+            { 
+                path: 'pos', 
+                name: 'Pos', 
+                component: PosView
             },
             { 
                 path: 'create-product', 
@@ -38,7 +45,8 @@ const routes = [
                 path: 'purchase-order', 
                 name: 'PurchaseOrder', 
                 component: PurchaseOrderView 
-            }
+            },
+           
         ]
     }
 ];

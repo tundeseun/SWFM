@@ -8,7 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#00ff99', // Custom color
+        // 00ff99
+        primary: '#008800', // Custom color
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
