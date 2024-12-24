@@ -10,3 +10,33 @@
 @tailwind utilities;
 
 
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* font-family: "Monospace"; */
+  }
+
+
+
+  /* Customize Sidebar Scrollbar */
+.overflow-auto::-webkit-scrollbar {
+  width: 4px; /* Set scrollbar width to a thin size */
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+  background-color: #f5f5f5; /* Set thumb color to match theme */
+  border-radius: 10px; /* Add rounded corners for a sleek look */
+}
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: white; /* Darker shade on hover for effect */
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+  background-color: #f5f5f5; /* Set track color for contrast */
+  border-radius: 10px; /* Match thumb's rounded corners */
+}
+
+

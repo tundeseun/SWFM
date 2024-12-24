@@ -1,7 +1,7 @@
 <template>
-  <div class="flex overflow-x-hidden">
+  <div class="flex">
     <!-- Main Sidebar -->
-    <div class="w-32 h-screen relative bg-white border-r border-gray-100 flex flex-col items-center py-6">
+    <div class="overflow-auto hover:overflow-y-auto w-32 h-screen relative bg-white border-r border-gray-100 flex flex-col items-center py-6">
       <nav class="flex-1 w-full">
         <!-- Logo Section -->
         <div class="mb-8 flex items-center justify-center gap-3">       
@@ -18,14 +18,14 @@
             @click="handleMenuClick(item)"
             class="w-full h-20 flex flex-col items-center justify-center gap-2 mb-4 relative"
             :class="[
-              currentRoute === item.path ? 'text-[#00ffb3]' : 'text-gray-500',
-              'hover:text-[#00ffb3] transition-colors duration-200'
+              currentRoute === item.path ? 'text-primary' : 'text-gray-500',
+              'hover:text-primary transition-colors duration-200'
             ]"
           >
             <component 
               :is="item.icon" 
               class="w-8 h-8 font-sm"
-              :class="{'text-[#00ffb3]': currentRoute === item.path}"
+              :class="{'text-primary': currentRoute === item.path}"
             />
             <span class="text-xs font-medium">{{ item.label }}</span>
           </button>
@@ -67,7 +67,13 @@ import {
   List,
   Package,
   BoxIcon,
-  FileText
+  FileText,
+  Boxes,
+  AlertCircle,
+  DollarSign,
+  Printer,
+  Box,
+  Tag
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -101,6 +107,31 @@ const menuItems = [
       {
         label: 'All Products',
         icon: List,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Print labels',
+        icon: Printer,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Count Stock',
+        icon: Box,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Category',
+        icon: Layers,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Brand',
+        icon: Tag,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Unit',
+        icon: Package,
         path: '/app/products/all'
       }
     ]
@@ -155,8 +186,66 @@ const menuItems = [
         path: '/app/orders/all'
       }
     ]
+  },
+
+  {
+    label: 'Pallet',
+    icon: Boxes,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Pallet',
+        icon: Plus,
+        path: '/app/pallet/create'
+      },
+      {
+        label: 'All Pallet',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  },
+
+
+  {
+    label: 'Alert',
+    icon: AlertCircle,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Alert',
+        icon: Plus,
+        path: '/app/orders/create'
+      },
+      {
+        label: 'All Alert',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  },
+
+  {
+    label: 'Finance',
+    icon: DollarSign,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Finance',
+        icon: Plus,
+        path: '/app/orders/create'
+      },
+      {
+        label: 'All Finance',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
   }
 ]
+
+
+
 
 </script>
 
@@ -183,10 +272,29 @@ button,
 }
 
 /* Ensure submenu appears smoothly */
-.group:hover .submenu {
-  display: block;
-  animation: fadeIn 0.3s ease;
+/* Main Sidebar Scroll Behavior */
+.hover\\:overflow-y-auto:hover {
+  overflow-y: auto; /* Enable vertical scrolling on hover */
 }
+
+.overflow-hidden {
+  overflow-y: hidden; /* Default: Disable scrolling */
+  max-height: 100%; /* Prevent content overflow */
+}
+
+.overflow-hidden::-webkit-scrollbar {
+  width: 6px; /* Adjust scrollbar width */
+}
+
+.overflow-hidden::-webkit-scrollbar-thumb {
+  background: #00ffb3; /* Scrollbar color */
+  border-radius: 3px; /* Rounded scrollbar */
+}
+
+.overflow-hidden::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Scrollbar track color */
+}
+
 
 @keyframes fadeIn {
   from {

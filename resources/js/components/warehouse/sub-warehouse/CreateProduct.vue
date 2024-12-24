@@ -1,32 +1,7 @@
 <template>
-  <div class="mb-32 p-6">
-    <div class="max-w-2xl mx-auto bg-white border border-gray-300 rounded-lg shadow-md p-6">
-      <h2 class="text-2xl font-bold mb-6">Create Product</h2>
-      
+  <div class="bg-white shadow-lg p-6">
+    <div>      
       <form @submit.prevent="handleSubmit" class="space-y-6">
-        <!-- Product Name -->
-        <div class="space-y-2">
-          <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
-          <input
-            v-model="form.name"
-            type="text"
-            id="name"
-            required
-            class="w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <!-- Description -->
-        <div class="space-y-2">
-          <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-          <textarea
-            v-model="form.description"
-            id="description"
-            rows="3"
-            required
-            class="w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          ></textarea>
-        </div>
 
         <!-- Bulk Unit -->
         <div class="space-y-2">
@@ -38,8 +13,9 @@
             class="w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Select unit type</option>
-            <option value="kg">kg</option>
-            <option value="pc">pc</option>
+            <option value="kg">Carton</option>
+            <option value="pc">Bag</option>
+            <option value="pc">Case</option>
           </select>
         </div>
 
@@ -132,7 +108,7 @@
 </div>
 
         <!-- Product Image -->
-        <div class="space-y-2">
+        <!-- <div class="space-y-2">
           <label class="block text-sm font-medium text-gray-700">Product Image</label>
           <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div class="space-y-1 text-center">
@@ -173,9 +149,9 @@
           <div v-if="form.image" class="mt-2">
             <img :src="form.image" alt="Product preview" class="h-32 w-32 object-cover rounded-md" />
           </div>
-        </div>
+        </div> -->
 
-        <div class="bg-gray-50 -mx-6 px-6 py-3 mt-6">
+        <!-- <div class="bg-gray-50 -mx-6 px-6 py-3 mt-6">
           <div class="text-sm text-gray-500 mb-4">
             <p>Note: Product selling price will be dynamic based on cost price on purchases.</p>
           </div>
@@ -185,7 +161,7 @@
           >
             Create Product
           </button>
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
@@ -207,7 +183,7 @@ const form = reactive({
   individualUnit: '',
   bulkWeight: null,
   individualWeight: null,
-  isSeasonal: true,
+  isSeasonal: false,
   seasonMonth: '',
   shelf: '',
   image: null

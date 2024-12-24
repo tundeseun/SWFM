@@ -122,15 +122,15 @@ onMounted(() => {
         {
           label: 'Sales',
           data: [0, 0, 0, 50000, 0, 0, 0],
-          backgroundColor: '#00ff99',
-          borderColor: '#00ff99',
+          backgroundColor: '#008800',
+          borderColor: '#008800',
           borderWidth: 1
         },
         {
           label: 'Purchases',
           data: [0, 0, 0, 600000, 0, 0, 0],
-          backgroundColor: '#00ff99',
-          borderColor: '#00ff99',
+          backgroundColor: '#008800',
+          borderColor: '#008800',
           borderWidth: 1
         }
       ]

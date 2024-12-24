@@ -18,4 +18,7 @@ export default defineConfig({
     build: {
         outDir: 'dist', // Specify the output directory
     },
+    devServer: {
+        historyApiFallback: true, // Ensure the dev server works well
+      },
 });
