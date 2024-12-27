@@ -20,10 +20,6 @@ const routes = [
         path: '/', 
         redirect: '/login'  // Changed to redirect to login by default
       },
-    // { 
-    //     path: '/', 
-    //     redirect: '/app/dashboard' 
-    // },
     { 
         path: '/app', 
         component: Layout,
