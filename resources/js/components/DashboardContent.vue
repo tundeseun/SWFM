@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6  min-h-screen mb-5">
+  <div class="p-6  min-h-screen mb-5 mt-32">
     <!-- Filters Section -->
     <div class="flex gap-4 mb-6">
       <div class="relative w-64">
@@ -122,15 +122,15 @@ onMounted(() => {
         {
           label: 'Sales',
           data: [0, 0, 0, 50000, 0, 0, 0],
-          backgroundColor: '#00ff99',
-          borderColor: '#00ff99',
+          backgroundColor: '#008800',
+          borderColor: '#008800',
           borderWidth: 1
         },
         {
           label: 'Purchases',
           data: [0, 0, 0, 600000, 0, 0, 0],
-          backgroundColor: '#00ff99',
-          borderColor: '#00ff99',
+          backgroundColor: '#008800',
+          borderColor: '#008800',
           borderWidth: 1
         }
       ]

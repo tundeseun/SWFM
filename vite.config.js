@@ -15,4 +15,10 @@ export default defineConfig({
             '@': '/resources/js', // Ensure proper alias for JS files
         },
     },
+    build: {
+        outDir: 'dist', // Specify the output directory
+    },
+    devServer: {
+        historyApiFallback: true, // Ensure the dev server works well
+      },
 });

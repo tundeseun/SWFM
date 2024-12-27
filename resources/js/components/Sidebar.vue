@@ -1,146 +1,309 @@
 <template>
-  <div 
-  class="w-64 bg-white min-h-screen flex flex-col justify-between p-4 border-r border-gray-100">
-    <!-- Top Section -->
-    <div>
-      <!-- Logo/Profile Section -->
-      <div class="mb-8 flex items-center gap-3">
-        <img src="../assets/image/logo.png" alt="Logo" class="w-10 h-10"/>
-      </div>
+  <div class="flex">
+    <!-- Main Sidebar -->
+    <div class="overflow-auto hover:overflow-y-auto w-32 h-screen relative bg-white border-r border-gray-100 flex flex-col items-center py-6">
+      <nav class="flex-1 w-full">
+        <!-- Logo Section -->
+        <div class="mb-8 flex items-center justify-center gap-3">       
+          <img src="../assets/image/logo.png" alt="Logo" class="w-10 h-10"/>
+        </div>
 
-      <!-- Main Navigation -->
-      <nav class="space-y-2">
-        <!-- Dashboard -->
-        <router-link 
-          to="/app/dashboard" 
-          class="text-black py-4 pl-3 flex mb-10 items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-          :class="{ 'bg-primary py-4 pl-3 text-black font-semibold': currentRoute === '/app/dashboard' }"
+        <!-- Menu Items -->
+        <div 
+          v-for="(item, index) in menuItems" 
+          :key="index"
+          class="relative group"
         >
-          <BarChartIcon class="w-6 h-6 text-black font-semibold" />
-          <span class="text-sm font-medium">Dashboard</span>
-        </router-link>
-
-        <!-- Warehouse Section -->
-        <div>
-          <button 
-            @click="toggleWarehouse" 
-            type="button" 
-            class="w-full flex items-center justify-between p-2 rounded-lg text-gray-600 transition-colors"
-            :class="{ 'text-primary': isWarehouseOpen }"
+          <button
+            @click="handleMenuClick(item)"
+            class="w-full h-20 flex flex-col items-center justify-center gap-2 mb-4 relative"
+            :class="[
+              currentRoute === item.path ? 'text-primary' : 'text-gray-500',
+              'hover:text-primary transition-colors duration-200'
+            ]"
           >
-            <div class="flex items-center gap-3">
-              <BaggageClaim class="w-5 h-5 text-black" />
-              <span class="text-sm text-black font-medium">Warehouse</span>
-            </div>
-            <ChevronDown 
-              class="w-4 h-4 text-black transition-transform duration-200"
-              :class="{ 'rotate-180': isWarehouseOpen }"
+            <component 
+              :is="item.icon" 
+              class="w-8 h-8 font-sm"
+              :class="{'text-primary': currentRoute === item.path}"
             />
+            <span class="text-xs font-medium">{{ item.label }}</span>
           </button>
 
-          <!-- Warehouse Submenu -->
-          <div 
-            v-show="isWarehouseOpen" 
-            class="mt-1 ml-7 pl-4 border-l border-gray-100 space-y-1"
+          <!-- Submenu -->
+          <div
+            v-if="item.submenu"
+            class="fixed left-32 z-[100] top-0 pt-[60px] h-screen w-64 hidden group-hover:block bg-white border-r border-gray-100 shadow-lg"
+            style="margin-left: 0;"
           >
-            <router-link 
-              v-for="item in warehouseItems" 
-              :key="item.name"
-              :to="item.href"
-              class="flex items-center gap-3 p-2 rounded-lg text-gray-600 text-sm"
-              :class="{ 'text-primary': currentRoute === item.href }"
-            >
-              <component :is="item.icon" class="w-4 h-4 text-black" />
-              <span class="text-black">{{ item.name }}</span>
-            </router-link>
+            <div class="pt-12">
+              <router-link
+                v-for="(subItem, subIndex) in item.submenu"
+                :key="subIndex"
+                :to="subItem.path"
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-gray-700 text-sm"
+              >
+                <component :is="subItem.icon" class="w-4 h-4" />
+                <span>{{ subItem.label }}</span>
+              </router-link>
+            </div>
           </div>
         </div>
       </nav>
-    </div>
-
-    <!-- Bottom Section -->
-    <div class="space-y-2">
-      <!-- Help Center -->
-      <router-link 
-        to="/help"
-        class="flex items-center gap-3 p-2 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors"
-      >
-        <HelpCircle class="w-5 h-5" />
-        <span class="text-sm font-medium">Help Center</span>
-      </router-link>
-
-      <!-- Logout -->
-      <button 
-        @click="handleLogout" 
-        class="w-full flex items-center gap-3 p-2 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors"
-      >
-        <LogOut class="w-5 h-5" />
-        <span class="text-sm font-medium">Log Out</span>
-      </button>
-
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { 
-  BarChart,
-  BaggageClaim,
-  ChevronDown,
+import { useRoute, useRouter } from 'vue-router'
+import {
+  BarChart2,
   ShoppingCart,
-  Layers,
   Target,
-  Cuboid,
-  HelpCircle,
-  LogOut,
-  BarChartIcon,
-  Moon
+  Layers,
+  ClipboardList,
+  Plus,
+  List,
+  Package,
+  BoxIcon,
+  FileText,
+  Boxes,
+  AlertCircle,
+  DollarSign,
+  Printer,
+  Box,
+  Tag
 } from 'lucide-vue-next'
-import { Switch } from '@headlessui/vue'
 
 const route = useRoute()
+const router = useRouter()
 const currentRoute = computed(() => route.path)
-const isWarehouseOpen = ref(false)
-const isDarkMode = ref(false)
 
-// Sidebar state (for small screens)
-const isSidebarOpen = ref(false)
-
-const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
-}
-
-const toggleWarehouse = () => {
-  isWarehouseOpen.value = !isWarehouseOpen.value
+// Handle menu item click
+const handleMenuClick = (item) => {
+  if (!item.submenu) {
+    router.push(item.path) // Absolute path ensures correct navigation
+  }
 }
 
 
+const menuItems = [
+  {
+    label: 'Dashboard',
+    icon: BarChart2,
+    path: '/app/dashboard'
+  },
+  {
+    label: 'Product',
+    icon: ShoppingCart,
+    path: '/app/products',
+    submenu: [
+      {
+        label: 'Add New Product',
+        icon: Plus,
+        path: '/app/products/create'
+      },
+      {
+        label: 'All Products',
+        icon: List,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Print labels',
+        icon: Printer,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Count Stock',
+        icon: Box,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Category',
+        icon: Layers,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Brand',
+        icon: Tag,
+        path: '/app/products/all'
+      },
+      {
+        label: 'Unit',
+        icon: Package,
+        path: '/app/products/all'
+      }
+    ]
+  },
+  {
+    label: 'Inventory',
+    icon: Package,
+    path: '/app/inventory',
+    submenu: [
+      // {
+      //   label: 'Add New Inventory',
+      //   icon: Plus,
+      //   path: '/app/inventory/create'
+      // },
+      {
+        label: 'All Inventory',
+        icon: List,
+        path: '/app/inventory/all'
+      }
+    ]
+  },
+  {
+    label: 'Shelves',
+    icon: Layers,
+    path: '/app/shelves',
+    submenu: [
+      {
+        label: 'Add New Shelves',
+        icon: Plus,
+        path: '/app/shelves/create'
+      },
+      {
+        label: 'All Shelves',
+        icon: List,
+        path: '/app/shelves/all'
+      }
+    ]
+  },
+  {
+    label: 'Orders',
+    icon: ClipboardList,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Order',
+        icon: Plus,
+        path: '/app/orders/create'
+      },
+      {
+        label: 'All Orders',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  },
 
-const handleLogout = () => {
-  // Implement logout logic here
-  console.log('Logging out...')
-}
+  {
+    label: 'Pallet',
+    icon: Boxes,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Pallet',
+        icon: Plus,
+        path: '/app/pallet/create'
+      },
+      {
+        label: 'All Pallet',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  },
 
-const warehouseItems = [
-  { name: 'Create Product', icon: ShoppingCart, href: '/app/create-product' },
-  { name: 'Inventory', icon: Target, href: '/app/inventory-table' },
-  { name: 'Shelves', icon: Layers, href: '/app/create-shelf' },
-  { name: 'Purchase Orders', icon: Cuboid, href: '/app/purchase-order' },
+
+  {
+    label: 'Alert',
+    icon: AlertCircle,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Alert',
+        icon: Plus,
+        path: '/app/orders/create'
+      },
+      {
+        label: 'All Alert',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  },
+
+  {
+    label: 'Finance',
+    icon: DollarSign,
+    path: '/app/orders',
+    submenu: [
+      {
+        label: 'Add New Finance',
+        icon: Plus,
+        path: '/app/orders/create'
+      },
+      {
+        label: 'All Finance',
+        icon: List,
+        path: '/app/orders/all'
+      }
+    ]
+  }
 ]
+
+
+
+
 </script>
 
 <style scoped>
-:root {
-  --primary: #6366f1;
+/* Active state styling for buttons */
+button.active {
+  position: relative;
 }
 
-.text-primary {
-  color: var(--primary);
+button.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #00ffb3;
 }
 
-.bg-primary\/10 {
-  background-color: rgb(99 102 241 / 0.1);
+/* Transition effects */
+button,
+.submenu-item {
+  transition: all 0.3s ease;
+}
+
+/* Ensure submenu appears smoothly */
+/* Main Sidebar Scroll Behavior */
+.hover\\:overflow-y-auto:hover {
+  overflow-y: auto; /* Enable vertical scrolling on hover */
+}
+
+.overflow-hidden {
+  overflow-y: hidden; /* Default: Disable scrolling */
+  max-height: 100%; /* Prevent content overflow */
+}
+
+.overflow-hidden::-webkit-scrollbar {
+  width: 6px; /* Adjust scrollbar width */
+}
+
+.overflow-hidden::-webkit-scrollbar-thumb {
+  background: #00ffb3; /* Scrollbar color */
+  border-radius: 3px; /* Rounded scrollbar */
+}
+
+.overflow-hidden::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Scrollbar track color */
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 </style>
