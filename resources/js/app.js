@@ -1,16 +1,14 @@
 // resources/js/app.js
+import './assets/main.css'
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router'; 
-import routes from '@/utils/routes';  // Import routes from routes.js
+import { createPinia } from 'pinia';
+import router from './router.js';
 
-// Create the router instance
-const router = createRouter({
-    history: createWebHistory(),  // Use the HTML5 History API
-    routes,  // Assign the routes from routes.js
-});
+const app = createApp(App);
+const pinia = createPinia();
+console.log('Pinia initialized:', pinia)
 
-// Create and mount the Vue app
-createApp(App)
-    .use(router)  // Use the router instance in the Vue app
-    .mount('#app');
+app.use(pinia);
+app.use(router);
+app.mount('#app');
