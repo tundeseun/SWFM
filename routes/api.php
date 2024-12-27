@@ -8,8 +8,10 @@ use App\Http\Controllers\ShelfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PrintLabelController;
+use App\Http\Controllers\RepackagingController;
 use App\Http\Controllers\TaxTypeController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,8 @@ Route::prefix('products')->controller(ProductController::class)->group(function 
     Route::post('/import', 'import');
     Route::get('/export/excel', 'exportToExcel');
     Route::get('/export/pdf', 'exportToPDF');
+    Route::post('/search-barcode', 'searchByBarcode');
+
 });
 
 Route::get('/inventory', [InventoryController::class, 'index']);
@@ -86,7 +90,6 @@ Route::prefix('types')->group(function () {
 
 // routes/api.php
 
-use App\Http\Controllers\UnitController;
 
 Route::prefix('units')->group(function () {
     Route::get('/', [UnitController::class, 'index']);
@@ -102,6 +105,16 @@ Route::prefix('print-labels')->controller(PrintLabelController::class)->group(fu
     Route::post('/update', 'update');
     Route::post('/print', 'print');
 });
+
+
+
+Route::prefix('repackaging')->controller(RepackagingController::class)->group(function () {
+    Route::post('/manage', 'manageRepackaging');
+    Route::post('/start', 'startRepackaging');
+    Route::post('/update-status', 'updateStatus');
+    Route::get('/view', 'viewRepackaging');
+});
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

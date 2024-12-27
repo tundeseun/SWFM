@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -13,7 +14,6 @@ class ProductController extends Controller
 {
     public function store(Request $request)
 {
-    // Validate input data
     $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -39,6 +39,10 @@ class ProductController extends Controller
         'seasonal_month' => 'nullable|integer|min:1|max:12',
         'shelf_id' => 'nullable|integer|exists:shelves,id',
         'not_selling' => 'nullable|boolean',
+        'warehouse_bulk_alert' => 'nullable|integer|min:0',
+        'store_min_quantity' => 'nullable|integer|min:0',
+        'store_max_quantity' => 'nullable|integer|gte:store_min_quantity',
+
     ]);
 
     // If validation fails, return the error messages
@@ -83,9 +87,10 @@ class ProductController extends Controller
         'shelf_id' => $data['shelf_id'],
         'not_selling' => $data['not_selling'],
         'image' => $data['image'],
+        'warehouse_bulk_alert' => $data['warehouse_bulk_alert'],
+        'store_min_quantity' => $data['store_min_quantity'],
     ]);
 
-    // Return the success response with created product details
     return response()->json([
         'message' => 'Product created successfully.',
         'product' => $product,
@@ -225,8 +230,21 @@ public function exportToExcel()
 public function exportToPDF()
 {
     $products = Product::with(['brand', 'category', 'unit'])->get();
-    $pdf = PDF::loadView('exports.products_pdf', compact('products'));
+    $pdf = Pdf::loadView('exports.products_pdf', compact('products'));
 
     return $pdf->download('products.pdf');
+}
+
+public function searchByBarcode(Request $request)
+{
+    $barcode = $request->input('barcode');
+
+    $product = Product::where('code', $barcode)->first();
+
+    if ($product) {
+        return response()->json($product, 200);
+    }
+
+    return response()->json(['message' => 'Product not found'], 404);
 }
 }

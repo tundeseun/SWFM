@@ -43,8 +43,12 @@ class Product extends Model
         'seasonal_month',
         'shelf_id',
         'not_selling',
-        'has_imei_or_serial'
-    ];
+        'has_imei_or_serial',
+        'packaging_category',
+        'warehouse_bulk_alert',
+        'store_min_quantity',
+        'store_max_quantity'
+        ];
 
     protected $casts = [
         'category_id' => 'integer',
@@ -76,7 +80,12 @@ class Product extends Model
         'purchase_unit' => 'string',
         'not_selling' => 'boolean',
         'seasonal_calendar' => 'date',
-        's_imei' => 'boolean'
+        's_imei' => 'boolean',
+        'packaging_category' => 'string',
+        'warehouse_bulk_alert' => 'integer',
+        'store_min_quantity' => 'integer',
+        'store_max_quantity' => 'integer',
+
     ];
 
     public function ProductVariant(): BelongsTo
@@ -135,5 +144,16 @@ class Product extends Model
     {
         return $this->belongsTo(Shelf::class);
     }
+
+    public function repackagingRules()
+{
+    return $this->hasMany(RepackagingRule::class);
+}
+
+public function repackagingBatches()
+{
+    return $this->hasMany(RepackagingBatch::class);
+}
+
 
 }
