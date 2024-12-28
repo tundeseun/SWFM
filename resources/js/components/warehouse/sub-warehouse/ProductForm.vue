@@ -59,7 +59,10 @@
               Code Product <span class="text-red-500">*</span>
             </label>
             <div class="flex items-center relative flex gap-2">
-              <img src="../../../assets/scan.png" class="w-10 h-10  mx-auto  rounded-lg" />
+              <button  @click="toggleModal" class="cursor-pointer">
+                <img src="../../../assets/scan.png" class="w-10 h-10  mx-auto  rounded-lg" />
+
+              </button>
               <input v-model="form.codeProduct" type="text"
                 class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2" required />
               <button type="button" class="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200" @click="scanBarcode">
@@ -203,11 +206,30 @@
         </button>
       </div>
     </form>
+
+
+
+     <!-- Barcode Scanner Modal -->
+     <div
+      v-if="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-4 max-w-md w-full space-y-4">
+        <h2 class="text-lg font-medium">Scan Barcode</h2>
+        <div id="barcode-scanner" class="w-full h-64 bg-gray-100"></div>
+        <button
+          @click="closeModal"
+          class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+        >
+          Close
+        </button>
+      </div>
+    </div>
   </main>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { ChevronDownIcon, BarcodeIcon } from 'lucide-vue-next'
 import StandardProductType from '@/components/StandardProductType.vue';
 import VariableProductType from '@/components/VariableProductType.vue';
@@ -215,6 +237,7 @@ import ServiceProductType from '@/components/ServiceProductType.vue';
 import ComboProductType from '@/components/ComboProductType.vue';
 import ComboProductTypeLIst from '@/components/ComboProductTypeLIst.vue';
 import CreateProduct from './CreateProduct.vue';
+import Quagga from 'quagga';
 
 // Sample data (replace with your actual data)
 const categories = ['FOOD ITEM', 'BEVERAGES', 'PERSONAL CARE']
@@ -264,10 +287,100 @@ const handleImageUpload = (event) => {
   }
 }
 
-const scanBarcode = () => {
-  // Implement barcode scanning functionality
-  console.log('Scanning barcode...')
-}
+const isModalOpen = ref(false);
+
+const toggleModal = () => {
+  isModalOpen.value = !isModalOpen.value;
+  if (isModalOpen.value) startBarcodeScanner();
+};
+
+
+// const startBarcodeScanner = () => {
+//   Quagga.init(
+//     {
+//       inputStream: {
+//         type: 'LiveStream',
+//         target: document.querySelector('#barcode-scanner'),
+//         constraints: {
+//           facingMode: 'environment' // Use the back camera
+//         }
+//       },
+//       decoder: {
+//         readers: ['code_128_reader', 'ean_reader']
+//       }
+//     },
+//     (err) => {
+//       if (err) {
+//         console.error(err);
+//         return;
+//       }
+//       Quagga.start();
+//     }
+//   );
+
+//   Quagga.onDetected((result) => {
+//     if (result && result.codeResult) {
+//       form.value.codeProduct = result.codeResult.code;
+//       closeModal();
+//     }
+//   });
+// };
+
+
+// Add a ref to track if Quagga is initialized
+const isQuaggaInitialized = ref(false);
+
+const startBarcodeScanner = async () => {
+  try {
+    await Quagga.init({
+      inputStream: {
+        type: 'LiveStream',
+        target: document.querySelector('#barcode-scanner'),
+        constraints: {
+          facingMode: 'environment' // Use the back camera
+        }
+      },
+      decoder: {
+        readers: ['code_128_reader', 'ean_reader']
+      }
+    });
+    
+    isQuaggaInitialized.value = true;
+    Quagga.start();
+
+    Quagga.onDetected((result) => {
+      if (result && result.codeResult) {
+        form.value.codeProduct = result.codeResult.code;
+        closeModal();
+      }
+    });
+  } catch (err) {
+    console.error('Error initializing scanner:', err);
+    alert('Error initializing scanner. Please ensure your camera is available.');
+    closeModal();
+  }
+};
+
+const stopBarcodeScanner = () => {
+  if (isQuaggaInitialized.value) {
+    try {
+      Quagga.stop();
+      isQuaggaInitialized.value = false;
+    } catch (err) {
+      console.error('Error stopping scanner:', err);
+    }
+  }
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  stopBarcodeScanner();
+};
+
+// Cleanup on component unmount
+onBeforeUnmount(() => {
+  stopBarcodeScanner();
+});
 
 const handleSubmit = () => {
   // Handle form submission

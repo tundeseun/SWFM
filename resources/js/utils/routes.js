@@ -59,11 +59,29 @@ const routes = [
                 name: 'Pallet', 
                 component: CreatePalletSetting
             },
-            //  { 
-            //    path: 'pos', 
-            //    name: 'Pos', 
-            //    component: Posview 
-            //  },
+
+            { 
+                path: 'products/barcode', 
+                name: 'PrintLablels', 
+                component: () => import('../views/PrintLabels.vue') // You'll need to create this view
+            },
+            
+                        { 
+                            path: 'shelves/all', 
+                            name: 'ListShelves', 
+                            component: () => import('../views/ListProductView.vue') // You'll need to create this view
+                        },
+                        { 
+                            path: 'orders/all', 
+                            name: 'ListOrders', 
+                            component: () => import('../views/ListProductView.vue') // You'll need to create this view
+                        },
+                        { 
+                            path: 'pos', 
+                            name: 'Pos', 
+                            component: () => import('../views/ListProductView.vue') // Uncomment and update your POS view
+                        },
+            
         ]
     }
 ];

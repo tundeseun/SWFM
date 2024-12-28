@@ -7,38 +7,81 @@
       </div>
 
       <div class="relative flex-1">
-          <router-view />
+        <router-view v-slot="{ Component }">
+          <Transition name="fade" mode="out-in">
+            <Loader v-if="isLoading" />
+            <component :is="Component" :key="$route.path" v-else />
+          </Transition>
+        </router-view>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import Navbar from '@/components/Navbar.vue'
-import Sidebar from '@/components/Sidebar.vue'
-
-const isSidebarVisible = ref(true);
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import Navbar from '@/components/Navbar.vue';
+import Sidebar from '@/components/Sidebar.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
-components: {
-  Navbar,
-  Sidebar
-},
-data() {
-  return {
-    sidebarOpen: true
+  components: {
+    Navbar,
+    Sidebar,
+    Loader
+  },
+
+  data() {
+    return {
+      sidebarOpen: true,
+      isLoading: false,
+      isSidebarVisible: true
+    }
+  },
+
+  created() {
+    this.setupNavigationGuard();
+  },
+
+  methods: {
+    setupNavigationGuard() {
+      this.removeGuard = this.$router.beforeEach((to, from, next) => {
+        this.isLoading = true;
+        setTimeout(() => {
+          this.isLoading = false;
+          next();
+        }, 1000);
+      });
+    },
+
+    toggleSidebar() {
+      this.sidebarOpen = !this.sidebarOpen;
+    }
+  },
+
+  computed: {
+    isOnDashboardRoute() {
+      return this.$route.name === 'Dashboard';
+    }
+  },
+
+  beforeDestroy() {
+    // Clean up the navigation guard
+    if (this.removeGuard) {
+      this.removeGuard();
+    }
   }
-},
-computed: {
-  isOnDashboardRoute() {
-    return this.$route.name === 'Dashboard'
-  }
-},
-methods: {
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen
-  }
-}
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

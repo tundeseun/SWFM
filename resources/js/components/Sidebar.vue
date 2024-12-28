@@ -1,12 +1,16 @@
 <template>
   <div class="flex">
     <!-- Main Sidebar -->
-    <div class="overflow-auto hover:overflow-y-auto w-32 h-screen relative bg-white border-r border-gray-100 flex flex-col items-center py-6">
+    <div class="relative z-[200] overflow-auto hover:overflow-y-auto w-32 h-screen  bg-white border-r border-gray-100 flex flex-col items-center py-6">
       <nav class="flex-1 w-full">
         <!-- Logo Section -->
-        <div class="mb-8 flex items-center justify-center gap-3">       
+        <div class="w-full bg-white z-10 py-6">
+          <router-link to="/app/dashboard">
+            <div class="flex items-center justify-center gap-3">       
           <img src="../assets/image/logo.png" alt="Logo" class="w-10 h-10"/>
         </div>
+          </router-link>
+      </div>
 
         <!-- Menu Items -->
         <div 
@@ -112,7 +116,7 @@ const menuItems = [
       {
         label: 'Print labels',
         icon: Printer,
-        path: '/app/products/all'
+        path: '/app/products/barcode'
       },
       {
         label: 'Count Stock',
