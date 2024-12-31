@@ -219,7 +219,6 @@
   </div>
 
   <!-- header top menu end -->
-   <!--  -->
 </template>
 <script>
 import Util from "./../../../utils";
