@@ -27,7 +27,7 @@
                  <!-- Full screen toggle -->
                  <i
 
-                  style="color: #008800;"
+                  style="color: #19196f;"
                   title="Full screen"
                   class="i-Full-Screen header-icon d-none d-sm-inline-block"
                   @click="handleFullScreen"
@@ -46,7 +46,7 @@
                 <!-- Today's Sales -->
                 <i
                  @click="get_today_sales()"
-                  style="color: #008800;"
+                  style="color: #19196f;"
                   title="Today's Sales"
                   v-if="currentUserPermissions && currentUserPermissions.includes('Sales_view')"
                   class="i-Receipt header-icon d-sm-inline-block"
@@ -65,7 +65,7 @@
                   >
                     <template slot="button-content">
                       <i
-                        style="color: #008800!important;"
+                        style="color: #19196f!important;"
 
                         class="i-Globe text-muted header-icon"
                         role="button"

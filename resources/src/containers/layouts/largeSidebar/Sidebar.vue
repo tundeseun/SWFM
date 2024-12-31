@@ -151,20 +151,6 @@
           </li>
 
           <li
-            v-if="currentUserPermissions && currentUserPermissions.includes('Sale_Returns_view')"
-            @mouseenter="toggleSubMenu"
-            :class="{ active: selectedParentMenu == 'sale_return' }"
-            class="nav-item"
-            data-item="sale_return"
-          >
-
-           <router-link tag="a" class="nav-item-hold" to="/app/sale_return/list">
-              <i class="nav-icon i-Right"></i>
-              <span class="nav-text">{{ $t("Warehouses") }}</span>
-            </router-link>
-          </li>
-
-          <li
             v-if="currentUserPermissions && currentUserPermissions.includes('Purchase_Returns_view')"
             @mouseenter="toggleSubMenu"
             :class="{ active: selectedParentMenu == 'purchase_return' }"
