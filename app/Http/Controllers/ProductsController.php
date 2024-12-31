@@ -85,11 +85,9 @@ class ProductsController extends BaseController
             $item['code'] = $product->code;
             $item['category'] = $product['category']->name;
             $item['brand'] = $product['brand'] ? $product['brand']->name : 'N/D';
-<<<<<<< HEAD
            
-=======
 
->>>>>>> origin/main
+
 
             $firstimage = explode(',', $product->image);
             $item['image'] = $firstimage[0];
@@ -100,21 +98,17 @@ class ProductsController extends BaseController
                 $item['type']  = 'Single';
                 $item['name']  = $product->name;
                 $item['cost']  = number_format($product->cost, 2, '.', ',');
-<<<<<<< HEAD
                 $item['price'] = number_format($product->price, 2, '.', ',');
-=======
+
                 // $item['price'] = number_format($product->price, 2, '.', ',');
->>>>>>> origin/main
                 $item['unit']  = $product['unit']->ShortName;
 
               $product_warehouse_total_qty = product_warehouse::where('product_id', $product->id)
               ->where('deleted_at', '=', null)
               ->sum('qte');
-<<<<<<< HEAD
              
-=======
 
->>>>>>> origin/main
+
               $item['quantity'] = $product_warehouse_total_qty .' '.$product['unit']->ShortName;
 
             }elseif($product->type == 'is_combo'){
@@ -128,11 +122,9 @@ class ProductsController extends BaseController
               $product_warehouse_total_qty = product_warehouse::where('product_id', $product->id)
               ->where('deleted_at', '=', null)
               ->sum('qte');
-<<<<<<< HEAD
              
-=======
 
->>>>>>> origin/main
+
               $item['quantity'] = $product_warehouse_total_qty .' '.$product['unit']->ShortName;
 
               }elseif($product->type == 'is_variant'){
@@ -160,11 +152,9 @@ class ProductsController extends BaseController
                   $product_warehouse_total_qty = product_warehouse::where('product_id', $product->id)
                   ->where('deleted_at', '=', null)
                   ->sum('qte');
-<<<<<<< HEAD
                  
-=======
 
->>>>>>> origin/main
+
                   $item['quantity'] = $product_warehouse_total_qty .' '.$product['unit']->ShortName;
 
               }else{
@@ -209,11 +199,9 @@ class ProductsController extends BaseController
         $this->authorizeForUser($request->user('api'), 'create', Product::class);
 
         try {
-<<<<<<< HEAD
            
-=======
 
->>>>>>> origin/main
+
             // define validation rules for product
             $productRules = [
                 'code'         => [
@@ -272,11 +260,9 @@ class ProductsController extends BaseController
                             return;
                         }
 
-<<<<<<< HEAD
                        
-=======
 
->>>>>>> origin/main
+
 
                         //check if variant name empty
                         $names = array_column($variants, 'text');
@@ -431,11 +417,9 @@ class ProductsController extends BaseController
                     $manage_stock = 0;
 
                 }
-<<<<<<< HEAD
                 
-=======
 
->>>>>>> origin/main
+
                 $Product->is_variant = $request['is_variant'] == 'true' ? 1 : 0;
                 $Product->is_imei = $request['is_imei'] == 'true' ? 1 : 0;
                 $Product->not_selling = $request['not_selling'] == 'true' ? 1 : 0;
@@ -444,7 +428,6 @@ class ProductsController extends BaseController
 
                     $image = $request->file('image');
                     $filename = rand(11111111, 99999999) . $image->getClientOriginalName();
-<<<<<<< HEAD
     
                     $image_resize = Image::make($image->getRealPath());
                     $image_resize->resize(200, 200);
@@ -454,7 +437,7 @@ class ProductsController extends BaseController
                     $filename = 'no-image.png';
                 }
               
-=======
+
 
                     $image_resize = Image::make($image->getRealPath());
                     $image_resize->resize(200, 200);
@@ -464,7 +447,6 @@ class ProductsController extends BaseController
                     $filename = 'no-image.png';
                 }
 
->>>>>>> origin/main
 
                 $Product->image = $filename;
                 $Product->save();
@@ -472,20 +454,16 @@ class ProductsController extends BaseController
 
                 if ($request['type'] == 'is_combo') {
                     $materiels = json_decode($request['materiels'], true);
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
                     $syncData = [];
                     foreach ($materiels as $materiel) {
                         $syncData[$materiel['product_id']] = ['quantity' => $materiel['quantity']];
                     }
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
                     // Sync the combined products
                     $Product->combinedProducts()->sync($syncData);
                 }
@@ -556,11 +534,9 @@ class ProductsController extends BaseController
 
         $this->authorizeForUser($request->user('api'), 'update', Product::class);
         try {
-<<<<<<< HEAD
             
-=======
 
->>>>>>> origin/main
+
              // define validation rules for product
              $productRules = [
                 'code'         => [
@@ -597,11 +573,9 @@ class ProductsController extends BaseController
                         }
                         // check for duplicate codes in variants array
                         $variants = $request->variants;
-<<<<<<< HEAD
                        
-=======
 
->>>>>>> origin/main
+
 
                         if($variants){
                             foreach ($variants as $variant) {
@@ -686,11 +660,9 @@ class ProductsController extends BaseController
                             return;
                         }
 
-<<<<<<< HEAD
                         
-=======
 
->>>>>>> origin/main
+
                         // check for duplicate codes in product_variants table
                         $duplicateCodes = DB::table('product_variants')
                             ->where(function ($query) use ($id) {
@@ -790,36 +762,30 @@ class ProductsController extends BaseController
 
                 if ($request['type'] == 'is_combo') {
                     $materiels = json_decode($request['materiels'], true);
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
                     $syncData = [];
                     foreach ($materiels as $materiel) {
                         $syncData[$materiel['product_id']] = ['quantity' => $materiel['quantity']];
                     }
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
                     // Sync the combined products
                     $Product->combinedProducts()->sync($syncData);
                 }
 
 
-<<<<<<< HEAD
             
                 $Product->is_imei = $request['is_imei'] == 'true' ? 1 : 0;
                 $Product->not_selling = $request['not_selling'] == 'true' ? 1 : 0;
                 
-=======
+
 
                 $Product->is_imei = $request['is_imei'] == 'true' ? 1 : 0;
                 $Product->not_selling = $request['not_selling'] == 'true' ? 1 : 0;
 
->>>>>>> origin/main
                 // Store Variants Product
                 $oldVariants = ProductVariant::where('product_id', $id)
                     ->where('deleted_at', null)
@@ -1040,11 +1006,9 @@ class ProductsController extends BaseController
         \DB::transaction(function () use ($id) {
 
             $Product = Product::findOrFail($id);
-<<<<<<< HEAD
             
-=======
 
->>>>>>> origin/main
+
 
             $pathIMG = public_path() . '/images/products/' . $Product->image;
             if (file_exists($pathIMG)) {
@@ -1082,26 +1046,22 @@ class ProductsController extends BaseController
 
                 $Product = Product::findOrFail($product_id);
                 $Product->deleted_at = Carbon::now();
-<<<<<<< HEAD
                 
-=======
 
->>>>>>> origin/main
+
                 $pathIMG = public_path() . '/images/products/' . $Product->image;
                 if (file_exists($pathIMG)) {
                     if ($Product->image != 'no-image.png') {
                         @unlink($pathIMG);
                     }
                 }
-<<<<<<< HEAD
                 
                 $Product->save();
                 
-=======
+
 
                 $Product->save();
 
->>>>>>> origin/main
                 product_warehouse::where('product_id', $product_id)->update([
                     'deleted_at' => Carbon::now(),
                 ]);
@@ -1117,11 +1077,9 @@ class ProductsController extends BaseController
 
     }
 
-<<<<<<< HEAD
    
-=======
 
->>>>>>> origin/main
+
     //--------------  Show Product Details ---------------\\
 
     public function Get_Products_Details(Request $request, $id)
@@ -1269,17 +1227,15 @@ class ProductsController extends BaseController
                     ->where(function ($query) use ($request) {
                         if ($request->stock == '1' && $request->product_service == '1') {
                             return $query->where('qte', '>', 0)->orWhere('manage_stock', false);
-<<<<<<< HEAD
         
                         }elseif($request->stock == '1' && $request->product_service == '0') {
                             return $query->where('qte', '>', 0)->orWhere('manage_stock', true);
         
-=======
+
 
                         }elseif($request->stock == '1' && $request->product_service == '0') {
                             return $query->where('qte', '>', 0)->orWhere('manage_stock', true);
 
->>>>>>> origin/main
                         }else{
                             return $query->where('manage_stock', true);
                         }
@@ -1325,11 +1281,9 @@ class ProductsController extends BaseController
                     $price = $product_price * $product_warehouse['product']['unitSale']->operator_value;
                 }
 
-<<<<<<< HEAD
                 
-=======
 
->>>>>>> origin/main
+
             }else{
                 $item['qte_sale'] = $product_warehouse['product']->type!='is_service'?$product_warehouse->qte:'---';
                 $price = $product_price;
@@ -1371,22 +1325,18 @@ class ProductsController extends BaseController
         return response()->json($data);
     }
 
-<<<<<<< HEAD
     
-=======
 
->>>>>>> origin/main
+
     public function show($id)
     {
         //
     }
-<<<<<<< HEAD
     
     
-=======
 
 
->>>>>>> origin/main
+
     //------------ Get product By ID -----------------\\
     public function show_product_data($id , $variant_id)
     {
@@ -1446,11 +1396,9 @@ class ProductsController extends BaseController
             $item['name'] = $Product_data['name'];
         }
 
-<<<<<<< HEAD
        
-=======
 
->>>>>>> origin/main
+
         //check if product has Unit sale
         if ($Product_data['unitSale']) {
 
@@ -1569,11 +1517,9 @@ class ProductsController extends BaseController
         $data_collection = $collection->slice($offSet, $perPage)->values();
 
         $products = new LengthAwarePaginator($data_collection, count($data), $perPage, Paginator::resolveCurrentPage(), array('path' => Paginator::resolveCurrentPath()));
-<<<<<<< HEAD
        
-=======
 
->>>>>>> origin/main
+
          //get warehouses assigned to user
          $user_auth = auth()->user();
          if($user_auth->is_all_warehouses){
@@ -1582,11 +1528,9 @@ class ProductsController extends BaseController
              $warehouses_id = UserWarehouse::where('user_id', $user_auth->id)->pluck('warehouse_id')->toArray();
              $warehouses = Warehouse::where('deleted_at', '=', null)->whereIn('id', $warehouses_id)->get(['id', 'name']);
          }
-<<<<<<< HEAD
  
-=======
 
->>>>>>> origin/main
+
         return response()->json([
             'products' => $products,
             'warehouses' => $warehouses,
@@ -1625,11 +1569,9 @@ class ProductsController extends BaseController
              $warehouses_id = UserWarehouse::where('user_id', $user_auth->id)->pluck('warehouse_id')->toArray();
              $warehouses = Warehouse::where('deleted_at', '=', null)->whereIn('id', $warehouses_id)->get(['id', 'name']);
          }
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
         return response()->json(['warehouses' => $warehouses]);
 
     }
@@ -1763,11 +1705,9 @@ class ProductsController extends BaseController
                               ->where('deleted_at', null)
                               ->get();
 
-<<<<<<< HEAD
       
-=======
 
->>>>>>> origin/main
+
         $units = Unit::where('deleted_at', null)
             ->where('base_unit', null)
             ->get();
@@ -1786,13 +1726,11 @@ class ProductsController extends BaseController
     // import Products
     public function import_products(Request $request)
     {
-<<<<<<< HEAD
         ini_set('max_execution_time', 600); //600 seconds = 10 minutes 
        
-=======
+
         ini_set('max_execution_time', 600); //600 seconds = 10 minutes
 
->>>>>>> origin/main
         $file = $request->file('products');
         $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         if ($ext != 'csv') {
@@ -1860,11 +1798,9 @@ class ProductsController extends BaseController
             }
 
             $validator = validator()->make($cleanedData, $rules);
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
             if ($validator->fails()) {
                 // Validation failed
                 return response()->json([
@@ -1873,11 +1809,9 @@ class ProductsController extends BaseController
                     'status' => false,
                 ]);
             }
-<<<<<<< HEAD
            
-=======
 
->>>>>>> origin/main
+
             try {
                 \DB::transaction(function () use ($cleanedData , $warehouses) {
 
@@ -1900,11 +1834,9 @@ class ProductsController extends BaseController
                             $brand_id = NULL;
                         }
 
-<<<<<<< HEAD
                       
-=======
 
->>>>>>> origin/main
+
                         $Product = new Product;
                         $Product->name = htmlspecialchars(trim($value['name']));;
                         $Product->code = $this->check_code_exist($value['code']);
@@ -1947,7 +1879,6 @@ class ProductsController extends BaseController
                 // Transaction failed, handle the exception
                 $errorCode = $e->getCode();
                 $errorMessage = $e->getMessage();
-<<<<<<< HEAD
                 
                 // Additional error handling or logging can be performed here
                 
@@ -1958,7 +1889,7 @@ class ProductsController extends BaseController
 
 
     
-=======
+
 
                 // Additional error handling or logging can be performed here
 
@@ -1969,7 +1900,6 @@ class ProductsController extends BaseController
 
 
 
->>>>>>> origin/main
 
     }
 
@@ -2049,37 +1979,31 @@ class ProductsController extends BaseController
          }else{
              $warehouses_id = UserWarehouse::where('user_id', $user_auth->id)->pluck('warehouse_id')->toArray();
              $warehouses = Warehouse::where('deleted_at', '=', null)->whereIn('id', $warehouses_id)->get(['id', 'name']);
-<<<<<<< HEAD
          } 
           
-=======
+
          }
 
->>>>>>> origin/main
         return response()->json([
             'totalRows' => $totalRows,
             'stocks' => $data,
             'warehouses' => $warehouses,
         ]);
     }
-<<<<<<< HEAD
  
       //----------------- store_count_stock
  
-=======
+
 
       //----------------- store_count_stock
 
->>>>>>> origin/main
       public function store_count_stock(Request $request)
       {
 
         $this->authorizeForUser($request->user('api'), 'count_stock', Product::class);
-<<<<<<< HEAD
  
-=======
 
->>>>>>> origin/main
+
          $request->validate([
              'date' => 'required',
              'warehouse_id' => 'required',
@@ -2091,27 +2015,22 @@ class ProductsController extends BaseController
         ->select('product_warehouse.product_id as productID' ,'products.name',
                 'product_warehouse.product_variant_id as productVariantID', 'product_warehouse.qte')
         ->get();
-<<<<<<< HEAD
  
-=======
 
->>>>>>> origin/main
+
         $stock = [];
         $incorrect_stock= [];
 
         foreach ($products as $product) {
-<<<<<<< HEAD
             
-=======
 
->>>>>>> origin/main
+
             if($product->productVariantID){
                 $variant = ProductVariant::where('product_id', $product->productID)->where('id', $product->productVariantID)->first();
                 $item['product_name'] = $variant->name . '-' . $product->name;
             }else{
                 $item['product_name'] = $product->name;
             }
-<<<<<<< HEAD
             
             $item['quantity'] = $product->qte === 0.0?'0':$product->qte;
         
@@ -2119,7 +2038,7 @@ class ProductsController extends BaseController
             $stock[] = $item;
         } 
  
-=======
+
 
             $item['quantity'] = $product->qte === 0.0?'0':$product->qte;
 
@@ -2127,33 +2046,28 @@ class ProductsController extends BaseController
             $stock[] = $item;
         }
 
->>>>>>> origin/main
         // Create an instance of StockExport with the warehouse name
         $stockExport = new StockExport($stock);
 
         $excelFileName = 'stock_export_' . now()->format('YmdHis') . '.xlsx';
         $excelFolderPath = public_path() . '/images/count_stock/';
         $excelFilePath = $excelFolderPath . $excelFileName;
-<<<<<<< HEAD
         
-=======
 
->>>>>>> origin/main
+
         // Check if the directory exists, if not, create it
         if (!File::exists($excelFolderPath)) {
             File::makeDirectory($excelFolderPath, 0755, true, true);
         }
-<<<<<<< HEAD
         
         // Use File::put to store the file directly in the desired public directory
         File::put($excelFilePath, Excel::raw($stockExport, \Maatwebsite\Excel\Excel::XLSX));
         
-=======
+
 
         // Use File::put to store the file directly in the desired public directory
         File::put($excelFilePath, Excel::raw($stockExport, \Maatwebsite\Excel\Excel::XLSX));
 
->>>>>>> origin/main
         // Save the file name in the count_stock table
         CountStock::create([
             'date'         => $request->date,
@@ -2161,19 +2075,17 @@ class ProductsController extends BaseController
             'user_id'      => Auth::user()->id,
             'file_stock'   => $excelFileName
         ]);
-<<<<<<< HEAD
  
         return response()->json(['success' => true]);
  
     }
  
-=======
+
 
         return response()->json(['success' => true]);
 
     }
 
->>>>>>> origin/main
 
 
 
@@ -2181,28 +2093,24 @@ class ProductsController extends BaseController
 
      public function get_products_materiels(request $request)
      {
-<<<<<<< HEAD
  
-=======
 
->>>>>>> origin/main
+
        $products = Product::where('products.deleted_at', '=', null)->where('products.type', 'is_single')
        ->join('units', 'products.unit_sale_id', '=', 'units.id')
        ->select('products.id as product_id', 'products.name', 'products.cost', 'products.code', 'units.ShortName as unit_name')
        ->get();
-<<<<<<< HEAD
  
        return response()->json($products);
      }
  
  
-=======
+
 
        return response()->json($products);
      }
 
 
->>>>>>> origin/main
 
 
 }

@@ -1,8 +1,7 @@
 /public/hot
-<<<<<<< HEAD
+
 /node_modules
-=======
->>>>>>> origin/main
+
 
 /public/js/bundle
 /public/images/vendor
@@ -21,8 +20,5 @@ docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
-<<<<<<< HEAD
 yarn-error.log
-=======
-yarn-error.log
->>>>>>> origin/main
+

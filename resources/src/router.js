@@ -5,12 +5,9 @@ import authenticate from "./auth/authenticate";
 import IsConnected from "./auth/IsConnected";
 import NProgress from "nprogress";
 import Router from "vue-router";
-<<<<<<< HEAD
 import ShelfComponent from "@/views/app/pages/warehouse/ShelfComponent.vue"; // Adjust the path if needed
 import update_settings from "@/views/app/pages/settings/update_settings.vue"; // Adjust the path if needed
 
-=======
->>>>>>> origin/main
 Vue.use(Router);
 
 
@@ -116,11 +113,8 @@ const baseRoutes = [
                             )
                     },
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/main
                     // units
                     {
                         name: "units",
@@ -133,7 +127,6 @@ const baseRoutes = [
                 ]
             },
 
-<<<<<<< HEAD
 
             
 // Warehouse
@@ -175,8 +168,6 @@ const baseRoutes = [
     ],
 },
 
-=======
->>>>>>> origin/main
             //Adjustement
             {
                 path: "/app/adjustments",

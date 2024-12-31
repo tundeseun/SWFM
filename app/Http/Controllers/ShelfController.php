@@ -12,11 +12,9 @@ class ShelfController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         return response()->json(Shelf::all());
-=======
         //
->>>>>>> origin/main
+
     }
 
     /**
@@ -32,12 +30,10 @@ class ShelfController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
           $request->validate([
-=======
 
         $request->validate([
->>>>>>> origin/main
+
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
@@ -48,10 +44,8 @@ class ShelfController extends Controller
         ]);
 
         return response()->json(['message' => 'Shelf created successfully', 'shelf' => $shelf]);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
+
     }
 
     /**

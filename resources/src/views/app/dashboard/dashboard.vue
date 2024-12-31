@@ -97,11 +97,8 @@
       <b-row>
         <b-col lg="8" md="12" sm="12">
           <b-card class="mb-30">
-<<<<<<< HEAD
             <h4 class="card-title m-0">{{$t('This_Week_Sales_Purchases')}}x</h4>
-=======
-            <h4 class="card-title m-0">{{$t('This_Week_Sales_Purchases')}}</h4>
->>>>>>> origin/main
+
             <div class="chart-wrapper">
               <div v-once class="typo__p text-right" v-if="loading">
                 <div class="spinner sm spinner-primary mt-3"></div>
@@ -496,11 +493,8 @@ export default {
           var dark_heading = "#c2c6dc";
 
           this.echartCustomer = {
-<<<<<<< HEAD
             color: ["#6D28D9", "#008800", "#008800", "#C4B5FD", "#7C3AED"],
-=======
-            color: ["#6D28D9", "#8B5CF6", "#A78BFA", "#C4B5FD", "#7C3AED"],
->>>>>>> origin/main
+
             tooltip: {
               show: true,
               backgroundColor: "rgba(0, 0, 0, .8)"
@@ -570,11 +564,8 @@ export default {
             ]
           };
           this.echartProduct = {
-<<<<<<< HEAD
             color: ["#6D28D9", "#008800", "#A78BFA", "#C4B5FD", "#7C3AED"],
-=======
-            color: ["#6D28D9", "#8B5CF6", "#A78BFA", "#C4B5FD", "#7C3AED"],
->>>>>>> origin/main
+
             tooltip: {
               show: true,
               backgroundColor: "rgba(0, 0, 0, .8)"
@@ -672,15 +663,10 @@ export default {
               {
                 name: "Sales",
                 data: responseData.sales.original.data,
-<<<<<<< HEAD
                 label: { show: false, color: "#008800" },
                 type: "bar",
                 color: "#008800",
-=======
-                label: { show: false, color: "#8B5CF6" },
-                type: "bar",
-                color: "#A78BFA",
->>>>>>> origin/main
+
                 smooth: true,
                 itemStyle: {
                   emphasis: {

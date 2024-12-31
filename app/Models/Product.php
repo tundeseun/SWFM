@@ -72,70 +72,65 @@ class Product extends Model
         return $this->belongsTo('App\Models\PurchaseDetail');
     }
 
-<<<<<<< HEAD
     public function SaleDetail()
-=======
+    
     public function SaleDetail(): BelongsTo
->>>>>>> origin/main
     {
         return $this->belongsTo('App\Models\SaleDetail');
     }
 
-<<<<<<< HEAD
+
     public function QuotationDetail()
-=======
+
     public function QuotationDetail(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\QuotationDetail');
     }
 
-<<<<<<< HEAD
+
     public function category()
-=======
+
     public function category(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\Category');
     }
 
-<<<<<<< HEAD
+
     public function unit()
-=======
+
     public function unit(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\Unit', 'unit_id');
     }
 
-<<<<<<< HEAD
     public function unitPurchase()
-=======
+
     public function unitPurchase(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\Unit', 'unit_purchase_id');
     }
 
-<<<<<<< HEAD
     public function unitSale()
-=======
+
     public function unitSale(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\Unit', 'unit_sale_id');
     }
 
-<<<<<<< HEAD
     public function brand()
-=======
+
     public function brand(): BelongsTo
->>>>>>> origin/main
+
     {
         return $this->belongsTo('App\Models\Brand');
     }
 
-<<<<<<< HEAD
+
      public function combinedProducts()
      {
          return $this->belongsToMany(Product::class, 'combined_products', 'product_id', 'combined_product_id')
@@ -147,7 +142,7 @@ class Product extends Model
 {
     return $this->belongsTo(Shelf::class);
 }
-=======
+
     // Relationship for products that are combined in a combo
     public function combinedProducts(): BelongsToMany
     {
@@ -160,6 +155,6 @@ class Product extends Model
     {
         return $this->belongsTo(Shelf::class);
     }
->>>>>>> origin/main
+
 
 }

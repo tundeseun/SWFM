@@ -549,14 +549,11 @@ export default {
     ListReturns: 'All Returns',
     PeopleManager: 'People Management',
 
-<<<<<<< HEAD
     //warehouse
     Warehouse: "Warehouse",
     Warehouse_Product: "Product",
     Warehouse_Inventory: "Inventory",
-
-=======
->>>>>>> origin/main
+    
     //sweet Alert
     Delete: {
         Title: 'Are you sure?',

@@ -7,14 +7,12 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-<<<<<<< HEAD
+
         "production": "mix --production",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint"
-=======
-        "production": "mix --production"
->>>>>>> origin/main
+
     },
     "dependencies": {
         "@johmun/vue-tags-input": "^2.1.0",
