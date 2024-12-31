@@ -45,6 +45,26 @@
             </a>
             <div class="triangle"></div>
           </li>
+
+          <li
+            v-show="currentUserPermissions 
+            && (currentUserPermissions.includes('Warehouse_Product')
+            || currentUserPermissions.includes('warehouse_inventory') 
+            || currentUserPermissions.includes('barcode_view')
+             || currentUserPermissions.includes('brand')  
+             || currentUserPermissions.includes('category'))"
+            @mouseenter="toggleSubMenu"
+            class="nav-item"
+            :class="{ active: selectedParentMenu == 'warehouse' }"
+            data-item="warehouse"
+            :data-submenu="true"
+          >
+            <a class="nav-item-hold" href="#">
+              <i class="nav-icon i-Warehouse"></i>
+              <span class="nav-text">{{$t('Warehouse')}}</span>
+            </a>
+            <div class="triangle"></div>
+          </li>
           <li
             v-show="currentUserPermissions 
               && (currentUserPermissions.includes('adjustment_view')
@@ -589,7 +609,7 @@ class="nav-item">
           >
             <router-link tag="a" class to="/app/adjustments/list">
               <i class="nav-icon i-Files"></i>
-              <span class="item-name">{{$t('ListAdjustments')}}</span>
+              <span class="item-name">{{$t('ListAdjustments')}}vv</span>
             </router-link>
           </li>
         </ul>
@@ -1440,4 +1460,3 @@ export default {
 
 <style lang="" scoped>
 </style>
-
