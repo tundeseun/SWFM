@@ -90,9 +90,15 @@ if ($installed === false) {
         'as' => 'lastStep', 'uses' => 'SetupController@lastStep',
     ]);
 
+<<<<<<< HEAD
     // Route::get('setup/lastStep', function () {
     //     return redirect('/setup', 301);
     // });
+=======
+    Route::get('setup/lastStep', function () {
+        return redirect('/setup', 301);
+    });
+>>>>>>> origin/main
 
 } else {
     Route::any('/setup/{vue}', function () {

@@ -26,7 +26,11 @@
             
                  <!-- Full screen toggle -->
                  <i
+<<<<<<< HEAD
                   style="color: #008800;"
+=======
+                  style="color: #8b5cf6;"
+>>>>>>> origin/main
                   title="Full screen"
                   class="i-Full-Screen header-icon d-none d-sm-inline-block"
                   @click="handleFullScreen"
@@ -45,7 +49,11 @@
                 <!-- Today's Sales -->
                 <i
                  @click="get_today_sales()"
+<<<<<<< HEAD
                   style="color: #008800;"
+=======
+                  style="color: #8b5cf6;"
+>>>>>>> origin/main
                   title="Today's Sales"
                   v-if="currentUserPermissions && currentUserPermissions.includes('Sales_view')"
                   class="i-Receipt header-icon d-sm-inline-block"
@@ -64,7 +72,11 @@
                   >
                     <template slot="button-content">
                       <i
+<<<<<<< HEAD
                         style="color: #008800!important;"
+=======
+                        style="color: #8b5cf6!important;"
+>>>>>>> origin/main
                         class="i-Globe text-muted header-icon"
                         role="button"
                         id="dropdownMenuButton"

@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('shelves', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();
         });
+=======
+            $table->string('name')->unique();
+            $table->text('description')->nullable();
+            $table->timestamps();
+            });
+>>>>>>> origin/main
     }
 
     /**

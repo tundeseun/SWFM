@@ -17,4 +17,5 @@ class WarehouseInventory extends Model
         'last_supply_date',
         
     ];
+
 }
