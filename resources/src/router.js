@@ -134,9 +134,18 @@ const baseRoutes = [
     path: "/app/warehouse",
     component: () =>
         import(
-            /* webpackChunkName: "warehouse" */ "@/views/app/pages/warehouse/ShelfComponent"
+            /* webpackChunkName: "warehouse" */ "./views/app/pages/warehouse/index.vue"
         ),
     children: [
+        {
+            name: "Product",
+            path: "product",
+            component: () =>
+                import(
+                    /* webpackChunkName: "list_shelves" */
+                    "./views/app/pages/warehouse/ProductComponent.vue"
+                ),
+        },
         {
             name: "ShelfComponent",
             path: "shelfcomponent",
@@ -1059,16 +1068,7 @@ const baseRoutes = [
                                 /* webpackChunkName: "Backup" */ "./views/app/pages/settings/backup"
                             )
                     },
-
-                    // Warehouses
-                    {
-                        name: "Warehouses",
-                        path: "Warehouses",
-                        component: () =>
-                            import(
-                                /* webpackChunkName: "Warehouses" */ "./views/app/pages/settings/warehouses"
-                            )
-                    },
+        
 
                     // System Settings
                     {

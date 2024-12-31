@@ -16233,7 +16233,8 @@ a.typo_link.text-gray-900:after {
   flex-wrap: wrap;
   justify-content: space-between;
   background: #fff;
-  z-index: 100; }
+  z-index: 100; 
+}
   .main-header .menu-toggle {
     width: 90px;
     display: flex;

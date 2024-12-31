@@ -1,5 +1,5 @@
 <template>
-  <div class="main-header">
+  <div class="main-header" style="background-color: #782924;">
     <div class="logo">
        <router-link to="/app/dashboard">
         <img :src="'/images/'+currentUser.logo" alt width="60" height="60">

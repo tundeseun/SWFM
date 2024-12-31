@@ -1,15 +1,18 @@
 <template>
   <div
+
     class="side-content-wrap"
     @mouseenter="isMenuOver = true"
     @mouseleave="isMenuOver = false"
     @touchstart="isMenuOver = true"
+   
   >
     <vue-perfect-scrollbar
       :settings="{ suppressScrollX: true, wheelPropagation: false }"
       :class="{ open: getSideBarToggleProperties.isSideNavOpen }"
       ref="myData"
       class="sidebar-left rtl-ps-none ps scroll"
+      style="background-color: #19196f;"
     >
       <div>
         <ul class="navigation-left">
@@ -365,6 +368,7 @@
       :class="{ open: getSideBarToggleProperties.isSecondarySideNavOpen }"
       :settings="{ suppressScrollX: true, wheelPropagation: false }"
       class="sidebar-left-secondary ps rtl-ps-none"
+       style="background-color: #19196f;"
     >
       <div ref="sidebarChild">
         <ul
@@ -516,7 +520,7 @@ class="nav-item">
   :class="{ 'd-block': selectedParentMenu == 'warehouse_products' }"
 >
   <li class="nav-item">
-    <router-link tag="a" class to="/app/warehouse/products/add">
+    <router-link tag="a" class to="/app/warehouse/product">
       <i class="nav-icon i-Add-File"></i>
       <span class="item-name">Add Product</span>
     </router-link>
