@@ -6,6 +6,7 @@ use App\Http\Controllers\WarehouseInventoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PalletSettingController;
+use App\Http\Controllers\AlertsController;
 
 
 
@@ -560,4 +561,18 @@ Route::middleware('api')->group(function () {
     Route::post('/pallet-settings', [PalletSettingController::class, 'store']);
     Route::put('/pallet-settings/{palletSetting}', [PalletSettingController::class, 'update']);
     Route::delete('/pallet-settings/{palletSetting}', [PalletSettingController::class, 'destroy']);
+});
+
+// -------------Product Alert Management ----------------------
+
+
+Route::prefix('alerts')->group(function () {
+    Route::get('expiration', [AlertsController::class, 'getExpirationAlerts']);
+    Route::post('expiration/{id}/resolve', [AlertsController::class, 'resolveExpirationAlert']);
+
+    Route::get('seasonal', [AlertsController::class, 'getSeasonalAlerts']);
+    Route::post('seasonal/{id}/resolve', [AlertsController::class, 'resolveSeasonalAlert']);
+
+    Route::get('low-stock', [AlertsController::class, 'getLowStockAlerts']);
+    Route::post('low-stock/{id}/resolve', [AlertsController::class, 'resolveLowStockAlert']);
 });
