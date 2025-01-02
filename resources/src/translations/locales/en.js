@@ -553,7 +553,15 @@ export default {
     Warehouse: "Warehouse",
     Warehouse_Product: "Product",
     Warehouse_Inventory: "Inventory",
+    Product_Cost: "Product Cost",
+    Enter_Product_Cost: "Enter Product Cost",
     
+    Warehouse_AddProduct: "Create Warehouse Product",
+    Bulk_Unit: "Bulk Unit",
+    Individual_Unit: "Individual Unit",
+    Individual_Weight: "Individual Weight (kg)",
+    Shelf: "Shelf",
+    Shelf_Choose: "Select a Shelf",
     //sweet Alert
     Delete: {
         Title: 'Are you sure?',
