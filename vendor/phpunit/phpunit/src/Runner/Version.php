@@ -34,7 +34,11 @@ final class Version
         }
 
         if (self::$version === '') {
+<<<<<<< HEAD
             self::$version = (new VersionId('10.5.29', dirname(__DIR__, 2)))->asString();
+=======
+            self::$version = (new VersionId('10.5.39', dirname(__DIR__, 2)))->asString();
+>>>>>>> tundeseun/devtest
         }
 
         return self::$version;

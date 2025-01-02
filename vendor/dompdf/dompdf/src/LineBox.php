@@ -12,6 +12,10 @@ use Dompdf\FrameDecorator\ListBullet;
 use Dompdf\FrameDecorator\Page;
 use Dompdf\FrameReflower\Text as TextFrameReflower;
 use Dompdf\Positioner\Inline as InlinePositioner;
+<<<<<<< HEAD
+=======
+use Iterator;
+>>>>>>> tundeseun/devtest
 
 /**
  * The line box class
@@ -23,7 +27,10 @@ use Dompdf\Positioner\Inline as InlinePositioner;
  */
 class LineBox
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> tundeseun/devtest
     /**
      * @var Block
      */
@@ -47,7 +54,11 @@ class LineBox
     /**
      * @var float
      */
+<<<<<<< HEAD
     public $y = null;
+=======
+    public $y = 0.0;
+>>>>>>> tundeseun/devtest
 
     /**
      * @var float
@@ -92,12 +103,19 @@ class LineBox
     public $inline = false;
 
     /**
+<<<<<<< HEAD
      * Class constructor
      *
      * @param Block $frame the Block containing this line
      * @param int $y
      */
     public function __construct(Block $frame, $y = 0)
+=======
+     * @param Block $frame the Block containing this line
+     * @param float $y
+     */
+    public function __construct(Block $frame, float $y = 0.0)
+>>>>>>> tundeseun/devtest
     {
         $this->_block_frame = $frame;
         $this->_frames = [];
@@ -113,7 +131,11 @@ class LineBox
      *
      * @return Frame[]
      */
+<<<<<<< HEAD
     public function get_floats_inside(Page $root)
+=======
+    public function get_floats_inside(Page $root): array
+>>>>>>> tundeseun/devtest
     {
         $floating_frames = $root->get_floating_frames();
 
@@ -154,7 +176,11 @@ class LineBox
         return $childs;
     }
 
+<<<<<<< HEAD
     public function get_float_offsets()
+=======
+    public function get_float_offsets(): void
+>>>>>>> tundeseun/devtest
     {
         static $anti_infinite_loop = 10000; // FIXME smelly hack
 
@@ -241,7 +267,11 @@ class LineBox
     /**
      * @return float
      */
+<<<<<<< HEAD
     public function get_width()
+=======
+    public function get_width(): float
+>>>>>>> tundeseun/devtest
     {
         return $this->left + $this->w + $this->right;
     }
@@ -249,7 +279,11 @@ class LineBox
     /**
      * @return Block
      */
+<<<<<<< HEAD
     public function get_block_frame()
+=======
+    public function get_block_frame(): Block
+>>>>>>> tundeseun/devtest
     {
         return $this->_block_frame;
     }
@@ -257,12 +291,27 @@ class LineBox
     /**
      * @return AbstractFrameDecorator[]
      */
+<<<<<<< HEAD
     function &get_frames()
+=======
+    public function &get_frames(): array
+>>>>>>> tundeseun/devtest
     {
         return $this->_frames;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @return bool
+     */
+    public function is_empty(): bool
+    {
+        return $this->_frames === [];
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * @param AbstractFrameDecorator $frame
      */
     public function add_frame(Frame $frame): void
@@ -338,9 +387,15 @@ class LineBox
      * An iterator of all list markers and inline positioned frames of the line
      * box.
      *
+<<<<<<< HEAD
      * @return \Iterator<AbstractFrameDecorator>
      */
     public function frames_to_align(): \Iterator
+=======
+     * @return Iterator<AbstractFrameDecorator>
+     */
+    public function frames_to_align(): Iterator
+>>>>>>> tundeseun/devtest
     {
         yield from $this->list_markers;
 
@@ -387,9 +442,12 @@ class LineBox
         return $this->w = $width;
     }
 
+<<<<<<< HEAD
     /**
      * @return string
      */
+=======
+>>>>>>> tundeseun/devtest
     public function __toString(): string
     {
         $props = ["wc", "y", "w", "h", "left", "right", "br"];
@@ -402,6 +460,7 @@ class LineBox
         return $s;
     }
 }
+<<<<<<< HEAD
 
 /*
 class LineBoxList implements Iterator {
@@ -410,3 +469,5 @@ class LineBoxList implements Iterator {
 
 }
 */
+=======
+>>>>>>> tundeseun/devtest

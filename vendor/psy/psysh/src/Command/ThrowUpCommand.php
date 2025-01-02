@@ -29,8 +29,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ThrowUpCommand extends Command
 {
+<<<<<<< HEAD
     private $parser;
     private $printer;
+=======
+    private CodeArgumentParser $parser;
+    private Printer $printer;
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}
@@ -82,7 +87,11 @@ HELP
         $throwStmt = new Expression(new Throw_(new New_(new FullyQualifiedName(ThrowUpException::class), $args)));
         $throwCode = $this->printer->prettyPrint([$throwStmt]);
 
+<<<<<<< HEAD
         $shell = $this->getApplication();
+=======
+        $shell = $this->getShell();
+>>>>>>> tundeseun/devtest
         $shell->addCode($throwCode, !$shell->hasCode());
 
         return 0;

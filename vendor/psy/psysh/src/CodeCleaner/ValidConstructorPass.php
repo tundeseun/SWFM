@@ -33,7 +33,11 @@ use Psy\Exception\FatalErrorException;
  */
 class ValidConstructorPass extends CodeCleanerPass
 {
+<<<<<<< HEAD
     private $namespace;
+=======
+    private array $namespace = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * @return Node[]|null Array of nodes

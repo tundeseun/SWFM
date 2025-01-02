@@ -25,7 +25,11 @@ trait RoutesNotifications
      * @param  array|null  $channels
      * @return void
      */
+<<<<<<< HEAD
     public function notifyNow($instance, array $channels = null)
+=======
+    public function notifyNow($instance, ?array $channels = null)
+>>>>>>> tundeseun/devtest
     {
         app(Dispatcher::class)->sendNow($this, $instance, $channels);
     }

@@ -17,7 +17,11 @@
         $__phpunit_arguments = [{arguments_call}];
         $__phpunit_count     = func_num_args();
 
+<<<<<<< HEAD
         if ($__phpunit_count > {arguments_count}) {
+=======
+        if ({arguments_count} !== null && $__phpunit_count > {arguments_count}) {
+>>>>>>> tundeseun/devtest
             $__phpunit_arguments_tmp = func_get_args();
 
             for ($__phpunit_i = {arguments_count}; $__phpunit_i < $__phpunit_count; $__phpunit_i++) {

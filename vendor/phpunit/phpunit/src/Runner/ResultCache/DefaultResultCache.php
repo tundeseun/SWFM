@@ -87,6 +87,20 @@ final class DefaultResultCache implements ResultCache
         return $this->times[$id] ?? 0.0;
     }
 
+<<<<<<< HEAD
+=======
+    public function mergeWith(self $other): void
+    {
+        foreach ($other->defects as $id => $defect) {
+            $this->defects[$id] = $defect;
+        }
+
+        foreach ($other->times as $id => $time) {
+            $this->times[$id] = $time;
+        }
+    }
+
+>>>>>>> tundeseun/devtest
     public function load(): void
     {
         if (!is_file($this->cacheFilename)) {

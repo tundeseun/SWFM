@@ -6,14 +6,29 @@ use Illuminate\Support\Str;
 use Spatie\ErrorSolutions\Contracts\BaseSolution;
 use Spatie\ErrorSolutions\Contracts\HasSolutionsForThrowable;
 use Spatie\ErrorSolutions\Contracts\Solution;
+<<<<<<< HEAD
+=======
+use Spatie\ErrorSolutions\Support\Laravel\LaravelVersion;
+>>>>>>> tundeseun/devtest
 use Throwable;
 
 class MissingViteManifestSolutionProvider implements HasSolutionsForThrowable
 {
     /** @var array<string, string> */
+<<<<<<< HEAD
     protected array $links = [
         'Asset bundling with Vite' => 'https://laravel.com/docs/9.x/vite#running-vite',
     ];
+=======
+    protected array $links = [];
+
+    public function __construct()
+    {
+        $this->links = [
+            'Asset bundling with Vite' => 'https://laravel.com/docs/'.LaravelVersion::major().'.x/vite#running-vite',
+        ];
+    }
+>>>>>>> tundeseun/devtest
 
     public function canSolve(Throwable $throwable): bool
     {

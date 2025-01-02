@@ -189,10 +189,13 @@ class Sheet
                 $this->hasStrictNullComparison($sheetExport)
             );
         }
+<<<<<<< HEAD
 
         if ($sheetExport instanceof WithCharts) {
             $this->addCharts($sheetExport->charts());
         }
+=======
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -329,7 +332,11 @@ class Sheet
      * @param  bool  $formatData
      * @return array
      */
+<<<<<<< HEAD
     public function toArray($import, int $startRow = null, $nullValue = null, $calculateFormulas = false, $formatData = false)
+=======
+    public function toArray($import, ?int $startRow = null, $nullValue = null, $calculateFormulas = false, $formatData = false)
+>>>>>>> tundeseun/devtest
     {
         if ($startRow > $this->worksheet->getHighestRow()) {
             return [];
@@ -380,7 +387,11 @@ class Sheet
      * @param  bool  $formatData
      * @return Collection
      */
+<<<<<<< HEAD
     public function toCollection($import, int $startRow = null, $nullValue = null, $calculateFormulas = false, $formatData = false): Collection
+=======
+    public function toCollection($import, ?int $startRow = null, $nullValue = null, $calculateFormulas = false, $formatData = false): Collection
+>>>>>>> tundeseun/devtest
     {
         $rows = $this->toArray($import, $startRow, $nullValue, $calculateFormulas, $formatData);
 
@@ -396,6 +407,13 @@ class Sheet
      */
     public function close($sheetExport)
     {
+<<<<<<< HEAD
+=======
+        if ($sheetExport instanceof WithCharts) {
+            $this->addCharts($sheetExport->charts());
+        }
+
+>>>>>>> tundeseun/devtest
         if ($sheetExport instanceof WithDrawings) {
             $this->addDrawings($sheetExport->drawings());
         }
@@ -544,7 +562,11 @@ class Sheet
      * @param  string|null  $startCell
      * @param  bool  $strictNullComparison
      */
+<<<<<<< HEAD
     public function append(array $rows, string $startCell = null, bool $strictNullComparison = false)
+=======
+    public function append(array $rows, ?string $startCell = null, bool $strictNullComparison = false)
+>>>>>>> tundeseun/devtest
     {
         if (!$startCell) {
             $startCell = 'A1';

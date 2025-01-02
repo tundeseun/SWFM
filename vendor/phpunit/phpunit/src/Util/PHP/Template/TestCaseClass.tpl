@@ -3,7 +3,10 @@ use PHPUnit\Event\Facade;
 use PHPUnit\Runner\CodeCoverage;
 use PHPUnit\TextUI\Configuration\Registry as ConfigurationRegistry;
 use PHPUnit\TextUI\Configuration\CodeCoverageFilterRegistry;
+<<<<<<< HEAD
 use PHPUnit\TextUI\XmlConfiguration\Loader;
+=======
+>>>>>>> tundeseun/devtest
 use PHPUnit\TextUI\Configuration\PhpHandler;
 use PHPUnit\TestRunner\TestResult\PassedTests;
 

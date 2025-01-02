@@ -609,7 +609,11 @@ class Builder
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Schema\Blueprint
      */
+<<<<<<< HEAD
     protected function createBlueprint($table, Closure $callback = null)
+=======
+    protected function createBlueprint($table, ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $prefix = $this->connection->getConfig('prefix_indexes')
                     ? $this->connection->getConfig('prefix')

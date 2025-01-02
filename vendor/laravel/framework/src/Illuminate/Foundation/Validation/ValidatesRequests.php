@@ -18,7 +18,11 @@ trait ValidatesRequests
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+<<<<<<< HEAD
     public function validateWith($validator, Request $request = null)
+=======
+    public function validateWith($validator, ?Request $request = null)
+>>>>>>> tundeseun/devtest
     {
         $request = $request ?: request();
 

@@ -19,6 +19,7 @@ namespace Psy;
  */
 class Context
 {
+<<<<<<< HEAD
     private static $specialNames = ['_', '_e', '__out', '__psysh__', 'this'];
 
     // Include a very limited number of command-scope magic variable names.
@@ -34,14 +35,35 @@ class Context
     private $lastStdout;
     private $boundObject;
     private $boundClass;
+=======
+    private const SPECIAL_NAMES = ['_', '_e', '__out', '__psysh__', 'this'];
+
+    // Include a very limited number of command-scope magic variable names.
+    // This might be a bad idea, but future me can sort it out.
+    private const COMMAND_SCOPE_NAMES = [
+        '__function', '__method', '__class', '__namespace', '__file', '__line', '__dir',
+    ];
+
+    private array $scopeVariables = [];
+    private array $commandScopeVariables = [];
+    /** @var mixed */
+    private $returnValue = null;
+    private ?\Throwable $lastException = null;
+    private ?string $lastStdout = null;
+    private ?object $boundObject = null;
+    private ?string $boundClass = null;
+>>>>>>> tundeseun/devtest
 
     /**
      * Get a context variable.
      *
      * @throws \InvalidArgumentException If the variable is not found in the current context
      *
+<<<<<<< HEAD
      * @param string $name
      *
+=======
+>>>>>>> tundeseun/devtest
      * @return mixed
      */
     public function get(string $name)
@@ -127,6 +149,7 @@ class Context
      *
      * This method does *not* set any of the magic variables: $_, $_e, $__out,
      * $__class, $__file, etc.
+<<<<<<< HEAD
      *
      * @param array $vars
      */
@@ -137,6 +160,16 @@ class Context
         }
 
         foreach (self::$commandScopeNames as $key) {
+=======
+     */
+    public function setAll(array $vars)
+    {
+        foreach (self::SPECIAL_NAMES as $key) {
+            unset($vars[$key]);
+        }
+
+        foreach (self::COMMAND_SCOPE_NAMES as $key) {
+>>>>>>> tundeseun/devtest
             unset($vars[$key]);
         }
 
@@ -191,8 +224,11 @@ class Context
 
     /**
      * Set the most recent output from evaluated code.
+<<<<<<< HEAD
      *
      * @param string $lastStdout
+=======
+>>>>>>> tundeseun/devtest
      */
     public function setLastStdout(string $lastStdout)
     {
@@ -263,15 +299,22 @@ class Context
 
     /**
      * Set command-scope magic variables: $__class, $__file, etc.
+<<<<<<< HEAD
      *
      * @param array $commandScopeVariables
+=======
+>>>>>>> tundeseun/devtest
      */
     public function setCommandScopeVariables(array $commandScopeVariables)
     {
         $vars = [];
         foreach ($commandScopeVariables as $key => $value) {
             // kind of type check
+<<<<<<< HEAD
             if (\is_scalar($value) && \in_array($key, self::$commandScopeNames)) {
+=======
+            if (\is_scalar($value) && \in_array($key, self::COMMAND_SCOPE_NAMES)) {
+>>>>>>> tundeseun/devtest
                 $vars[$key] = $value;
             }
         }
@@ -297,16 +340,27 @@ class Context
      */
     public function getUnusedCommandScopeVariableNames(): array
     {
+<<<<<<< HEAD
         return \array_diff(self::$commandScopeNames, \array_keys($this->commandScopeVariables));
+=======
+        return \array_diff(self::COMMAND_SCOPE_NAMES, \array_keys($this->commandScopeVariables));
+>>>>>>> tundeseun/devtest
     }
 
     /**
      * Check whether a variable name is a magic variable.
+<<<<<<< HEAD
      *
      * @param string $name
      */
     public static function isSpecialVariableName(string $name): bool
     {
         return \in_array($name, self::$specialNames) || \in_array($name, self::$commandScopeNames);
+=======
+     */
+    public static function isSpecialVariableName(string $name): bool
+    {
+        return \in_array($name, self::SPECIAL_NAMES) || \in_array($name, self::COMMAND_SCOPE_NAMES);
+>>>>>>> tundeseun/devtest
     }
 }

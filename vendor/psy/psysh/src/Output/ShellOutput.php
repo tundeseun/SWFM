@@ -22,6 +22,7 @@ class ShellOutput extends ConsoleOutput
 {
     const NUMBER_LINES = 128;
 
+<<<<<<< HEAD
     private $paging = 0;
 
     /** @var OutputPager */
@@ -29,6 +30,11 @@ class ShellOutput extends ConsoleOutput
 
     /** @var Theme */
     private $theme;
+=======
+    private int $paging = 0;
+    private OutputPager $pager;
+    private Theme $theme;
+>>>>>>> tundeseun/devtest
 
     /**
      * Construct a ShellOutput instance.
@@ -156,7 +162,12 @@ class ShellOutput extends ConsoleOutput
      */
     public function doWrite($message, $newline): void
     {
+<<<<<<< HEAD
         if ($this->paging > 0) {
+=======
+        // @todo Update OutputPager interface to require doWrite
+        if ($this->paging > 0 && $this->pager instanceof ProcOutputPager) {
+>>>>>>> tundeseun/devtest
             $this->pager->doWrite($message, $newline);
         } else {
             parent::doWrite($message, $newline);

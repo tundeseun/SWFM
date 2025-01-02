@@ -25,12 +25,16 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class WtfCommand extends TraceCommand implements ContextAware
 {
+<<<<<<< HEAD
     /**
      * Context instance (for ContextAware interface).
      *
      * @var Context
      */
     protected $context;
+=======
+    protected Context $context;
+>>>>>>> tundeseun/devtest
 
     /**
      * ContextAware interface.
@@ -96,8 +100,11 @@ HELP
         $exception = $this->context->getLastException();
         $count = $input->getOption('all') ? \PHP_INT_MAX : \max(3, \pow(2, \strlen($incredulity) + 1));
 
+<<<<<<< HEAD
         $shell = $this->getApplication();
 
+=======
+>>>>>>> tundeseun/devtest
         if ($output instanceof ShellOutput) {
             $output->startPaging();
         }
@@ -113,7 +120,11 @@ HELP
             $trace = $this->getBacktrace($exception, $showLines);
             $moreLines = $traceCount - \count($trace);
 
+<<<<<<< HEAD
             $output->writeln($shell->formatException($exception));
+=======
+            $output->writeln($this->getShell()->formatException($exception));
+>>>>>>> tundeseun/devtest
             $output->writeln('--');
             $output->write($trace, true, ShellOutput::NUMBER_LINES);
             $output->writeln('');

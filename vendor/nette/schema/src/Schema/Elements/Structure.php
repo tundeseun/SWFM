@@ -31,12 +31,21 @@ final class Structure implements Schema
 
 
 	/**
+<<<<<<< HEAD
 	 * @param  Schema[]  $items
 	 */
 	public function __construct(array $items)
 	{
 		(function (Schema ...$items) {})(...array_values($items));
 		$this->items = $items;
+=======
+	 * @param  Schema[]  $shape
+	 */
+	public function __construct(array $shape)
+	{
+		(function (Schema ...$items) {})(...array_values($shape));
+		$this->items = $shape;
+>>>>>>> tundeseun/devtest
 		$this->castTo('object');
 		$this->required = true;
 	}
@@ -76,6 +85,22 @@ final class Structure implements Schema
 	}
 
 
+<<<<<<< HEAD
+=======
+	public function extend(array|self $shape): self
+	{
+		$shape = $shape instanceof self ? $shape->items : $shape;
+		return new self(array_merge($this->items, $shape));
+	}
+
+
+	public function getShape(): array
+	{
+		return $this->items;
+	}
+
+
+>>>>>>> tundeseun/devtest
 	/********************* processing ****************d*g**/
 
 
@@ -117,11 +142,16 @@ final class Structure implements Schema
 		}
 
 		if (is_array($value) && is_array($base)) {
+<<<<<<< HEAD
 			$index = 0;
+=======
+			$index = $this->otherItems === null ? null : 0;
+>>>>>>> tundeseun/devtest
 			foreach ($value as $key => $val) {
 				if ($key === $index) {
 					$base[] = $val;
 					$index++;
+<<<<<<< HEAD
 				} elseif (array_key_exists($key, $base)) {
 					$itemSchema = $this->items[$key] ?? $this->otherItems;
 					$base[$key] = $itemSchema
@@ -129,13 +159,23 @@ final class Structure implements Schema
 						: Helpers::merge($val, $base[$key]);
 				} else {
 					$base[$key] = $val;
+=======
+				} else {
+					$base[$key] = array_key_exists($key, $base) && ($itemSchema = $this->items[$key] ?? $this->otherItems)
+						? $itemSchema->merge($val, $base[$key])
+						: $val;
+>>>>>>> tundeseun/devtest
 				}
 			}
 
 			return $base;
 		}
 
+<<<<<<< HEAD
 		return Helpers::merge($value, $base);
+=======
+		return $value ?? $base;
+>>>>>>> tundeseun/devtest
 	}
 
 

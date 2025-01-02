@@ -17,8 +17,12 @@ class ResourceStream implements StreamInterface
          * @var resource
          */
         private $stream
+<<<<<<< HEAD
     ) {
     }
+=======
+    ) {}
+>>>>>>> tundeseun/devtest
 
     public function __toString(): string
     {
@@ -59,7 +63,11 @@ class ResourceStream implements StreamInterface
 
     public function isSeekable(): bool
     {
+<<<<<<< HEAD
         return (bool)$this->getMetadata('seekable');
+=======
+        return (bool) $this->getMetadata('seekable');
+>>>>>>> tundeseun/devtest
     }
 
     public function getMetadata(?string $key = null)

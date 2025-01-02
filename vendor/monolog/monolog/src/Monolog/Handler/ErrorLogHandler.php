@@ -27,11 +27,19 @@ class ErrorLogHandler extends AbstractProcessingHandler
     public const OPERATING_SYSTEM = 0;
     public const SAPI = 4;
 
+<<<<<<< HEAD
+=======
+    /** @var 0|1|3|4 */
+>>>>>>> tundeseun/devtest
     protected int $messageType;
     protected bool $expandNewlines;
 
     /**
+<<<<<<< HEAD
      * @param int  $messageType    Says where the error should go.
+=======
+     * @param 0|1|3|4 $messageType    Says where the error should go.
+>>>>>>> tundeseun/devtest
      * @param bool $expandNewlines If set to true, newlines in the message will be expanded to be take multiple log entries
      *
      * @throws \InvalidArgumentException If an unsupported message type is set
@@ -84,7 +92,11 @@ class ErrorLogHandler extends AbstractProcessingHandler
         if ($lines === false) {
             $pcreErrorCode = preg_last_error();
 
+<<<<<<< HEAD
             throw new \RuntimeException('Failed to preg_split formatted string: ' . $pcreErrorCode . ' / '. Utils::pcreLastErrorMessage($pcreErrorCode));
+=======
+            throw new \RuntimeException('Failed to preg_split formatted string: ' . $pcreErrorCode . ' / '. preg_last_error_msg());
+>>>>>>> tundeseun/devtest
         }
         foreach ($lines as $line) {
             error_log($line, $this->messageType);

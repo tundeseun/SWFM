@@ -9,8 +9,15 @@ namespace Dompdf;
 use Dompdf\Renderer\AbstractRenderer;
 use Dompdf\Renderer\Block;
 use Dompdf\Renderer\Image;
+<<<<<<< HEAD
 use Dompdf\Renderer\ListBullet;
 use Dompdf\Renderer\TableCell;
+=======
+use Dompdf\Renderer\Inline;
+use Dompdf\Renderer\ListBullet;
+use Dompdf\Renderer\TableCell;
+use Dompdf\Renderer\TableRow;
+>>>>>>> tundeseun/devtest
 use Dompdf\Renderer\TableRowGroup;
 use Dompdf\Renderer\Text;
 
@@ -75,6 +82,7 @@ class Renderer extends AbstractRenderer
         // Starts the CSS transformation
         if ($hasTransform) {
             $this->_canvas->save();
+<<<<<<< HEAD
             list($x, $y) = $frame->get_padding_box();
             $origin = $style->transform_origin;
 
@@ -87,6 +95,26 @@ class Renderer extends AbstractRenderer
                 $values = array_map("floatval", $values);
                 $values[] = $x + (float)$style->length_in_pt($origin[0], (float)$style->length_in_pt($style->width));
                 $values[] = $y + (float)$style->length_in_pt($origin[1], (float)$style->length_in_pt($style->height));
+=======
+
+            [$x, $y] = $frame->get_padding_box();
+            [$originX, $originY] = $style->transform_origin;
+            $w = (float) $style->length_in_pt($style->width);
+            $h = (float) $style->length_in_pt($style->height);
+
+            foreach ($transformList as $transform) {
+                [$function, $values] = $transform;
+
+                if ($function === "matrix") {
+                    $function = "transform";
+                } elseif ($function === "translate") {
+                    $values[0] = $style->length_in_pt($values[0], $w);
+                    $values[1] = $style->length_in_pt($values[1], $h);
+                }
+
+                $values[] = $x + $style->length_in_pt($originX, $w);
+                $values[] = $y + $style->length_in_pt($originY, $h);
+>>>>>>> tundeseun/devtest
 
                 call_user_func_array([$this->_canvas, $function], $values);
             }
@@ -114,6 +142,13 @@ class Renderer extends AbstractRenderer
                 $this->_render_frame("table-cell", $frame);
                 break;
 
+<<<<<<< HEAD
+=======
+            case "table-row":
+                $this->_render_frame("table-row", $frame);
+                break;
+
+>>>>>>> tundeseun/devtest
             case "table-row-group":
             case "table-header-group":
             case "table-footer-group":
@@ -252,7 +287,11 @@ class Renderer extends AbstractRenderer
                     break;
 
                 case "inline":
+<<<<<<< HEAD
                     $this->_renderers[$type] = new Renderer\Inline($this->_dompdf);
+=======
+                    $this->_renderers[$type] = new Inline($this->_dompdf);
+>>>>>>> tundeseun/devtest
                     break;
 
                 case "text":
@@ -267,6 +306,13 @@ class Renderer extends AbstractRenderer
                     $this->_renderers[$type] = new TableCell($this->_dompdf);
                     break;
 
+<<<<<<< HEAD
+=======
+                case "table-row":
+                    $this->_renderers[$type] = new TableRow($this->_dompdf);
+                    break;
+
+>>>>>>> tundeseun/devtest
                 case "table-row-group":
                     $this->_renderers[$type] = new TableRowGroup($this->_dompdf);
                     break;

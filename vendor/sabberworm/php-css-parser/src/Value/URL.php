@@ -86,9 +86,17 @@ class URL extends PrimitiveValue
     }
 
     /**
+<<<<<<< HEAD
      * @return string
      */
     public function render(OutputFormat $oOutputFormat)
+=======
+     * @param OutputFormat|null $oOutputFormat
+     *
+     * @return string
+     */
+    public function render($oOutputFormat)
+>>>>>>> tundeseun/devtest
     {
         return "url({$this->oURL->render($oOutputFormat)})";
     }

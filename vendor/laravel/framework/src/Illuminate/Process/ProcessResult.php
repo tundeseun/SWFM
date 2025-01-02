@@ -116,7 +116,11 @@ class ProcessResult implements ProcessResultContract
      *
      * @throws \Illuminate\Process\Exceptions\ProcessFailedException
      */
+<<<<<<< HEAD
     public function throw(callable $callback = null)
+=======
+    public function throw(?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($this->successful()) {
             return $this;
@@ -140,7 +144,11 @@ class ProcessResult implements ProcessResultContract
      *
      * @throws \Throwable
      */
+<<<<<<< HEAD
     public function throwIf(bool $condition, callable $callback = null)
+=======
+    public function throwIf(bool $condition, ?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($condition) {
             return $this->throw($callback);

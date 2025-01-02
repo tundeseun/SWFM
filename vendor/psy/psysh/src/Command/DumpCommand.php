@@ -11,7 +11,13 @@
 
 namespace Psy\Command;
 
+<<<<<<< HEAD
 use Psy\Input\CodeArgument;
+=======
+use Psy\Exception\RuntimeException;
+use Psy\Input\CodeArgument;
+use Psy\Output\ShellOutput;
+>>>>>>> tundeseun/devtest
 use Psy\VarDumper\Presenter;
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,7 +31,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DumpCommand extends ReflectingCommand implements PresenterAware
 {
+<<<<<<< HEAD
     private $presenter;
+=======
+    private Presenter $presenter;
+>>>>>>> tundeseun/devtest
 
     /**
      * PresenterAware interface.
@@ -71,6 +81,13 @@ HELP
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+<<<<<<< HEAD
+=======
+        if (!$output instanceof ShellOutput) {
+            throw new RuntimeException('DumpCommand requires a ShellOutput');
+        }
+
+>>>>>>> tundeseun/devtest
         $depth = $input->getOption('depth');
         $target = $this->resolveCode($input->getArgument('target'));
         $output->page($this->presenter->present($target, $depth, $input->getOption('all') ? Presenter::VERBOSE : 0));

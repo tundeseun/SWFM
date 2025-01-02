@@ -40,7 +40,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @var string
      */
+<<<<<<< HEAD
     const VERSION = '10.48.18';
+=======
+    const VERSION = '10.48.25';
+>>>>>>> tundeseun/devtest
 
     /**
      * The base path for the Laravel installation.
@@ -696,7 +700,13 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function detectEnvironment(Closure $callback)
     {
+<<<<<<< HEAD
         $args = $_SERVER['argv'] ?? null;
+=======
+        $args = $this->runningInConsole() && isset($_SERVER['argv'])
+            ? $_SERVER['argv']
+            : null;
+>>>>>>> tundeseun/devtest
 
         return $this['env'] = (new EnvironmentDetector)->detect($callback, $args);
     }

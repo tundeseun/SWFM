@@ -100,7 +100,11 @@ final class Reflection
 
 		$hash = [$method->getFileName(), $method->getStartLine(), $method->getEndLine()];
 		if (($alias = $decl->getTraitAliases()[$method->name] ?? null)
+<<<<<<< HEAD
 			&& ($m = new \ReflectionMethod($alias))
+=======
+			&& ($m = new \ReflectionMethod(...explode('::', $alias, 2)))
+>>>>>>> tundeseun/devtest
 			&& $hash === [$m->getFileName(), $m->getStartLine(), $m->getEndLine()]
 		) {
 			return self::getMethodDeclaringMethod($m);
@@ -125,7 +129,11 @@ final class Reflection
 	public static function areCommentsAvailable(): bool
 	{
 		static $res;
+<<<<<<< HEAD
 		return $res ?? $res = (bool) (new \ReflectionMethod(__METHOD__))->getDocComment();
+=======
+		return $res ?? $res = (bool) (new \ReflectionMethod(self::class, __FUNCTION__))->getDocComment();
+>>>>>>> tundeseun/devtest
 	}
 
 
@@ -136,7 +144,13 @@ final class Reflection
 		} elseif ($ref instanceof \ReflectionMethod) {
 			return $ref->getDeclaringClass()->name . '::' . $ref->name . '()';
 		} elseif ($ref instanceof \ReflectionFunction) {
+<<<<<<< HEAD
 			return $ref->name . '()';
+=======
+			return PHP_VERSION_ID >= 80200 && $ref->isAnonymous()
+				? '{closure}()'
+				: $ref->name . '()';
+>>>>>>> tundeseun/devtest
 		} elseif ($ref instanceof \ReflectionProperty) {
 			return self::getPropertyDeclaringClass($ref)->name . '::$' . $ref->name;
 		} elseif ($ref instanceof \ReflectionParameter) {

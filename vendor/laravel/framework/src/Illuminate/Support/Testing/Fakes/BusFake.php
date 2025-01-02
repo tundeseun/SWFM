@@ -88,7 +88,11 @@ class BusFake implements Fake, QueueingDispatcher
      * @param  \Illuminate\Bus\BatchRepository|null  $batchRepository
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(QueueingDispatcher $dispatcher, $jobsToFake = [], BatchRepository $batchRepository = null)
+=======
+    public function __construct(QueueingDispatcher $dispatcher, $jobsToFake = [], ?BatchRepository $batchRepository = null)
+>>>>>>> tundeseun/devtest
     {
         $this->dispatcher = $dispatcher;
         $this->jobsToFake = Arr::wrap($jobsToFake);

@@ -194,7 +194,11 @@ final class NamePrettifier
                     array_keys($providedData),
                 );
 
+<<<<<<< HEAD
                 $result = trim(preg_replace($variables, $providedData, $annotation));
+=======
+                $result = preg_replace($variables, $providedData, $annotation);
+>>>>>>> tundeseun/devtest
 
                 $annotationWithPlaceholders = true;
             }
@@ -243,6 +247,7 @@ final class NamePrettifier
             $value = $providedDataValues[$i++] ?? null;
 
             if (is_object($value)) {
+<<<<<<< HEAD
                 $reflector = new ReflectionObject($value);
 
                 if ($reflector->isEnum()) {
@@ -258,6 +263,9 @@ final class NamePrettifier
                 } else {
                     $value = $value::class;
                 }
+=======
+                $value = $this->objectToString($value);
+>>>>>>> tundeseun/devtest
             }
 
             if (!is_scalar($value)) {
@@ -280,7 +288,11 @@ final class NamePrettifier
                 }
             }
 
+<<<<<<< HEAD
             $providedData['$' . $parameter->getName()] = $value;
+=======
+            $providedData['$' . $parameter->getName()] = str_replace('$', '\\$', $value);
+>>>>>>> tundeseun/devtest
         }
 
         if ($colorize) {
@@ -292,4 +304,31 @@ final class NamePrettifier
 
         return $providedData;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * @return non-empty-string
+     */
+    private function objectToString(object $value): string
+    {
+        $reflector = new ReflectionObject($value);
+
+        if ($reflector->isEnum()) {
+            $enumReflector = new ReflectionEnum($value);
+
+            if ($enumReflector->isBacked()) {
+                return $value->value;
+            }
+
+            return $value->name;
+        }
+
+        if ($reflector->hasMethod('__toString')) {
+            return $value->__toString();
+        }
+
+        return $value::class;
+    }
+>>>>>>> tundeseun/devtest
 }

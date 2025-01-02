@@ -1,5 +1,11 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
+
+>>>>>>> tundeseun/devtest
 return [
 
     /*
@@ -11,7 +17,11 @@ return [
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'name' => env('APP_NAME', 'Laravel'),
 
@@ -24,7 +34,11 @@ return [
     | running in. This may determine how you prefer to configure various
     | services the application utilizes. Set this in your ".env" file.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'env' => env('APP_ENV', 'production'),
 
@@ -37,7 +51,11 @@ return [
     | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'debug' => (bool) env('APP_DEBUG', false),
 
@@ -50,11 +68,19 @@ return [
     | the Artisan command line tool. You should set this to the root of
     | your application so that it is used when running Artisan tasks.
     |
+<<<<<<< HEAD
      */
 
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
+=======
+    */
+
+    'url' => env('APP_URL', 'http://localhost'),
+
+    'asset_url' => env('ASSET_URL'),
+>>>>>>> tundeseun/devtest
 
     /*
     |--------------------------------------------------------------------------
@@ -65,9 +91,15 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
+<<<<<<< HEAD
      */
 
     'timezone' => env('APP_TIMEZONE', 'UTC'),
+=======
+    */
+
+    'timezone' => 'UTC',
+>>>>>>> tundeseun/devtest
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +110,11 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'locale' => 'en',
 
@@ -91,7 +127,11 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'fallback_locale' => 'en',
 
@@ -104,7 +144,11 @@ return [
     | data for your database seeds. For example, this will be used to get
     | localized telephone numbers, street address information and more.
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'faker_locale' => 'en_US',
 
@@ -117,7 +161,11 @@ return [
     | to a random, 32 character string, otherwise these encrypted strings
     | will not be safe. Please do this before deploying an application!
     |
+<<<<<<< HEAD
      */
+=======
+    */
+>>>>>>> tundeseun/devtest
 
     'key' => env('APP_KEY'),
 
@@ -125,6 +173,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
     | Stripe Key
     |--------------------------------------------------------------------------
     |
@@ -135,6 +184,23 @@ return [
     'STRIPE_KEY' => env('STRIPE_KEY'),
     'STRIPE_SECRET' => env('STRIPE_SECRET'),
 
+=======
+    | Maintenance Mode Driver
+    |--------------------------------------------------------------------------
+    |
+    | These configuration options determine the driver used to determine and
+    | manage Laravel's "maintenance mode" status. The "cache" driver will
+    | allow maintenance mode to be controlled across multiple machines.
+    |
+    | Supported drivers: "file", "cache"
+    |
+    */
+
+    'maintenance' => [
+        'driver' => 'file',
+        // 'store' => 'redis',
+    ],
+>>>>>>> tundeseun/devtest
 
     /*
     |--------------------------------------------------------------------------
@@ -145,6 +211,7 @@ return [
     | request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
+<<<<<<< HEAD
      */
 
     'providers' => [
@@ -176,6 +243,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Macellan\Zip\ZipServiceProvider::class,
+=======
+    */
+
+    'providers' => ServiceProvider::defaultProviders()->merge([
+>>>>>>> tundeseun/devtest
         /*
          * Package Service Providers...
          */
@@ -185,6 +257,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+<<<<<<< HEAD
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
@@ -193,6 +266,12 @@ return [
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         
     ],
+=======
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+    ])->toArray(),
+>>>>>>> tundeseun/devtest
 
     /*
     |--------------------------------------------------------------------------
@@ -203,6 +282,7 @@ return [
     | is started. However, feel free to register as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
+<<<<<<< HEAD
      */
 
     'aliases' => [
@@ -251,5 +331,12 @@ return [
         'Zip' => Macellan\Zip\ZipFacade::class,
 
     ],
+=======
+    */
+
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
+>>>>>>> tundeseun/devtest
 
 ];

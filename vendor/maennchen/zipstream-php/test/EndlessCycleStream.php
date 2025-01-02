@@ -11,9 +11,13 @@ class EndlessCycleStream implements StreamInterface
 {
     private int $offset = 0;
 
+<<<<<<< HEAD
     public function __construct(private readonly string $toRepeat = '0')
     {
     }
+=======
+    public function __construct(private readonly string $toRepeat = '0') {}
+>>>>>>> tundeseun/devtest
 
     public function __toString(): string
     {
@@ -55,7 +59,11 @@ class EndlessCycleStream implements StreamInterface
 
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
+<<<<<<< HEAD
         switch($whence) {
+=======
+        switch ($whence) {
+>>>>>>> tundeseun/devtest
             case SEEK_SET:
                 $this->offset = $offset;
                 break;

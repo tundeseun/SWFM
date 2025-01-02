@@ -22,7 +22,11 @@ class QueueImport implements ShouldQueue
     /**
      * @param  ShouldQueue  $import
      */
+<<<<<<< HEAD
     public function __construct(ShouldQueue $import = null)
+=======
+    public function __construct(?ShouldQueue $import = null)
+>>>>>>> tundeseun/devtest
     {
         if ($import) {
             $this->timeout = $import->timeout ?? null;

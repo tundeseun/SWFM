@@ -19,9 +19,16 @@ namespace Psy\Reflection;
 class ReflectionConstant implements \Reflector
 {
     public $name;
+<<<<<<< HEAD
     private $value;
 
     private static $magicConstants = [
+=======
+    /** @var mixed */
+    private $value;
+
+    private const MAGIC_CONSTANTS = [
+>>>>>>> tundeseun/devtest
         '__LINE__',
         '__FILE__',
         '__DIR__',
@@ -75,7 +82,11 @@ class ReflectionConstant implements \Reflector
 
     public static function isMagicConstant($name)
     {
+<<<<<<< HEAD
         return \in_array($name, self::$magicConstants);
+=======
+        return \in_array($name, self::MAGIC_CONSTANTS);
+>>>>>>> tundeseun/devtest
     }
 
     /**

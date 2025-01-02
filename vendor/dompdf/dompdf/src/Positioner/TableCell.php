@@ -6,6 +6,10 @@
  */
 namespace Dompdf\Positioner;
 
+<<<<<<< HEAD
+=======
+use Dompdf\Exception;
+>>>>>>> tundeseun/devtest
 use Dompdf\FrameDecorator\AbstractFrameDecorator;
 use Dompdf\FrameDecorator\Table;
 
@@ -23,6 +27,12 @@ class TableCell extends AbstractPositioner
     function position(AbstractFrameDecorator $frame): void
     {
         $table = Table::find_parent_table($frame);
+<<<<<<< HEAD
+=======
+        if ($table === null) {
+            throw new Exception("Parent table not found for table cell");
+        }
+>>>>>>> tundeseun/devtest
         $cellmap = $table->get_cellmap();
         $frame->set_position($cellmap->get_frame_position($frame));
     }

@@ -2,14 +2,20 @@
 
 namespace App\Providers;
 
+<<<<<<< HEAD
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Carbon\Carbon;
+=======
+// use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+>>>>>>> tundeseun/devtest
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
+<<<<<<< HEAD
      * The policy mappings for the application.
      *
      * @var array
@@ -59,10 +65,19 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Project'                   => 'App\Policies\ProjectPolicy',
         'App\Models\Task'                      => 'App\Policies\TaskPolicy',
 
+=======
+     * The model to policy mappings for the application.
+     *
+     * @var array<class-string, class-string>
+     */
+    protected $policies = [
+        //
+>>>>>>> tundeseun/devtest
     ];
 
     /**
      * Register any authentication / authorization services.
+<<<<<<< HEAD
      *
      * @return void
      */
@@ -71,5 +86,11 @@ class AuthServiceProvider extends ServiceProvider
 
         // Passport::routes();
     
+=======
+     */
+    public function boot(): void
+    {
+        //
+>>>>>>> tundeseun/devtest
     }
 }

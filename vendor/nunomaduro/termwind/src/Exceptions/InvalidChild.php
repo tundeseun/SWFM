@@ -9,6 +9,10 @@ use InvalidArgumentException;
 /**
  * @internal
  */
+<<<<<<< HEAD
 final class InvalidChild extends InvalidArgumentException
 {
 }
+=======
+final class InvalidChild extends InvalidArgumentException {}
+>>>>>>> tundeseun/devtest

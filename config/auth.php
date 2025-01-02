@@ -31,7 +31,11 @@ return [
     | users are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
+<<<<<<< HEAD
     | Supported: "session", "token"
+=======
+    | Supported: "session"
+>>>>>>> tundeseun/devtest
     |
     */
 
@@ -40,6 +44,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+<<<<<<< HEAD
 
         'api' => [
             'driver' => 'passport',
@@ -51,6 +56,8 @@ return [
             'driver' => 'session',
             'provider' => 'ecommerce_clients',
         ],
+=======
+>>>>>>> tundeseun/devtest
     ],
 
     /*
@@ -76,11 +83,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
+<<<<<<< HEAD
         'ecommerce_clients' => [
             'driver' => 'eloquent',
             'model' => App\Models\EcommerceClient::class,
         ],
 
+=======
+>>>>>>> tundeseun/devtest
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -96,15 +106,27 @@ return [
     | than one user table or model in the application and you want to have
     | separate password reset settings based on the specific user types.
     |
+<<<<<<< HEAD
     | The expire time is the number of minutes that the reset token should be
     | considered valid. This security feature keeps tokens short-lived so
     | they have less time to be guessed. You may change this as needed.
     |
+=======
+    | The expiry time is the number of minutes that each reset token will be
+    | considered valid. This security feature keeps tokens short-lived so
+    | they have less time to be guessed. You may change this as needed.
+    |
+    | The throttle setting is the number of seconds a user must wait before
+    | generating more password reset tokens. This prevents the user from
+    | quickly generating a very large amount of password reset tokens.
+    |
+>>>>>>> tundeseun/devtest
     */
 
     'passwords' => [
         'users' => [
             'provider' => 'users',
+<<<<<<< HEAD
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
@@ -113,6 +135,9 @@ return [
         'ecommerce_clients' => [
             'provider' => 'ecommerce_clients',
             'table' => 'password_resets',
+=======
+            'table' => 'password_reset_tokens',
+>>>>>>> tundeseun/devtest
             'expire' => 60,
             'throttle' => 60,
         ],

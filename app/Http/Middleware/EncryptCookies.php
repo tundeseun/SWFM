@@ -9,8 +9,16 @@ class EncryptCookies extends Middleware
     /**
      * The names of the cookies that should not be encrypted.
      *
+<<<<<<< HEAD
      * @var array
      */
     protected $except = [
      ];
+=======
+     * @var array<int, string>
+     */
+    protected $except = [
+        //
+    ];
+>>>>>>> tundeseun/devtest
 }

@@ -16,10 +16,17 @@ namespace Psy;
  */
 class ConfigPaths
 {
+<<<<<<< HEAD
     private $configDir;
     private $dataDir;
     private $runtimeDir;
     private $env;
+=======
+    private ?string $configDir = null;
+    private ?string $dataDir = null;
+    private ?string $runtimeDir = null;
+    private EnvInterface $env;
+>>>>>>> tundeseun/devtest
 
     /**
      * ConfigPaths constructor.
@@ -63,10 +70,15 @@ class ConfigPaths
 
     /**
      * Get the current home directory.
+<<<<<<< HEAD
      *
      * @return string|null
      */
     public function homeDir()
+=======
+     */
+    public function homeDir(): ?string
+>>>>>>> tundeseun/devtest
     {
         if ($homeDir = $this->getEnv('HOME') ?: $this->windowsHomeDir()) {
             return \strtr($homeDir, '\\', '/');
@@ -75,7 +87,11 @@ class ConfigPaths
         return null;
     }
 
+<<<<<<< HEAD
     private function windowsHomeDir()
+=======
+    private function windowsHomeDir(): ?string
+>>>>>>> tundeseun/devtest
     {
         if (\defined('PHP_WINDOWS_VERSION_MAJOR')) {
             $homeDrive = $this->getEnv('HOMEDRIVE');
@@ -88,13 +104,23 @@ class ConfigPaths
         return null;
     }
 
+<<<<<<< HEAD
     private function homeConfigDir()
+=======
+    private function homeConfigDir(): ?string
+>>>>>>> tundeseun/devtest
     {
         if ($homeConfigDir = $this->getEnv('XDG_CONFIG_HOME')) {
             return $homeConfigDir;
         }
 
         $homeDir = $this->homeDir();
+<<<<<<< HEAD
+=======
+        if ($homeDir === null) {
+            return null;
+        }
+>>>>>>> tundeseun/devtest
 
         return $homeDir === '/' ? $homeDir.'.config' : $homeDir.'/.config';
     }
@@ -130,7 +156,11 @@ class ConfigPaths
      *
      * @see self::homeConfigDir
      */
+<<<<<<< HEAD
     public function currentConfigDir(): string
+=======
+    public function currentConfigDir(): ?string
+>>>>>>> tundeseun/devtest
     {
         if ($this->configDir !== null) {
             return $this->configDir;
@@ -144,7 +174,11 @@ class ConfigPaths
             }
         }
 
+<<<<<<< HEAD
         return $configDirs[0];
+=======
+        return $configDirs[0] ?? null;
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -231,11 +265,21 @@ class ConfigPaths
      * If $PATH is unset/empty it defaults to '/usr/sbin:/usr/bin:/sbin:/bin'.
      *
      * @param string $command the executable to locate
+<<<<<<< HEAD
      *
      * @return string
      */
     public function which($command)
     {
+=======
+     */
+    public function which($command): ?string
+    {
+        if (!\is_string($command) || $command === '') {
+            return null;
+        }
+
+>>>>>>> tundeseun/devtest
         foreach ($this->pathDirs() as $path) {
             $fullpath = $path.\DIRECTORY_SEPARATOR.$command;
             if (@\is_file($fullpath) && @\is_executable($fullpath)) {
@@ -259,6 +303,10 @@ class ConfigPaths
      */
     private function allDirNames(array $baseDirs): array
     {
+<<<<<<< HEAD
+=======
+        $baseDirs = \array_filter($baseDirs);
+>>>>>>> tundeseun/devtest
         $dirs = \array_map(function ($dir) {
             return \strtr($dir, '\\', '/').'/psysh';
         }, $baseDirs);
@@ -362,12 +410,20 @@ class ConfigPaths
         return $file;
     }
 
+<<<<<<< HEAD
     private function getEnv($key)
+=======
+    private function getEnv(string $key)
+>>>>>>> tundeseun/devtest
     {
         return $this->env->get($key);
     }
 
+<<<<<<< HEAD
     private function getEnvArray($key)
+=======
+    private function getEnvArray(string $key)
+>>>>>>> tundeseun/devtest
     {
         if ($value = $this->getEnv($key)) {
             return \explode(\PATH_SEPARATOR, $value);

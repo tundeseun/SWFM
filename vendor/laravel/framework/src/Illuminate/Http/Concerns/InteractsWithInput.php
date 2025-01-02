@@ -120,7 +120,11 @@ trait InteractsWithInput
      * @param  callable|null  $default
      * @return $this|mixed
      */
+<<<<<<< HEAD
     public function whenHas($key, callable $callback, callable $default = null)
+=======
+    public function whenHas($key, callable $callback, ?callable $default = null)
+>>>>>>> tundeseun/devtest
     {
         if ($this->has($key)) {
             return $callback(data_get($this->all(), $key)) ?: $this;
@@ -198,7 +202,11 @@ trait InteractsWithInput
      * @param  callable|null  $default
      * @return $this|mixed
      */
+<<<<<<< HEAD
     public function whenFilled($key, callable $callback, callable $default = null)
+=======
+    public function whenFilled($key, callable $callback, ?callable $default = null)
+>>>>>>> tundeseun/devtest
     {
         if ($this->filled($key)) {
             return $callback(data_get($this->all(), $key)) ?: $this;
@@ -232,7 +240,11 @@ trait InteractsWithInput
      * @param  callable|null  $default
      * @return $this|mixed
      */
+<<<<<<< HEAD
     public function whenMissing($key, callable $callback, callable $default = null)
+=======
+    public function whenMissing($key, callable $callback, ?callable $default = null)
+>>>>>>> tundeseun/devtest
     {
         if ($this->missing($key)) {
             return $callback(data_get($this->all(), $key)) ?: $this;

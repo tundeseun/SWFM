@@ -21,7 +21,11 @@ use Symfony\Component\Console\Input\InputInterface;
 class VariableEnumerator extends Enumerator
 {
     // n.b. this array is the order in which special variables will be listed
+<<<<<<< HEAD
     private static $specialNames = [
+=======
+    private const SPECIAL_NAMES = [
+>>>>>>> tundeseun/devtest
         '_', '_e', '__out', '__function', '__method', '__class', '__namespace', '__file', '__line', '__dir',
     ];
 
@@ -80,8 +84,13 @@ class VariableEnumerator extends Enumerator
     {
         $scopeVars = $this->context->getAll();
         \uksort($scopeVars, function ($a, $b) {
+<<<<<<< HEAD
             $aIndex = \array_search($a, self::$specialNames);
             $bIndex = \array_search($b, self::$specialNames);
+=======
+            $aIndex = \array_search($a, self::SPECIAL_NAMES);
+            $bIndex = \array_search($b, self::SPECIAL_NAMES);
+>>>>>>> tundeseun/devtest
 
             if ($aIndex !== false) {
                 if ($bIndex !== false) {
@@ -100,7 +109,11 @@ class VariableEnumerator extends Enumerator
 
         $ret = [];
         foreach ($scopeVars as $name => $val) {
+<<<<<<< HEAD
             if (!$showAll && \in_array($name, self::$specialNames)) {
+=======
+            if (!$showAll && \in_array($name, self::SPECIAL_NAMES)) {
+>>>>>>> tundeseun/devtest
                 continue;
             }
 
@@ -126,7 +139,11 @@ class VariableEnumerator extends Enumerator
                 $fname = '$'.$name;
                 $ret[$fname] = [
                     'name'  => $fname,
+<<<<<<< HEAD
                     'style' => \in_array($name, self::$specialNames) ? self::IS_PRIVATE : self::IS_PUBLIC,
+=======
+                    'style' => \in_array($name, self::SPECIAL_NAMES) ? self::IS_PRIVATE : self::IS_PUBLIC,
+>>>>>>> tundeseun/devtest
                     'value' => $this->presentRef($val),
                 ];
             }

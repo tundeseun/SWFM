@@ -95,7 +95,11 @@ class File
 
         if ($this->enableZeroHeader) {
             // No calculation required
+<<<<<<< HEAD
         } elseif ($this->isSimulation() && $forecastSize) {
+=======
+        } elseif ($this->isSimulation() && $forecastSize !== null) {
+>>>>>>> tundeseun/devtest
             $this->uncompressedSize = $forecastSize;
             $this->compressedSize = $forecastSize;
         } else {
@@ -107,11 +111,19 @@ class File
 
         $this->addFileHeader();
 
+<<<<<<< HEAD
         $detectedSize = $forecastSize ?? $this->compressedSize;
 
         if (
             $this->isSimulation() &&
             $detectedSize > 0
+=======
+        $detectedSize = $forecastSize ?? ($this->compressedSize > 0 ? $this->compressedSize : null);
+
+        if (
+            $this->isSimulation() &&
+            $detectedSize !== null
+>>>>>>> tundeseun/devtest
         ) {
             ($this->recordSentBytes)($detectedSize);
         } else {
@@ -158,7 +170,11 @@ class File
         if ($this->compressionMethod !== CompressionMethod::STORE) {
             return null;
         }
+<<<<<<< HEAD
         if ($this->exactSize) {
+=======
+        if ($this->exactSize !== null) {
+>>>>>>> tundeseun/devtest
             return $this->exactSize;
         }
         $fstat = fstat($this->unpackStream());
@@ -184,7 +200,11 @@ class File
 
         $zip64Enabled = $footer !== '';
 
+<<<<<<< HEAD
         if($zip64Enabled) {
+=======
+        if ($zip64Enabled) {
+>>>>>>> tundeseun/devtest
             $this->version = Version::ZIP64;
         }
 
@@ -350,7 +370,11 @@ class File
             }
         }
 
+<<<<<<< HEAD
         if ($this->exactSize && $this->uncompressedSize !== $this->exactSize) {
+=======
+        if ($this->exactSize !== null && $this->uncompressedSize !== $this->exactSize) {
+>>>>>>> tundeseun/devtest
             throw new FileSizeIncorrectException(expectedSize: $this->exactSize, actualSize: $this->uncompressedSize);
         }
 
@@ -359,7 +383,11 @@ class File
 
     private function compressionInit(): ?DeflateContext
     {
+<<<<<<< HEAD
         switch($this->compressionMethod) {
+=======
+        switch ($this->compressionMethod) {
+>>>>>>> tundeseun/devtest
             case CompressionMethod::STORE:
                 // Noting to do
                 return null;
@@ -390,7 +418,11 @@ class File
 
         return CentralDirectoryFileHeader::generate(
             versionMadeBy: ZipStream::ZIP_VERSION_MADE_BY,
+<<<<<<< HEAD
             versionNeededToExtract:$this->version->value,
+=======
+            versionNeededToExtract: $this->version->value,
+>>>>>>> tundeseun/devtest
             generalPurposeBitFlag: $this->generalPurposeBitFlag,
             compressionMethod: $this->compressionMethod,
             lastModificationDateTime: $this->lastModificationDateTime,

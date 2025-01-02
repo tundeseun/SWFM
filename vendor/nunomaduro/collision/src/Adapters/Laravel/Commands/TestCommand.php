@@ -195,7 +195,11 @@ class TestCommand extends Command
 
         if ($this->option('ansi')) {
             $arguments[] = '--colors=always';
+<<<<<<< HEAD
         } elseif ($this->option('no-ansi')) { // @phpstan-ignore-line
+=======
+        } elseif ($this->option('no-ansi')) {
+>>>>>>> tundeseun/devtest
             $arguments[] = '--colors=never';
         } elseif ((new Console)->hasColorSupport()) {
             $arguments[] = '--colors=always';
@@ -281,7 +285,11 @@ class TestCommand extends Command
             "--runner=\Illuminate\Testing\ParallelRunner",
         ], $options);
 
+<<<<<<< HEAD
         $inputDefinition = new InputDefinition();
+=======
+        $inputDefinition = new InputDefinition;
+>>>>>>> tundeseun/devtest
         Options::setInputDefinition($inputDefinition);
         $input = new ArgvInput($options, $inputDefinition);
 
@@ -379,7 +387,11 @@ class TestCommand extends Command
 
         $vars = [];
 
+<<<<<<< HEAD
         foreach ((new Parser())->parse($content) as $entry) {
+=======
+        foreach ((new Parser)->parse($content) as $entry) {
+>>>>>>> tundeseun/devtest
             $vars[] = $entry->getName();
         }
 

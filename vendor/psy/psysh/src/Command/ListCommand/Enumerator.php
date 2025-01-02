@@ -31,8 +31,13 @@ abstract class Enumerator
     const IS_CLASS = 'class';
     const IS_FUNCTION = 'function';
 
+<<<<<<< HEAD
     private $filter;
     private $presenter;
+=======
+    private FilterOptions $filter;
+    private Presenter $presenter;
+>>>>>>> tundeseun/devtest
 
     /**
      * Enumerator constructor.

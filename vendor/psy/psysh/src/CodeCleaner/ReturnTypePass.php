@@ -34,7 +34,11 @@ class ReturnTypePass extends CodeCleanerPass
     const VOID_NULL_MESSAGE = 'A void function must not return a value (did you mean "return;" instead of "return null;"?)';
     const NULLABLE_VOID_MESSAGE = 'Void type cannot be nullable';
 
+<<<<<<< HEAD
     private $returnTypeStack = [];
+=======
+    private array $returnTypeStack = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}

@@ -51,7 +51,11 @@ abstract class SchemaState
      * @param  callable|null  $processFactory
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Connection $connection, Filesystem $files = null, callable $processFactory = null)
+=======
+    public function __construct(Connection $connection, ?Filesystem $files = null, ?callable $processFactory = null)
+>>>>>>> tundeseun/devtest
     {
         $this->connection = $connection;
 

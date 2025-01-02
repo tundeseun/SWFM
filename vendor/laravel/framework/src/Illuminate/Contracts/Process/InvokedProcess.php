@@ -60,5 +60,9 @@ interface InvokedProcess
      * @param  callable|null  $output
      * @return \Illuminate\Console\Process\ProcessResult
      */
+<<<<<<< HEAD
     public function wait(callable $output = null);
+=======
+    public function wait(?callable $output = null);
+>>>>>>> tundeseun/devtest
 }

@@ -141,6 +141,7 @@ final class Utils
     }
 
     /**
+<<<<<<< HEAD
      * @internal
      */
     public static function pcreLastErrorMessage(int $code): string
@@ -160,6 +161,8 @@ final class Utils
     }
 
     /**
+=======
+>>>>>>> tundeseun/devtest
      * Throws an exception according to a given code with a customized message
      *
      * @param  int               $code return code of json_last_error function
@@ -200,14 +203,24 @@ final class Utils
             $data = preg_replace_callback(
                 '/[\x80-\xFF]+/',
                 function (array $m): string {
+<<<<<<< HEAD
                     return \function_exists('mb_convert_encoding') ? mb_convert_encoding($m[0], 'UTF-8', 'ISO-8859-1') : utf8_encode($m[0]);
+=======
+                    return \function_exists('mb_convert_encoding')
+                        ? mb_convert_encoding($m[0], 'UTF-8', 'ISO-8859-1')
+                        : (\function_exists('utf8_encode') ? utf8_encode($m[0]) : '');
+>>>>>>> tundeseun/devtest
                 },
                 $data
             );
             if (!\is_string($data)) {
                 $pcreErrorCode = preg_last_error();
 
+<<<<<<< HEAD
                 throw new \RuntimeException('Failed to preg_replace_callback: ' . $pcreErrorCode . ' / ' . self::pcreLastErrorMessage($pcreErrorCode));
+=======
+                throw new \RuntimeException('Failed to preg_replace_callback: ' . $pcreErrorCode . ' / ' . preg_last_error_msg());
+>>>>>>> tundeseun/devtest
             }
             $data = str_replace(
                 ['¤', '¦', '¨', '´', '¸', '¼', '½', '¾'],
@@ -234,12 +247,20 @@ final class Utils
             return (int) $val;
         }
 
+<<<<<<< HEAD
         if (preg_match('/^\s*(?<val>\d+)(?:\.\d+)?\s*(?<unit>[gmk]?)\s*$/i', $val, $match) !== 1) {
+=======
+        if (!(bool) preg_match('/^\s*(?<val>\d+)(?:\.\d+)?\s*(?<unit>[gmk]?)\s*$/i', $val, $match)) {
+>>>>>>> tundeseun/devtest
             return false;
         }
 
         $val = (int) $match['val'];
+<<<<<<< HEAD
         switch (strtolower($match['unit'] ?? '')) {
+=======
+        switch (strtolower($match['unit'])) {
+>>>>>>> tundeseun/devtest
             case 'g':
                 $val *= 1024;
                 // no break

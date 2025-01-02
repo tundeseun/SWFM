@@ -84,6 +84,10 @@ class TokenizerPatterns
 
     public function getQuotedStringPattern(string $quote): string
     {
+<<<<<<< HEAD
         return '~^'.sprintf($this->quotedStringPattern, $quote).'~i';
+=======
+        return '~^'.\sprintf($this->quotedStringPattern, $quote).'~i';
+>>>>>>> tundeseun/devtest
     }
 }

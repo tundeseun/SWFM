@@ -270,6 +270,7 @@ class HTMLPurifier_Lexer
     }
 
     /**
+<<<<<<< HEAD
      * Special Internet Explorer conditional comments should be removed.
      * @param string $string HTML string to process.
      * @return string HTML with conditional comments removed.
@@ -284,6 +285,8 @@ class HTMLPurifier_Lexer
     }
 
     /**
+=======
+>>>>>>> tundeseun/devtest
      * Callback function for escapeCDATA() that does the work.
      *
      * @warning Though this is public in order to let the callback happen,
@@ -323,8 +326,11 @@ class HTMLPurifier_Lexer
         // escape CDATA
         $html = $this->escapeCDATA($html);
 
+<<<<<<< HEAD
         $html = $this->removeIEConditional($html);
 
+=======
+>>>>>>> tundeseun/devtest
         // extract body from document if applicable
         if ($config->get('Core.ConvertDocumentToFragment')) {
             $e = false;

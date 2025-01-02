@@ -63,7 +63,11 @@ class Composer
      * @param  string|null  $composerBinary
      * @return bool
      */
+<<<<<<< HEAD
     public function requirePackages(array $packages, bool $dev = false, Closure|OutputInterface $output = null, $composerBinary = null)
+=======
+    public function requirePackages(array $packages, bool $dev = false, Closure|OutputInterface|null $output = null, $composerBinary = null)
+>>>>>>> tundeseun/devtest
     {
         $command = collect([
             ...$this->findComposer($composerBinary),
@@ -92,7 +96,11 @@ class Composer
      * @param  string|null  $composerBinary
      * @return bool
      */
+<<<<<<< HEAD
     public function removePackages(array $packages, bool $dev = false, Closure|OutputInterface $output = null, $composerBinary = null)
+=======
+    public function removePackages(array $packages, bool $dev = false, Closure|OutputInterface|null $output = null, $composerBinary = null)
+>>>>>>> tundeseun/devtest
     {
         $command = collect([
             ...$this->findComposer($composerBinary),

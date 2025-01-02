@@ -25,8 +25,11 @@ class WildfireFormatter extends NormalizerFormatter
 {
     /**
      * @param string|null $dateFormat The format of the timestamp: one supported by DateTime::format
+<<<<<<< HEAD
      *
      * @throws \RuntimeException If the function json_encode does not exist
+=======
+>>>>>>> tundeseun/devtest
      */
     public function __construct(?string $dateFormat = null)
     {

@@ -13,6 +13,11 @@ namespace Psy\CodeCleaner;
 
 use PhpParser\Node;
 use PhpParser\Node\Scalar\DNumber;
+<<<<<<< HEAD
+=======
+use PhpParser\Node\Scalar\Float_;
+use PhpParser\Node\Scalar\Int_;
+>>>>>>> tundeseun/devtest
 use PhpParser\Node\Scalar\LNumber;
 use PhpParser\Node\Stmt\Break_;
 use PhpParser\Node\Stmt\Continue_;
@@ -28,7 +33,11 @@ use Psy\Exception\FatalErrorException;
  */
 class LoopContextPass extends CodeCleanerPass
 {
+<<<<<<< HEAD
     private $loopDepth;
+=======
+    private int $loopDepth = 0;
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}
@@ -70,8 +79,18 @@ class LoopContextPass extends CodeCleanerPass
                     throw new FatalErrorException($msg, 0, \E_ERROR, null, $node->getStartLine());
                 }
 
+<<<<<<< HEAD
                 // @todo Rename to Int_ and Float_ once we drop support for PHP-Parser 4.x
                 if ($node->num instanceof LNumber || $node->num instanceof DNumber) {
+=======
+                // @todo Remove LNumber and DNumber once we drop support for PHP-Parser 4.x
+                if (
+                    $node->num instanceof LNumber ||
+                    $node->num instanceof DNumber ||
+                    $node->num instanceof Int_ ||
+                    $node->num instanceof Float_
+                ) {
+>>>>>>> tundeseun/devtest
                     $num = $node->num->value;
                     if ($node->num instanceof DNumber || $num < 1) {
                         $msg = \sprintf("'%s' operator accepts only positive numbers", $operator);

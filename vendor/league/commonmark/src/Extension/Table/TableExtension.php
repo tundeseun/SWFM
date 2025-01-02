@@ -41,6 +41,10 @@ final class TableExtension implements ConfigurableExtensionInterface
                 'center' => (clone $attributeArraySchema)->default(['align' => 'center']),
                 'right' => (clone $attributeArraySchema)->default(['align' => 'right']),
             ]),
+<<<<<<< HEAD
+=======
+            'max_autocompleted_cells' => Expect::int()->min(0)->default(TableParser::DEFAULT_MAX_AUTOCOMPLETED_CELLS),
+>>>>>>> tundeseun/devtest
         ]));
     }
 
@@ -52,7 +56,11 @@ final class TableExtension implements ConfigurableExtensionInterface
         }
 
         $environment
+<<<<<<< HEAD
             ->addBlockStartParser(new TableStartParser())
+=======
+            ->addBlockStartParser(new TableStartParser($environment->getConfiguration()->get('table/max_autocompleted_cells')))
+>>>>>>> tundeseun/devtest
 
             ->addRenderer(Table::class, $tableRenderer)
             ->addRenderer(TableSection::class, new TableSectionRenderer())

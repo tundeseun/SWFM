@@ -806,7 +806,11 @@ class ReflectionClosure extends ReflectionFunction
     }
 
     /**
+<<<<<<< HEAD
      * The the hash of the current file name.
+=======
+     * The hash of the current file name.
+>>>>>>> tundeseun/devtest
      *
      * @return string
      */
@@ -1135,10 +1139,17 @@ class ReflectionClosure extends ReflectionFunction
                             if (--$open == 0) {
                                 if (! $structIgnore) {
                                     $structures[] = [
+<<<<<<< HEAD
                                         'type'  => $structType,
                                         'name'  => $structName,
                                         'start' => $startLine,
                                         'end'   => $endLine,
+=======
+                                        'type' => $structType,
+                                        'name' => $structName,
+                                        'start' => $startLine,
+                                        'end' => $endLine,
+>>>>>>> tundeseun/devtest
                                     ];
                                 }
                                 $structIgnore = false;

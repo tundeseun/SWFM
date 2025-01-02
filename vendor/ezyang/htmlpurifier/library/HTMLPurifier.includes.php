@@ -7,7 +7,11 @@
  * primary concern and you are using an opcode cache. PLEASE DO NOT EDIT THIS
  * FILE, changes will be overwritten the next time the script is run.
  *
+<<<<<<< HEAD
  * @version 4.17.0
+=======
+ * @version 4.18.0
+>>>>>>> tundeseun/devtest
  *
  * @warning
  *      You must *not* include any other HTML Purifier files before this file,
@@ -101,6 +105,10 @@ require 'HTMLPurifier/AttrDef/CSS/Length.php';
 require 'HTMLPurifier/AttrDef/CSS/ListStyle.php';
 require 'HTMLPurifier/AttrDef/CSS/Multiple.php';
 require 'HTMLPurifier/AttrDef/CSS/Percentage.php';
+<<<<<<< HEAD
+=======
+require 'HTMLPurifier/AttrDef/CSS/Ratio.php';
+>>>>>>> tundeseun/devtest
 require 'HTMLPurifier/AttrDef/CSS/TextDecoration.php';
 require 'HTMLPurifier/AttrDef/CSS/URI.php';
 require 'HTMLPurifier/AttrDef/HTML/Bool.php';

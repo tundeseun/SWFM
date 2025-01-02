@@ -14,7 +14,11 @@ namespace Symfony\Component\Uid;
 /**
  * @author Grégoire Pineau <lyrixx@lyrixx.info>
  *
+<<<<<<< HEAD
  * @see https://tools.ietf.org/html/rfc4122#appendix-C for details about namespaces
+=======
+ * @see https://datatracker.ietf.org/doc/html/rfc9562/#section-6.6 for details about namespaces
+>>>>>>> tundeseun/devtest
  */
 class Uuid extends AbstractUid
 {
@@ -153,9 +157,15 @@ class Uuid extends AbstractUid
     }
 
     /**
+<<<<<<< HEAD
      * Returns the identifier as a RFC4122 case insensitive string.
      *
      * @see https://tools.ietf.org/html/rfc4122#section-3
+=======
+     * Returns the identifier as a RFC 9562/4122 case insensitive string.
+     *
+     * @see https://datatracker.ietf.org/doc/html/rfc9562/#section-4
+>>>>>>> tundeseun/devtest
      *
      * @example 09748193-048a-4bfb-b825-8528cf74fdc1 (len=36)
      */

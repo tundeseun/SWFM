@@ -25,7 +25,11 @@ class EmptyArrayDimFetchPass extends CodeCleanerPass
 {
     const EXCEPTION_MESSAGE = 'Cannot use [] for reading';
 
+<<<<<<< HEAD
     private $theseOnesAreFine = [];
+=======
+    private array $theseOnesAreFine = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * @return Node[]|null Array of nodes

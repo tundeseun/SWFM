@@ -48,7 +48,11 @@ interface PasswordBroker
      * @param  \Closure|null  $callback
      * @return string
      */
+<<<<<<< HEAD
     public function sendResetLink(array $credentials, Closure $callback = null);
+=======
+    public function sendResetLink(array $credentials, ?Closure $callback = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Reset the password for the given token.

@@ -97,7 +97,11 @@ class Mailer implements MailerContract, MailQueueContract
      * @param  \Illuminate\Contracts\Events\Dispatcher|null  $events
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(string $name, Factory $views, TransportInterface $transport, Dispatcher $events = null)
+=======
+    public function __construct(string $name, Factory $views, TransportInterface $transport, ?Dispatcher $events = null)
+>>>>>>> tundeseun/devtest
     {
         $this->name = $name;
         $this->views = $views;

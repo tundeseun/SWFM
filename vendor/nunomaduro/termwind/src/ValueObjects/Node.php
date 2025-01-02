@@ -14,9 +14,13 @@ final class Node
     /**
      * A value object with helper methods for working with DOM node.
      */
+<<<<<<< HEAD
     public function __construct(private \DOMNode $node)
     {
     }
+=======
+    public function __construct(private \DOMNode $node) {}
+>>>>>>> tundeseun/devtest
 
     /**
      * Gets the value of the node.
@@ -34,7 +38,11 @@ final class Node
     public function getChildNodes(): Generator
     {
         foreach ($this->node->childNodes as $node) {
+<<<<<<< HEAD
             yield new static($node);
+=======
+            yield new self($node);
+>>>>>>> tundeseun/devtest
         }
     }
 
@@ -106,7 +114,11 @@ final class Node
         $node = $this->node;
 
         while ($node = $node->previousSibling) {
+<<<<<<< HEAD
             $node = new static($node);
+=======
+            $node = new self($node);
+>>>>>>> tundeseun/devtest
 
             if ($node->isEmpty()) {
                 $node = $node->node;
@@ -121,7 +133,11 @@ final class Node
             $node = $node->node;
         }
 
+<<<<<<< HEAD
         return is_null($node) ? null : new static($node);
+=======
+        return is_null($node) ? null : new self($node);
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -132,7 +148,11 @@ final class Node
         $node = $this->node;
 
         while ($node = $node->nextSibling) {
+<<<<<<< HEAD
             $node = new static($node);
+=======
+            $node = new self($node);
+>>>>>>> tundeseun/devtest
 
             if ($node->isEmpty()) {
                 $node = $node->node;
@@ -147,7 +167,11 @@ final class Node
             $node = $node->node;
         }
 
+<<<<<<< HEAD
         return is_null($node) ? null : new static($node);
+=======
+        return is_null($node) ? null : new self($node);
+>>>>>>> tundeseun/devtest
     }
 
     /**

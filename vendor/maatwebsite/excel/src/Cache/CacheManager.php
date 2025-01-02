@@ -60,14 +60,22 @@ class CacheManager extends Manager
             return new BatchCacheDeprecated(
                 $this->createIlluminateDriver(),
                 $this->createMemoryDriver(),
+<<<<<<< HEAD
                 config('excel.cache.ttl')
+=======
+                config('excel.cache.default_ttl')
+>>>>>>> tundeseun/devtest
             );
         }
 
         return new BatchCache(
             $this->createIlluminateDriver(),
             $this->createMemoryDriver(),
+<<<<<<< HEAD
             config('excel.cache.ttl')
+=======
+            config('excel.cache.default_ttl')
+>>>>>>> tundeseun/devtest
         );
     }
 

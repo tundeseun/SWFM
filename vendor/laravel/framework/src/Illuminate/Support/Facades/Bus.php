@@ -60,7 +60,11 @@ class Bus extends Facade
      * @param  \Illuminate\Bus\BatchRepository|null  $batchRepository
      * @return \Illuminate\Support\Testing\Fakes\BusFake
      */
+<<<<<<< HEAD
     public static function fake($jobsToFake = [], BatchRepository $batchRepository = null)
+=======
+    public static function fake($jobsToFake = [], ?BatchRepository $batchRepository = null)
+>>>>>>> tundeseun/devtest
     {
         $actualDispatcher = static::isFake()
                 ? static::getFacadeRoot()->dispatcher

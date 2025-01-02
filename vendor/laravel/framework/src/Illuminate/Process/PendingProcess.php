@@ -241,7 +241,11 @@ class PendingProcess
      * @throws \Illuminate\Process\Exceptions\ProcessTimedOutException
      * @throws \RuntimeException
      */
+<<<<<<< HEAD
     public function run(array|string $command = null, callable $output = null)
+=======
+    public function run(array|string|null $command = null, ?callable $output = null)
+>>>>>>> tundeseun/devtest
     {
         $this->command = $command ?: $this->command;
 
@@ -271,7 +275,11 @@ class PendingProcess
      *
      * @throws \RuntimeException
      */
+<<<<<<< HEAD
     public function start(array|string $command = null, callable $output = null)
+=======
+    public function start(array|string|null $command = null, ?callable $output = null)
+>>>>>>> tundeseun/devtest
     {
         $this->command = $command ?: $this->command;
 

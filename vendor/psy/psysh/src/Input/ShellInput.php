@@ -21,14 +21,23 @@ class ShellInput extends StringInput
 {
     public const REGEX_STRING = '([^\s]+?)(?:\s|(?<!\\\\)"|(?<!\\\\)\'|$)';
 
+<<<<<<< HEAD
     private $hasCodeArgument = false;
+=======
+    private bool $hasCodeArgument = false;
+>>>>>>> tundeseun/devtest
 
     /**
      * Unlike the parent implementation's tokens, this contains an array of
      * token/rest pairs, so that code arguments can be handled while parsing.
      */
+<<<<<<< HEAD
     private $tokenPairs;
     private $parsed;
+=======
+    private array $tokenPairs;
+    private array $parsed = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * Constructor.

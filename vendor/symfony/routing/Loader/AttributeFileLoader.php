@@ -82,7 +82,11 @@ class AttributeFileLoader extends FileLoader
         $tokens = token_get_all(file_get_contents($file));
 
         if (1 === \count($tokens) && \T_INLINE_HTML === $tokens[0][0]) {
+<<<<<<< HEAD
             throw new \InvalidArgumentException(sprintf('The file "%s" does not contain PHP code. Did you forgot to add the "<?php" start tag at the beginning of the file?', $file));
+=======
+            throw new \InvalidArgumentException(sprintf('The file "%s" does not contain PHP code. Did you forget to add the "<?php" start tag at the beginning of the file?', $file));
+>>>>>>> tundeseun/devtest
         }
 
         $nsTokens = [\T_NS_SEPARATOR => true, \T_STRING => true];

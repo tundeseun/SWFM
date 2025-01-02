@@ -382,7 +382,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @param  (callable(TValue, TKey): bool)|null  $callback
      * @return static
      */
+<<<<<<< HEAD
     public function filter(callable $callback = null)
+=======
+    public function filter(?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($callback) {
             return new static(Arr::where($this->items, $callback));
@@ -400,7 +404,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @param  TFirstDefault|(\Closure(): TFirstDefault)  $default
      * @return TValue|TFirstDefault
      */
+<<<<<<< HEAD
     public function first(callable $callback = null, $default = null)
+=======
+    public function first(?callable $callback = null, $default = null)
+>>>>>>> tundeseun/devtest
     {
         return Arr::first($this->items, $callback, $default);
     }
@@ -748,7 +756,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @param  TLastDefault|(\Closure(): TLastDefault)  $default
      * @return TValue|TLastDefault
      */
+<<<<<<< HEAD
     public function last(callable $callback = null, $default = null)
+=======
+    public function last(?callable $callback = null, $default = null)
+>>>>>>> tundeseun/devtest
     {
         return Arr::last($this->items, $callback, $default);
     }

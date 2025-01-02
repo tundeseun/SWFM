@@ -23,7 +23,11 @@ class Terminal
      */
     public function __construct()
     {
+<<<<<<< HEAD
         $this->terminal = new SymfonyTerminal();
+=======
+        $this->terminal = new SymfonyTerminal;
+>>>>>>> tundeseun/devtest
     }
 
     /**

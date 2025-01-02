@@ -6,8 +6,20 @@
  */
 namespace Dompdf\FrameReflower;
 
+<<<<<<< HEAD
 use Dompdf\Dompdf;
 use Dompdf\Helpers;
+=======
+use Dompdf\Css\Content\Attr;
+use Dompdf\Css\Content\CloseQuote;
+use Dompdf\Css\Content\Counter;
+use Dompdf\Css\Content\Counters;
+use Dompdf\Css\Content\NoCloseQuote;
+use Dompdf\Css\Content\NoOpenQuote;
+use Dompdf\Css\Content\OpenQuote;
+use Dompdf\Css\Content\StringPart;
+use Dompdf\Dompdf;
+>>>>>>> tundeseun/devtest
 use Dompdf\Frame;
 use Dompdf\Frame\Factory;
 use Dompdf\FrameDecorator\AbstractFrameDecorator;
@@ -287,7 +299,11 @@ abstract class AbstractFrameReflower
     /**
      * @param Block|null $block
      */
+<<<<<<< HEAD
     abstract function reflow(Block $block = null);
+=======
+    abstract function reflow(?Block $block = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Resolve the `min-width` property.
@@ -476,6 +492,7 @@ abstract class AbstractFrameReflower
     }
 
     /**
+<<<<<<< HEAD
      * Parses a CSS string containing quotes and escaped hex characters
      *
      * @param $string string The CSS string to parse
@@ -540,20 +557,31 @@ abstract class AbstractFrameReflower
 
     /**
      * Parses the CSS "content" property
+=======
+     * Resolves the `content` property to string.
+>>>>>>> tundeseun/devtest
      *
      * https://www.w3.org/TR/CSS21/generate.html#content
      *
      * @return string The resulting string
      */
+<<<<<<< HEAD
     protected function _parse_content(): string
     {
         $style = $this->_frame->get_style();
+=======
+    protected function resolve_content(): string
+    {
+        $frame = $this->_frame;
+        $style = $frame->get_style();
+>>>>>>> tundeseun/devtest
         $content = $style->content;
 
         if ($content === "normal" || $content === "none") {
             return "";
         }
 
+<<<<<<< HEAD
         $quotes = $this->_parse_quotes();
         $text = "";
 
@@ -655,6 +683,55 @@ abstract class AbstractFrameReflower
                 }
 
                 continue;
+=======
+        $quotes = $style->quotes;
+        $text = "";
+
+        foreach ($content as $val) {
+            if ($val instanceof StringPart) {
+                $text .= $val->string;
+            }
+
+            elseif ($val instanceof OpenQuote) {
+                // FIXME: Take quotation depth into account
+                if ($quotes !== "none" && isset($quotes[0][0])) {
+                    $text .= $quotes[0][0];
+                }
+            }
+
+            elseif ($val instanceof CloseQuote) {
+                // FIXME: Take quotation depth into account
+                if ($quotes !== "none" && isset($quotes[0][1])) {
+                    $text .= $quotes[0][1];
+                }
+            }
+            
+            elseif ($val instanceof NoOpenQuote) {
+                // FIXME: Increment quotation depth
+            }
+
+            elseif ($val instanceof NoCloseQuote) {
+                // FIXME: Decrement quotation depth
+            }
+
+            elseif ($val instanceof Attr) {
+                $text .= $frame->get_parent()->get_node()->getAttribute($val->attribute);
+            }
+
+            elseif ($val instanceof Counter) {
+                $p = $frame->lookup_counter_frame($val->name, true);
+                $text .= $p->counter_value($val->name, $val->style);
+            }
+
+            elseif ($val instanceof Counters) {
+                $p = $frame->lookup_counter_frame($val->name, true);
+                $tmp = [];
+                while ($p) {
+                    array_unshift($tmp, $p->counter_value($val->name, $val->style));
+                    $p = $p->lookup_counter_frame($val->name);
+                }
+                $text .= implode($val->string, $tmp);
+>>>>>>> tundeseun/devtest
             }
         }
 
@@ -684,7 +761,11 @@ abstract class AbstractFrameReflower
         }
 
         if ($frame->get_node()->nodeName === "dompdf_generated") {
+<<<<<<< HEAD
             $content = $this->_parse_content();
+=======
+            $content = $this->resolve_content();
+>>>>>>> tundeseun/devtest
 
             if ($content !== "") {
                 $node = $frame->get_node()->ownerDocument->createTextNode($content);

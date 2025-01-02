@@ -224,7 +224,11 @@ trait Matching
      * @param  \Closure|null  $scope
      * @return $this
      */
+<<<<<<< HEAD
     abstract public function has(string $key, $value = null, Closure $scope = null);
+=======
+    abstract public function has(string $key, $value = null, ?Closure $scope = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Retrieve a prop within the current scope using "dot" notation.
@@ -232,5 +236,9 @@ trait Matching
      * @param  string|null  $key
      * @return mixed
      */
+<<<<<<< HEAD
     abstract protected function prop(string $key = null);
+=======
+    abstract protected function prop(?string $key = null);
+>>>>>>> tundeseun/devtest
 }

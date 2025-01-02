@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\BaseController;
 use Modules\Store\Http\Controllers\StoreController;
 use Laravel\passport\Passport;
+=======
+>>>>>>> tundeseun/devtest
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +15,7 @@ use Laravel\passport\Passport;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
+<<<<<<< HEAD
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
@@ -161,3 +165,17 @@ Route::group(['middleware' => ['web', 'auth:web', 'Is_Active']], function () {
 
 
 
+=======
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/{any}', function () {
+    return view('app'); // Replace 'app' with your actual Vue entry point view
+})->where('any', '.*');
+>>>>>>> tundeseun/devtest

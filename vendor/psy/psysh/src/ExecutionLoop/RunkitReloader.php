@@ -11,6 +11,10 @@
 
 namespace Psy\ExecutionLoop;
 
+<<<<<<< HEAD
+=======
+use PhpParser\Parser;
+>>>>>>> tundeseun/devtest
 use Psy\Exception\ParseErrorException;
 use Psy\ParserFactory;
 use Psy\Shell;
@@ -22,8 +26,13 @@ use Psy\Shell;
  */
 class RunkitReloader extends AbstractListener
 {
+<<<<<<< HEAD
     private $parser;
     private $timestamps = [];
+=======
+    private Parser $parser;
+    private array $timestamps = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * Only enabled if Runkit is installed.

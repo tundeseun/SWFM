@@ -107,7 +107,11 @@ class SQLiteConnection extends Connection
      *
      * @throws \RuntimeException
      */
+<<<<<<< HEAD
     public function getSchemaState(Filesystem $files = null, callable $processFactory = null)
+=======
+    public function getSchemaState(?Filesystem $files = null, ?callable $processFactory = null)
+>>>>>>> tundeseun/devtest
     {
         return new SqliteSchemaState($this, $files, $processFactory);
     }

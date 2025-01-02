@@ -31,6 +31,11 @@ final class Generator
          requireCoverageMetadata="true"
          beStrictAboutCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
+<<<<<<< HEAD
+=======
+         displayDetailsOnPhpunitDeprecations="true"
+         failOnPhpunitDeprecation="true"
+>>>>>>> tundeseun/devtest
          failOnRisky="true"
          failOnWarning="true">
     <testsuites>

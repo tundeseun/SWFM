@@ -15,6 +15,10 @@ use Termwind\Enums\Color;
 use Termwind\Exceptions\ColorNotFound;
 use Termwind\Exceptions\InvalidStyle;
 use Termwind\Repositories\Styles as StyleRepository;
+<<<<<<< HEAD
+=======
+
+>>>>>>> tundeseun/devtest
 use function Termwind\terminal;
 
 /**
@@ -49,11 +53,17 @@ final class Styles
         private array $textModifiers = [],
         private array $styleModifiers = [],
         private array $defaultStyles = []
+<<<<<<< HEAD
     ) {
     }
 
     /**
      * @param  Element  $element
+=======
+    ) {}
+
+    /**
+>>>>>>> tundeseun/devtest
      * @return $this
      */
     public function setElement(Element $element): self
@@ -854,7 +864,11 @@ final class Styles
 
         preg_match_all("/\n+/", $content, $matches);
 
+<<<<<<< HEAD
         $width *= count($matches[0] ?? []) + 1;
+=======
+        $width *= count($matches[0] ?? []) + 1; // @phpstan-ignore-line
+>>>>>>> tundeseun/devtest
         $width += mb_strlen($matches[0][0] ?? '', 'UTF-8');
 
         if ($length <= $width) {
@@ -940,7 +954,11 @@ final class Styles
     /**
      * Get the length of the text provided without the styling tags.
      */
+<<<<<<< HEAD
     public function getLength(string $text = null): int
+=======
+    public function getLength(?string $text = null): int
+>>>>>>> tundeseun/devtest
     {
         return mb_strlen(preg_replace(
             self::STYLING_REGEX,
@@ -998,7 +1016,10 @@ final class Styles
             throw new InvalidStyle(sprintf('Style [%s] is invalid.', "w-$fraction"));
         }
 
+<<<<<<< HEAD
         /** @@phpstan-ignore-next-line  */
+=======
+>>>>>>> tundeseun/devtest
         $width = (int) floor($width * $matches[1] / $matches[2]);
         $width -= ($styles['ml'] ?? 0) + ($styles['mr'] ?? 0);
 
@@ -1030,7 +1051,11 @@ final class Styles
 
             $width = count($matches) !== 3
                 ? (int) $parentWidth
+<<<<<<< HEAD
                 : (int) floor($width * $matches[1] / $matches[2]); //@phpstan-ignore-line
+=======
+                : (int) floor($width * $matches[1] / $matches[2]);
+>>>>>>> tundeseun/devtest
 
             if ($maxWidth > 0) {
                 $width = min($maxWidth, $width);
@@ -1052,6 +1077,10 @@ final class Styles
         preg_match_all(self::STYLING_REGEX, $text, $matches, PREG_OFFSET_CAPTURE);
         $text = rtrim(mb_strimwidth(preg_replace(self::STYLING_REGEX, '', $text) ?? '', 0, $width, '', 'UTF-8'));
 
+<<<<<<< HEAD
+=======
+        // @phpstan-ignore-next-line
+>>>>>>> tundeseun/devtest
         foreach ($matches[0] ?? [] as [$part, $index]) {
             $text = substr($text, 0, $index).$part.substr($text, $index, null);
         }

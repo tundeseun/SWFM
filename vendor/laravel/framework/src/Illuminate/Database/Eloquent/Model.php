@@ -1718,7 +1718,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  array|null  $except
      * @return static
      */
+<<<<<<< HEAD
     public function replicate(array $except = null)
+=======
+    public function replicate(?array $except = null)
+>>>>>>> tundeseun/devtest
     {
         $defaults = array_values(array_filter([
             $this->getKeyName(),
@@ -1746,7 +1750,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
      * @param  array|null  $except
      * @return static
      */
+<<<<<<< HEAD
     public function replicateQuietly(array $except = null)
+=======
+    public function replicateQuietly(?array $except = null)
+>>>>>>> tundeseun/devtest
     {
         return static::withoutEvents(fn () => $this->replicate($except));
     }
@@ -2123,7 +2131,11 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     /**
      * Retrieve the model for a bound value.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\Relation  $query
+=======
+     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\Relation  $query
+>>>>>>> tundeseun/devtest
      * @param  mixed  $value
      * @param  string|null  $field
      * @return \Illuminate\Database\Eloquent\Relations\Relation

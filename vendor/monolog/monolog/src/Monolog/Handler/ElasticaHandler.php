@@ -11,6 +11,10 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
+=======
+use Elastic\Transport\Exception\TransportException;
+>>>>>>> tundeseun/devtest
 use Elastica\Document;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\ElasticaFormatter;
@@ -133,7 +137,11 @@ class ElasticaHandler extends AbstractProcessingHandler
     {
         try {
             $this->client->addDocuments($documents);
+<<<<<<< HEAD
         } catch (ExceptionInterface $e) {
+=======
+        } catch (ExceptionInterface | TransportException $e) {
+>>>>>>> tundeseun/devtest
             if (!$this->options['ignore_error']) {
                 throw new \RuntimeException("Error sending messages to Elasticsearch", 0, $e);
             }

@@ -21,8 +21,13 @@ use Psy\Exception\FatalErrorException;
  */
 class AbstractClassPass extends CodeCleanerPass
 {
+<<<<<<< HEAD
     private $class;
     private $abstractMethods;
+=======
+    private Class_ $class;
+    private array $abstractMethods;
+>>>>>>> tundeseun/devtest
 
     /**
      * @throws FatalErrorException if the node is an abstract function with a body

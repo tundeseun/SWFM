@@ -26,8 +26,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ShowCommand extends ReflectingCommand
 {
+<<<<<<< HEAD
     private $lastException;
     private $lastExceptionIndex;
+=======
+    private ?\Throwable $lastException = null;
+    private ?int $lastExceptionIndex = null;
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}
@@ -46,7 +51,11 @@ class ShowCommand extends ReflectingCommand
 Show the code for an object, class, constant, method or property, or the context
 of the last exception.
 
+<<<<<<< HEAD
 <return>cat --ex</return> defaults to showing the lines surrounding the location of the last
+=======
+<return>show --ex</return> defaults to showing the lines surrounding the location of the last
+>>>>>>> tundeseun/devtest
 exception. Invoking it more than once travels up the exception's stack trace,
 and providing a number shows the context of the given index of the trace.
 
@@ -167,7 +176,11 @@ HELP
         $this->lastException = $exception;
         $this->lastExceptionIndex = $index;
 
+<<<<<<< HEAD
         $output->writeln($this->getApplication()->formatException($exception));
+=======
+        $output->writeln($this->getShell()->formatException($exception));
+>>>>>>> tundeseun/devtest
         $output->writeln('--');
         $this->writeTraceLine($output, $trace, $index);
         $this->writeTraceCodeSnippet($output, $trace, $index);

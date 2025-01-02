@@ -97,7 +97,11 @@ class Reader
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws Exception
      */
+<<<<<<< HEAD
     public function read($import, $filePath, string $readerType = null, string $disk = null)
+=======
+    public function read($import, $filePath, ?string $readerType = null, ?string $disk = null)
+>>>>>>> tundeseun/devtest
     {
         $this->reader = $this->getReader($import, $filePath, $readerType, $disk);
 
@@ -151,7 +155,11 @@ class Reader
      * @throws NoTypeDetectedException
      * @throws Exceptions\SheetNotFoundException
      */
+<<<<<<< HEAD
     public function toArray($import, $filePath, string $readerType = null, string $disk = null): array
+=======
+    public function toArray($import, $filePath, ?string $readerType = null, ?string $disk = null): array
+>>>>>>> tundeseun/devtest
     {
         $this->reader = $this->getReader($import, $filePath, $readerType, $disk);
 
@@ -195,7 +203,11 @@ class Reader
      * @throws NoTypeDetectedException
      * @throws Exceptions\SheetNotFoundException
      */
+<<<<<<< HEAD
     public function toCollection($import, $filePath, string $readerType = null, string $disk = null): Collection
+=======
+    public function toCollection($import, $filePath, ?string $readerType = null, ?string $disk = null): Collection
+>>>>>>> tundeseun/devtest
     {
         $this->reader = $this->getReader($import, $filePath, $readerType, $disk);
         $this->loadSpreadsheet($import);
@@ -419,7 +431,11 @@ class Reader
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      * @throws InvalidArgumentException
      */
+<<<<<<< HEAD
     private function getReader($import, $filePath, string $readerType = null, string $disk = null): IReader
+=======
+    private function getReader($import, $filePath, ?string $readerType = null, ?string $disk = null): IReader
+>>>>>>> tundeseun/devtest
     {
         $shouldQueue = $import instanceof ShouldQueue;
         if ($shouldQueue && !$import instanceof WithChunkReading) {

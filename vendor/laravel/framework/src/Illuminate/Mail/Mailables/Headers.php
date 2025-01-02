@@ -40,7 +40,11 @@ class Headers
      *
      * @named-arguments-supported
      */
+<<<<<<< HEAD
     public function __construct(string $messageId = null, array $references = [], array $text = [])
+=======
+    public function __construct(?string $messageId = null, array $references = [], array $text = [])
+>>>>>>> tundeseun/devtest
     {
         $this->messageId = $messageId;
         $this->references = $references;

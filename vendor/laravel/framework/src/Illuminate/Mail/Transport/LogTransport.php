@@ -32,7 +32,11 @@ class LogTransport implements TransportInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
+=======
+    public function send(RawMessage $message, ?Envelope $envelope = null): ?SentMessage
+>>>>>>> tundeseun/devtest
     {
         $string = Str::of($message->toString());
 

@@ -99,7 +99,10 @@ class RollbarHandler extends AbstractProcessingHandler
             $toLog = $record->message;
         }
 
+<<<<<<< HEAD
         // @phpstan-ignore-next-line
+=======
+>>>>>>> tundeseun/devtest
         $this->rollbarLogger->log($context['level'], $toLog, $context);
 
         $this->hasRecords = true;

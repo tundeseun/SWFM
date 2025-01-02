@@ -71,10 +71,13 @@ class RotatingFileHandler extends StreamHandler
     public function reset(): void
     {
         parent::reset();
+<<<<<<< HEAD
 
         if (true === $this->mustRotate) {
             $this->rotate();
         }
+=======
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -100,17 +103,35 @@ class RotatingFileHandler extends StreamHandler
      */
     protected function write(LogRecord $record): void
     {
+<<<<<<< HEAD
         // on the first record written, if the log is new, we should rotate (once per day)
+=======
+        // on the first record written, if the log is new, we rotate (once per day) after the log has been written so that the new file exists
+>>>>>>> tundeseun/devtest
         if (null === $this->mustRotate) {
             $this->mustRotate = null === $this->url || !file_exists($this->url);
         }
 
+<<<<<<< HEAD
         if ($this->nextRotation <= $record->datetime) {
             $this->mustRotate = true;
             $this->close();
         }
 
         parent::write($record);
+=======
+        // if the next rotation is expired, then we rotate immediately
+        if ($this->nextRotation <= $record->datetime) {
+            $this->mustRotate = true;
+            $this->close(); // triggers rotation
+        }
+
+        parent::write($record);
+
+        if (true === $this->mustRotate) {
+            $this->close(); // triggers rotation
+        }
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -122,6 +143,11 @@ class RotatingFileHandler extends StreamHandler
         $this->url = $this->getTimedFilename();
         $this->nextRotation = $this->getNextRotation();
 
+<<<<<<< HEAD
+=======
+        $this->mustRotate = false;
+
+>>>>>>> tundeseun/devtest
         // skip GC of old logs if files are unlimited
         if (0 === $this->maxFiles) {
             return;
@@ -154,8 +180,11 @@ class RotatingFileHandler extends StreamHandler
                 restore_error_handler();
             }
         }
+<<<<<<< HEAD
 
         $this->mustRotate = false;
+=======
+>>>>>>> tundeseun/devtest
     }
 
     protected function getTimedFilename(): string

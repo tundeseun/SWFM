@@ -95,7 +95,11 @@ abstract class UnaryOperator extends Operator
     }
 
     /**
+<<<<<<< HEAD
      * Transforms string returned by the memeber constraint's toString() or
+=======
+     * Transforms string returned by the member constraint's toString() or
+>>>>>>> tundeseun/devtest
      * failureDescription() such that it reflects constraint's participation in
      * this expression.
      *

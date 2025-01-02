@@ -11,7 +11,10 @@
 
 namespace Psy\Command;
 
+<<<<<<< HEAD
 use Psy\Exception\RuntimeException;
+=======
+>>>>>>> tundeseun/devtest
 use Psy\Output\ShellOutput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -52,6 +55,7 @@ HELP
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+<<<<<<< HEAD
         $app = $this->getApplication();
         if (!$app instanceof \Psy\Shell) {
             throw new RuntimeException('Buffer command requires a \Psy\Shell application');
@@ -60,6 +64,13 @@ HELP
         $buf = $app->getCodeBuffer();
         if ($input->getOption('clear')) {
             $app->resetCodeBuffer();
+=======
+        $shell = $this->getShell();
+
+        $buf = $shell->getCodeBuffer();
+        if ($input->getOption('clear')) {
+            $shell->resetCodeBuffer();
+>>>>>>> tundeseun/devtest
             $output->writeln($this->formatLines($buf, 'urgent'), ShellOutput::NUMBER_LINES);
         } else {
             $output->writeln($this->formatLines($buf), ShellOutput::NUMBER_LINES);

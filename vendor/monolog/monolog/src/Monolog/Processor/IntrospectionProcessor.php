@@ -29,6 +29,7 @@ use Monolog\LogRecord;
  */
 class IntrospectionProcessor implements ProcessorInterface
 {
+<<<<<<< HEAD
     private Level $level;
 
     /** @var string[] */
@@ -37,10 +38,27 @@ class IntrospectionProcessor implements ProcessorInterface
     private int $skipStackFramesCount;
 
     private const SKIP_FUNCTIONS = [
+=======
+    protected Level $level;
+
+    /** @var string[] */
+    protected array $skipClassesPartials;
+
+    protected int $skipStackFramesCount;
+
+    protected const SKIP_FUNCTIONS = [
+>>>>>>> tundeseun/devtest
         'call_user_func',
         'call_user_func_array',
     ];
 
+<<<<<<< HEAD
+=======
+    protected const SKIP_CLASSES = [
+        'Monolog\\',
+    ];
+
+>>>>>>> tundeseun/devtest
     /**
      * @param string|int|Level $level               The minimum logging level at which this Processor will be triggered
      * @param string[]         $skipClassesPartials
@@ -50,7 +68,11 @@ class IntrospectionProcessor implements ProcessorInterface
     public function __construct(int|string|Level $level = Level::Debug, array $skipClassesPartials = [], int $skipStackFramesCount = 0)
     {
         $this->level = Logger::toMonologLevel($level);
+<<<<<<< HEAD
         $this->skipClassesPartials = array_merge(['Monolog\\'], $skipClassesPartials);
+=======
+        $this->skipClassesPartials = array_merge(static::SKIP_CLASSES, $skipClassesPartials);
+>>>>>>> tundeseun/devtest
         $this->skipStackFramesCount = $skipStackFramesCount;
     }
 

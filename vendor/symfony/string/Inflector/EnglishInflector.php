@@ -37,6 +37,12 @@ final class EnglishInflector implements InflectorInterface
         // curricula (curriculum)
         ['alucirruc', 9, true, true, 'curriculum'],
 
+<<<<<<< HEAD
+=======
+        // quora (quorum)
+        ['arouq', 5, true, true, 'quorum'],
+
+>>>>>>> tundeseun/devtest
         // genera (genus)
         ['areneg', 6, true, true, 'genus'],
 
@@ -121,6 +127,12 @@ final class EnglishInflector implements InflectorInterface
         // statuses (status)
         ['sesutats', 8, true, true, 'status'],
 
+<<<<<<< HEAD
+=======
+        // article (articles), ancle (ancles)
+        ['sel', 3, true, true, 'le'],
+
+>>>>>>> tundeseun/devtest
         // analyses (analysis), ellipses (ellipsis), fungi (fungus),
         // neuroses (neurosis), theses (thesis), emphases (emphasis),
         // oases (oasis), crises (crisis), houses (house), bases (base),
@@ -265,6 +277,12 @@ final class EnglishInflector implements InflectorInterface
         // albums (album)
         ['mubla', 5, true, true, 'albums'],
 
+<<<<<<< HEAD
+=======
+        // quorums (quorum)
+        ['murouq', 6, true, true, ['quora', 'quorums']],
+
+>>>>>>> tundeseun/devtest
         // bacteria (bacterium), curricula (curriculum), media (medium), memoranda (memorandum), phenomena (phenomenon), strata (stratum)
         ['mu', 2, true, true, 'a'],
 
@@ -345,6 +363,7 @@ final class EnglishInflector implements InflectorInterface
         // indices (index)
         ['xedni', 5, false, true, ['indicies', 'indexes']],
 
+<<<<<<< HEAD
         // boxes (box)
         ['xo', 2, false, true, 'oxes'],
 
@@ -353,6 +372,16 @@ final class EnglishInflector implements InflectorInterface
 
         // appendices (appendix)
         ['xi', 2, false, true, 'ices'],
+=======
+        // fax (faxes, faxxes)
+        ['xaf', 3, true, true, ['faxes', 'faxxes']],
+
+        // boxes (box)
+        ['xo', 2, false, true, 'oxes'],
+
+        // indexes (index), matrixes (matrix), appendices (appendix)
+        ['x', 1, true, false, ['ces', 'xes']],
+>>>>>>> tundeseun/devtest
 
         // babies (baby)
         ['y', 1, false, true, 'ies'],

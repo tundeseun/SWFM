@@ -12,14 +12,19 @@
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
+<<<<<<< HEAD
     # RewriteRule ^ %1 [L,R=301]
     RewriteRule ^ ^$1 [N]
+=======
+    RewriteRule ^ %1 [L,R=301]
+>>>>>>> tundeseun/devtest
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+<<<<<<< HEAD
 
 # BEGIN W3TC Browser Cache
 <IfModule mod_mime.c>
@@ -154,3 +159,5 @@
         AddOutputFilter DEFLATE js css htm html xml
     </IfModule>
 </IfModule>
+=======
+>>>>>>> tundeseun/devtest

@@ -1,6 +1,10 @@
 <?php
 
 use Maatwebsite\Excel\Excel;
+<<<<<<< HEAD
+=======
+use PhpOffice\PhpSpreadsheet\Reader\Csv;
+>>>>>>> tundeseun/devtest
 
 return [
     'exports' => [
@@ -127,7 +131,11 @@ return [
             'enclosure'        => '"',
             'escape_character' => '\\',
             'contiguous'       => false,
+<<<<<<< HEAD
             'input_encoding'   => 'UTF-8',
+=======
+            'input_encoding'   => Csv::GUESS_ENCODING,
+>>>>>>> tundeseun/devtest
         ],
 
         /*

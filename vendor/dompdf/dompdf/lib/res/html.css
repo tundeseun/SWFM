@@ -325,9 +325,14 @@ li {
 
 /* 2 deep unordered lists use a circle */
 :matches(ul, ol, dir, menu) ul,
+<<<<<<< HEAD
 :matches(ul, ol, dir, menu) ul,
 :matches(ul, ol, dir, menu) ul,
 :matches(ul, ol, dir, menu) ul {
+=======
+:matches(ul, ol, dir, menu) menu,
+:matches(ul, ol, dir, menu) dir {
+>>>>>>> tundeseun/devtest
   list-style-type: circle;
 }
 
@@ -349,6 +354,7 @@ input, button, select {
   font-family: sans-serif;
 }
 
+<<<<<<< HEAD
 input[type=text],
 input[type=password],
 select {
@@ -364,17 +370,44 @@ input[type=file],
 button,
 textarea,
 select {
+=======
+input, button, textarea, select {
+>>>>>>> tundeseun/devtest
   background: #FFF;
   border: 1px solid #999;
   padding: 2px;
   margin: 2px;
 }
 
+<<<<<<< HEAD
+=======
+input, select {
+  width: 12em;
+}
+
+input[type=hidden] {
+  display: none !important;
+}
+
+input[type=checkbox],
+input[type=radio],
+input[type=image] {
+  width: auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+>>>>>>> tundeseun/devtest
 input[type=button],
 input[type=submit],
 input[type=reset],
 input[type=file],
 button {
+<<<<<<< HEAD
+=======
+  width: auto;
+>>>>>>> tundeseun/devtest
   background: #CCC;
   text-align: center;
 }
@@ -383,6 +416,7 @@ input[type=file] {
   width: 8em;
 }
 
+<<<<<<< HEAD
 input[type=text]::before,
 input[type=button]::before,
 input[type=submit]::before,
@@ -390,6 +424,16 @@ input[type=reset]::before {
   content: attr(value);
 }
 
+=======
+input::before {
+  content: attr(value);
+}
+
+input[type=image][alt]::before {
+  content: attr(alt);
+}
+
+>>>>>>> tundeseun/devtest
 input[type=file]::before {
   content: "Choose a file";
 }
@@ -400,6 +444,13 @@ input[type=password][value]::before {
   line-height: 1em;
 }
 
+<<<<<<< HEAD
+=======
+input[type=password][value=""]::before {
+  content: none;
+}
+
+>>>>>>> tundeseun/devtest
 input[type=checkbox],
 input[type=radio],
 select::after {
@@ -430,12 +481,21 @@ textarea {
   overflow: hidden;
   font-family: monospace;
   white-space: pre-wrap;
+<<<<<<< HEAD
   word-wrap: break-word;
 }
 
 select {
   position: relative!important;
   overflow: hidden!important;
+=======
+  overflow-wrap: break-word;
+}
+
+select {
+  position: relative !important;
+  overflow: hidden !important;
+>>>>>>> tundeseun/devtest
 }
 
 select::after {

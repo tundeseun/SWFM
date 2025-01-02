@@ -17,7 +17,11 @@ trait Exportable
      *
      * @throws NoFilenameGivenException
      */
+<<<<<<< HEAD
     public function download(string $fileName = null, string $writerType = null, array $headers = null)
+=======
+    public function download(?string $fileName = null, ?string $writerType = null, ?array $headers = null)
+>>>>>>> tundeseun/devtest
     {
         $headers    = $headers ?? $this->headers ?? [];
         $fileName   = $fileName ?? $this->fileName ?? null;
@@ -39,7 +43,11 @@ trait Exportable
      *
      * @throws NoFilePathGivenException
      */
+<<<<<<< HEAD
     public function store(string $filePath = null, string $disk = null, string $writerType = null, $diskOptions = [])
+=======
+    public function store(?string $filePath = null, ?string $disk = null, ?string $writerType = null, $diskOptions = [])
+>>>>>>> tundeseun/devtest
     {
         $filePath = $filePath ?? $this->filePath ?? null;
 
@@ -65,7 +73,11 @@ trait Exportable
      *
      * @throws NoFilePathGivenException
      */
+<<<<<<< HEAD
     public function queue(string $filePath = null, string $disk = null, string $writerType = null, $diskOptions = [])
+=======
+    public function queue(?string $filePath = null, ?string $disk = null, ?string $writerType = null, $diskOptions = [])
+>>>>>>> tundeseun/devtest
     {
         $filePath = $filePath ?? $this->filePath ?? null;
 

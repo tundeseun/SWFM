@@ -14,7 +14,11 @@ class StoreCollectionMixin
      */
     public function storeExcel()
     {
+<<<<<<< HEAD
         return function (string $filePath, string $disk = null, string $writerType = null, $withHeadings = false) {
+=======
+        return function (string $filePath, ?string $disk = null, ?string $writerType = null, $withHeadings = false) {
+>>>>>>> tundeseun/devtest
             $export = new class($this, $withHeadings) implements FromCollection, WithHeadings
             {
                 use Exportable;

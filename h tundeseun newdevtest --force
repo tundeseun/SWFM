@@ -1,0 +1,27 @@
+[33mb26734d8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnewdevtest[m[33m, [m[1;31mtundeseun/newdevtest[m[33m, [m[1;31morigin/newdevtest[m[33m)[m feat design
+[33m851024e3[m[33m ([m[1;32mnew-swfm[m[33m)[m feat added forms to warehouse
+[33m88cf2934[m feat color change
+[33m5ca37ba8[m[33m ([m[1;31morigin/new-swfm[m[33m)[m feat reove warehouse icon
+[33m4886ba1b[m feat changed color
+[33mc1dba100[m fix merge conflits
+[33ma7e8dcb5[m fix merge conflits
+[33mc25ac9f2[m fix merge conflits
+[33m99dae546[m remove comments
+[33mcc395378[m first commit
+[33me1ed9a28[m[33m ([m[1;31mswfm/master[m[33m, [m[1;32mmaster[m[33m)[m first commit
+[33m6f3c09f9[m[33m ([m[1;31morigin/main[m[33m)[m updates
+[33mbcb68b2a[m updates
+[33m72afecc2[m Merge pull request #2 from olaitan6201/feat/warehouse-api
+[33me4f17ded[m[33m ([m[1;31morigin/feat/warehouse-api[m[33m)[m delete `warehouse inventory` migration and model
+[33m19195309[m include helper file
+[33m2e6785a8[m create Weight entity, cast and type
+[33m4c99a78b[m modify `Product` table (model and migration)
+[33mc6d433fc[m modify `Shelf` model and migration
+[33mb69dbfde[m updates
+[33mc9875236[m updates
+[33ma9c15725[m Merge pull request #1 from olaitan6201/feat/warehouse-api
+[33m1947a4b5[m create `UserType` enum
+[33m9b2e0b31[m api route restructure
+[33m2c61a403[m add .env.example
+[33m20b91ccf[m app refactor
+[33mf283ad33[m First commit

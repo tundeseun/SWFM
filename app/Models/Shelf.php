@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\HasMany;
+=======
+>>>>>>> tundeseun/devtest
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +13,7 @@ class Shelf extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
 
     protected $table = 'shelves';
 
@@ -18,11 +22,14 @@ class Shelf extends Model
      * @var array
      */
 
+=======
+>>>>>>> tundeseun/devtest
     protected $fillable = [
         'name',
         'description',
     ];
 
+<<<<<<< HEAD
 
     /**
 
@@ -35,6 +42,10 @@ class Shelf extends Model
 
     public function products(): HasMany
     {
+=======
+    public function products()
+    {
+>>>>>>> tundeseun/devtest
         return $this->hasMany(Product::class);
     }
 }

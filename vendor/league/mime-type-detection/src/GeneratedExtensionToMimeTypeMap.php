@@ -82,10 +82,18 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'azv' => 'image/vnd.airzip.accelerator.azv',
         'azw' => 'application/vnd.amazon.ebook',
         'b16' => 'image/vnd.pco.b16',
+<<<<<<< HEAD
+=======
+        'bary' => 'model/vnd.bary',
+>>>>>>> tundeseun/devtest
         'bat' => 'application/x-msdownload',
         'bcpio' => 'application/x-bcpio',
         'bdf' => 'application/x-font-bdf',
         'bdm' => 'application/vnd.syncml.dm+wbxml',
+<<<<<<< HEAD
+=======
+        'bdo' => 'application/vnd.nato.bindingdataobject+xml',
+>>>>>>> tundeseun/devtest
         'bdoc' => 'application/x-bdoc',
         'bed' => 'application/vnd.realvnc.bed',
         'bh2' => 'application/vnd.fujitsu.oasysprs',
@@ -342,6 +350,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'geojson' => 'application/geo+json',
         'gex' => 'application/vnd.geometry-explorer',
         'ggb' => 'application/vnd.geogebra.file',
+<<<<<<< HEAD
+=======
+        'ggs' => 'application/vnd.geogebra.slides',
+>>>>>>> tundeseun/devtest
         'ggt' => 'application/vnd.geogebra.tool',
         'ghf' => 'application/vnd.groove-help',
         'gif' => 'image/gif',
@@ -466,6 +478,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'jsonml' => 'application/jsonml+json',
         'jsx' => 'text/jsx',
         'jt' => 'model/jt',
+<<<<<<< HEAD
+=======
+        'jxl' => 'image/jxl',
+>>>>>>> tundeseun/devtest
         'jxr' => 'image/jxr',
         'jxra' => 'image/jxra',
         'jxrs' => 'image/jxrs',
@@ -521,6 +537,11 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'lzh' => 'application/octet-stream',
         'm1v' => 'video/mpeg',
         'm2a' => 'audio/mpeg',
+<<<<<<< HEAD
+=======
+        'm2t' => 'video/mp2t',
+        'm2ts' => 'video/mp2t',
+>>>>>>> tundeseun/devtest
         'm2v' => 'video/mpeg',
         'm3a' => 'audio/mpeg',
         'm3u' => 'text/plain',
@@ -627,7 +648,11 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'msp' => 'application/octet-stream',
         'msty' => 'application/vnd.muvee.style',
         'mtl' => 'model/mtl',
+<<<<<<< HEAD
         'mts' => 'model/vnd.mts',
+=======
+        'mts' => 'video/mp2t',
+>>>>>>> tundeseun/devtest
         'mus' => 'application/vnd.musician',
         'musd' => 'application/mmt-usd+xml',
         'musicxml' => 'application/vnd.recordare.musicxml+xml',
@@ -1172,6 +1197,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'xbm' => 'image/x-xbitmap',
         'xca' => 'application/xcap-caps+xml',
         'xcs' => 'application/calendar+xml',
+<<<<<<< HEAD
+=======
+        'xdcf' => 'application/vnd.gov.sk.xmldatacontainer+xml',
+>>>>>>> tundeseun/devtest
         'xdf' => 'application/xcap-diff+xml',
         'xdm' => 'application/vnd.syncml.dm+xml',
         'xdp' => 'application/vnd.adobe.xdp+xml',
@@ -1523,6 +1552,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/vnd.fuzzysheet' => ['fzs'],
         'application/vnd.genomatix.tuxedo' => ['txd'],
         'application/vnd.geogebra.file' => ['ggb'],
+<<<<<<< HEAD
+=======
+        'application/vnd.geogebra.slides' => ['ggs'],
+>>>>>>> tundeseun/devtest
         'application/vnd.geogebra.tool' => ['ggt'],
         'application/vnd.geometry-explorer' => ['gex', 'gre'],
         'application/vnd.geonext' => ['gxt'],
@@ -1534,6 +1567,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/vnd.google-apps.spreadsheet' => ['gsheet'],
         'application/vnd.google-earth.kml+xml' => ['kml'],
         'application/vnd.google-earth.kmz' => ['kmz'],
+<<<<<<< HEAD
+=======
+        'application/vnd.gov.sk.xmldatacontainer+xml' => ['xdcf'],
+>>>>>>> tundeseun/devtest
         'application/vnd.grafeq' => ['gqf', 'gqs'],
         'application/vnd.groove-account' => ['gac'],
         'application/vnd.groove-help' => ['ghf'],
@@ -1649,6 +1686,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/vnd.musician' => ['mus'],
         'application/vnd.muvee.style' => ['msty'],
         'application/vnd.mynfc' => ['taglet'],
+<<<<<<< HEAD
+=======
+        'application/vnd.nato.bindingdataobject+xml' => ['bdo'],
+>>>>>>> tundeseun/devtest
         'application/vnd.neurolanguage.nlu' => ['nlu'],
         'application/vnd.nitf' => ['ntf', 'nitf'],
         'application/vnd.noblenet-directory' => ['nnd'],
@@ -2029,6 +2070,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'image/jphc' => ['jhc'],
         'image/jpm' => ['jpm', 'jpgm'],
         'image/jpx' => ['jpx', 'jpf'],
+<<<<<<< HEAD
+=======
+        'image/jxl' => ['jxl'],
+>>>>>>> tundeseun/devtest
         'image/jxr' => ['jxr'],
         'image/jxra' => ['jxra'],
         'image/jxrs' => ['jxrs'],
@@ -2111,6 +2156,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'model/step-xml+zip' => ['stpxz'],
         'model/stl' => ['stl'],
         'model/u3d' => ['u3d'],
+<<<<<<< HEAD
+=======
+        'model/vnd.bary' => ['bary'],
+>>>>>>> tundeseun/devtest
         'model/vnd.cld' => ['cld'],
         'model/vnd.collada+xml' => ['dae'],
         'model/vnd.dwf' => ['dwf'],
@@ -2208,7 +2257,11 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'video/jpeg' => ['jpgv'],
         'video/jpm' => ['jpm', 'jpgm'],
         'video/mj2' => ['mj2', 'mjp2'],
+<<<<<<< HEAD
         'video/mp2t' => ['ts'],
+=======
+        'video/mp2t' => ['ts', 'm2t', 'm2ts', 'mts'],
+>>>>>>> tundeseun/devtest
         'video/mp4' => ['mp4', 'mp4v', 'mpg4', 'f4v'],
         'video/mpeg' => ['mpeg', 'mpg', 'mpe', 'm1v', 'm2v'],
         'video/ogg' => ['ogv'],

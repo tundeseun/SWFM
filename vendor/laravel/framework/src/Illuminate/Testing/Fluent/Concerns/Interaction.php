@@ -63,5 +63,9 @@ trait Interaction
      * @param  string|null  $key
      * @return mixed
      */
+<<<<<<< HEAD
     abstract protected function prop(string $key = null);
+=======
+    abstract protected function prop(?string $key = null);
+>>>>>>> tundeseun/devtest
 }

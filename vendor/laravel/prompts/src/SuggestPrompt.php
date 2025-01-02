@@ -39,6 +39,10 @@ class SuggestPrompt extends Prompt
         public bool|string $required = false,
         public mixed $validate = null,
         public string $hint = '',
+<<<<<<< HEAD
+=======
+        public ?Closure $transform = null,
+>>>>>>> tundeseun/devtest
     ) {
         $this->options = $options instanceof Collection ? $options->all() : $options;
 

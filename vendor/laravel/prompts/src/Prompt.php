@@ -51,6 +51,14 @@ abstract class Prompt
     public bool|string $required;
 
     /**
+<<<<<<< HEAD
+=======
+     * The transformation callback.
+     */
+    public ?Closure $transform = null;
+
+    /**
+>>>>>>> tundeseun/devtest
      * The validator callback or rules.
      */
     public mixed $validate;
@@ -137,10 +145,17 @@ abstract class Prompt
                     }
 
                     if ($key === Key::CTRL_U && self::$revertUsing) {
+<<<<<<< HEAD
                         throw new FormRevertedException();
                     }
 
                     return $this->value();
+=======
+                        throw new FormRevertedException;
+                    }
+
+                    return $this->transformedValue();
+>>>>>>> tundeseun/devtest
                 }
             }
         } finally {
@@ -187,7 +202,11 @@ abstract class Prompt
      */
     protected static function output(): OutputInterface
     {
+<<<<<<< HEAD
         return self::$output ??= new ConsoleOutput();
+=======
+        return self::$output ??= new ConsoleOutput;
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -207,7 +226,11 @@ abstract class Prompt
      */
     public static function terminal(): Terminal
     {
+<<<<<<< HEAD
         return static::$terminal ??= new Terminal();
+=======
+        return static::$terminal ??= new Terminal;
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -277,7 +300,11 @@ abstract class Prompt
      */
     protected function submit(): void
     {
+<<<<<<< HEAD
         $this->validate($this->value());
+=======
+        $this->validate($this->transformedValue());
+>>>>>>> tundeseun/devtest
 
         if ($this->state !== 'error') {
             $this->state = 'submit';
@@ -322,13 +349,40 @@ abstract class Prompt
         }
 
         if ($this->validated) {
+<<<<<<< HEAD
             $this->validate($this->value());
+=======
+            $this->validate($this->transformedValue());
+>>>>>>> tundeseun/devtest
         }
 
         return true;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Transform the input.
+     */
+    private function transform(mixed $value): mixed
+    {
+        if (is_null($this->transform)) {
+            return $value;
+        }
+
+        return call_user_func($this->transform, $value);
+    }
+
+    /**
+     * Get the transformed value of the prompt.
+     */
+    protected function transformedValue(): mixed
+    {
+        return $this->transform($this->value());
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * Validate the input.
      */
     private function validate(mixed $value): void

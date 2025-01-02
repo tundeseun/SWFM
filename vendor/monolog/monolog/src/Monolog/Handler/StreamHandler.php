@@ -34,17 +34,32 @@ class StreamHandler extends AbstractProcessingHandler
     private string|null $errorMessage = null;
     protected int|null $filePermission;
     protected bool $useLocking;
+<<<<<<< HEAD
     /** @var true|null */
     private bool|null $dirCreated = null;
+=======
+    protected string $fileOpenMode;
+    /** @var true|null */
+    private bool|null $dirCreated = null;
+    private bool $retrying = false;
+>>>>>>> tundeseun/devtest
 
     /**
      * @param resource|string $stream         If a missing path can't be created, an UnexpectedValueException will be thrown on first write
      * @param int|null        $filePermission Optional file permissions (default (0644) are only for owner read/write)
      * @param bool            $useLocking     Try to lock log file before doing any writes
+<<<<<<< HEAD
      *
      * @throws \InvalidArgumentException If stream is not a resource or string
      */
     public function __construct($stream, int|string|Level $level = Level::Debug, bool $bubble = true, ?int $filePermission = null, bool $useLocking = false)
+=======
+     * @param string          $fileOpenMode   The fopen() mode used when opening a file, if $stream is a file path
+     *
+     * @throws \InvalidArgumentException If stream is not a resource or string
+     */
+    public function __construct($stream, int|string|Level $level = Level::Debug, bool $bubble = true, ?int $filePermission = null, bool $useLocking = false, string $fileOpenMode = 'a')
+>>>>>>> tundeseun/devtest
     {
         parent::__construct($level, $bubble);
 
@@ -71,6 +86,10 @@ class StreamHandler extends AbstractProcessingHandler
             throw new \InvalidArgumentException('A stream must either be a resource or a string.');
         }
 
+<<<<<<< HEAD
+=======
+        $this->fileOpenMode = $fileOpenMode;
+>>>>>>> tundeseun/devtest
         $this->filePermission = $filePermission;
         $this->useLocking = $useLocking;
     }
@@ -78,6 +97,23 @@ class StreamHandler extends AbstractProcessingHandler
     /**
      * @inheritDoc
      */
+<<<<<<< HEAD
+=======
+    public function reset(): void
+    {
+        parent::reset();
+
+        // auto-close on reset to make sure we periodically close the file in long running processes
+        // as long as they correctly call reset() between jobs
+        if ($this->url !== null && $this->url !== 'php://memory') {
+            $this->close();
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+>>>>>>> tundeseun/devtest
     public function close(): void
     {
         if (null !== $this->url && \is_resource($this->stream)) {
@@ -122,12 +158,19 @@ class StreamHandler extends AbstractProcessingHandler
             }
             $this->createDir($url);
             $this->errorMessage = null;
+<<<<<<< HEAD
             set_error_handler(function (...$args) {
                 return $this->customErrorHandler(...$args);
             });
 
             try {
                 $stream = fopen($url, 'a');
+=======
+            set_error_handler($this->customErrorHandler(...));
+
+            try {
+                $stream = fopen($url, $this->fileOpenMode);
+>>>>>>> tundeseun/devtest
                 if ($this->filePermission !== null) {
                     @chmod($url, $this->filePermission);
                 }
@@ -149,8 +192,33 @@ class StreamHandler extends AbstractProcessingHandler
             flock($stream, LOCK_EX);
         }
 
+<<<<<<< HEAD
         $this->streamWrite($stream, $record);
 
+=======
+        $this->errorMessage = null;
+        set_error_handler($this->customErrorHandler(...));
+        try {
+            $this->streamWrite($stream, $record);
+        } finally {
+            restore_error_handler();
+        }
+        if ($this->errorMessage !== null) {
+            $error = $this->errorMessage;
+            // close the resource if possible to reopen it, and retry the failed write
+            if (!$this->retrying && $this->url !== null && $this->url !== 'php://memory') {
+                $this->retrying = true;
+                $this->close();
+                $this->write($record);
+
+                return;
+            }
+
+            throw new \UnexpectedValueException('Writing to the log file failed: '.$error . Utils::getRecordMessageForException($record));
+        }
+
+        $this->retrying = false;
+>>>>>>> tundeseun/devtest
         if ($this->useLocking) {
             flock($stream, LOCK_UN);
         }
@@ -167,7 +235,11 @@ class StreamHandler extends AbstractProcessingHandler
 
     private function customErrorHandler(int $code, string $msg): bool
     {
+<<<<<<< HEAD
         $this->errorMessage = preg_replace('{^(fopen|mkdir)\(.*?\): }', '', $msg);
+=======
+        $this->errorMessage = preg_replace('{^(fopen|mkdir|fwrite)\(.*?\): }', '', $msg);
+>>>>>>> tundeseun/devtest
 
         return true;
     }

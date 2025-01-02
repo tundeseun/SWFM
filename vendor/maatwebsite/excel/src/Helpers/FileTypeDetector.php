@@ -14,7 +14,11 @@ class FileTypeDetector
      *
      * @throws NoTypeDetectedException
      */
+<<<<<<< HEAD
     public static function detect($filePath, string $type = null)
+=======
+    public static function detect($filePath, ?string $type = null)
+>>>>>>> tundeseun/devtest
     {
         if (null !== $type) {
             return $type;
@@ -41,7 +45,11 @@ class FileTypeDetector
      *
      * @throws NoTypeDetectedException
      */
+<<<<<<< HEAD
     public static function detectStrict(string $filePath, string $type = null): string
+=======
+    public static function detectStrict(string $filePath, ?string $type = null): string
+>>>>>>> tundeseun/devtest
     {
         $type = static::detect($filePath, $type);
 

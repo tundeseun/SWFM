@@ -5623,7 +5623,11 @@ class Calculation
 
     private function addDefaultArgumentValues(array $functionCall, array $args, array $emptyArguments): array
     {
+<<<<<<< HEAD
         $reflector = new ReflectionMethod(implode('::', $functionCall));
+=======
+        $reflector = new ReflectionMethod($functionCall[0], $functionCall[1]);
+>>>>>>> tundeseun/devtest
         $methodArguments = $reflector->getParameters();
 
         if (count($methodArguments) > 0) {

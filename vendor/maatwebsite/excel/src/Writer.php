@@ -144,6 +144,19 @@ class Writer
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Determine if the application is running in a serverless environment.
+     *
+     * @return bool
+     */
+    public function isRunningServerless(): bool
+    {
+        return isset($_ENV['AWS_LAMBDA_RUNTIME_API']);
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * @param  object  $export
      * @param  TemporaryFile  $temporaryFile
      * @param  string  $writerType
@@ -166,7 +179,11 @@ class Writer
             $export
         );
 
+<<<<<<< HEAD
         if ($temporaryFile instanceof RemoteTemporaryFile && !$temporaryFile->existsLocally()) {
+=======
+        if ($temporaryFile instanceof RemoteTemporaryFile && !$temporaryFile->existsLocally() && !$this->isRunningServerless()) {
+>>>>>>> tundeseun/devtest
             $temporaryFile = resolve(TemporaryFileFactory::class)
                 ->makeLocal(Arr::last(explode('/', $temporaryFile->getLocalPath())));
         }
@@ -193,7 +210,11 @@ class Writer
      *
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
+<<<<<<< HEAD
     public function addNewSheet(int $sheetIndex = null)
+=======
+    public function addNewSheet(?int $sheetIndex = null)
+>>>>>>> tundeseun/devtest
     {
         return new Sheet($this->spreadsheet->createSheet($sheetIndex));
     }

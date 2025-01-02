@@ -48,6 +48,7 @@ use Psy\Exception\ParseErrorException;
  */
 class CodeCleaner
 {
+<<<<<<< HEAD
     private $yolo = false;
     private $strictTypes = false;
 
@@ -55,6 +56,15 @@ class CodeCleaner
     private $printer;
     private $traverser;
     private $namespace;
+=======
+    private bool $yolo = false;
+    private bool $strictTypes = false;
+
+    private Parser $parser;
+    private Printer $printer;
+    private NodeTraverser $traverser;
+    private ?array $namespace = null;
+>>>>>>> tundeseun/devtest
 
     /**
      * CodeCleaner constructor.
@@ -259,8 +269,11 @@ class CodeCleaner
 
     /**
      * Set the current local namespace.
+<<<<<<< HEAD
      *
      * @param array|null $namespace (default: null)
+=======
+>>>>>>> tundeseun/devtest
      */
     public function setNamespace(?array $namespace = null)
     {
@@ -285,9 +298,12 @@ class CodeCleaner
      * @throws ParseErrorException for parse errors that can't be resolved by
      *                             waiting a line to see what comes next
      *
+<<<<<<< HEAD
      * @param string $code
      * @param bool   $requireSemicolons
      *
+=======
+>>>>>>> tundeseun/devtest
      * @return array|false A set of statements, or false if incomplete
      */
     protected function parse(string $code, bool $requireSemicolons = false)
@@ -337,9 +353,12 @@ class CodeCleaner
      * Unlike (all?) other unclosed statements, single quoted strings have
      * their own special beautiful snowflake syntax error just for
      * themselves.
+<<<<<<< HEAD
      *
      * @param \PhpParser\Error $e
      * @param string           $code
+=======
+>>>>>>> tundeseun/devtest
      */
     private function parseErrorIsUnclosedString(\PhpParser\Error $e, string $code): bool
     {
@@ -356,12 +375,20 @@ class CodeCleaner
         return true;
     }
 
+<<<<<<< HEAD
     private function parseErrorIsUnterminatedComment(\PhpParser\Error $e, $code): bool
+=======
+    private function parseErrorIsUnterminatedComment(\PhpParser\Error $e, string $code): bool
+>>>>>>> tundeseun/devtest
     {
         return $e->getRawMessage() === 'Unterminated comment';
     }
 
+<<<<<<< HEAD
     private function parseErrorIsTrailingComma(\PhpParser\Error $e, $code): bool
+=======
+    private function parseErrorIsTrailingComma(\PhpParser\Error $e, string $code): bool
+>>>>>>> tundeseun/devtest
     {
         return ($e->getRawMessage() === 'A trailing comma is not allowed here') && (\substr(\rtrim($code), -1) === ',');
     }

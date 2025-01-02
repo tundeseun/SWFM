@@ -16,7 +16,11 @@ namespace Psy\Reflection;
  */
 class ReflectionNamespace implements \Reflector
 {
+<<<<<<< HEAD
     private $name;
+=======
+    private string $name;
+>>>>>>> tundeseun/devtest
 
     /**
      * Construct a ReflectionNamespace object.

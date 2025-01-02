@@ -35,7 +35,11 @@ final class ResourceComparator extends Comparator
                 $expected,
                 $actual,
                 $exporter->export($expected),
+<<<<<<< HEAD
                 $exporter->export($actual)
+=======
+                $exporter->export($actual),
+>>>>>>> tundeseun/devtest
             );
         }
     }

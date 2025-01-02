@@ -58,7 +58,10 @@ use PHPUnit\Util\PHP\AbstractPhpProcess;
 use SebastianBergmann\CodeCoverage\Data\RawCodeCoverageData;
 use SebastianBergmann\CodeCoverage\InvalidArgumentException;
 use SebastianBergmann\CodeCoverage\ReflectionException;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\StaticAnalysisCacheNotConfiguredException;
+=======
+>>>>>>> tundeseun/devtest
 use SebastianBergmann\CodeCoverage\Test\TestSize\TestSize;
 use SebastianBergmann\CodeCoverage\Test\TestStatus\TestStatus;
 use SebastianBergmann\CodeCoverage\TestIdMissingException;
@@ -89,10 +92,13 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
      */
     public function __construct(string $filename, ?AbstractPhpProcess $phpUtil = null)
     {
+<<<<<<< HEAD
         if (!is_file($filename)) {
             throw new FileDoesNotExistException($filename);
         }
 
+=======
+>>>>>>> tundeseun/devtest
         $this->filename = $filename;
         $this->phpUtil  = $phpUtil ?: AbstractPhpProcess::factory();
     }
@@ -114,7 +120,10 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
      * @throws InvalidArgumentException
      * @throws NoPreviousThrowableException
      * @throws ReflectionException
+<<<<<<< HEAD
      * @throws StaticAnalysisCacheNotConfiguredException
+=======
+>>>>>>> tundeseun/devtest
      * @throws TestIdMissingException
      * @throws UnintentionallyCoveredCodeException
      *
@@ -175,6 +184,10 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
             $codeCoverageCacheDirectory = null;
 
             if (CodeCoverage::instance()->codeCoverage()->cachesStaticAnalysis()) {
+<<<<<<< HEAD
+=======
+                /** @psalm-suppress MissingThrowsDocblock */
+>>>>>>> tundeseun/devtest
                 $codeCoverageCacheDirectory = CodeCoverage::instance()->codeCoverage()->cacheDirectory();
             }
 

@@ -23,6 +23,7 @@ namespace Symfony\Component\CssSelector\Parser;
  */
 class Reader
 {
+<<<<<<< HEAD
     private string $source;
     private int $length;
     private int $position = 0;
@@ -30,6 +31,14 @@ class Reader
     public function __construct(string $source)
     {
         $this->source = $source;
+=======
+    private int $length;
+    private int $position = 0;
+
+    public function __construct(
+        private string $source,
+    ) {
+>>>>>>> tundeseun/devtest
         $this->length = \strlen($source);
     }
 
@@ -53,10 +62,14 @@ class Reader
         return substr($this->source, $this->position + $offset, $length);
     }
 
+<<<<<<< HEAD
     /**
      * @return int|false
      */
     public function getOffset(string $string): int|bool
+=======
+    public function getOffset(string $string): int|false
+>>>>>>> tundeseun/devtest
     {
         $position = strpos($this->source, $string, $this->position);
 

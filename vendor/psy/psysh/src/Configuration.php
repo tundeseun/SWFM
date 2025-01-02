@@ -47,7 +47,11 @@ class Configuration
     const VERBOSITY_VERY_VERBOSE = 'very_verbose';
     const VERBOSITY_DEBUG = 'debug';
 
+<<<<<<< HEAD
     private static $AVAILABLE_OPTIONS = [
+=======
+    private const AVAILABLE_OPTIONS = [
+>>>>>>> tundeseun/devtest
         'codeCleaner',
         'colorMode',
         'configDir',
@@ -80,6 +84,7 @@ class Configuration
         'yolo',
     ];
 
+<<<<<<< HEAD
     private $defaultIncludes;
     private $configDir;
     private $dataDir;
@@ -132,6 +137,59 @@ class Configuration
     /** @deprecated */
     private $prompt;
     private $configPaths;
+=======
+    private ?array $defaultIncludes = null;
+    private ?string $configDir = null;
+    private ?string $dataDir = null;
+    private ?string $runtimeDir = null;
+    private ?string $configFile = null;
+    /** @var string|false|null */
+    private $historyFile;
+    private int $historySize = 0;
+    private ?bool $eraseDuplicates = null;
+    private ?string $manualDbFile = null;
+    private bool $hasReadline;
+    private ?bool $useReadline = null;
+    private bool $useBracketedPaste = false;
+    private bool $hasPcntl;
+    private ?bool $usePcntl = null;
+    private array $newCommands = [];
+    private ?bool $pipedInput = null;
+    private ?bool $pipedOutput = null;
+    private bool $rawOutput = false;
+    private bool $requireSemicolons = false;
+    private bool $strictTypes = false;
+    private ?bool $useUnicode = null;
+    private ?bool $useTabCompletion = null;
+    private array $newMatchers = [];
+    private int $errorLoggingLevel = \E_ALL;
+    private bool $warnOnMultipleConfigs = false;
+    private string $colorMode = self::COLOR_MODE_AUTO;
+    private string $interactiveMode = self::INTERACTIVE_MODE_AUTO;
+    private ?string $updateCheck = null;
+    private ?string $startupMessage = null;
+    private bool $forceArrayIndexes = false;
+    /** @deprecated */
+    private array $formatterStyles = [];
+    private string $verbosity = self::VERBOSITY_NORMAL;
+    private bool $yolo = false;
+    private ?Theme $theme = null;
+
+    // services
+    private ?Readline\Readline $readline = null;
+    private ?ShellOutput $output = null;
+    private ?Shell $shell = null;
+    private ?CodeCleaner $cleaner = null;
+    /** @var string|OutputPager|false|null */
+    private $pager = null;
+    private ?\PDO $manualDb = null;
+    private ?Presenter $presenter = null;
+    private ?AutoCompleter $autoCompleter = null;
+    private ?Checker $checker = null;
+    /** @deprecated */
+    private ?string $prompt = null;
+    private ConfigPaths $configPaths;
+>>>>>>> tundeseun/devtest
 
     /**
      * Construct a Configuration instance.
@@ -466,7 +524,11 @@ class Configuration
      */
     public function loadConfig(array $options)
     {
+<<<<<<< HEAD
         foreach (self::$AVAILABLE_OPTIONS as $option) {
+=======
+        foreach (self::AVAILABLE_OPTIONS as $option) {
+>>>>>>> tundeseun/devtest
             if (isset($options[$option])) {
                 $method = 'set'.\ucfirst($option);
                 $this->$method($options[$option]);
@@ -623,6 +685,7 @@ class Configuration
     /**
      * Get the shell's temporary directory location.
      *
+<<<<<<< HEAD
      * Defaults to  `/psysh` inside the system's temp dir unless explicitly
      * overridden.
      *
@@ -633,6 +696,20 @@ class Configuration
         $runtimeDir = $this->configPaths->runtimeDir();
 
         if (!\is_dir($runtimeDir)) {
+=======
+     * Defaults to `/psysh` inside the system's temp dir unless explicitly
+     * overridden.
+     *
+     * @throws RuntimeException if no temporary directory is set and it is not possible to create one
+     *
+     * @param bool $create False to suppress directory creation if it does not exist
+     */
+    public function getRuntimeDir($create = true): string
+    {
+        $runtimeDir = $this->configPaths->runtimeDir();
+
+        if ($create && !\is_dir($runtimeDir)) {
+>>>>>>> tundeseun/devtest
             if (!@\mkdir($runtimeDir, 0700, true)) {
                 throw new RuntimeException(\sprintf('Unable to create PsySH runtime directory. Make sure PHP is able to write to %s in order to continue.', \dirname($runtimeDir)));
             }
@@ -657,7 +734,11 @@ class Configuration
      * Defaults to `/history` inside the shell's base config dir unless
      * explicitly overridden.
      */
+<<<<<<< HEAD
     public function getHistoryFile(): string
+=======
+    public function getHistoryFile(): ?string
+>>>>>>> tundeseun/devtest
     {
         if (isset($this->historyFile)) {
             return $this->historyFile;
@@ -674,7 +755,16 @@ class Configuration
             $this->setHistoryFile($files[0]);
         } else {
             // fallback: create our own history file
+<<<<<<< HEAD
             $this->setHistoryFile($this->configPaths->currentConfigDir().'/psysh_history');
+=======
+            $configDir = $this->configPaths->currentConfigDir();
+            if ($configDir === null) {
+                return null;
+            }
+
+            $this->setHistoryFile($configDir.'/psysh_history');
+>>>>>>> tundeseun/devtest
         }
 
         return $this->historyFile;
@@ -707,7 +797,11 @@ class Configuration
      */
     public function setEraseDuplicates(bool $value)
     {
+<<<<<<< HEAD
         $this->eraseDuplicates = (bool) $value;
+=======
+        $this->eraseDuplicates = $value;
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -813,7 +907,11 @@ class Configuration
             $this->readline = new $className(
                 $this->getHistoryFile(),
                 $this->getHistorySize(),
+<<<<<<< HEAD
                 $this->getEraseDuplicates()
+=======
+                $this->getEraseDuplicates() ?? false
+>>>>>>> tundeseun/devtest
             );
         }
 
@@ -1023,7 +1121,15 @@ class Configuration
      */
     public function setErrorLoggingLevel($errorLoggingLevel)
     {
+<<<<<<< HEAD
         $this->errorLoggingLevel = (\E_ALL | \E_STRICT) & $errorLoggingLevel;
+=======
+        if (\PHP_VERSION_ID < 80400) {
+            $this->errorLoggingLevel = (\E_ALL | \E_STRICT) & $errorLoggingLevel;
+        } else {
+            $this->errorLoggingLevel = \E_ALL & $errorLoggingLevel;
+        }
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -1263,9 +1369,17 @@ class Configuration
                 // let's not use it by default.
                 //
                 // See https://github.com/bobthecow/psysh/issues/778
+<<<<<<< HEAD
                 $link = @\readlink($less);
                 if ($link !== false && \strpos($link, 'busybox') !== false) {
                     return false;
+=======
+                if (@\is_link($less)) {
+                    $link = @\readlink($less);
+                    if ($link !== false && \strpos($link, 'busybox') !== false) {
+                        return false;
+                    }
+>>>>>>> tundeseun/devtest
                 }
 
                 $this->pager = $less.' -R -F -X';
@@ -1646,7 +1760,16 @@ class Configuration
      */
     public function getUpdateCheckCacheFile()
     {
+<<<<<<< HEAD
         return ConfigPaths::touchFileWithMkdir($this->configPaths->currentConfigDir().'/update_check.json');
+=======
+        $configDir = $this->configPaths->currentConfigDir();
+        if ($configDir === null) {
+            return false;
+        }
+
+        return ConfigPaths::touchFileWithMkdir($configDir.'/update_check.json');
+>>>>>>> tundeseun/devtest
     }
 
     /**

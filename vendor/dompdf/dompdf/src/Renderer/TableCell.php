@@ -6,6 +6,10 @@
  */
 namespace Dompdf\Renderer;
 
+<<<<<<< HEAD
+=======
+use Dompdf\Exception;
+>>>>>>> tundeseun/devtest
 use Dompdf\Frame;
 use Dompdf\FrameDecorator\Table;
 
@@ -16,15 +20,24 @@ use Dompdf\FrameDecorator\Table;
  */
 class TableCell extends Block
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> tundeseun/devtest
     /**
      * @param Frame $frame
      */
     function render(Frame $frame)
     {
         $style = $frame->get_style();
+<<<<<<< HEAD
 
         if (trim($frame->get_node()->nodeValue) === "" && $style->empty_cells === "hide") {
+=======
+        $node = $frame->get_node();
+
+        if (trim($node->nodeValue) === "" && $style->empty_cells === "hide") {
+>>>>>>> tundeseun/devtest
             return;
         }
 
@@ -32,6 +45,12 @@ class TableCell extends Block
 
         $border_box = $frame->get_border_box();
         $table = Table::find_parent_table($frame);
+<<<<<<< HEAD
+=======
+        if ($table === null) {
+            throw new Exception("Parent table not found for table cell");
+        }
+>>>>>>> tundeseun/devtest
 
         if ($table->get_style()->border_collapse !== "collapse") {
             $this->_render_background($frame, $border_box);
@@ -58,12 +77,18 @@ class TableCell extends Block
             $this->_render_outline($frame, $border_box);
         }
 
+<<<<<<< HEAD
         $id = $frame->get_node()->getAttribute("id");
         if (strlen($id) > 0) {
             $this->_canvas->add_named_dest($id);
         }
 
         // $this->debugBlockLayout($frame, "red", false);
+=======
+        $this->addNamedDest($node);
+        $this->addHyperlink($node, $border_box);
+        $this->debugBlockLayout($frame, "red", false);
+>>>>>>> tundeseun/devtest
     }
 
     /**

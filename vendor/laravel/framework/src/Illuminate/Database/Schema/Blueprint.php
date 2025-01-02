@@ -87,7 +87,11 @@ class Blueprint
      * @param  string  $prefix
      * @return void
      */
+<<<<<<< HEAD
     public function __construct($table, Closure $callback = null, $prefix = '')
+=======
+    public function __construct($table, ?Closure $callback = null, $prefix = '')
+>>>>>>> tundeseun/devtest
     {
         $this->table = $table;
         $this->prefix = $prefix;

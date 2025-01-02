@@ -116,7 +116,11 @@ class TelegramBotHandler extends AbstractProcessingHandler
         ?bool   $disableNotification = null,
         bool   $splitLongMessages = false,
         bool   $delayBetweenMessages = false,
+<<<<<<< HEAD
         int    $topic = null
+=======
+        ?int   $topic = null
+>>>>>>> tundeseun/devtest
     ) {
         if (!\extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the TelegramBotHandler');
@@ -196,7 +200,11 @@ class TelegramBotHandler extends AbstractProcessingHandler
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setTopic(int $topic = null): self
+=======
+    public function setTopic(?int $topic = null): self
+>>>>>>> tundeseun/devtest
     {
         $this->topic = $topic;
 

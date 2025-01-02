@@ -30,13 +30,17 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterface
 {
+<<<<<<< HEAD
     protected $logger;
     protected $stopwatch;
 
+=======
+>>>>>>> tundeseun/devtest
     /**
      * @var \SplObjectStorage<WrappedListener, array{string, string}>|null
      */
     private ?\SplObjectStorage $callStack = null;
+<<<<<<< HEAD
     private EventDispatcherInterface $dispatcher;
     private array $wrappedListeners = [];
     private array $orphanedEvents = [];
@@ -55,22 +59,45 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
      * @return void
      */
     public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
+    private array $wrappedListeners = [];
+    private array $orphanedEvents = [];
+    private string $currentRequestHash = '';
+
+    public function __construct(
+        private EventDispatcherInterface $dispatcher,
+        protected Stopwatch $stopwatch,
+        protected ?LoggerInterface $logger = null,
+        private ?RequestStack $requestStack = null,
+    ) {
+    }
+
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0): void
+>>>>>>> tundeseun/devtest
     {
         $this->dispatcher->addListener($eventName, $listener, $priority);
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function addSubscriber(EventSubscriberInterface $subscriber): void
+>>>>>>> tundeseun/devtest
     {
         $this->dispatcher->addSubscriber($subscriber);
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function removeListener(string $eventName, callable|array $listener)
+=======
+    public function removeListener(string $eventName, callable|array $listener): void
+>>>>>>> tundeseun/devtest
     {
         if (isset($this->wrappedListeners[$eventName])) {
             foreach ($this->wrappedListeners[$eventName] as $index => $wrappedListener) {
@@ -85,10 +112,14 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         $this->dispatcher->removeListener($eventName, $listener);
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function removeSubscriber(EventSubscriberInterface $subscriber): void
+>>>>>>> tundeseun/devtest
     {
         $this->dispatcher->removeSubscriber($subscriber);
     }
@@ -127,7 +158,11 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         $currentRequestHash = $this->currentRequestHash = $this->requestStack && ($request = $this->requestStack->getCurrentRequest()) ? spl_object_hash($request) : '';
 
         if (null !== $this->logger && $event instanceof StoppableEventInterface && $event->isPropagationStopped()) {
+<<<<<<< HEAD
             $this->logger->debug(sprintf('The "%s" event is already stopped. No listeners have been called.', $eventName));
+=======
+            $this->logger->debug(\sprintf('The "%s" event is already stopped. No listeners have been called.', $eventName));
+>>>>>>> tundeseun/devtest
         }
 
         $this->preProcess($eventName);
@@ -226,10 +261,14 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         return array_merge(...array_values($this->orphanedEvents));
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function reset()
+=======
+    public function reset(): void
+>>>>>>> tundeseun/devtest
     {
         $this->callStack = null;
         $this->orphanedEvents = [];
@@ -249,19 +288,29 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
 
     /**
      * Called before dispatching the event.
+<<<<<<< HEAD
      *
      * @return void
      */
     protected function beforeDispatch(string $eventName, object $event)
+=======
+     */
+    protected function beforeDispatch(string $eventName, object $event): void
+>>>>>>> tundeseun/devtest
     {
     }
 
     /**
      * Called after dispatching the event.
+<<<<<<< HEAD
      *
      * @return void
      */
     protected function afterDispatch(string $eventName, object $event)
+=======
+     */
+    protected function afterDispatch(string $eventName, object $event): void
+>>>>>>> tundeseun/devtest
     {
     }
 

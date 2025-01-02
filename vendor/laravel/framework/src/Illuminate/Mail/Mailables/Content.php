@@ -64,7 +64,11 @@ class Content
      *
      * @named-arguments-supported
      */
+<<<<<<< HEAD
     public function __construct(string $view = null, string $html = null, string $text = null, $markdown = null, array $with = [], string $htmlString = null)
+=======
+    public function __construct(?string $view = null, ?string $html = null, ?string $text = null, $markdown = null, array $with = [], ?string $htmlString = null)
+>>>>>>> tundeseun/devtest
     {
         $this->view = $view;
         $this->html = $html;

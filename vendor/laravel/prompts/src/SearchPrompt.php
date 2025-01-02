@@ -31,6 +31,10 @@ class SearchPrompt extends Prompt
         public mixed $validate = null,
         public string $hint = '',
         public bool|string $required = true,
+<<<<<<< HEAD
+=======
+        public ?Closure $transform = null,
+>>>>>>> tundeseun/devtest
     ) {
         if ($this->required === false) {
             throw new InvalidArgumentException('Argument [required] must be true or a string.');

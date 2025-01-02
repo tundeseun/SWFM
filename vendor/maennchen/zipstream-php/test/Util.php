@@ -18,6 +18,7 @@ use ZipArchive;
 
 trait Util
 {
+<<<<<<< HEAD
     protected function getTmpFileStream(): array
     {
         $tmp = tempnam(sys_get_temp_dir(), 'zipstreamtest');
@@ -26,6 +27,8 @@ trait Util
         return [$tmp, $stream];
     }
 
+=======
+>>>>>>> tundeseun/devtest
     protected function cmdExists(string $command): bool
     {
         if (strtolower(\substr(PHP_OS, 0, 3)) === 'win') {
@@ -85,7 +88,11 @@ trait Util
 
     protected function zipArchiveOpenErrorCodeName(int $code): string
     {
+<<<<<<< HEAD
         switch($code) {
+=======
+        switch ($code) {
+>>>>>>> tundeseun/devtest
             case ZipArchive::ER_EXISTS: return 'ER_EXISTS';
             case ZipArchive::ER_INCONS: return 'ER_INCONS';
             case ZipArchive::ER_INVAL: return 'ER_INVAL';
@@ -114,7 +121,11 @@ trait Util
     protected function getRecursiveFileList(string $path, bool $includeDirectories = false): array
     {
         $data = [];
+<<<<<<< HEAD
         $path = (string)realpath($path);
+=======
+        $path = (string) realpath($path);
+>>>>>>> tundeseun/devtest
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
 
         $pathLen = strlen($path);

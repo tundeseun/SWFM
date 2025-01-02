@@ -134,13 +134,21 @@ class Cpdf
     private $gstates = [];
 
     /**
+<<<<<<< HEAD
      * @var array Current color for fill operations, defaults to inactive value,
+=======
+     * @var array|null Current color for fill operations, defaults to inactive value,
+>>>>>>> tundeseun/devtest
      * all three components should be between 0 and 1 inclusive when active
      */
     public $currentColor = null;
 
     /**
+<<<<<<< HEAD
      * @var array Current color for stroke operations (lines etc.)
+=======
+     * @var array|null Current color for stroke operations (lines etc.)
+>>>>>>> tundeseun/devtest
      */
     public $currentStrokeColor = null;
 
@@ -155,12 +163,20 @@ class Cpdf
     public $currentLineStyle = '';
 
     /**
+<<<<<<< HEAD
      * @var array Current line transparency (partial graphics state)
+=======
+     * @var array|null Current line transparency (partial graphics state)
+>>>>>>> tundeseun/devtest
      */
     public $currentLineTransparency = ["mode" => "Normal", "opacity" => 1.0];
 
     /**
+<<<<<<< HEAD
      * array Current fill transparency (partial graphics state)
+=======
+     * @var array|null Current fill transparency (partial graphics state)
+>>>>>>> tundeseun/devtest
      */
     public $currentFillTransparency = ["mode" => "Normal", "opacity" => 1.0];
 
@@ -3323,7 +3339,11 @@ EOT;
 
         $cache_name = "$metrics_name.json";
         $this->addMessage("metrics: $metrics_name, cache: $cache_name");
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> tundeseun/devtest
         if (file_exists($fontcache . '/' . $cache_name)) {
             $this->addMessage("openFont: json metrics file exists $fontcache/$cache_name");
             $cached_font_info = json_decode(file_get_contents($fontcache . '/' . $cache_name), true);
@@ -3531,14 +3551,24 @@ EOT;
      */
     function selectFont($fontName, $encoding = '', $set = true, $isSubsetting = true)
     {
+<<<<<<< HEAD
         if ($fontName === null || $fontName === '') {
             return $this->currentFontNum;
         }
 
+=======
+        $fontName = (string) $fontName;
+>>>>>>> tundeseun/devtest
         $ext = substr($fontName, -4);
         if ($ext === '.afm' || $ext === '.ufm') {
             $fontName = substr($fontName, 0, mb_strlen($fontName) - 4);
         }
+<<<<<<< HEAD
+=======
+        if ($fontName === '') {
+            return $this->currentFontNum;
+        }
+>>>>>>> tundeseun/devtest
 
         if (!isset($this->fonts[$fontName])) {
             $this->addMessage("selectFont: selecting - $fontName - $encoding, $set");
@@ -3693,6 +3723,11 @@ EOT;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * sets the color for fill operations
+     *
+>>>>>>> tundeseun/devtest
      * @param string $fillRule
      */
     function setFillRule($fillRule)
@@ -3755,12 +3790,21 @@ EOT;
      * ColorDogde, ColorBurn, HardLight, SoftLight, Difference,
      * Exclusion
      *
+<<<<<<< HEAD
      * @param string $mode    the blend mode to use
      * @param float  $opacity 0.0 fully transparent, 1.0 fully opaque
      */
     function setLineTransparency($mode, $opacity)
     {
         static $blend_modes = [
+=======
+     * @param string $mode    The blend mode to use
+     * @param float  $opacity 0.0 fully transparent, 1.0 fully opaque
+     */
+    public function setLineTransparency(string $mode, float $opacity): void
+    {
+        static $blendModes = [
+>>>>>>> tundeseun/devtest
             "Normal",
             "Multiply",
             "Screen",
@@ -3775,6 +3819,7 @@ EOT;
             "Exclusion"
         ];
 
+<<<<<<< HEAD
         if (!in_array($mode, $blend_modes)) {
             $mode = "Normal";
         }
@@ -3796,6 +3841,26 @@ EOT;
         $options = [
             "BM" => "/$mode",
             "CA" => (float)$opacity
+=======
+        if (!in_array($mode, $blendModes, true)) {
+            $mode = "Normal";
+        }
+
+        $newState = [
+            "mode"    => $mode,
+            "opacity" => $opacity
+        ];
+
+        if ($newState === $this->currentLineTransparency) {
+            return;
+        }
+
+        $this->currentLineTransparency = $newState;
+
+        $options = [
+            "BM" => "/$mode",
+            "CA" => $opacity
+>>>>>>> tundeseun/devtest
         ];
 
         $this->setGraphicsState($options);
@@ -3810,12 +3875,21 @@ EOT;
      * ColorDogde, ColorBurn, HardLight, SoftLight, Difference,
      * Exclusion
      *
+<<<<<<< HEAD
      * @param string $mode    the blend mode to use
      * @param float  $opacity 0.0 fully transparent, 1.0 fully opaque
      */
     function setFillTransparency($mode, $opacity)
     {
         static $blend_modes = [
+=======
+     * @param string $mode    The blend mode to use
+     * @param float  $opacity 0.0 fully transparent, 1.0 fully opaque
+     */
+    public function setFillTransparency(string $mode, float $opacity): void
+    {
+        static $blendModes = [
+>>>>>>> tundeseun/devtest
             "Normal",
             "Multiply",
             "Screen",
@@ -3830,6 +3904,7 @@ EOT;
             "Exclusion"
         ];
 
+<<<<<<< HEAD
         if (!in_array($mode, $blend_modes)) {
             $mode = "Normal";
         }
@@ -3851,6 +3926,26 @@ EOT;
         $options = [
             "BM" => "/$mode",
             "ca" => (float)$opacity,
+=======
+        if (!in_array($mode, $blendModes, true)) {
+            $mode = "Normal";
+        }
+
+        $newState = [
+            "mode"    => $mode,
+            "opacity" => $opacity
+        ];
+
+        if ($newState === $this->currentFillTransparency) {
+            return;
+        }
+
+        $this->currentFillTransparency = $newState;
+
+        $options = [
+            "BM" => "/$mode",
+            "ca" => $opacity,
+>>>>>>> tundeseun/devtest
         ];
 
         $this->setGraphicsState($options);
@@ -4152,6 +4247,13 @@ EOT;
             $string .= ' [ ' . implode(' ', $dash) . " ] $phase d";
         }
 
+<<<<<<< HEAD
+=======
+        if ($string === $this->currentLineStyle) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->currentLineStyle = $string;
         $this->addContent("\n$string");
     }
@@ -4423,9 +4525,12 @@ EOT;
      */
     function save()
     {
+<<<<<<< HEAD
         // we must reset the color cache or it will keep bad colors after clipping
         $this->currentColor = null;
         $this->currentStrokeColor = null;
+=======
+>>>>>>> tundeseun/devtest
         $this->addContent("\nq");
     }
 
@@ -4434,9 +4539,19 @@ EOT;
      */
     function restore()
     {
+<<<<<<< HEAD
         // we must reset the color cache or it will keep bad colors after clipping
         $this->currentColor = null;
         $this->currentStrokeColor = null;
+=======
+        // Reset color and transparency caches, as any changes to the graphics
+        // state since saving will be discarded
+        $this->currentColor = null;
+        $this->currentStrokeColor = null;
+        $this->currentLineStyle = '';
+        $this->currentLineTransparency = null;
+        $this->currentFillTransparency = null;
+>>>>>>> tundeseun/devtest
         $this->addContent("\nQ");
     }
 
@@ -4688,7 +4803,11 @@ EOT;
         }
 
         // if there is a line style set, then put this in too
+<<<<<<< HEAD
         if (mb_strlen($this->currentLineStyle, '8bit')) {
+=======
+        if ($this->currentLineStyle !== '') {
+>>>>>>> tundeseun/devtest
             $this->addContent("\n$this->currentLineStyle");
         }
 
@@ -5013,7 +5132,11 @@ EOT;
         }
 
         if (!isset($this->stringSubsets[$font])) {
+<<<<<<< HEAD
             $base_subset = "\u{fffd}\u{fffe}\u{ffff}";
+=======
+            $base_subset = "\u{fffd}\u{fffe}\u{ffff}"; // fffd => replacement character, fffe/ffff => not a character
+>>>>>>> tundeseun/devtest
             $this->stringSubsets[$font] = $this->utf8toCodePointsArray($base_subset);
         }
 
@@ -5165,7 +5288,12 @@ EOT;
             $this->selectFont($this->defaultFont);
         }
 
+<<<<<<< HEAD
         $text = str_replace(["\r", "\n"], "", $text);
+=======
+        // remove non-printable characters since they have no width
+        $text = preg_replace('/[\x00-\x1F\x7F]/u', '', $text);
+>>>>>>> tundeseun/devtest
 
         // hmm, this is where it all starts to get tricky - use the font information to
         // calculate the width of each character, add them up and convert to user units
@@ -5187,6 +5315,7 @@ EOT;
 
                 if (isset($current_font['C'][$char])) {
                     $char_width = $current_font['C'][$char];
+<<<<<<< HEAD
 
                     // add the character width
                     $w += $char_width;
@@ -5195,6 +5324,21 @@ EOT;
                     if (isset($current_font['codeToName'][$char]) && $current_font['codeToName'][$char] === 'space') {  // Space
                         $w += $wordSpacing * $space_scale;
                     }
+=======
+                } elseif (isset($current_font['C'][0xFFFD])) {
+                    // fffd => replacement character
+                    $char_width = $current_font['C'][0xFFFD];
+                } else {
+                    $char_width = $current_font['C'][0x0020];
+                }
+
+                // add the character width
+                $w += $char_width;
+
+                // add additional padding for space
+                if (isset($current_font['codeToName'][$char]) && $current_font['codeToName'][$char] === 'space') {  // Space
+                    $w += $wordSpacing * $space_scale;
+>>>>>>> tundeseun/devtest
                 }
             }
 
@@ -5222,6 +5366,7 @@ EOT;
 
                 if (isset($current_font['C'][$char])) {
                     $char_width = $current_font['C'][$char];
+<<<<<<< HEAD
 
                     // add the character width
                     $w += $char_width;
@@ -5230,6 +5375,21 @@ EOT;
                     if (isset($current_font['codeToName'][$char]) && $current_font['codeToName'][$char] === 'space') {  // Space
                         $w += $wordSpacing * $space_scale;
                     }
+=======
+                } elseif (isset($current_font['C'][0xFFFD])) {
+                    // fffd => replacement character
+                    $char_width = $current_font['C'][0xFFFD];
+                } else {
+                    $char_width = $current_font['C'][0x0020];
+                }
+
+                // add the character width
+                $w += $char_width;
+
+                // add additional padding for space
+                if (isset($current_font['codeToName'][$char]) && $current_font['codeToName'][$char] === 'space') {  // Space
+                    $w += $wordSpacing * $space_scale;
+>>>>>>> tundeseun/devtest
                 }
             }
 
@@ -5706,8 +5866,15 @@ EOT;
                 }
             }
 
+<<<<<<< HEAD
             $imagick = new \Imagick($file);
             $imagick->setFormat('png');
+=======
+            $imagick = new \Imagick();
+            $imagick->setRegistry('temporary-path', $this->tmp);
+            $imagick->setFormat('PNG');
+            $imagick->readImage($file);
+>>>>>>> tundeseun/devtest
 
             // Get opacity channel (negative of alpha channel)
             if ($imagick->getImageAlphaChannel()) {
@@ -5717,7 +5884,18 @@ EOT;
                 if (\Imagick::getVersion()['versionNumber'] < 1800) {
                     $alpha_channel->negateImage(true);
                 }
+<<<<<<< HEAD
                 $alpha_channel->writeImage($tempfile_alpha);
+=======
+
+                try {
+                    $alpha_channel->writeImage($tempfile_alpha);
+                } catch (\ImagickException $th) {
+                    // Backwards compatible retry attempt in case the IMagick policy is still configured in lowercase
+                    $alpha_channel->setFormat('png');
+                    $alpha_channel->writeImage($tempfile_alpha);
+                }
+>>>>>>> tundeseun/devtest
 
                 // Cast to 8bit+palette
                 $imgalpha_ = @imagecreatefrompng($tempfile_alpha);
@@ -5730,6 +5908,10 @@ EOT;
 
             // Make opaque image
             $color_channels = new \Imagick();
+<<<<<<< HEAD
+=======
+            $color_channels->setRegistry('temporary-path', $this->tmp);
+>>>>>>> tundeseun/devtest
             $color_channels->newImage($wpx, $hpx, "#FFFFFF", "png");
             $color_channels->compositeImage($imagick, \Imagick::COMPOSITE_COPYRED, 0, 0);
             $color_channels->compositeImage($imagick, \Imagick::COMPOSITE_COPYGREEN, 0, 0);
@@ -5887,8 +6069,12 @@ EOT;
     }
 
     /**
+<<<<<<< HEAD
      * add a PNG image into the document, from a file
      * this should work with remote files
+=======
+     * add an SVG image into the document from a file
+>>>>>>> tundeseun/devtest
      *
      * @param $file
      * @param $x

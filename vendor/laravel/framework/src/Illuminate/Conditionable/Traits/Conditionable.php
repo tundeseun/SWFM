@@ -18,7 +18,11 @@ trait Conditionable
      * @param  (callable($this, TWhenParameter): TWhenReturnType)|null  $default
      * @return $this|TWhenReturnType
      */
+<<<<<<< HEAD
     public function when($value = null, callable $callback = null, callable $default = null)
+=======
+    public function when($value = null, ?callable $callback = null, ?callable $default = null)
+>>>>>>> tundeseun/devtest
     {
         $value = $value instanceof Closure ? $value($this) : $value;
 
@@ -50,7 +54,11 @@ trait Conditionable
      * @param  (callable($this, TUnlessParameter): TUnlessReturnType)|null  $default
      * @return $this|TUnlessReturnType
      */
+<<<<<<< HEAD
     public function unless($value = null, callable $callback = null, callable $default = null)
+=======
+    public function unless($value = null, ?callable $callback = null, ?callable $default = null)
+>>>>>>> tundeseun/devtest
     {
         $value = $value instanceof Closure ? $value($this) : $value;
 

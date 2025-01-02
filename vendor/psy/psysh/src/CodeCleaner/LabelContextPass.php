@@ -31,6 +31,7 @@ use Psy\Exception\FatalErrorException;
  */
 class LabelContextPass extends CodeCleanerPass
 {
+<<<<<<< HEAD
     /** @var int */
     private $functionDepth;
 
@@ -38,6 +39,11 @@ class LabelContextPass extends CodeCleanerPass
     private $labelDeclarations;
     /** @var array */
     private $labelGotos;
+=======
+    private int $functionDepth = 0;
+    private array $labelDeclarations = [];
+    private array $labelGotos = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * @param array $nodes

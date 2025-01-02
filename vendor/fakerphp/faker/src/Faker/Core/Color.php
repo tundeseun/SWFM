@@ -54,7 +54,11 @@ final class Color implements Extension\ColorExtension
         'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen',
     ];
 
+<<<<<<< HEAD
     public function __construct(Extension\NumberExtension $numberExtension = null)
+=======
+    public function __construct(?Extension\NumberExtension $numberExtension = null)
+>>>>>>> tundeseun/devtest
     {
         $this->numberExtension = $numberExtension ?: new Number();
     }

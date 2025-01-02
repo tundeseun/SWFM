@@ -6,6 +6,10 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Namespaces;
 use PhpOffice\PhpSpreadsheet\Shared\File;
 use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+<<<<<<< HEAD
+=======
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing as WorksheetDrawing;
+>>>>>>> tundeseun/devtest
 use PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing;
 use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
 
@@ -132,6 +136,7 @@ class ContentTypes extends WriterPart
             $extension = '';
             $mimeType = '';
 
+<<<<<<< HEAD
             if ($this->getParentWriter()->getDrawingHashTable()->getByIndex($i) instanceof \PhpOffice\PhpSpreadsheet\Worksheet\Drawing) {
                 $extension = strtolower($this->getParentWriter()->getDrawingHashTable()->getByIndex($i)->getExtension());
                 $mimeType = $this->getImageMimeType($this->getParentWriter()->getDrawingHashTable()->getByIndex($i)->getPath());
@@ -144,6 +149,25 @@ class ContentTypes extends WriterPart
             }
 
             if (!isset($aMediaContentTypes[$extension])) {
+=======
+            $drawing = $this->getParentWriter()->getDrawingHashTable()->getByIndex($i);
+            if ($drawing instanceof WorksheetDrawing && $drawing->getPath() !== '') {
+                $extension = strtolower($drawing->getExtension());
+                if ($drawing->getIsUrl()) {
+                    $mimeType = image_type_to_mime_type($drawing->getType());
+                } else {
+                    $mimeType = $this->getImageMimeType($drawing->getPath());
+                }
+            } elseif ($drawing instanceof MemoryDrawing) {
+                $extension = strtolower($drawing->getMimeType());
+                $extension = explode('/', $extension);
+                $extension = $extension[1];
+
+                $mimeType = $drawing->getMimeType();
+            }
+
+            if ($mimeType !== '' && !isset($aMediaContentTypes[$extension])) {
+>>>>>>> tundeseun/devtest
                 $aMediaContentTypes[$extension] = $mimeType;
 
                 $this->writeDefaultContentType($objWriter, $extension, $mimeType);
@@ -162,7 +186,11 @@ class ContentTypes extends WriterPart
         for ($i = 0; $i < $sheetCount; ++$i) {
             if (count($spreadsheet->getSheet($i)->getHeaderFooter()->getImages()) > 0) {
                 foreach ($spreadsheet->getSheet($i)->getHeaderFooter()->getImages() as $image) {
+<<<<<<< HEAD
                     if (!isset($aMediaContentTypes[strtolower($image->getExtension())])) {
+=======
+                    if ($image->getPath() !== '' && !isset($aMediaContentTypes[strtolower($image->getExtension())])) {
+>>>>>>> tundeseun/devtest
                         $aMediaContentTypes[strtolower($image->getExtension())] = $this->getImageMimeType($image->getPath());
 
                         $this->writeDefaultContentType($objWriter, strtolower($image->getExtension()), $aMediaContentTypes[strtolower($image->getExtension())]);

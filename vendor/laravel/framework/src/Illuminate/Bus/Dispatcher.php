@@ -58,7 +58,11 @@ class Dispatcher implements QueueingDispatcher
      * @param  \Closure|null  $queueResolver
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Container $container, Closure $queueResolver = null)
+=======
+    public function __construct(Container $container, ?Closure $queueResolver = null)
+>>>>>>> tundeseun/devtest
     {
         $this->container = $container;
         $this->queueResolver = $queueResolver;

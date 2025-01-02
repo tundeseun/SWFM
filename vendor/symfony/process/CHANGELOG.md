@@ -7,7 +7,10 @@ CHANGELOG
  * Add `PhpSubprocess` to handle PHP subprocesses that take over the
    configuration from their parent
  * Add `RunProcessMessage` and `RunProcessMessageHandler`
+<<<<<<< HEAD
  * Support using `Process::findExecutable()` independently of `open_basedir`
+=======
+>>>>>>> tundeseun/devtest
 
 5.2.0
 -----

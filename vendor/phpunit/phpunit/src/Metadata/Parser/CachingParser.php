@@ -9,6 +9,12 @@
  */
 namespace PHPUnit\Metadata\Parser;
 
+<<<<<<< HEAD
+=======
+use function assert;
+use function class_exists;
+use function method_exists;
+>>>>>>> tundeseun/devtest
 use PHPUnit\Metadata\MetadataCollection;
 
 /**
@@ -33,6 +39,11 @@ final class CachingParser implements Parser
      */
     public function forClass(string $className): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+
+>>>>>>> tundeseun/devtest
         if (isset($this->classCache[$className])) {
             return $this->classCache[$className];
         }
@@ -48,6 +59,12 @@ final class CachingParser implements Parser
      */
     public function forMethod(string $className, string $methodName): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+        assert(method_exists($className, $methodName));
+
+>>>>>>> tundeseun/devtest
         $key = $className . '::' . $methodName;
 
         if (isset($this->methodCache[$key])) {

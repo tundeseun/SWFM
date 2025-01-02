@@ -21,7 +21,11 @@ class HTMLPurifier_Config
      * HTML Purifier's version
      * @type string
      */
+<<<<<<< HEAD
     public $version = '4.17.0';
+=======
+    public $version = '4.18.0';
+>>>>>>> tundeseun/devtest
 
     /**
      * Whether or not to automatically finalize

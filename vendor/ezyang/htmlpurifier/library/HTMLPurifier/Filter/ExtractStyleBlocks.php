@@ -54,6 +54,14 @@ class HTMLPurifier_Filter_ExtractStyleBlocks extends HTMLPurifier_Filter
      */
     private $_enum_attrdef;
 
+<<<<<<< HEAD
+=======
+    /**
+     * @type HTMLPurifier_AttrDef_Enum
+     */
+    private $_universal_attrdef;
+
+>>>>>>> tundeseun/devtest
     public function __construct()
     {
         $this->_tidy = new csstidy();
@@ -70,6 +78,16 @@ class HTMLPurifier_Filter_ExtractStyleBlocks extends HTMLPurifier_Filter
                 'focus'
             )
         );
+<<<<<<< HEAD
+=======
+        $this->_universal_attrdef = new HTMLPurifier_AttrDef_Enum(
+            array(
+                'initial',
+                'inherit',
+                'unset',
+            )
+        );
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -307,6 +325,14 @@ class HTMLPurifier_Filter_ExtractStyleBlocks extends HTMLPurifier_Filter
                             unset($style[$name]);
                             continue;
                         }
+<<<<<<< HEAD
+=======
+                        $uni_ret = $this->_universal_attrdef->validate($value, $config, $context);
+                        if ($uni_ret !== false) {
+                            $style[$name] = $uni_ret;
+                            continue;
+                        }
+>>>>>>> tundeseun/devtest
                         $def = $css_definition->info[$name];
                         $ret = $def->validate($value, $config, $context);
                         if ($ret === false) {

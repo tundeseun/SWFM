@@ -6,6 +6,10 @@ use PhpParser\Node\ComplexType;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
+<<<<<<< HEAD
+=======
+use PhpParser\Node\Name\FullyQualified;
+>>>>>>> tundeseun/devtest
 use PhpParser\Node\NullableType;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
@@ -214,7 +218,11 @@ final class BuilderHelpers {
      * Normalizes a value: Converts nulls, booleans, integers,
      * floats, strings and arrays into their respective nodes
      *
+<<<<<<< HEAD
      * @param Node\Expr|bool|null|int|float|string|array $value The value to normalize
+=======
+     * @param Node\Expr|bool|null|int|float|string|array|\UnitEnum $value The value to normalize
+>>>>>>> tundeseun/devtest
      *
      * @return Expr The normalized value
      */
@@ -268,6 +276,13 @@ final class BuilderHelpers {
             return new Expr\Array_($items);
         }
 
+<<<<<<< HEAD
+=======
+        if ($value instanceof \UnitEnum) {
+            return new Expr\ClassConstFetch(new FullyQualified(\get_class($value)), new Identifier($value->name));
+        }
+
+>>>>>>> tundeseun/devtest
         throw new \LogicException('Invalid value');
     }
 

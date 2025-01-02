@@ -169,7 +169,11 @@ class Row implements ArrayAccess
      *
      * @internal
      */
+<<<<<<< HEAD
     public function setPreparationCallback(Closure $preparationCallback = null)
+=======
+    public function setPreparationCallback(?Closure $preparationCallback = null)
+>>>>>>> tundeseun/devtest
     {
         $this->preparationCallback = $preparationCallback;
     }

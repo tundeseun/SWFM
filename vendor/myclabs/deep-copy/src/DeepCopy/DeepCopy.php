@@ -4,6 +4,10 @@ namespace DeepCopy;
 
 use ArrayObject;
 use DateInterval;
+<<<<<<< HEAD
+=======
+use DatePeriod;
+>>>>>>> tundeseun/devtest
 use DateTimeInterface;
 use DateTimeZone;
 use DeepCopy\Exception\CloneException;
@@ -12,6 +16,10 @@ use DeepCopy\Filter\Filter;
 use DeepCopy\Matcher\Matcher;
 use DeepCopy\Reflection\ReflectionHelper;
 use DeepCopy\TypeFilter\Date\DateIntervalFilter;
+<<<<<<< HEAD
+=======
+use DeepCopy\TypeFilter\Date\DatePeriodFilter;
+>>>>>>> tundeseun/devtest
 use DeepCopy\TypeFilter\Spl\ArrayObjectFilter;
 use DeepCopy\TypeFilter\Spl\SplDoublyLinkedListFilter;
 use DeepCopy\TypeFilter\TypeFilter;
@@ -64,6 +72,10 @@ class DeepCopy
 
         $this->addTypeFilter(new ArrayObjectFilter($this), new TypeMatcher(ArrayObject::class));
         $this->addTypeFilter(new DateIntervalFilter(), new TypeMatcher(DateInterval::class));
+<<<<<<< HEAD
+=======
+        $this->addTypeFilter(new DatePeriodFilter(), new TypeMatcher(DatePeriod::class));
+>>>>>>> tundeseun/devtest
         $this->addTypeFilter(new SplDoublyLinkedListFilter($this), new TypeMatcher(SplDoublyLinkedList::class));
     }
 

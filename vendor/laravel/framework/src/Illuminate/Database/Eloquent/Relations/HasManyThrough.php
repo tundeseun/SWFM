@@ -122,7 +122,11 @@ class HasManyThrough extends Relation
      * @param  \Illuminate\Database\Eloquent\Builder|null  $query
      * @return void
      */
+<<<<<<< HEAD
     protected function performJoin(Builder $query = null)
+=======
+    protected function performJoin(?Builder $query = null)
+>>>>>>> tundeseun/devtest
     {
         $query = $query ?: $this->query;
 
@@ -363,7 +367,11 @@ class HasManyThrough extends Relation
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Model|static|mixed
      */
+<<<<<<< HEAD
     public function firstOr($columns = ['*'], Closure $callback = null)
+=======
+    public function firstOr($columns = ['*'], ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -450,7 +458,11 @@ class HasManyThrough extends Relation
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|mixed
      */
+<<<<<<< HEAD
     public function findOr($id, $columns = ['*'], Closure $callback = null)
+=======
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($columns instanceof Closure) {
             $callback = $columns;

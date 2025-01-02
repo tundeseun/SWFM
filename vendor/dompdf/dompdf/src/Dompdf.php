@@ -327,6 +327,7 @@ class Dompdf
     }
 
     /**
+<<<<<<< HEAD
      * Loads an HTML file
      * Parse errors are stored in the global array _dompdf_warnings.
      *
@@ -334,6 +335,18 @@ class Dompdf
      * @param string $encoding Encoding of $file
      *
      * @throws Exception
+=======
+     * Loads an HTML file.
+     *
+     * If no encoding is given or set via `Content-Type` header, the document
+     * encoding specified via `<meta>` tag is used. An existing Unicode BOM
+     * always takes precedence.
+     *
+     * Parse errors are stored in the global array `$_dompdf_warnings`.
+     *
+     * @param string      $file     A filename or URL to load.
+     * @param string|null $encoding Encoding of the file.
+>>>>>>> tundeseun/devtest
      */
     public function loadHtmlFile($file, $encoding = null)
     {
@@ -394,7 +407,16 @@ class Dompdf
         $this->loadHtml($str, $encoding);
     }
 
+<<<<<<< HEAD
     public function loadDOM($doc, $quirksmode = false) {
+=======
+    /**
+     * @param DOMDocument $doc
+     * @param bool        $quirksmode
+     */
+    public function loadDOM($doc, $quirksmode = false)
+    {
+>>>>>>> tundeseun/devtest
         // Remove #text children nodes in nodes that shouldn't have
         $tag_names = ["html", "head", "table", "tbody", "thead", "tfoot", "tr"];
         foreach ($tag_names as $tag_name) {
@@ -411,16 +433,29 @@ class Dompdf
     }
 
     /**
+<<<<<<< HEAD
      * Loads an HTML string
      * Parse errors are stored in the global array _dompdf_warnings.
      *
      * @param string $str HTML text to load
      * @param string $encoding Encoding of $str
+=======
+     * Loads an HTML document from a string.
+     *
+     * If no encoding is given, the document encoding specified via `<meta>`
+     * tag is used. An existing Unicode BOM always takes precedence.
+     *
+     * Parse errors are stored in the global array `$_dompdf_warnings`.
+     *
+     * @param string      $str      The HTML to load.
+     * @param string|null $encoding Encoding of the string.
+>>>>>>> tundeseun/devtest
      */
     public function loadHtml($str, $encoding = null)
     {
         $this->setPhpConfig();
 
+<<<<<<< HEAD
         // Determine character encoding when $encoding parameter not used
         if ($encoding === null) {
             mb_detect_order('auto');
@@ -467,6 +502,78 @@ class Dompdf
 
         // Store parsing warnings as messages
         set_error_handler([Helpers::class, 'record_warnings']);
+=======
+        // Detect Unicode via BOM, taking precedence over the given encoding.
+        // Remove the mark, as it is treated as document text by DOMDocument.
+        // http://us2.php.net/manual/en/function.mb-detect-encoding.php#91051
+        if (strncmp($str, "\xFE\xFF", 2) === 0) {
+            $str = substr($str, 2);
+            $encoding = "UTF-16BE";
+        } elseif (strncmp($str, "\xFF\xFE", 2) === 0) {
+            $str = substr($str, 2);
+            $encoding = "UTF-16LE";
+        } elseif (strncmp($str, "\xEF\xBB\xBF", 3) === 0) {
+            $str = substr($str, 3);
+            $encoding = "UTF-8";
+        }
+
+        // Convert document using the given encoding
+        $encodingGiven = $encoding !== null && $encoding !== "";
+
+        if ($encodingGiven && !in_array(strtoupper($encoding), ["UTF-8", "UTF8"], true)) {
+            $converted = mb_convert_encoding($str, "UTF-8", $encoding);
+
+            if ($converted !== false) {
+                $str = $converted;
+            }
+        }
+
+        // Parse document encoding from `<meta>` tag ...
+        $charset = "(?<charset>[a-z0-9\-]+)";
+        $contentType = "http-equiv\s*=\s* ([\"']?)\s* Content-Type";
+        $contentStart = "content\s*=\s* ([\"']?)\s* [\w\/]+ \s*;\s* charset\s*=\s*";
+        $metaTags = [
+            "/<meta \s[^>]* $contentType \s*\g1\s* $contentStart $charset \s*\g2 [^>]*>/isx", // <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            "/<meta \s[^>]* $contentStart $charset \s*\g1\s* $contentType \s*\g3 [^>]*>/isx", // <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            "/<meta \s[^>]* charset\s*=\s* ([\"']?)\s* $charset \s*\g1 [^>]*>/isx",           // <meta charset="UTF-8">
+        ];
+
+        foreach ($metaTags as $pattern) {
+            if (preg_match($pattern, $str, $matches, PREG_OFFSET_CAPTURE)) {
+                [$documentEncoding, $offset] = $matches["charset"];
+                break;
+            }
+        }
+
+        // ... and replace it with UTF-8; add a corresponding `<meta>` tag if
+        // missing. This is to ensure that `DOMDocument` handles the document
+        // encoding properly, as it will mess up the encoding if the charset
+        // declaration is missing or different from the actual encoding
+        if (isset($documentEncoding) && isset($offset)) {
+            if (!in_array(strtoupper($documentEncoding), ["UTF-8", "UTF8"], true)) {
+                $str = substr($str, 0, $offset) . "UTF-8" . substr($str, $offset + strlen($documentEncoding));
+            }
+        } elseif (($headPos = stripos($str, "<head>")) !== false) {
+            $str = substr($str, 0, $headPos + 6) . '<meta charset="UTF-8">' . substr($str, $headPos + 6);
+        } else {
+            $str = '<meta charset="UTF-8">' . $str;
+        }
+
+        // If no encoding was passed, use the document encoding, falling back to
+        // auto-detection
+        $fallbackEncoding = $documentEncoding ?? "auto";
+
+        if (!$encodingGiven && !in_array(strtoupper($fallbackEncoding), ["UTF-8", "UTF8"], true)) {
+            $converted = mb_convert_encoding($str, "UTF-8", $fallbackEncoding);
+
+            if ($converted !== false) {
+                $str = $converted;
+            }
+        }
+
+        // Store parsing warnings as messages
+        set_error_handler([Helpers::class, "record_warnings"]);
+>>>>>>> tundeseun/devtest
 
         try {
             // @todo Take the quirksmode into account
@@ -474,12 +581,20 @@ class Dompdf
             // http://hsivonen.iki.fi/doctype/
             $quirksmode = false;
 
+<<<<<<< HEAD
             $html5 = new HTML5(['encoding' => $encoding, 'disable_html_ns' => true]);
+=======
+            $html5 = new HTML5(["encoding" => "UTF-8", "disable_html_ns" => true]);
+>>>>>>> tundeseun/devtest
             $dom = $html5->loadHTML($str);
 
             // extra step to normalize the HTML document structure
             // see Masterminds/html5-php#166
+<<<<<<< HEAD
             $doc = new DOMDocument("1.0", $encoding);
+=======
+            $doc = new DOMDocument("1.0", "UTF-8");
+>>>>>>> tundeseun/devtest
             $doc->preserveWhiteSpace = true;
             $doc->loadHTML($html5->saveHTML($dom), LIBXML_NOWARNING | LIBXML_NOERROR);
 
@@ -552,8 +667,15 @@ class Dompdf
             switch (strtolower($tag->nodeName)) {
                 // load <link rel="STYLESHEET" ... /> tags
                 case "link":
+<<<<<<< HEAD
                     if (mb_strtolower(stripos($tag->getAttribute("rel"), "stylesheet") !== false) || // may be "appendix stylesheet"
                         mb_strtolower($tag->getAttribute("type")) === "text/css"
+=======
+                    if (
+                        (stripos($tag->getAttribute("rel"), "stylesheet") !== false // may be "appendix stylesheet"
+                        || mb_strtolower($tag->getAttribute("type")) === "text/css")
+                        && stripos($tag->getAttribute("rel"), "alternate") === false // don't load "alternate stylesheet"
+>>>>>>> tundeseun/devtest
                     ) {
                         //Check if the css file is for an accepted media type
                         //media not given then always valid
@@ -705,6 +827,14 @@ class Dompdf
 
         // Set paper size if defined via CSS
         if (is_array($basePageStyle->size)) {
+<<<<<<< HEAD
+=======
+            // Orientation is already applied when reading the computed CSS
+            // `size` value. The `Canvas` back ends, however, unconditionally
+            // swap with an orientation of `landscape` and leave the defined
+            // size as-is with `portrait`; so passing `portrait` as orientation
+            // here (via the default value) is correct
+>>>>>>> tundeseun/devtest
             [$width, $height] = $basePageStyle->size;
             $this->setPaper([0, 0, $width, $height]);
         }

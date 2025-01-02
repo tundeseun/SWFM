@@ -65,9 +65,12 @@ final class MigrationBuilder
         ],
     ];
 
+<<<<<<< HEAD
     /**
      * @throws MigrationBuilderException
      */
+=======
+>>>>>>> tundeseun/devtest
     public function build(string $fromVersion): array
     {
         $stack = [new UpdateSchemaLocation];

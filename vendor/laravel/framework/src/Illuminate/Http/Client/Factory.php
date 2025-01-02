@@ -84,7 +84,11 @@ class Factory
      * @param  \Illuminate\Contracts\Events\Dispatcher|null  $dispatcher
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Dispatcher $dispatcher = null)
+=======
+    public function __construct(?Dispatcher $dispatcher = null)
+>>>>>>> tundeseun/devtest
     {
         $this->dispatcher = $dispatcher;
 

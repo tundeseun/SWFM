@@ -7,6 +7,10 @@ namespace PhpParser;
  * turn is based on work by Masato Bito.
  */
 
+<<<<<<< HEAD
+=======
+use PhpParser\Node\Arg;
+>>>>>>> tundeseun/devtest
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\Cast\Double;
@@ -14,6 +18,10 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\InterpolatedStringPart;
 use PhpParser\Node\Name;
 use PhpParser\Node\Param;
+<<<<<<< HEAD
+=======
+use PhpParser\Node\PropertyHook;
+>>>>>>> tundeseun/devtest
 use PhpParser\Node\Scalar\InterpolatedString;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Scalar\String_;
@@ -1137,6 +1145,7 @@ abstract class ParserAbstract implements Parser {
     }
 
     protected function checkClassConst(ClassConst $node, int $modifierPos): void {
+<<<<<<< HEAD
         if ($node->flags & Modifiers::STATIC) {
             $this->emitError(new Error(
                 "Cannot use 'static' as constant modifier",
@@ -1163,6 +1172,14 @@ abstract class ParserAbstract implements Parser {
         if ($node->flags & Modifiers::FINAL) {
             $this->emitError(new Error('Properties cannot be declared final',
                 $this->getAttributesAt($modifierPos)));
+=======
+        foreach ([Modifiers::STATIC, Modifiers::ABSTRACT, Modifiers::READONLY] as $modifier) {
+            if ($node->flags & $modifier) {
+                $this->emitError(new Error(
+                    "Cannot use '" . Modifiers::toString($modifier) . "' as constant modifier",
+                    $this->getAttributesAt($modifierPos)));
+            }
+>>>>>>> tundeseun/devtest
         }
     }
 
@@ -1178,6 +1195,71 @@ abstract class ParserAbstract implements Parser {
         }
     }
 
+<<<<<<< HEAD
+=======
+    /** @param PropertyHook[] $hooks */
+    protected function checkPropertyHookList(array $hooks, int $hookPos): void {
+        if (empty($hooks)) {
+            $this->emitError(new Error(
+                'Property hook list cannot be empty', $this->getAttributesAt($hookPos)));
+        }
+    }
+
+    protected function checkPropertyHook(PropertyHook $hook, ?int $paramListPos): void {
+        $name = $hook->name->toLowerString();
+        if ($name !== 'get' && $name !== 'set') {
+            $this->emitError(new Error(
+                'Unknown hook "' . $hook->name . '", expected "get" or "set"',
+                $hook->name->getAttributes()));
+        }
+        if ($name === 'get' && $paramListPos !== null) {
+            $this->emitError(new Error(
+                'get hook must not have a parameter list', $this->getAttributesAt($paramListPos)));
+        }
+    }
+
+    protected function checkPropertyHookModifiers(int $a, int $b, int $modifierPos): void {
+        try {
+            Modifiers::verifyModifier($a, $b);
+        } catch (Error $error) {
+            $error->setAttributes($this->getAttributesAt($modifierPos));
+            $this->emitError($error);
+        }
+
+        if ($b != Modifiers::FINAL) {
+            $this->emitError(new Error(
+                'Cannot use the ' . Modifiers::toString($b) . ' modifier on a property hook',
+                $this->getAttributesAt($modifierPos)));
+        }
+    }
+
+    /** @param array<Node\Arg|Node\VariadicPlaceholder> $args */
+    private function isSimpleExit(array $args): bool {
+        if (\count($args) === 0) {
+            return true;
+        }
+        if (\count($args) === 1) {
+            $arg = $args[0];
+            return $arg instanceof Arg && $arg->name === null &&
+                   $arg->byRef === false && $arg->unpack === false;
+        }
+        return false;
+    }
+
+    /**
+     * @param array<Node\Arg|Node\VariadicPlaceholder> $args
+     * @param array<string, mixed> $attrs
+     */
+    protected function createExitExpr(string $name, int $namePos, array $args, array $attrs): Expr {
+        if ($this->isSimpleExit($args)) {
+            // Create Exit node for backwards compatibility.
+            $attrs['kind'] = strtolower($name) === 'exit' ? Expr\Exit_::KIND_EXIT : Expr\Exit_::KIND_DIE;
+            return new Expr\Exit_(\count($args) === 1 ? $args[0]->value : null, $attrs);
+        }
+        return new Expr\FuncCall(new Name($name, $this->getAttributesAt($namePos)), $args, $attrs);
+    }
+
+>>>>>>> tundeseun/devtest
     /**
      * Creates the token map.
      *
@@ -1190,6 +1272,7 @@ abstract class ParserAbstract implements Parser {
     protected function createTokenMap(): array {
         $tokenMap = [];
 
+<<<<<<< HEAD
         for ($i = 0; $i < 1000; ++$i) {
             if ($i < 256) {
                 // Single-char tokens use an identity mapping.
@@ -1226,6 +1309,25 @@ abstract class ParserAbstract implements Parser {
         $tokenMap[\T_READONLY] = static::T_READONLY;
 
         // We have create a map from PHP token IDs to external symbol IDs.
+=======
+        // Single-char tokens use an identity mapping.
+        for ($i = 0; $i < 256; ++$i) {
+            $tokenMap[$i] = $i;
+        }
+
+        foreach ($this->symbolToName as $name) {
+            if ($name[0] === 'T') {
+                $tokenMap[\constant($name)] = constant(static::class . '::' . $name);
+            }
+        }
+
+        // T_OPEN_TAG_WITH_ECHO with dropped T_OPEN_TAG results in T_ECHO
+        $tokenMap[\T_OPEN_TAG_WITH_ECHO] = static::T_ECHO;
+        // T_CLOSE_TAG is equivalent to ';'
+        $tokenMap[\T_CLOSE_TAG] = ord(';');
+
+        // We have created a map from PHP token IDs to external symbol IDs.
+>>>>>>> tundeseun/devtest
         // Now map them to the internal symbol ID.
         $fullTokenMap = [];
         foreach ($tokenMap as $phpToken => $extSymbol) {

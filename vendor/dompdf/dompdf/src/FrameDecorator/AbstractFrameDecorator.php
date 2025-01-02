@@ -805,6 +805,7 @@ abstract class AbstractFrameDecorator extends Frame
      */
     public function increment_counter(string $id = self::DEFAULT_COUNTER, int $increment = 1): void
     {
+<<<<<<< HEAD
         $counter_frame = $this->lookup_counter_frame($id);
 
         if ($counter_frame) {
@@ -814,20 +815,36 @@ abstract class AbstractFrameDecorator extends Frame
 
             $counter_frame->_counters[$id] += $increment;
         }
+=======
+        $counter_frame = $this->lookup_counter_frame($id, true);
+        $counter_frame->_counters[$id] += $increment;
+>>>>>>> tundeseun/devtest
     }
 
     /**
      * @param string $id
+<<<<<<< HEAD
      * @return AbstractFrameDecorator|null
      */
     function lookup_counter_frame($id = self::DEFAULT_COUNTER)
     {
+=======
+     * @param bool   $auto_reset Instantiate a new counter if none with the given name is in scope.
+     *
+     * @return AbstractFrameDecorator|null
+     */
+    public function lookup_counter_frame(
+        string $id = self::DEFAULT_COUNTER,
+        bool $auto_reset = false
+    ): ?AbstractFrameDecorator {
+>>>>>>> tundeseun/devtest
         $f = $this->get_parent();
 
         while ($f) {
             if (isset($f->_counters[$id])) {
                 return $f;
             }
+<<<<<<< HEAD
             $fp = $f->get_parent();
 
             if (!$fp) {
@@ -835,6 +852,15 @@ abstract class AbstractFrameDecorator extends Frame
             }
 
             $f = $fp;
+=======
+            $f = $f->get_parent();
+        }
+
+        if ($auto_reset) {
+            $f = $this->get_parent();
+            $f->_counters[$id] = 0;
+            return $f;
+>>>>>>> tundeseun/devtest
         }
 
         return null;
@@ -843,6 +869,7 @@ abstract class AbstractFrameDecorator extends Frame
     /**
      * @param string $id
      * @param string $type
+<<<<<<< HEAD
      * @return bool|string
      *
      * TODO: What version is the best : this one or the one in ListBullet ?
@@ -856,6 +883,16 @@ abstract class AbstractFrameDecorator extends Frame
         }
 
         $value = $this->_counters[$id];
+=======
+     *
+     * @return string
+     *
+     * TODO: What version is the best : this one or the one in ListBullet ?
+     */
+    public function counter_value(string $id = self::DEFAULT_COUNTER, string $type = "decimal"): string
+    {
+        $value = $this->_counters[$id] ?? 0;
+>>>>>>> tundeseun/devtest
 
         switch ($type) {
             default:
@@ -869,7 +906,11 @@ abstract class AbstractFrameDecorator extends Frame
                 return Helpers::dec2roman($value);
 
             case "upper-roman":
+<<<<<<< HEAD
                 return mb_strtoupper(Helpers::dec2roman($value));
+=======
+                return strtoupper(Helpers::dec2roman($value));
+>>>>>>> tundeseun/devtest
 
             case "lower-latin":
             case "lower-alpha":
@@ -905,7 +946,11 @@ abstract class AbstractFrameDecorator extends Frame
     /**
      * @param Block|null $block
      */
+<<<<<<< HEAD
     final function reflow(Block $block = null)
+=======
+    final function reflow(?Block $block = null)
+>>>>>>> tundeseun/devtest
     {
         // Uncomment this to see the frames before they're laid out, instead of
         // during rendering.

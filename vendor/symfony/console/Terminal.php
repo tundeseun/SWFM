@@ -217,8 +217,12 @@ class Terminal
 
         $cp = \function_exists('sapi_windows_cp_set') ? sapi_windows_cp_get() : 0;
 
+<<<<<<< HEAD
         $process = proc_open($command, $descriptorspec, $pipes, null, null, ['suppress_errors' => true]);
         if (!\is_resource($process)) {
+=======
+        if (!$process = @proc_open($command, $descriptorspec, $pipes, null, null, ['suppress_errors' => true])) {
+>>>>>>> tundeseun/devtest
             return null;
         }
 

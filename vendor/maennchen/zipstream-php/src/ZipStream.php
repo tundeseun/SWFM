@@ -59,7 +59,11 @@ use ZipStream\Exception\ResourceActionException;
  *
  * // read and add each file to the archive
  * foreach ($files as $path)
+<<<<<<< HEAD
  *   $zip->addFileFormPath(fileName: $path, $path);
+=======
+ *   $zip->addFileFromPath(fileName: $path, $path);
+>>>>>>> tundeseun/devtest
  *
  * // write archive footer to stream
  * $zip->finish();
@@ -263,7 +267,11 @@ class ZipStream
     ): void {
         $this->addFileFromCallback(
             fileName: $fileName,
+<<<<<<< HEAD
             callback: fn () => $data,
+=======
+            callback: fn() => $data,
+>>>>>>> tundeseun/devtest
             comment: $comment,
             compressionMethod: $compressionMethod,
             deflateLevel: $deflateLevel,
@@ -293,7 +301,11 @@ class ZipStream
      * // add a file named 'bigfile.rar' from the local file
      * // '/usr/share/bigfile.rar' with a comment and a last-modified
      * // time of two hours ago
+<<<<<<< HEAD
      * $zip->addFile(
+=======
+     * $zip->addFileFromPath(
+>>>>>>> tundeseun/devtest
      *   fileName: 'bigfile.rar',
      *   path: '/usr/share/bigfile.rar',
      *   comment: 'this is a comment about bigfile.rar',
@@ -330,7 +342,12 @@ class ZipStream
             throw new FileNotReadableException($path);
         }
 
+<<<<<<< HEAD
         if ($fileTime = filemtime($path)) {
+=======
+        $fileTime = filemtime($path);
+        if ($fileTime !== false) {
+>>>>>>> tundeseun/devtest
             $lastModificationDateTime ??= (new DateTimeImmutable())->setTimestamp($fileTime);
         }
 
@@ -394,7 +411,11 @@ class ZipStream
     ): void {
         $this->addFileFromCallback(
             fileName: $fileName,
+<<<<<<< HEAD
             callback: fn () => $stream,
+=======
+            callback: fn() => $stream,
+>>>>>>> tundeseun/devtest
             comment: $comment,
             compressionMethod: $compressionMethod,
             deflateLevel: $deflateLevel,
@@ -473,7 +494,11 @@ class ZipStream
     ): void {
         $this->addFileFromCallback(
             fileName: $fileName,
+<<<<<<< HEAD
             callback: fn () => $stream,
+=======
+            callback: fn() => $stream,
+>>>>>>> tundeseun/devtest
             comment: $comment,
             compressionMethod: $compressionMethod,
             deflateLevel: $deflateLevel,
@@ -494,7 +519,11 @@ class ZipStream
      *
      * ```php
      * foreach($files as $name => $size) {
+<<<<<<< HEAD
      *   $archive->addFileFromPsr7Stream(
+=======
+     *   $archive->addFileFromCallback(
+>>>>>>> tundeseun/devtest
      *     fileName: 'streamfile.txt',
      *     exactSize: $size,
      *     callback: function() use($name): Psr\Http\Message\StreamInterface {
@@ -563,11 +592,19 @@ class ZipStream
             dataCallback: function () use ($callback, $maxSize) {
                 $data = $callback();
 
+<<<<<<< HEAD
                 if(is_resource($data)) {
                     return $data;
                 }
 
                 if($data instanceof StreamInterface) {
+=======
+                if (is_resource($data)) {
+                    return $data;
+                }
+
+                if ($data instanceof StreamInterface) {
+>>>>>>> tundeseun/devtest
                     return StreamWrapper::getResource($data);
                 }
 
@@ -611,7 +648,11 @@ class ZipStream
             enableZeroHeader: $enableZeroHeader ?? $this->defaultEnableZeroHeader,
         );
 
+<<<<<<< HEAD
         if($this->operationMode !== OperationMode::NORMAL) {
+=======
+        if ($this->operationMode !== OperationMode::NORMAL) {
+>>>>>>> tundeseun/devtest
             $this->recordedSimulation[] = $file;
         }
 
@@ -629,7 +670,11 @@ class ZipStream
      *
      * ```php
      * // add a directory named 'world/'
+<<<<<<< HEAD
      * $zip->addFile(fileName: 'world/');
+=======
+     * $zip->addDirectory(fileName: 'world/');
+>>>>>>> tundeseun/devtest
      * ```
      */
     public function addDirectory(
@@ -676,11 +721,19 @@ class ZipStream
      */
     public function executeSimulation(): void
     {
+<<<<<<< HEAD
         if($this->operationMode !== OperationMode::NORMAL) {
             throw new RuntimeException('Zip simulation is not finished.');
         }
 
         foreach($this->recordedSimulation as $file) {
+=======
+        if ($this->operationMode !== OperationMode::NORMAL) {
+            throw new RuntimeException('Zip simulation is not finished.');
+        }
+
+        foreach ($this->recordedSimulation as $file) {
+>>>>>>> tundeseun/devtest
             $this->centralDirectoryRecords[] = $file->cloneSimulationExecution()->process();
         }
 
@@ -815,15 +868,25 @@ class ZipStream
         }
     }
 
+<<<<<<< HEAD
      /**
      * Send HTTP headers for this stream.
      */
+=======
+    /**
+    * Send HTTP headers for this stream.
+    */
+>>>>>>> tundeseun/devtest
     private function sendHttpHeaders(): void
     {
         // grab content disposition
         $disposition = $this->contentDisposition;
 
+<<<<<<< HEAD
         if ($this->outputName) {
+=======
+        if ($this->outputName !== null) {
+>>>>>>> tundeseun/devtest
             // Various different browsers dislike various characters here. Strip them all for safety.
             $safeOutput = trim(str_replace(['"', "'", '\\', ';', "\n", "\r"], '', $this->outputName));
 
@@ -854,7 +917,11 @@ class ZipStream
         $this->centralDirectoryRecords = [];
         $this->offset = 0;
 
+<<<<<<< HEAD
         if($this->operationMode === OperationMode::NORMAL) {
+=======
+        if ($this->operationMode === OperationMode::NORMAL) {
+>>>>>>> tundeseun/devtest
             $this->ready = false;
             $this->recordedSimulation = [];
         } else {

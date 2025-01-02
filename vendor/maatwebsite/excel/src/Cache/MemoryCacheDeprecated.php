@@ -20,7 +20,11 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * @param  int|null  $memoryLimit
      */
+<<<<<<< HEAD
     public function __construct(int $memoryLimit = null)
+=======
+    public function __construct(?int $memoryLimit = null)
+>>>>>>> tundeseun/devtest
     {
         $this->memoryLimit = $memoryLimit;
     }

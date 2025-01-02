@@ -32,6 +32,10 @@ use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Block\DocumentBlockParser;
 use League\CommonMark\Parser\Block\ParagraphParser;
+<<<<<<< HEAD
+=======
+use League\CommonMark\Reference\MemoryLimitedReferenceMap;
+>>>>>>> tundeseun/devtest
 use League\CommonMark\Reference\ReferenceInterface;
 use League\CommonMark\Reference\ReferenceMap;
 
@@ -102,7 +106,11 @@ final class MarkdownParser implements MarkdownParserInterface
 
         // finalizeAndProcess
         $this->closeBlockParsers(\count($this->activeBlockParsers), $this->lineNumber);
+<<<<<<< HEAD
         $this->processInlines();
+=======
+        $this->processInlines(\strlen($input));
+>>>>>>> tundeseun/devtest
 
         $this->environment->dispatch(new DocumentParsedEvent($documentParser->getBlock()));
 
@@ -115,6 +123,12 @@ final class MarkdownParser implements MarkdownParserInterface
      */
     private function parseLine(string $line): void
     {
+<<<<<<< HEAD
+=======
+        // replace NUL characters for security
+        $line = \str_replace("\0", "\u{FFFD}", $line);
+
+>>>>>>> tundeseun/devtest
         $this->cursor = new Cursor($line);
 
         $matches = $this->parseBlockContinuation();
@@ -263,9 +277,15 @@ final class MarkdownParser implements MarkdownParserInterface
     /**
      * Walk through a block & children recursively, parsing string content into inline content where appropriate.
      */
+<<<<<<< HEAD
     private function processInlines(): void
     {
         $p = new InlineParserEngine($this->environment, $this->referenceMap);
+=======
+    private function processInlines(int $inputSize): void
+    {
+        $p = new InlineParserEngine($this->environment, new MemoryLimitedReferenceMap($this->referenceMap, $inputSize));
+>>>>>>> tundeseun/devtest
 
         foreach ($this->closedBlockParsers as $blockParser) {
             $blockParser->parseInlines($p);

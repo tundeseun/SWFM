@@ -20,7 +20,11 @@ use Symfony\Component\Console\Input\InputInterface;
 class ConstantEnumerator extends Enumerator
 {
     // Because `Json` is ugly.
+<<<<<<< HEAD
     private static $categoryLabels = [
+=======
+    private const CATEGORY_LABELS = [
+>>>>>>> tundeseun/devtest
         'libxml'   => 'libxml',
         'openssl'  => 'OpenSSL',
         'pcre'     => 'PCRE',
@@ -88,7 +92,11 @@ class ConstantEnumerator extends Enumerator
         }
 
         if ($category) {
+<<<<<<< HEAD
             $caseCategory = \array_key_exists($category, self::$categoryLabels) ? self::$categoryLabels[$category] : \ucfirst($category);
+=======
+            $caseCategory = \array_key_exists($category, self::CATEGORY_LABELS) ? self::CATEGORY_LABELS[$category] : \ucfirst($category);
+>>>>>>> tundeseun/devtest
             $label = $caseCategory.' Constants';
             $ret[$label] = $this->getConstants($category);
         }

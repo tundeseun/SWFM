@@ -1,8 +1,19 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 6.3
 -----
+=======
+7.1
+---
+
+ * Add support for `:is()`
+ * Add support for `:where()`
+
+6.3
+---
+>>>>>>> tundeseun/devtest
 
  * Add support for `:scope`
 

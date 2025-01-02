@@ -271,7 +271,11 @@ class LocalFilesystemAdapter implements FilesystemAdapter, ChecksumProvider
             $this->resolveDirectoryVisibility($config->get(Config::OPTION_DIRECTORY_VISIBILITY))
         );
 
+<<<<<<< HEAD
         if ( ! @copy($sourcePath, $destinationPath)) {
+=======
+        if ($sourcePath !== $destinationPath && ! @copy($sourcePath, $destinationPath)) {
+>>>>>>> tundeseun/devtest
             throw UnableToCopyFile::because(error_get_last()['message'] ?? 'unknown', $source, $destination);
         }
 

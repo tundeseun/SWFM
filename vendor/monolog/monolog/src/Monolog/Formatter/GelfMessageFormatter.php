@@ -88,11 +88,19 @@ class GelfMessageFormatter extends NormalizerFormatter
     {
         $context = $extra = [];
         if (isset($record->context)) {
+<<<<<<< HEAD
             /** @var mixed[] $context */
             $context = parent::normalize($record->context);
         }
         if (isset($record->extra)) {
             /** @var mixed[] $extra */
+=======
+            /** @var array<array<mixed>|bool|float|int|string|null> $context */
+            $context = parent::normalize($record->context);
+        }
+        if (isset($record->extra)) {
+            /** @var array<array<mixed>|bool|float|int|string|null> $extra */
+>>>>>>> tundeseun/devtest
             $extra = parent::normalize($record->extra);
         }
 
@@ -115,6 +123,10 @@ class GelfMessageFormatter extends NormalizerFormatter
         }
 
         foreach ($extra as $key => $val) {
+<<<<<<< HEAD
+=======
+            $key = (string) preg_replace('#[^\w\.\-]#', '-', $key);
+>>>>>>> tundeseun/devtest
             $val = \is_scalar($val) || null === $val ? $val : $this->toJson($val);
             $len = \strlen($this->extraPrefix . $key . $val);
             if ($len > $this->maxLength) {
@@ -126,6 +138,10 @@ class GelfMessageFormatter extends NormalizerFormatter
         }
 
         foreach ($context as $key => $val) {
+<<<<<<< HEAD
+=======
+            $key = (string) preg_replace('#[^\w\.\-]#', '-', $key);
+>>>>>>> tundeseun/devtest
             $val = \is_scalar($val) || null === $val ? $val : $this->toJson($val);
             $len = \strlen($this->contextPrefix . $key . $val);
             if ($len > $this->maxLength) {

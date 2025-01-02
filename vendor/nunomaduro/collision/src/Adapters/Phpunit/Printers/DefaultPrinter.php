@@ -98,19 +98,31 @@ final class DefaultPrinter
     {
         $this->output = new ConsoleOutput(OutputInterface::VERBOSITY_NORMAL, $colors);
 
+<<<<<<< HEAD
         ConfigureIO::of(new ArgvInput(), $this->output);
+=======
+        ConfigureIO::of(new ArgvInput, $this->output);
+>>>>>>> tundeseun/devtest
 
         self::$verbose = $this->output->isVerbose();
 
         $this->style = new Style($this->output);
 
+<<<<<<< HEAD
         $this->state = new State();
+=======
+        $this->state = new State;
+>>>>>>> tundeseun/devtest
     }
 
     /**
      * If the printer instances should be compact.
      */
+<<<<<<< HEAD
     public static function compact(bool $value = null): bool
+=======
+    public static function compact(?bool $value = null): bool
+>>>>>>> tundeseun/devtest
     {
         if (! is_null($value)) {
             self::$compact = $value;
@@ -122,7 +134,11 @@ final class DefaultPrinter
     /**
      * If the printer instances should profile.
      */
+<<<<<<< HEAD
     public static function profile(bool $value = null): bool
+=======
+    public static function profile(?bool $value = null): bool
+>>>>>>> tundeseun/devtest
     {
         if (! is_null($value)) {
             self::$profile = $value;
@@ -165,7 +181,11 @@ final class DefaultPrinter
         $test = $event->test();
 
         if (! $test instanceof TestMethod) {
+<<<<<<< HEAD
             throw new ShouldNotHappen();
+=======
+            throw new ShouldNotHappen;
+>>>>>>> tundeseun/devtest
         }
 
         if (! $this->state->existsInTestCase($event->test())) {
@@ -196,7 +216,11 @@ final class DefaultPrinter
         $test = $event->test();
 
         if (! $test instanceof TestMethod) {
+<<<<<<< HEAD
             throw new ShouldNotHappen();
+=======
+            throw new ShouldNotHappen;
+>>>>>>> tundeseun/devtest
         }
 
         if ($this->state->testCaseHasChanged($test)) {

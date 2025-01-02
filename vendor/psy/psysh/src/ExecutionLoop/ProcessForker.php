@@ -23,10 +23,18 @@ use Psy\Shell;
  */
 class ProcessForker extends AbstractListener
 {
+<<<<<<< HEAD
     private $savegame;
     private $up;
 
     private static $pcntlFunctions = [
+=======
+    private ?int $savegame = null;
+    /** @var resource */
+    private $up;
+
+    private const PCNTL_FUNCTIONS = [
+>>>>>>> tundeseun/devtest
         'pcntl_fork',
         'pcntl_signal_dispatch',
         'pcntl_signal',
@@ -34,7 +42,11 @@ class ProcessForker extends AbstractListener
         'pcntl_wexitstatus',
     ];
 
+<<<<<<< HEAD
     private static $posixFunctions = [
+=======
+    private const POSIX_FUNCTIONS = [
+>>>>>>> tundeseun/devtest
         'posix_getpid',
         'posix_kill',
     ];
@@ -52,7 +64,11 @@ class ProcessForker extends AbstractListener
      */
     public static function isPcntlSupported(): bool
     {
+<<<<<<< HEAD
         foreach (self::$pcntlFunctions as $func) {
+=======
+        foreach (self::PCNTL_FUNCTIONS as $func) {
+>>>>>>> tundeseun/devtest
             if (!\function_exists($func)) {
                 return false;
             }
@@ -66,7 +82,11 @@ class ProcessForker extends AbstractListener
      */
     public static function disabledPcntlFunctions()
     {
+<<<<<<< HEAD
         return self::checkDisabledFunctions(self::$pcntlFunctions);
+=======
+        return self::checkDisabledFunctions(self::PCNTL_FUNCTIONS);
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -74,7 +94,11 @@ class ProcessForker extends AbstractListener
      */
     public static function isPosixSupported(): bool
     {
+<<<<<<< HEAD
         foreach (self::$posixFunctions as $func) {
+=======
+        foreach (self::POSIX_FUNCTIONS as $func) {
+>>>>>>> tundeseun/devtest
             if (!\function_exists($func)) {
                 return false;
             }
@@ -88,7 +112,11 @@ class ProcessForker extends AbstractListener
      */
     public static function disabledPosixFunctions()
     {
+<<<<<<< HEAD
         return self::checkDisabledFunctions(self::$posixFunctions);
+=======
+        return self::checkDisabledFunctions(self::POSIX_FUNCTIONS);
+>>>>>>> tundeseun/devtest
     }
 
     private static function checkDisabledFunctions(array $functions): array

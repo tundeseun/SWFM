@@ -36,7 +36,11 @@ class Pool
      * @param  \Illuminate\Http\Client\Factory|null  $factory
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Factory $factory = null)
+=======
+    public function __construct(?Factory $factory = null)
+>>>>>>> tundeseun/devtest
     {
         $this->factory = $factory ?: new Factory();
         $this->handler = Utils::chooseHandler();

@@ -40,6 +40,10 @@ final class SpecReader
         $exampleNumber  = 0;
 
         foreach ($matches as $match) {
+<<<<<<< HEAD
+=======
+            \assert(isset($match[1], $match[2], $match[3]));
+>>>>>>> tundeseun/devtest
             if (isset($match[4])) {
                 $currentSection = $match[4];
                 continue;

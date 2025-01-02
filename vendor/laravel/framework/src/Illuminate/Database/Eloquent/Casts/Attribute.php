@@ -39,7 +39,11 @@ class Attribute
      * @param  callable|null  $set
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(callable $get = null, callable $set = null)
+=======
+    public function __construct(?callable $get = null, ?callable $set = null)
+>>>>>>> tundeseun/devtest
     {
         $this->get = $get;
         $this->set = $set;
@@ -52,7 +56,11 @@ class Attribute
      * @param  callable|null  $set
      * @return static
      */
+<<<<<<< HEAD
     public static function make(callable $get = null, callable $set = null): static
+=======
+    public static function make(?callable $get = null, ?callable $set = null): static
+>>>>>>> tundeseun/devtest
     {
         return new static($get, $set);
     }

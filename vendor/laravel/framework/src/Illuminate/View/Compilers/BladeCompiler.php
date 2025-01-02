@@ -808,7 +808,11 @@ class BladeCompiler extends Compiler implements CompilerInterface
      * @param  string|null  $prefix
      * @return void
      */
+<<<<<<< HEAD
     public function anonymousComponentPath(string $path, string $prefix = null)
+=======
+    public function anonymousComponentPath(string $path, ?string $prefix = null)
+>>>>>>> tundeseun/devtest
     {
         $prefixHash = md5($prefix ?: $path);
 
@@ -830,7 +834,11 @@ class BladeCompiler extends Compiler implements CompilerInterface
      * @param  string|null  $prefix
      * @return void
      */
+<<<<<<< HEAD
     public function anonymousComponentNamespace(string $directory, string $prefix = null)
+=======
+    public function anonymousComponentNamespace(string $directory, ?string $prefix = null)
+>>>>>>> tundeseun/devtest
     {
         $prefix ??= $directory;
 

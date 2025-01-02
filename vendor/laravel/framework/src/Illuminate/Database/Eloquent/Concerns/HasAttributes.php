@@ -1271,7 +1271,15 @@ trait HasAttributes
      */
     public function fromJson($value, $asObject = false)
     {
+<<<<<<< HEAD
         return Json::decode($value ?? '', ! $asObject);
+=======
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        return Json::decode($value, ! $asObject);
+>>>>>>> tundeseun/devtest
     }
 
     /**

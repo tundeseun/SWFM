@@ -16,7 +16,11 @@ class DownloadCollectionMixin
      */
     public function downloadExcel()
     {
+<<<<<<< HEAD
         return function (string $fileName, string $writerType = null, $withHeadings = false, array $responseHeaders = []) {
+=======
+        return function (string $fileName, ?string $writerType = null, $withHeadings = false, array $responseHeaders = []) {
+>>>>>>> tundeseun/devtest
             $export = new class($this, $withHeadings) implements FromCollection, WithHeadings
             {
                 use Exportable;

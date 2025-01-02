@@ -22,9 +22,15 @@ final class Handler extends AbstractHandler
     /**
      * Creates an instance of the Handler.
      */
+<<<<<<< HEAD
     public function __construct(Writer $writer = null)
     {
         $this->writer = $writer ?: new Writer();
+=======
+    public function __construct(?Writer $writer = null)
+    {
+        $this->writer = $writer ?: new Writer;
+>>>>>>> tundeseun/devtest
     }
 
     /**

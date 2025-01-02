@@ -461,7 +461,11 @@ abstract class Relation implements BuilderContract
      * @param  bool  $merge
      * @return array
      */
+<<<<<<< HEAD
     public static function morphMap(array $map = null, $merge = true)
+=======
+    public static function morphMap(?array $map = null, $merge = true)
+>>>>>>> tundeseun/devtest
     {
         $map = static::buildMorphMapFromModels($map);
 
@@ -479,7 +483,11 @@ abstract class Relation implements BuilderContract
      * @param  string[]|null  $models
      * @return array|null
      */
+<<<<<<< HEAD
     protected static function buildMorphMapFromModels(array $models = null)
+=======
+    protected static function buildMorphMapFromModels(?array $models = null)
+>>>>>>> tundeseun/devtest
     {
         if (is_null($models) || ! array_is_list($models)) {
             return $models;

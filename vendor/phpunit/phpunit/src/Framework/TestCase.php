@@ -97,7 +97,10 @@ use ReflectionException;
 use ReflectionMethod;
 use ReflectionObject;
 use ReflectionParameter;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\StaticAnalysisCacheNotConfiguredException;
+=======
+>>>>>>> tundeseun/devtest
 use SebastianBergmann\CodeCoverage\UnintentionallyCoveredCodeException;
 use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Comparator\Factory as ComparatorFactory;
@@ -502,7 +505,10 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws MoreThanOneDataSetFromDataProviderException
      * @throws NoPreviousThrowableException
      * @throws ProcessIsolationException
+<<<<<<< HEAD
      * @throws StaticAnalysisCacheNotConfiguredException
+=======
+>>>>>>> tundeseun/devtest
      * @throws UnintentionallyCoveredCodeException
      *
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
@@ -513,7 +519,11 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
             return;
         }
 
+<<<<<<< HEAD
         if (!$this->shouldRunInSeparateProcess()) {
+=======
+        if (!$this->shouldRunInSeparateProcess() || $this->requirementsNotSatisfied()) {
+>>>>>>> tundeseun/devtest
             (new TestRunner)->run($this);
         } else {
             (new TestRunner)->runInSeparateProcess(
@@ -2310,6 +2320,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         return is_string($this->outputExpectedString) || is_string($this->outputExpectedRegex);
     }
 
+<<<<<<< HEAD
+=======
+    private function requirementsNotSatisfied(): bool
+    {
+        return (new Requirements)->requirementsNotSatisfiedFor(static::class, $this->name) !== [];
+    }
+
+>>>>>>> tundeseun/devtest
     /**
      * Creates a test stub for the specified interface or class.
      *

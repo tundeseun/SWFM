@@ -25,7 +25,11 @@ use Psy\Util\Str;
  */
 class Libedit extends GNUReadline
 {
+<<<<<<< HEAD
     private $hasWarnedOwnership = false;
+=======
+    private bool $hasWarnedOwnership = false;
+>>>>>>> tundeseun/devtest
 
     /**
      * Let's emulate GNU Readline by manually reading and parsing the history file!
@@ -48,6 +52,13 @@ class Libedit extends GNUReadline
      */
     public function listHistory(): array
     {
+<<<<<<< HEAD
+=======
+        if ($this->historyFile === false) {
+            return [];
+        }
+
+>>>>>>> tundeseun/devtest
         $history = \file_get_contents($this->historyFile);
         if (!$history) {
             return [];

@@ -23,7 +23,14 @@ use Psy\Formatter\TraceFormatter;
 use Psy\Input\ShellInput;
 use Psy\Input\SilentInput;
 use Psy\Output\ShellOutput;
+<<<<<<< HEAD
 use Psy\TabCompletion\Matcher;
+=======
+use Psy\Readline\Readline;
+use Psy\TabCompletion\AutoCompleter;
+use Psy\TabCompletion\Matcher;
+use Psy\TabCompletion\Matcher\CommandsMatcher;
+>>>>>>> tundeseun/devtest
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseCommand;
@@ -50,6 +57,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Shell extends Application
 {
+<<<<<<< HEAD
     const VERSION = 'v0.12.4';
 
     private $config;
@@ -73,6 +81,32 @@ class Shell extends Application
     private $lastExecSuccess = true;
     private $nonInteractive = false;
     private $errorReporting;
+=======
+    const VERSION = 'v0.12.7';
+
+    private Configuration $config;
+    private CodeCleaner $cleaner;
+    private OutputInterface $output;
+    private ?int $originalVerbosity = null;
+    private Readline $readline;
+    private array $inputBuffer;
+    /** @var string|false|null */
+    private $code = null;
+    private array $codeBuffer = [];
+    private bool $codeBufferOpen = false;
+    private array $codeStack;
+    private string $stdoutBuffer;
+    private Context $context;
+    private array $includes;
+    private bool $outputWantsNewline = false;
+    private array $loopListeners;
+    private ?AutoCompleter $autoCompleter = null;
+    private array $matchers = [];
+    private ?CommandsMatcher $commandsMatcher = null;
+    private bool $lastExecSuccess = true;
+    private bool $nonInteractive = false;
+    private ?int $errorReporting = null;
+>>>>>>> tundeseun/devtest
 
     /**
      * Create a new Psy Shell.
@@ -214,7 +248,11 @@ class Shell extends Application
             new Command\TraceCommand(),
             new Command\BufferCommand(),
             new Command\ClearCommand(),
+<<<<<<< HEAD
             new Command\EditCommand($this->config->getRuntimeDir()),
+=======
+            new Command\EditCommand($this->config->getRuntimeDir(false)),
+>>>>>>> tundeseun/devtest
             // new Command\PsyVersionCommand(),
             $sudo,
             $hist,
@@ -229,7 +267,11 @@ class Shell extends Application
     {
         // Store the Commands Matcher for later. If more commands are added,
         // we'll update the Commands Matcher too.
+<<<<<<< HEAD
         $this->commandsMatcher = new Matcher\CommandsMatcher($this->all());
+=======
+        $this->commandsMatcher = new CommandsMatcher($this->all());
+>>>>>>> tundeseun/devtest
 
         return [
             $this->commandsMatcher,
@@ -919,6 +961,7 @@ class Shell extends Application
 
         $input = new ShellInput(\str_replace('\\', '\\\\', \rtrim($input, " \t\n\r\0\x0B;")));
 
+<<<<<<< HEAD
         if ($input->hasParameterOption(['--help', '-h'])) {
             $helpCommand = $this->get('help');
             if (!$helpCommand instanceof Command\HelpCommand) {
@@ -930,6 +973,60 @@ class Shell extends Application
         }
 
         return $command->run($input, $this->output);
+=======
+        if (!$input->hasParameterOption(['--help', '-h'])) {
+            try {
+                return $command->run($input, $this->output);
+            } catch (\Exception $e) {
+                if (!self::needsInputHelp($e)) {
+                    throw $e;
+                }
+
+                $this->writeException($e);
+
+                $this->output->writeln('--');
+                if (!$this->config->theme()->compact()) {
+                    $this->output->writeln('');
+                }
+            }
+        }
+
+        $helpCommand = $this->get('help');
+        if (!$helpCommand instanceof Command\HelpCommand) {
+            throw new RuntimeException('Invalid help command instance');
+        }
+        $helpCommand->setCommand($command);
+
+        return $helpCommand->run(new StringInput(''), $this->output);
+    }
+
+    /**
+     * Check whether a given input error would benefit from --help.
+     *
+     * @return bool
+     */
+    private static function needsInputHelp(\Exception $e): bool
+    {
+        if (!($e instanceof \RuntimeException || $e instanceof SymfonyConsoleException)) {
+            return false;
+        }
+
+        $inputErrors = [
+            'Not enough arguments',
+            'option does not accept a value',
+            'option does not exist',
+            'option requires a value',
+        ];
+
+        $msg = $e->getMessage();
+        foreach ($inputErrors as $errorMsg) {
+            if (\strpos($msg, $errorMsg) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -1261,10 +1358,20 @@ class Shell extends Application
                 case \E_USER_NOTICE:
                 case \E_USER_DEPRECATED:
                 case \E_DEPRECATED:
+<<<<<<< HEAD
                 case \E_STRICT:
                     return 'warning';
 
                 default:
+=======
+                    return 'warning';
+
+                default:
+                    if ((\PHP_VERSION_ID < 80400) && $severity === \E_STRICT) {
+                        return 'warning';
+                    }
+
+>>>>>>> tundeseun/devtest
                     return 'error';
             }
         } else {

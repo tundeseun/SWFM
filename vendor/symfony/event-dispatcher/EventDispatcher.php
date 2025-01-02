@@ -123,19 +123,27 @@ class EventDispatcher implements EventDispatcherInterface
         return false;
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0): void
+>>>>>>> tundeseun/devtest
     {
         $this->listeners[$eventName][$priority][] = $listener;
         unset($this->sorted[$eventName], $this->optimized[$eventName]);
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function removeListener(string $eventName, callable|array $listener)
+=======
+    public function removeListener(string $eventName, callable|array $listener): void
+>>>>>>> tundeseun/devtest
     {
         if (empty($this->listeners[$eventName])) {
             return;
@@ -163,10 +171,14 @@ class EventDispatcher implements EventDispatcherInterface
         }
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function addSubscriber(EventSubscriberInterface $subscriber): void
+>>>>>>> tundeseun/devtest
     {
         foreach ($subscriber->getSubscribedEvents() as $eventName => $params) {
             if (\is_string($params)) {
@@ -181,10 +193,14 @@ class EventDispatcher implements EventDispatcherInterface
         }
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function removeSubscriber(EventSubscriberInterface $subscriber): void
+>>>>>>> tundeseun/devtest
     {
         foreach ($subscriber->getSubscribedEvents() as $eventName => $params) {
             if (\is_array($params) && \is_array($params[0])) {
@@ -206,10 +222,15 @@ class EventDispatcher implements EventDispatcherInterface
      * @param callable[] $listeners The event listeners
      * @param string     $eventName The name of the event to dispatch
      * @param object     $event     The event object to pass to the event handlers/listeners
+<<<<<<< HEAD
      *
      * @return void
      */
     protected function callListeners(iterable $listeners, string $eventName, object $event)
+=======
+     */
+    protected function callListeners(iterable $listeners, string $eventName, object $event): void
+>>>>>>> tundeseun/devtest
     {
         $stoppable = $event instanceof StoppableEventInterface;
 

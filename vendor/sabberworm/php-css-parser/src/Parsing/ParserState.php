@@ -5,12 +5,22 @@ namespace Sabberworm\CSS\Parsing;
 use Sabberworm\CSS\Comment\Comment;
 use Sabberworm\CSS\Settings;
 
+<<<<<<< HEAD
+=======
+/**
+ * @internal since 8.7.0
+ */
+>>>>>>> tundeseun/devtest
 class ParserState
 {
     /**
      * @var null
      *
+<<<<<<< HEAD
      * @internal
+=======
+     * @internal since 8.5.2
+>>>>>>> tundeseun/devtest
      */
     const EOF = null;
 

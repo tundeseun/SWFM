@@ -39,8 +39,13 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public const PREG_SPLIT_DELIM_CAPTURE = \PREG_SPLIT_DELIM_CAPTURE;
     public const PREG_SPLIT_OFFSET_CAPTURE = \PREG_SPLIT_OFFSET_CAPTURE;
 
+<<<<<<< HEAD
     protected $string = '';
     protected $ignoreCase = false;
+=======
+    protected string $string = '';
+    protected ?bool $ignoreCase = false;
+>>>>>>> tundeseun/devtest
 
     abstract public function __construct(string $string = '');
 
@@ -263,7 +268,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function endsWith(string|iterable $suffix): bool
     {
         if (\is_string($suffix)) {
+<<<<<<< HEAD
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+=======
+            throw new \TypeError(\sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+>>>>>>> tundeseun/devtest
         }
 
         foreach ($suffix as $s) {
@@ -312,7 +321,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function equalsTo(string|iterable $string): bool
     {
         if (\is_string($string)) {
+<<<<<<< HEAD
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+=======
+            throw new \TypeError(\sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+>>>>>>> tundeseun/devtest
         }
 
         foreach ($string as $s) {
@@ -340,7 +353,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function indexOf(string|iterable $needle, int $offset = 0): ?int
     {
         if (\is_string($needle)) {
+<<<<<<< HEAD
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+=======
+            throw new \TypeError(\sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+>>>>>>> tundeseun/devtest
         }
 
         $i = \PHP_INT_MAX;
@@ -362,7 +379,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function indexOfLast(string|iterable $needle, int $offset = 0): ?int
     {
         if (\is_string($needle)) {
+<<<<<<< HEAD
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+=======
+            throw new \TypeError(\sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+>>>>>>> tundeseun/devtest
         }
 
         $i = null;
@@ -414,7 +435,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function repeat(int $multiplier): static
     {
         if (0 > $multiplier) {
+<<<<<<< HEAD
             throw new InvalidArgumentException(sprintf('Multiplier must be positive, %d given.', $multiplier));
+=======
+            throw new InvalidArgumentException(\sprintf('Multiplier must be positive, %d given.', $multiplier));
+>>>>>>> tundeseun/devtest
         }
 
         $str = clone $this;
@@ -433,6 +458,14 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
 
     abstract public function snake(): static;
 
+<<<<<<< HEAD
+=======
+    public function kebab(): static
+    {
+        return $this->snake()->replace('_', '-');
+    }
+
+>>>>>>> tundeseun/devtest
     abstract public function splice(string $replacement, int $start = 0, ?int $length = null): static;
 
     /**
@@ -481,7 +514,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
     public function startsWith(string|iterable $prefix): bool
     {
         if (\is_string($prefix)) {
+<<<<<<< HEAD
             throw new \TypeError(sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+=======
+            throw new \TypeError(\sprintf('Method "%s()" must be overridden by class "%s" to deal with non-iterable values.', __FUNCTION__, static::class));
+>>>>>>> tundeseun/devtest
         }
 
         foreach ($prefix as $prefix) {
@@ -605,7 +642,11 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
         return $str;
     }
 
+<<<<<<< HEAD
     public function truncate(int $length, string $ellipsis = '', bool $cut = true): static
+=======
+    public function truncate(int $length, string $ellipsis = '', bool|TruncateMode $cut = TruncateMode::Char): static
+>>>>>>> tundeseun/devtest
     {
         $stringLength = $this->length();
 
@@ -619,16 +660,37 @@ abstract class AbstractString implements \Stringable, \JsonSerializable
             $ellipsisLength = 0;
         }
 
+<<<<<<< HEAD
         if (!$cut) {
+=======
+        $desiredLength = $length;
+        if (TruncateMode::WordAfter === $cut || !$cut) {
+>>>>>>> tundeseun/devtest
             if (null === $length = $this->indexOf([' ', "\r", "\n", "\t"], ($length ?: 1) - 1)) {
                 return clone $this;
             }
 
             $length += $ellipsisLength;
+<<<<<<< HEAD
+=======
+        } elseif (TruncateMode::WordBefore === $cut && null !== $this->indexOf([' ', "\r", "\n", "\t"], ($length ?: 1) - 1)) {
+            $length += $ellipsisLength;
+>>>>>>> tundeseun/devtest
         }
 
         $str = $this->slice(0, $length - $ellipsisLength);
 
+<<<<<<< HEAD
+=======
+        if (TruncateMode::WordBefore === $cut) {
+            if (0 === $ellipsisLength && $desiredLength === $this->indexOf([' ', "\r", "\n", "\t"], $length)) {
+                return $str;
+            }
+
+            $str = $str->beforeLast([' ', "\r", "\n", "\t"]);
+        }
+
+>>>>>>> tundeseun/devtest
         return $ellipsisLength ? $str->trimEnd()->append($ellipsis) : $str;
     }
 

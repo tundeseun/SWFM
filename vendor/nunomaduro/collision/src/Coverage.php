@@ -36,7 +36,11 @@ final class Coverage
      */
     public static function isAvailable(): bool
     {
+<<<<<<< HEAD
         $runtime = new Runtime();
+=======
+        $runtime = new Runtime;
+>>>>>>> tundeseun/devtest
 
         if (! $runtime->canCollectCodeCoverage()) {
             return false;
@@ -60,7 +64,11 @@ final class Coverage
      */
     public static function usingXdebug(): bool
     {
+<<<<<<< HEAD
         return (new Runtime())->hasXdebug();
+=======
+        return (new Runtime)->hasXdebug();
+>>>>>>> tundeseun/devtest
     }
 
     /**

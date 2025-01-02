@@ -69,7 +69,16 @@ class Report
 
     protected ?bool $handled = null;
 
+<<<<<<< HEAD
     /** @param array<class-string<ArgumentReducer>|ArgumentReducer>|ArgumentReducers|null $argumentReducers */
+=======
+    protected ?string $overriddenGrouping = null;
+
+    /**
+     * @param array<class-string<ArgumentReducer>|ArgumentReducer>|ArgumentReducers|null $argumentReducers
+     * @param array<class-string, string> $overriddenGroupings
+     */
+>>>>>>> tundeseun/devtest
     public static function createForThrowable(
         Throwable $throwable,
         ContextProvider $context,
@@ -77,21 +86,44 @@ class Report
         ?string $version = null,
         null|array|ArgumentReducers $argumentReducers = null,
         bool $withStackTraceArguments = true,
+<<<<<<< HEAD
+=======
+        array $overriddenGroupings = [],
+>>>>>>> tundeseun/devtest
     ): self {
         $stacktrace = Backtrace::createForThrowable($throwable)
             ->withArguments($withStackTraceArguments)
             ->reduceArguments($argumentReducers)
             ->applicationPath($applicationPath ?? '');
 
+<<<<<<< HEAD
         return (new self())
             ->setApplicationPath($applicationPath)
             ->throwable($throwable)
             ->useContext($context)
             ->exceptionClass(self::getClassForThrowable($throwable))
+=======
+        $exceptionClass = self::getClassForThrowable($throwable);
+
+        $report = (new self())
+            ->setApplicationPath($applicationPath)
+            ->throwable($throwable)
+            ->useContext($context)
+            ->exceptionClass($exceptionClass)
+>>>>>>> tundeseun/devtest
             ->message($throwable->getMessage())
             ->stackTrace($stacktrace)
             ->exceptionContext($throwable)
             ->setApplicationVersion($version);
+<<<<<<< HEAD
+=======
+
+        if (array_key_exists($exceptionClass, $overriddenGroupings)) {
+            $report->overriddenGrouping($overriddenGroupings[$exceptionClass]);
+        }
+
+        return $report;
+>>>>>>> tundeseun/devtest
     }
 
     protected static function getClassForThrowable(Throwable $throwable): string
@@ -311,6 +343,16 @@ class Report
         return $this;
     }
 
+<<<<<<< HEAD
+=======
+    public function overriddenGrouping(?string $overriddenGrouping): self
+    {
+        $this->overriddenGrouping = $overriddenGrouping;
+
+        return $this;
+    }
+
+>>>>>>> tundeseun/devtest
     protected function exceptionContext(Throwable $throwable): self
     {
         if ($throwable instanceof ProvidesFlareContext) {
@@ -388,6 +430,10 @@ class Report
             'application_version' => $this->applicationVersion,
             'tracking_uuid' => $this->trackingUuid,
             'handled' => $this->handled,
+<<<<<<< HEAD
+=======
+            'overridden_grouping' => $this->overriddenGrouping,
+>>>>>>> tundeseun/devtest
         ];
     }
 

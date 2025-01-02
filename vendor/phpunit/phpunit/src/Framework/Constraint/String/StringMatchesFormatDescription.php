@@ -87,17 +87,31 @@ final class StringMatchesFormatDescription extends Constraint
             preg_quote($string, '/'),
             [
                 '%%' => '%',
+<<<<<<< HEAD
                 '%e' => '\\' . DIRECTORY_SEPARATOR,
                 '%s' => '[^\r\n]+',
                 '%S' => '[^\r\n]*',
                 '%a' => '.+',
                 '%A' => '.*',
+=======
+                '%e' => preg_quote(DIRECTORY_SEPARATOR, '/'),
+                '%s' => '[^\r\n]+',
+                '%S' => '[^\r\n]*',
+                '%a' => '.+?',
+                '%A' => '.*?',
+>>>>>>> tundeseun/devtest
                 '%w' => '\s*',
                 '%i' => '[+-]?\d+',
                 '%d' => '\d+',
                 '%x' => '[0-9a-fA-F]+',
+<<<<<<< HEAD
                 '%f' => '[+-]?\.?\d+\.?\d*(?:[Ee][+-]?\d+)?',
                 '%c' => '.',
+=======
+                '%f' => '[+-]?(?:\d+|(?=\.\d))(?:\.\d+)?(?:[Ee][+-]?\d+)?',
+                '%c' => '.',
+                '%0' => '\x00',
+>>>>>>> tundeseun/devtest
             ],
         );
 

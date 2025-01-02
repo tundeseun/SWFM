@@ -2,6 +2,21 @@
 
 All notable changes to `error-solutions` will be documented in this file.
 
+<<<<<<< HEAD
+=======
+## 1.1.1 - 2024-07-25
+
+### What's Changed
+
+* Fix OpenAI response text links by @Lukaaashek in https://github.com/spatie/error-solutions/pull/9
+
+### New Contributors
+
+* @Lukaaashek made their first contribution in https://github.com/spatie/error-solutions/pull/9
+
+**Full Changelog**: https://github.com/spatie/error-solutions/compare/1.1.0...1.1.1
+
+>>>>>>> tundeseun/devtest
 ## 1.1.0 - 2024-07-22
 
 ### What's Changed

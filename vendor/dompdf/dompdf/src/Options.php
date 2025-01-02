@@ -71,7 +71,11 @@ class Options
     * Protocol whitelist
     *
     * Protocols and PHP wrappers allowed in URIs, and the validation rules
+<<<<<<< HEAD
     * that determine if a resouce may be loaded. Full support is not guaranteed
+=======
+    * that determine if a resource may be loaded. Full support is not guaranteed
+>>>>>>> tundeseun/devtest
     * for the protocols/wrappers specified
     * by this array.
     *
@@ -93,7 +97,11 @@ class Options
     /**
      * @var string
      */
+<<<<<<< HEAD
     private $logOutputFile;
+=======
+    private $logOutputFile = '';
+>>>>>>> tundeseun/devtest
 
     /**
      * Styles targeted to this media type are applied to the document.
@@ -206,6 +214,23 @@ class Options
     private $isRemoteEnabled = false;
 
     /**
+<<<<<<< HEAD
+=======
+     * List of allowed remote hosts
+     *
+     * Each value of the array must be a valid hostname.
+     *
+     * This will be used to filter which resources can be loaded in combination with
+     * isRemoteEnabled. If isRemoteEnabled is FALSE, then this will have no effect.
+     *
+     * Leave to NULL to allow any remote host.
+     *
+     * @var array|null
+     */
+    private $allowedRemoteHosts = null;
+
+    /**
+>>>>>>> tundeseun/devtest
      * Enable inline JavaScript
      *
      * If this setting is set to true then DOMPDF will automatically insert
@@ -316,7 +341,11 @@ class Options
     /**
      * @param array $attributes
      */
+<<<<<<< HEAD
     public function __construct(array $attributes = null)
+=======
+    public function __construct(?array $attributes = null)
+>>>>>>> tundeseun/devtest
     {
         $rootDir = realpath(__DIR__ . "/../");
         $this->setChroot(array($rootDir));
@@ -368,7 +397,11 @@ class Options
                 $this->setFontCache($value);
             } elseif ($key === 'chroot') {
                 $this->setChroot($value);
+<<<<<<< HEAD
             } elseif ($key === 'allowedProtocols') {
+=======
+            } elseif ($key === 'allowedProtocols' || $key === 'allowed_protocols') {
+>>>>>>> tundeseun/devtest
                 $this->setAllowedProtocols($value);
             } elseif ($key === 'artifactPathValidation') {
                 $this->setArtifactPathValidation($value);
@@ -390,6 +423,11 @@ class Options
                 $this->setIsPhpEnabled($value);
             } elseif ($key === 'isRemoteEnabled' || $key === 'is_remote_enabled' || $key === 'enable_remote') {
                 $this->setIsRemoteEnabled($value);
+<<<<<<< HEAD
+=======
+            } elseif ($key === 'allowedRemoteHosts' || $key === 'allowed_remote_hosts') {
+                $this->setAllowedRemoteHosts($value);
+>>>>>>> tundeseun/devtest
             } elseif ($key === 'isJavascriptEnabled' || $key === 'is_javascript_enabled' || $key === 'enable_javascript') {
                 $this->setIsJavascriptEnabled($value);
             } elseif ($key === 'isHtml5ParserEnabled' || $key === 'is_html5_parser_enabled' || $key === 'enable_html5_parser') {
@@ -437,7 +475,11 @@ class Options
             return $this->getFontCache();
         } elseif ($key === 'chroot') {
             return $this->getChroot();
+<<<<<<< HEAD
         } elseif ($key === 'allowedProtocols') {
+=======
+        } elseif ($key === 'allowedProtocols' || $key === 'allowed_protocols') {
+>>>>>>> tundeseun/devtest
             return $this->getAllowedProtocols();
         } elseif ($key === 'artifactPathValidation') {
             return $this->getArtifactPathValidation();
@@ -459,6 +501,11 @@ class Options
             return $this->getIsPhpEnabled();
         } elseif ($key === 'isRemoteEnabled' || $key === 'is_remote_enabled' || $key === 'enable_remote') {
             return $this->getIsRemoteEnabled();
+<<<<<<< HEAD
+=======
+        } elseif ($key === 'allowedRemoteHosts' || $key === 'allowed_remote_hosts') {
+            return $this->getAllowedProtocols();
+>>>>>>> tundeseun/devtest
         } elseif ($key === 'isJavascriptEnabled' || $key === 'is_javascript_enabled' || $key === 'enable_javascript') {
             return $this->getIsJavascriptEnabled();
         } elseif ($key === 'isHtml5ParserEnabled' || $key === 'is_html5_parser_enabled' || $key === 'enable_html5_parser') {
@@ -1065,6 +1112,36 @@ class Options
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @param array|null $allowedRemoteHosts
+     * @return $this
+     */
+    public function setAllowedRemoteHosts($allowedRemoteHosts)
+    {
+        if (is_array($allowedRemoteHosts)) {
+            // Set hosts to lowercase
+            foreach ($allowedRemoteHosts as &$host) {
+                $host = mb_strtolower($host);
+            }
+
+            unset($host);
+        }
+
+        $this->allowedRemoteHosts = $allowedRemoteHosts;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAllowedRemoteHosts()
+    {
+        return $this->allowedRemoteHosts;
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * @param string $logOutputFile
      * @return $this
      */
@@ -1208,6 +1285,18 @@ class Options
             return [false, "Remote file requested, but remote file download is disabled."];
         }
 
+<<<<<<< HEAD
+=======
+        if (is_array($this->allowedRemoteHosts) && count($this->allowedRemoteHosts) > 0) {
+            $host = parse_url($uri, PHP_URL_HOST);
+            $host = mb_strtolower($host);
+
+            if (!in_array($host, $this->allowedRemoteHosts, true)) {
+                return [false, "Remote host is not in allowed list: " . $host];
+            }
+        }
+
+>>>>>>> tundeseun/devtest
         return [true, null];
     }
 }

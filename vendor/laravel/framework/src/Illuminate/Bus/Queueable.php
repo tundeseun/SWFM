@@ -199,6 +199,14 @@ trait Queueable
      */
     public function prependToChain($job)
     {
+<<<<<<< HEAD
+=======
+        $job = match (true) {
+            $job instanceof PendingBatch => new ChainedBatch($job),
+            default => $job,
+        };
+
+>>>>>>> tundeseun/devtest
         $this->chained = Arr::prepend($this->chained, $this->serializeJob($job));
 
         return $this;
@@ -212,6 +220,14 @@ trait Queueable
      */
     public function appendToChain($job)
     {
+<<<<<<< HEAD
+=======
+        $job = match (true) {
+            $job instanceof PendingBatch => new ChainedBatch($job),
+            default => $job,
+        };
+
+>>>>>>> tundeseun/devtest
         $this->chained = array_merge($this->chained, [$this->serializeJob($job)]);
 
         return $this;

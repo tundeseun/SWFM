@@ -45,7 +45,11 @@ class PasswordBroker implements PasswordBrokerContract
      * @param  \Closure|null  $callback
      * @return string
      */
+<<<<<<< HEAD
     public function sendResetLink(array $credentials, Closure $callback = null)
+=======
+    public function sendResetLink(array $credentials, ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         // First we will check to see if we found a user at the given credentials and
         // if we did not we will redirect back to this current URI with a piece of

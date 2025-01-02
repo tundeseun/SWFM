@@ -12,7 +12,11 @@
     "authors": [
         {
             "name": "Lars Moelleken",
+<<<<<<< HEAD
             "homepage": "http://www.moelleken.org/"
+=======
+            "homepage": "https://www.moelleken.org/"
+>>>>>>> tundeseun/devtest
         }
     ],
     "require": {

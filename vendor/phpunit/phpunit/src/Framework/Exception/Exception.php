@@ -11,6 +11,11 @@ namespace PHPUnit\Framework;
 
 use function array_keys;
 use function get_object_vars;
+<<<<<<< HEAD
+=======
+use function is_int;
+use function sprintf;
+>>>>>>> tundeseun/devtest
 use RuntimeException;
 use Throwable;
 
@@ -42,8 +47,25 @@ class Exception extends RuntimeException implements \PHPUnit\Exception
 {
     protected array $serializableTrace;
 
+<<<<<<< HEAD
     public function __construct(string $message = '', int $code = 0, ?Throwable $previous = null)
     {
+=======
+    public function __construct(string $message = '', int|string $code = 0, ?Throwable $previous = null)
+    {
+        /**
+         * @see https://github.com/sebastianbergmann/phpunit/issues/5965
+         */
+        if (!is_int($code)) {
+            $message .= sprintf(
+                ' (exception code: %s)',
+                $code,
+            );
+
+            $code = 0;
+        }
+
+>>>>>>> tundeseun/devtest
         parent::__construct($message, $code, $previous);
 
         $this->serializableTrace = $this->getTrace();

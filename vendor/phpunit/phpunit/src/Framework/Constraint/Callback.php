@@ -9,6 +9,12 @@
  */
 namespace PHPUnit\Framework\Constraint;
 
+<<<<<<< HEAD
+=======
+use Closure;
+use ReflectionFunction;
+
+>>>>>>> tundeseun/devtest
 /**
  * @psalm-template CallbackInput of mixed
  *
@@ -38,13 +44,42 @@ final class Callback extends Constraint
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @psalm-suppress ArgumentTypeCoercion
+     */
+    public function isVariadic(): bool
+    {
+        foreach ((new ReflectionFunction(Closure::fromCallable($this->callback)))->getParameters() as $parameter) {
+            if ($parameter->isVariadic()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * Evaluates the constraint for parameter $value. Returns true if the
      * constraint is met, false otherwise.
      *
      * @psalm-param CallbackInput $other
+<<<<<<< HEAD
      */
     protected function matches(mixed $other): bool
     {
+=======
+     *
+     * @psalm-suppress InvalidArgument
+     */
+    protected function matches(mixed $other): bool
+    {
+        if ($this->isVariadic()) {
+            return ($this->callback)(...$other);
+        }
+
+>>>>>>> tundeseun/devtest
         return ($this->callback)($other);
     }
 }

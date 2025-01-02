@@ -2,6 +2,10 @@
 
 namespace Laravel\Prompts;
 
+<<<<<<< HEAD
+=======
+use Closure;
+>>>>>>> tundeseun/devtest
 use Illuminate\Support\Collection;
 
 class MultiSelectPrompt extends Prompt
@@ -43,6 +47,10 @@ class MultiSelectPrompt extends Prompt
         public bool|string $required = false,
         public mixed $validate = null,
         public string $hint = '',
+<<<<<<< HEAD
+=======
+        public ?Closure $transform = null,
+>>>>>>> tundeseun/devtest
     ) {
         $this->options = $options instanceof Collection ? $options->all() : $options;
         $this->default = $default instanceof Collection ? $default->all() : $default;

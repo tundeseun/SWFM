@@ -233,7 +233,11 @@ class TemplateHelper
      *
      * @param string $template
      */
+<<<<<<< HEAD
     public function render($template, array $additionalVariables = null)
+=======
+    public function render($template, ?array $additionalVariables = null)
+>>>>>>> tundeseun/devtest
     {
         $variables = $this->getVariables();
 

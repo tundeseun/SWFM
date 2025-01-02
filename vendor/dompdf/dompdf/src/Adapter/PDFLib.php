@@ -58,7 +58,11 @@ class PDFLib implements Canvas
      *
      * @var array
      */
+<<<<<<< HEAD
     public static $nativeFontsTpPDFLib = [
+=======
+    public static $nativeFontsToPDFLib = [
+>>>>>>> tundeseun/devtest
         "courier"               => "Courier",
         "courier-bold"          => "Courier-Bold",
         "courier-oblique"       => "Courier-Oblique",
@@ -208,10 +212,18 @@ class PDFLib implements Canvas
         } else {
             $this->_dompdf = $dompdf;
         }
+<<<<<<< HEAD
 
         $this->_pdf = new \PDFLib();
 
         $license = $dompdf->getOptions()->getPdflibLicense();
+=======
+        $options = $dompdf->getOptions();
+
+        $this->_pdf = new \PDFLib();
+
+        $license = $options->getPdflibLicense();
+>>>>>>> tundeseun/devtest
         if (strlen($license) > 0) {
             $this->setPDFLibParameter("license", $license);
         }
@@ -227,9 +239,15 @@ class PDFLib implements Canvas
             $this->setPDFLibParameter("fontwarning", "false");
         }
 
+<<<<<<< HEAD
         $searchPath = $this->_dompdf->getOptions()->getFontDir();
         if (empty($searchPath) === false) {
             $this->_pdf->set_option('searchpath={' . $searchPath . '}');
+=======
+        $searchPath = [$options->getFontDir(), $options->getRootDir() . "/lib/fonts"];
+        if (empty($searchPath) === false) {
+            $this->_pdf->set_option('searchpath={{' . implode("} {", $searchPath) . '}}');
+>>>>>>> tundeseun/devtest
         }
 
         // fetch PDFLib version information for the producer field
@@ -244,7 +262,11 @@ class PDFLib implements Canvas
         if (self::$IN_MEMORY) {
             $this->_pdf->begin_document("", "");
         } else {
+<<<<<<< HEAD
             $tmp_dir = $this->_dompdf->getOptions()->getTempDir();
+=======
+            $tmp_dir = $options->getTempDir();
+>>>>>>> tundeseun/devtest
             $tmp_name = @tempnam($tmp_dir, "libdompdf_pdf_");
             @unlink($tmp_name);
             $this->_file = "$tmp_name.pdf";
@@ -316,7 +338,11 @@ class PDFLib implements Canvas
     {
         $this->_pdf->suspend_page("");
         if ($this->getPDFLibMajorVersion() >= 7) {
+<<<<<<< HEAD
             $ret = $this->_pdf->begin_template_ext($this->_width, $this->_height, null);
+=======
+            $ret = $this->_pdf->begin_template_ext($this->_width, $this->_height, "");
+>>>>>>> tundeseun/devtest
         } else {
             $ret = $this->_pdf->begin_template($this->_width, $this->_height);
         }
@@ -333,7 +359,10 @@ class PDFLib implements Canvas
      * @param int $object the ID of a previously opened object
      *
      * @throws Exception
+<<<<<<< HEAD
      * @return void
+=======
+>>>>>>> tundeseun/devtest
      */
     public function reopen_object($object)
     {
@@ -598,10 +627,17 @@ class PDFLib implements Canvas
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], $color[3]];
         } elseif (isset($color[2])) {
             $type = "rgb";
+<<<<<<< HEAD
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], null];
         } else {
             $type = "gray";
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], null, null];
+=======
+            list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], 0];
+        } else {
+            $type = "gray";
+            list($c1, $c2, $c3, $c4) = [$color[0], $color[1], 0, 0];
+>>>>>>> tundeseun/devtest
         }
 
         $this->_set_stroke_opacity($alpha, "Normal");
@@ -635,10 +671,17 @@ class PDFLib implements Canvas
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], $color[3]];
         } elseif (isset($color[2])) {
             $type = "rgb";
+<<<<<<< HEAD
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], null];
         } else {
             $type = "gray";
             list($c1, $c2, $c3, $c4) = [$color[0], $color[1], null, null];
+=======
+            list($c1, $c2, $c3, $c4) = [$color[0], $color[1], $color[2], 0];
+        } else {
+            $type = "gray";
+            list($c1, $c2, $c3, $c4) = [$color[0], $color[1], 0, 0];
+>>>>>>> tundeseun/devtest
         }
 
         $this->_set_fill_opacity($alpha, "Normal");
@@ -723,6 +766,7 @@ class PDFLib implements Canvas
      */
     protected function _load_font($font, $encoding = null, $options = "")
     {
+<<<<<<< HEAD
         // Fix for PDFLibs case-sensitive font names
         $baseFont = basename($font);
         $isNativeFont = false;
@@ -738,6 +782,19 @@ class PDFLib implements Canvas
             $font = basename($font);
         } else {
             // Embed non-native fonts
+=======
+        // Fix for PDFLib's case-sensitive font names
+        $baseFont = basename($font);
+        $isNativeFont = false;
+        $lcBaseFont = strtolower($baseFont);
+        if (isset(self::$nativeFontsToPDFLib[$lcBaseFont])) {
+            $baseFont = self::$nativeFontsToPDFLib[$lcBaseFont];
+            $isNativeFont = true;
+        }
+
+        // Embed non-native fonts
+        if (!$isNativeFont) {
+>>>>>>> tundeseun/devtest
             $options .= " embedding=true";
         }
 
@@ -760,13 +817,21 @@ class PDFLib implements Canvas
 
         // Native fonts are build in, just load it
         if ($isNativeFont) {
+<<<<<<< HEAD
             $this->_fonts[$key] = $this->_pdf->load_font($font, $encoding, $options);
 
+=======
+            $this->_fonts[$key] = $this->_pdf->load_font($baseFont, $encoding, $options);
+>>>>>>> tundeseun/devtest
             return $this->_fonts[$key];
         }
 
         $fontOutline = $this->getPDFLibParameter("FontOutline", 1);
+<<<<<<< HEAD
         if ($fontOutline === "" || $fontOutline <= 0) {
+=======
+        if ($fontOutline === "" || $fontOutline < 0) {
+>>>>>>> tundeseun/devtest
             $families = $this->_dompdf->getFontMetrics()->getFontFamilies();
             foreach ($families as $files) {
                 foreach ($files as $file) {
@@ -816,7 +881,11 @@ class PDFLib implements Canvas
             }
         }
 
+<<<<<<< HEAD
         $this->_fonts[$key] = $this->_pdf->load_font($font, $encoding, $options);
+=======
+        $this->_fonts[$key] = $this->_pdf->load_font($baseFont, $encoding, $options);
+>>>>>>> tundeseun/devtest
 
         return $this->_fonts[$key];
     }
@@ -898,7 +967,10 @@ class PDFLib implements Canvas
     public function clipping_roundrectangle($x1, $y1, $w, $h, $rTL, $rTR, $rBR, $rBL)
     {
         if ($this->getPDFLibMajorVersion() < 9) {
+<<<<<<< HEAD
             //TODO: add PDFLib7 support
+=======
+>>>>>>> tundeseun/devtest
             $this->clipping_rectangle($x1, $y1, $w, $h);
             return;
         }
@@ -1057,6 +1129,62 @@ class PDFLib implements Canvas
         $this->_set_stroke_opacity($this->_current_opacity, "Normal");
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Convert image to a PNG image
+     *
+     * @param string $image_url
+     * @param string $type
+     *
+     * @return string|null The url of the newly converted image
+     */
+    protected function _convert_to_png($image_url, $type)
+    {
+        $filename = Cache::getTempImage($image_url);
+
+        if ($filename !== null && file_exists($filename)) {
+            return $filename;
+        }
+ 
+        $func_name = "imagecreatefrom$type";
+
+        set_error_handler([Helpers::class, "record_warnings"]);
+
+        if (method_exists(Helpers::class, $func_name)) {
+            $func_name = [Helpers::class, $func_name];
+        } elseif (!function_exists($func_name)) {
+            throw new Exception("Function $func_name() not found.  Cannot convert $type image: $image_url.  Please install the image PHP extension.");
+        }
+
+        try {
+            $im = call_user_func($func_name, $image_url);
+
+            if ($im) {
+                imageinterlace($im, false);
+
+                $tmp_dir = $this->_dompdf->getOptions()->getTempDir();
+                $tmp_name = @tempnam($tmp_dir, "{$type}_dompdf_img_");
+                @unlink($tmp_name);
+                $filename = "$tmp_name.png";
+
+                imagepng($im, $filename);
+                imagedestroy($im);
+            } else {
+                $filename = null;
+            }
+        } finally {
+            restore_error_handler();
+        }
+
+        if ($filename !== null) {
+            Cache::addTempImage($image_url, $filename);
+        }
+
+        return $filename;
+    }
+
+>>>>>>> tundeseun/devtest
     public function image($img, $x, $y, $w, $h, $resolution = "normal")
     {
         $w = (int)$w;
@@ -1070,11 +1198,45 @@ class PDFLib implements Canvas
         }
 
         if (!isset($this->_imgs[$img])) {
+<<<<<<< HEAD
             if (strtolower($img_type) === "svg") {
                 //FIXME: PDFLib loads SVG but returns error message "Function must not be called in 'page' scope"
                 $image_load_response = $this->_pdf->load_graphics($img_type, $img, "");
             } else {
                 $image_load_response = $this->_pdf->load_image($img_type, $img, "");
+=======
+            switch (strtolower($img_type)) {
+                case "webp":
+                    $img = $this->_convert_to_png($img, $img_type);
+                    if ($img === null) {
+                        $img = Cache::$broken_image;
+                    }
+                    $this->image($img, $x, $y, $w, $h, $resolution);
+                    return;
+                case "gif":
+                    if ($this->getPDFLibMajorVersion() >= 10) {
+                        $img = $this->_convert_to_png($img, $img_type);
+                        if ($img === null) {
+                            $img = Cache::$broken_image;
+                        }
+                        $this->image($img, $x, $y, $w, $h, $resolution);
+                        return;
+                    }
+                case "bmp":
+                /** @noinspection PhpMissingBreakStatementInspection */
+                case "jpeg":
+                /** @noinspection PhpMissingBreakStatementInspection */
+                case "png":
+                    $image_load_response = $this->_pdf->load_image($img_type, $img, "");
+                    break;
+                case "svg":
+                    $image_load_response = $this->_pdf->load_graphics($img_type, $img, "");
+                    break;
+                default:
+                    // not handled
+                    $this->image(Cache::$broken_image, $x, $y, $w, $h, $resolution);
+                    return;
+>>>>>>> tundeseun/devtest
             }
             if ($image_load_response === 0) {
                 //TODO: should do something with the error message
@@ -1148,6 +1310,31 @@ class PDFLib implements Canvas
         }
     }
 
+<<<<<<< HEAD
+=======
+    public function font_supports_char(string $font, string $char): bool
+    {
+        if ($char === "") {
+            return true;
+        }
+
+        $fh = $this->_load_font($font);
+        if ($fh === 0) {
+            return false;
+        }
+        $this->_pdf->setfont($fh, 10);
+
+        // unicode character glyph id lookup supports both the character and the unicode ordinal value
+        // because some characters can not be specified directly we'll specify the ordinal for all characters
+        // known problematic characters: "{", "}", " ", "=", "\u{feff}"
+        $char_code = Helpers::uniord($char, "UTF-8");
+        $options = "unicode=$char_code";
+        $glyphid = (int) $this->_pdf->info_font($fh, "glyphid", $options);
+
+        return $glyphid !== -1;
+    }
+
+>>>>>>> tundeseun/devtest
     public function get_text_width($text, $font, $size, $word_spacing = 0.0, $letter_spacing = 0.0)
     {
         if ($size == 0) {

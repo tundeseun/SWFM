@@ -92,7 +92,11 @@ class Migrator
     public function __construct(MigrationRepositoryInterface $repository,
                                 Resolver $resolver,
                                 Filesystem $files,
+<<<<<<< HEAD
                                 Dispatcher $dispatcher = null)
+=======
+                                ?Dispatcher $dispatcher = null)
+>>>>>>> tundeseun/devtest
     {
         $this->files = $files;
         $this->events = $dispatcher;

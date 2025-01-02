@@ -35,7 +35,11 @@ class CodeFormatter implements ReflectorFormatter
     const HIGHLIGHT_COMMENT = 'code_comment';
     const HIGHLIGHT_INLINE_HTML = 'inline_html';
 
+<<<<<<< HEAD
     private static $tokenMap = [
+=======
+    private const TOKEN_MAP = [
+>>>>>>> tundeseun/devtest
         // Not highlighted
         \T_OPEN_TAG           => self::HIGHLIGHT_DEFAULT,
         \T_OPEN_TAG_WITH_ECHO => self::HIGHLIGHT_DEFAULT,
@@ -187,8 +191,13 @@ class CodeFormatter implements ReflectorFormatter
                 return $currentType;
             }
 
+<<<<<<< HEAD
             if (\array_key_exists($token[0], self::$tokenMap)) {
                 return self::$tokenMap[$token[0]];
+=======
+            if (\array_key_exists($token[0], self::TOKEN_MAP)) {
+                return self::TOKEN_MAP[$token[0]];
+>>>>>>> tundeseun/devtest
             }
         }
 

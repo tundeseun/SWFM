@@ -23,6 +23,18 @@ class TimeTest extends TestCase
             Time::dateTimeToDosTime(new DateTimeImmutable('1980-01-01T00:00:00+00:00')),
             2162688
         );
+<<<<<<< HEAD
+=======
+
+        // Local timezone different than UTC.
+        $prevLocalTimezone = date_default_timezone_get();
+        date_default_timezone_set('Europe/Berlin');
+        $this->assertSame(
+            Time::dateTimeToDosTime(new DateTimeImmutable('1980-01-01T00:00:00+00:00')),
+            2162688
+        );
+        date_default_timezone_set($prevLocalTimezone);
+>>>>>>> tundeseun/devtest
     }
 
     public function testTooEarlyDateToDosTime(): void

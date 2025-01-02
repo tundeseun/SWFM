@@ -23,11 +23,17 @@ namespace Symfony\Component\CssSelector\Parser\Tokenizer;
  */
 class TokenizerEscaping
 {
+<<<<<<< HEAD
     private TokenizerPatterns $patterns;
 
     public function __construct(TokenizerPatterns $patterns)
     {
         $this->patterns = $patterns;
+=======
+    public function __construct(
+        private TokenizerPatterns $patterns,
+    ) {
+>>>>>>> tundeseun/devtest
     }
 
     public function escapeUnicode(string $value): string

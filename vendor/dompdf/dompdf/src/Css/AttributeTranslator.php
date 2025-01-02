@@ -167,6 +167,7 @@ class AttributeTranslator
         'ol' => [
             'compact' => 'margin: 0.5em 0;',
             'start' => 'counter-reset: -dompdf-default-counter %d;',
+<<<<<<< HEAD
             'type' => 'list-style-type: %s;',
         ],
         'ul' => [
@@ -175,6 +176,16 @@ class AttributeTranslator
         ],
         'li' => [
             'type' => 'list-style-type: %s;',
+=======
+            'type' => '_set_list_style_type',
+        ],
+        'ul' => [
+            'compact' => 'margin: 0.5em 0;',
+            'type' => '_set_list_style_type',
+        ],
+        'li' => [
+            'type' => '_set_list_style_type',
+>>>>>>> tundeseun/devtest
             'value' => 'counter-reset: -dompdf-default-counter %d;',
         ],
         'pre' => [
@@ -649,4 +660,35 @@ class AttributeTranslator
 
         return ltrim($style, "; ");
     }
+<<<<<<< HEAD
+=======
+
+    protected static function _set_list_style_type(\DOMElement $node, string $value): string
+    {
+        $v = trim($value);
+
+        switch ($v) {
+            case "1":
+                $type = "decimal";
+                break;
+            case "a":
+                $type = "lower-alpha";
+                break;
+            case "A":
+                $type = "upper-alpha";
+                break;
+            case "i":
+                $type = "lower-roman";
+                break;
+            case "I":
+                $type = "upper-roman";
+                break;
+            default:
+                $type = $v;
+                break;
+        }
+
+        return "list-style-type: $type;";
+    }
+>>>>>>> tundeseun/devtest
 }

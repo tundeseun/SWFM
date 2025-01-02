@@ -28,7 +28,11 @@ class CsvFileDumper extends FileDumper
         $handle = fopen('php://memory', 'r+');
 
         foreach ($messages->all($domain) as $source => $target) {
+<<<<<<< HEAD
             fputcsv($handle, [$source, $target], $this->delimiter, $this->enclosure);
+=======
+            fputcsv($handle, [$source, $target], $this->delimiter, $this->enclosure, '\\');
+>>>>>>> tundeseun/devtest
         }
 
         rewind($handle);

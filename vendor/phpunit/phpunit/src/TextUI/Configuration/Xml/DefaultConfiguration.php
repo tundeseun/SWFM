@@ -111,6 +111,10 @@ final class DefaultConfiguration extends Configuration
                 false,
                 false,
                 false,
+<<<<<<< HEAD
+=======
+                false,
+>>>>>>> tundeseun/devtest
                 null,
                 false,
                 false,
@@ -129,6 +133,10 @@ final class DefaultConfiguration extends Configuration
                 false,
                 false,
                 false,
+<<<<<<< HEAD
+=======
+                false,
+>>>>>>> tundeseun/devtest
                 null,
                 false,
                 false,

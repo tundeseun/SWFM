@@ -33,7 +33,11 @@ final class ExceptionComparator extends ObjectComparator
             $array['line'],
             $array['trace'],
             $array['string'],
+<<<<<<< HEAD
             $array['xdebug_message']
+=======
+            $array['xdebug_message'],
+>>>>>>> tundeseun/devtest
         );
 
         return $array;

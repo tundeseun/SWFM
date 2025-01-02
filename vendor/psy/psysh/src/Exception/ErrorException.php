@@ -16,7 +16,11 @@ namespace Psy\Exception;
  */
 class ErrorException extends \ErrorException implements Exception
 {
+<<<<<<< HEAD
     private $rawMessage;
+=======
+    private string $rawMessage;
+>>>>>>> tundeseun/devtest
 
     /**
      * Construct a Psy ErrorException.
@@ -37,10 +41,13 @@ class ErrorException extends \ErrorException implements Exception
         }
 
         switch ($severity) {
+<<<<<<< HEAD
             case \E_STRICT:
                 $type = 'Strict error';
                 break;
 
+=======
+>>>>>>> tundeseun/devtest
             case \E_NOTICE:
             case \E_USER_NOTICE:
                 $type = 'Notice';
@@ -63,6 +70,13 @@ class ErrorException extends \ErrorException implements Exception
                 break;
 
             default:
+<<<<<<< HEAD
+=======
+                if (\PHP_VERSION_ID < 80400 && $severity === \E_STRICT) {
+                    $type = 'Strict error';
+                    break;
+                }
+>>>>>>> tundeseun/devtest
                 $type = 'Error';
                 break;
         }

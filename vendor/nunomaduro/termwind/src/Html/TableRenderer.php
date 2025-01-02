@@ -122,7 +122,11 @@ final class TableRenderer
             if ($child->isName('tr')) {
                 $rows = iterator_to_array($this->parseRow($child));
                 if (count($rows) > 0) {
+<<<<<<< HEAD
                     $this->table->addRow(new TableSeparator());
+=======
+                    $this->table->addRow(new TableSeparator);
+>>>>>>> tundeseun/devtest
                     $this->table->addRows($rows);
                 }
             }
@@ -203,7 +207,11 @@ final class TableRenderer
 
         $border = (int) $node->getAttribute('border');
         for ($i = $border; $i--; $i > 0) {
+<<<<<<< HEAD
             yield new TableSeparator();
+=======
+            yield new TableSeparator;
+>>>>>>> tundeseun/devtest
         }
     }
 

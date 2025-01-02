@@ -14,6 +14,10 @@ use PhpParser\Node\Expr\Cast;
 use PhpParser\Node\IntersectionType;
 use PhpParser\Node\MatchArm;
 use PhpParser\Node\Param;
+<<<<<<< HEAD
+=======
+use PhpParser\Node\PropertyHook;
+>>>>>>> tundeseun/devtest
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\UnionType;
@@ -105,6 +109,18 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
 
     /** @var int Current indentation level. */
     protected int $indentLevel;
+<<<<<<< HEAD
+=======
+    /** @var string String for single level of indentation */
+    private string $indent;
+    /** @var int Width in spaces to indent by. */
+    private int $indentWidth;
+    /** @var bool Whether to use tab indentation. */
+    private bool $useTabs;
+    /** @var int Width in spaces of one tab. */
+    private int $tabWidth = 4;
+
+>>>>>>> tundeseun/devtest
     /** @var string Newline style. Does not include current indentation. */
     protected string $newline;
     /** @var string Newline including current indentation. */
@@ -169,12 +185,21 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
      *                            PHP version while specifying an older target (but the result will
      *                            of course not be compatible with the older version in that case).
      *  * string $newline:        The newline style to use. Should be "\n" (default) or "\r\n".
+<<<<<<< HEAD
+=======
+     *  * string $indent:         The indentation to use. Should either be all spaces or a single
+     *                            tab. Defaults to four spaces ("    ").
+>>>>>>> tundeseun/devtest
      *  * bool $shortArraySyntax: Whether to use [] instead of array() as the default array
      *                            syntax, if the node does not specify a format. Defaults to whether
      *                            the phpVersion support short array syntax.
      *
      * @param array{
+<<<<<<< HEAD
      *     phpVersion?: PhpVersion, newline?: string, shortArraySyntax?: bool
+=======
+     *     phpVersion?: PhpVersion, newline?: string, indent?: string, shortArraySyntax?: bool
+>>>>>>> tundeseun/devtest
      * } $options Dictionary of formatting options
      */
     public function __construct(array $options = []) {
@@ -189,6 +214,20 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             $options['shortArraySyntax'] ?? $this->phpVersion->supportsShortArraySyntax();
         $this->docStringEndToken =
             $this->phpVersion->supportsFlexibleHeredoc() ? null : '_DOC_STRING_END_' . mt_rand();
+<<<<<<< HEAD
+=======
+
+        $this->indent = $indent = $options['indent'] ?? '    ';
+        if ($indent === "\t") {
+            $this->useTabs = true;
+            $this->indentWidth = $this->tabWidth;
+        } elseif ($indent === \str_repeat(' ', \strlen($indent))) {
+            $this->useTabs = false;
+            $this->indentWidth = \strlen($indent);
+        } else {
+            throw new \LogicException('Option "indent" must either be all spaces or a single tab');
+        }
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -207,24 +246,44 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
      */
     protected function setIndentLevel(int $level): void {
         $this->indentLevel = $level;
+<<<<<<< HEAD
         $this->nl = $this->newline . \str_repeat(' ', $level);
+=======
+        if ($this->useTabs) {
+            $tabs = \intdiv($level, $this->tabWidth);
+            $spaces = $level % $this->tabWidth;
+            $this->nl = $this->newline . \str_repeat("\t", $tabs) . \str_repeat(' ', $spaces);
+        } else {
+            $this->nl = $this->newline . \str_repeat(' ', $level);
+        }
+>>>>>>> tundeseun/devtest
     }
 
     /**
      * Increase indentation level.
      */
     protected function indent(): void {
+<<<<<<< HEAD
         $this->indentLevel += 4;
         $this->nl .= '    ';
+=======
+        $this->indentLevel += $this->indentWidth;
+        $this->nl .= $this->indent;
+>>>>>>> tundeseun/devtest
     }
 
     /**
      * Decrease indentation level.
      */
     protected function outdent(): void {
+<<<<<<< HEAD
         assert($this->indentLevel >= 4);
         $this->indentLevel -= 4;
         $this->nl = $this->newline . str_repeat(' ', $this->indentLevel);
+=======
+        assert($this->indentLevel >= $this->indentWidth);
+        $this->setIndentLevel($this->indentLevel - $this->indentWidth);
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -536,7 +595,11 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
         $this->initializeModifierChangeMap();
 
         $this->resetState();
+<<<<<<< HEAD
         $this->origTokens = new TokenStream($origTokens);
+=======
+        $this->origTokens = new TokenStream($origTokens, $this->tabWidth);
+>>>>>>> tundeseun/devtest
 
         $this->preprocessNodes($stmts);
 
@@ -708,7 +771,11 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
                 $result .= $extraLeft;
 
                 $origIndentLevel = $this->indentLevel;
+<<<<<<< HEAD
                 $this->setIndentLevel($this->origTokens->getIndentationBefore($subStartPos) + $indentAdjustment);
+=======
+                $this->setIndentLevel(max($this->origTokens->getIndentationBefore($subStartPos) + $indentAdjustment, 0));
+>>>>>>> tundeseun/devtest
 
                 // If it's the same node that was previously in this position, it certainly doesn't
                 // need fixup. It's important to check this here, because our fixup checks are more
@@ -811,7 +878,11 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
                 \assert($itemStartPos >= 0 && $itemEndPos >= 0 && $itemStartPos >= $pos);
 
                 $origIndentLevel = $this->indentLevel;
+<<<<<<< HEAD
                 $lastElemIndentLevel = $this->origTokens->getIndentationBefore($itemStartPos) + $indentAdjustment;
+=======
+                $lastElemIndentLevel = max($this->origTokens->getIndentationBefore($itemStartPos) + $indentAdjustment, 0);
+>>>>>>> tundeseun/devtest
                 $this->setIndentLevel($lastElemIndentLevel);
 
                 $comments = $arrItem->getComments();
@@ -1195,6 +1266,12 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
              . ($modifiers & Modifiers::PUBLIC ? 'public ' : '')
              . ($modifiers & Modifiers::PROTECTED ? 'protected ' : '')
              . ($modifiers & Modifiers::PRIVATE ? 'private ' : '')
+<<<<<<< HEAD
+=======
+             . ($modifiers & Modifiers::PUBLIC_SET ? 'public(set) ' : '')
+             . ($modifiers & Modifiers::PROTECTED_SET ? 'protected(set) ' : '')
+             . ($modifiers & Modifiers::PRIVATE_SET ? 'private(set) ' : '')
+>>>>>>> tundeseun/devtest
              . ($modifiers & Modifiers::STATIC ? 'static ' : '')
              . ($modifiers & Modifiers::READONLY ? 'readonly ' : '');
     }
@@ -1517,6 +1594,10 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             Stmt\UseUse::class . '->uses' => ', ',
             MatchArm::class . '->conds' => ', ',
             AttributeGroup::class . '->attrs' => ', ',
+<<<<<<< HEAD
+=======
+            PropertyHook::class . '->params' => ', ',
+>>>>>>> tundeseun/devtest
 
             // statement lists
             Expr\Closure::class . '->stmts' => "\n",
@@ -1554,10 +1635,21 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             Expr\Closure::class . '->attrGroups' => ' ',
             Expr\ArrowFunction::class . '->attrGroups' => ' ',
             Param::class . '->attrGroups' => ' ',
+<<<<<<< HEAD
+=======
+            PropertyHook::class . '->attrGroups' => ' ',
+
+>>>>>>> tundeseun/devtest
             Stmt\Switch_::class . '->cases' => "\n",
             Stmt\TraitUse::class . '->adaptations' => "\n",
             Stmt\TryCatch::class . '->stmts' => "\n",
             Stmt\While_::class . '->stmts' => "\n",
+<<<<<<< HEAD
+=======
+            PropertyHook::class . '->body' => "\n",
+            Stmt\Property::class . '->hooks' => "\n",
+            Param::class . '->hooks' => "\n",
+>>>>>>> tundeseun/devtest
 
             // dummy for top-level context
             'File->stmts' => "\n",
@@ -1641,6 +1733,10 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             Stmt\Property::class . '->flags' => ['pModifiers', \T_VARIABLE],
             PrintableNewAnonClassNode::class . '->flags' => ['pModifiers', \T_CLASS],
             Param::class . '->flags' => ['pModifiers', \T_VARIABLE],
+<<<<<<< HEAD
+=======
+            PropertyHook::class . '->flags' => ['pModifiers', \T_STRING],
+>>>>>>> tundeseun/devtest
             Expr\Closure::class . '->static' => ['pStatic', \T_FUNCTION],
             Expr\ArrowFunction::class . '->static' => ['pStatic', \T_FN],
             //Stmt\TraitUseAdaptation\Alias::class . '->newModifier' => 0, // TODO

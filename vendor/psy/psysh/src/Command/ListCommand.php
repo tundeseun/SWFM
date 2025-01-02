@@ -35,8 +35,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ListCommand extends ReflectingCommand implements PresenterAware
 {
+<<<<<<< HEAD
     protected $presenter;
     protected $enumerators;
+=======
+    protected Presenter $presenter;
+    protected array $enumerators;
+>>>>>>> tundeseun/devtest
 
     /**
      * PresenterAware interface.

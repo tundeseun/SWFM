@@ -62,13 +62,25 @@ class MercurialProcessor implements ProcessorInterface
         }
 
         $result = explode(' ', trim((string) shell_exec('hg id -nb')));
+<<<<<<< HEAD
 
+=======
+>>>>>>> tundeseun/devtest
         if (\count($result) >= 3) {
             return self::$cache = [
                 'branch' => $result[1],
                 'revision' => $result[2],
             ];
         }
+<<<<<<< HEAD
+=======
+        if (\count($result) === 2) {
+            return self::$cache = [
+                'branch' => $result[1],
+                'revision' => $result[0],
+            ];
+        }
+>>>>>>> tundeseun/devtest
 
         return self::$cache = [];
     }

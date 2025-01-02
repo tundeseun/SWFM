@@ -36,7 +36,11 @@ class ValidClassNamePass extends NamespaceAwarePass
     const INTERFACE_TYPE = 'interface';
     const TRAIT_TYPE = 'trait';
 
+<<<<<<< HEAD
     private $conditionalScopes = 0;
+=======
+    private int $conditionalScopes = 0;
+>>>>>>> tundeseun/devtest
 
     /**
      * Validate class, interface and trait definitions.

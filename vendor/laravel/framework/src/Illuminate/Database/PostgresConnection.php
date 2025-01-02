@@ -93,7 +93,11 @@ class PostgresConnection extends Connection
      * @param  callable|null  $processFactory
      * @return \Illuminate\Database\Schema\PostgresSchemaState
      */
+<<<<<<< HEAD
     public function getSchemaState(Filesystem $files = null, callable $processFactory = null)
+=======
+    public function getSchemaState(?Filesystem $files = null, ?callable $processFactory = null)
+>>>>>>> tundeseun/devtest
     {
         return new PostgresSchemaState($this, $files, $processFactory);
     }

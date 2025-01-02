@@ -28,7 +28,11 @@ class Hub implements HubContract
      * @param  \Illuminate\Contracts\Container\Container|null  $container
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Container $container = null)
+=======
+    public function __construct(?Container $container = null)
+>>>>>>> tundeseun/devtest
     {
         $this->container = $container;
     }

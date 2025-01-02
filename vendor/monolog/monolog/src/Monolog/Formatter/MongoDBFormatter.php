@@ -150,7 +150,11 @@ class MongoDBFormatter implements FormatterInterface
     {
         $milliseconds = floor(((float) $value->format('U.u')) * 1000);
 
+<<<<<<< HEAD
         $milliseconds = (PHP_INT_SIZE == 8) //64-bit OS?
+=======
+        $milliseconds = (PHP_INT_SIZE === 8) //64-bit OS?
+>>>>>>> tundeseun/devtest
             ? (int) $milliseconds
             : (string) $milliseconds;
 

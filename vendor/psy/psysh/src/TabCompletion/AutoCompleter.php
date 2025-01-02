@@ -74,7 +74,11 @@ class AutoCompleter
         $matches = [];
         foreach ($this->matchers as $matcher) {
             if ($matcher->hasMatched($tokens)) {
+<<<<<<< HEAD
                 $matches = \array_merge($matcher->getMatches($tokens), $matches);
+=======
+                $matches = \array_merge($matcher->getMatches($tokens, $info), $matches);
+>>>>>>> tundeseun/devtest
             }
         }
 

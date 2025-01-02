@@ -31,7 +31,11 @@ final class ConfigureIO
      */
     public static function of(InputInterface $input, Output $output): void
     {
+<<<<<<< HEAD
         $application = new Application();
+=======
+        $application = new Application;
+>>>>>>> tundeseun/devtest
         $reflector = new ReflectionObject($application);
         $method = $reflector->getMethod('configureIO');
         $method->setAccessible(true);

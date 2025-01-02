@@ -222,7 +222,11 @@ class PendingRequest
      * @param  array  $middleware
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(Factory $factory = null, $middleware = [])
+=======
+    public function __construct(?Factory $factory = null, $middleware = [])
+>>>>>>> tundeseun/devtest
     {
         $this->factory = $factory;
         $this->middleware = new Collection($middleware);
@@ -690,7 +694,11 @@ class PendingRequest
      * @param  callable|null  $callback
      * @return $this
      */
+<<<<<<< HEAD
     public function throw(callable $callback = null)
+=======
+    public function throw(?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $this->throwCallback = $callback ?: fn () => null;
 

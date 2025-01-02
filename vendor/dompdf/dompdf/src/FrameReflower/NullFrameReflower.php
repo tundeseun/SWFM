@@ -29,7 +29,11 @@ class NullFrameReflower extends AbstractFrameReflower
     /**
      * @param BlockFrameDecorator|null $block
      */
+<<<<<<< HEAD
     function reflow(BlockFrameDecorator $block = null)
+=======
+    function reflow(?BlockFrameDecorator $block = null)
+>>>>>>> tundeseun/devtest
     {
         return;
     }

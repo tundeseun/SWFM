@@ -30,6 +30,7 @@ final class LinkParserHelper
      */
     public static function parseLinkDestination(Cursor $cursor): ?string
     {
+<<<<<<< HEAD
         if ($res = $cursor->match(RegexHelper::REGEX_LINK_DESTINATION_BRACES)) {
             // Chop off surrounding <..>:
             return UrlEncoder::unescapeAndEncode(
@@ -39,6 +40,10 @@ final class LinkParserHelper
 
         if ($cursor->getCurrentCharacter() === '<') {
             return null;
+=======
+        if ($cursor->getCurrentCharacter() === '<') {
+            return self::parseDestinationBraces($cursor);
+>>>>>>> tundeseun/devtest
         }
 
         $destination = self::manuallyParseLinkDestination($cursor);
@@ -69,7 +74,11 @@ final class LinkParserHelper
 
     public static function parsePartialLinkLabel(Cursor $cursor): ?string
     {
+<<<<<<< HEAD
         return $cursor->match('/^(?:[^\\\\\[\]]+|\\\\.?)*/');
+=======
+        return $cursor->match('/^(?:[^\\\\\[\]]++|\\\\.?)*+/');
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -100,6 +109,7 @@ final class LinkParserHelper
 
     private static function manuallyParseLinkDestination(Cursor $cursor): ?string
     {
+<<<<<<< HEAD
         $oldPosition = $cursor->getPosition();
         $oldState    = $cursor->saveState();
 
@@ -110,17 +120,38 @@ final class LinkParserHelper
             } elseif ($c === '(') {
                 $cursor->advanceBy(1);
                 $openParens++;
+=======
+        $remainder  = $cursor->getRemainder();
+        $openParens = 0;
+        $len        = \strlen($remainder);
+        for ($i = 0; $i < $len; $i++) {
+            $c = $remainder[$i];
+            if ($c === '\\' && $i + 1 < $len && RegexHelper::isEscapable($remainder[$i + 1])) {
+                $i++;
+            } elseif ($c === '(') {
+                $openParens++;
+                // Limit to 32 nested parens for pathological cases
+                if ($openParens > 32) {
+                    return null;
+                }
+>>>>>>> tundeseun/devtest
             } elseif ($c === ')') {
                 if ($openParens < 1) {
                     break;
                 }
 
+<<<<<<< HEAD
                 $cursor->advanceBy(1);
                 $openParens--;
             } elseif (\preg_match(RegexHelper::REGEX_WHITESPACE_CHAR, $c)) {
                 break;
             } else {
                 $cursor->advanceBy(1);
+=======
+                $openParens--;
+            } elseif (\ord($c) <= 32 && RegexHelper::isWhitespace($c)) {
+                break;
+>>>>>>> tundeseun/devtest
             }
         }
 
@@ -128,6 +159,7 @@ final class LinkParserHelper
             return null;
         }
 
+<<<<<<< HEAD
         if ($cursor->getPosition() === $oldPosition && (! isset($c) || $c !== ')')) {
             return null;
         }
@@ -138,5 +170,47 @@ final class LinkParserHelper
         $cursor->advanceBy($newPos - $cursor->getPosition());
 
         return $cursor->getPreviousText();
+=======
+        if ($i === 0 && (! isset($c) || $c !== ')')) {
+            return null;
+        }
+
+        $destination = \substr($remainder, 0, $i);
+        $cursor->advanceBy(\mb_strlen($destination, 'UTF-8'));
+
+        return $destination;
+    }
+
+    /** @var \WeakReference<Cursor>|null */
+    private static ?\WeakReference $lastCursor       = null;
+    private static bool $lastCursorLacksClosingBrace = false;
+
+    private static function parseDestinationBraces(Cursor $cursor): ?string
+    {
+        // Optimization: If we've previously parsed this cursor and returned `null`, we know
+        // that no closing brace exists, so we can skip the regex entirely. This helps avoid
+        // certain pathological cases where the regex engine can take a very long time to
+        // determine that no match exists.
+        if (self::$lastCursor !== null && self::$lastCursor->get() === $cursor) {
+            if (self::$lastCursorLacksClosingBrace) {
+                return null;
+            }
+        } else {
+            self::$lastCursor = \WeakReference::create($cursor);
+        }
+
+        if ($res = $cursor->match(RegexHelper::REGEX_LINK_DESTINATION_BRACES)) {
+            self::$lastCursorLacksClosingBrace = false;
+
+            // Chop off surrounding <..>:
+            return UrlEncoder::unescapeAndEncode(
+                RegexHelper::unescape(\substr($res, 1, -1))
+            );
+        }
+
+        self::$lastCursorLacksClosingBrace = true;
+
+        return null;
+>>>>>>> tundeseun/devtest
     }
 }

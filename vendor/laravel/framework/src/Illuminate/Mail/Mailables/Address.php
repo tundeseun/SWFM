@@ -25,7 +25,11 @@ class Address
      * @param  string|null  $name
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(string $address, string $name = null)
+=======
+    public function __construct(string $address, ?string $name = null)
+>>>>>>> tundeseun/devtest
     {
         $this->address = $address;
         $this->name = $name;

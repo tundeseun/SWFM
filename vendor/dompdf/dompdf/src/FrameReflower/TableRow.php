@@ -30,7 +30,11 @@ class TableRow extends AbstractFrameReflower
     /**
      * @param BlockFrameDecorator|null $block
      */
+<<<<<<< HEAD
     function reflow(BlockFrameDecorator $block = null)
+=======
+    function reflow(?BlockFrameDecorator $block = null)
+>>>>>>> tundeseun/devtest
     {
         /** @var TableRowFrameDecorator */
         $frame = $this->_frame;
@@ -47,11 +51,19 @@ class TableRow extends AbstractFrameReflower
         // Counters and generated content
         $this->_set_content();
 
+<<<<<<< HEAD
         $this->_frame->position();
         $style = $this->_frame->get_style();
         $cb = $this->_frame->get_containing_block();
 
         foreach ($this->_frame->get_children() as $child) {
+=======
+        $frame->position();
+        $style = $frame->get_style();
+        $cb = $frame->get_containing_block();
+
+        foreach ($frame->get_children() as $child) {
+>>>>>>> tundeseun/devtest
             $child->set_containing_block($cb);
             $child->reflow();
 
@@ -64,12 +76,25 @@ class TableRow extends AbstractFrameReflower
             return;
         }
 
+<<<<<<< HEAD
         $table = TableFrameDecorator::find_parent_table($this->_frame);
         $cellmap = $table->get_cellmap();
         $style->set_used("width", $cellmap->get_frame_width($this->_frame));
         $style->set_used("height", $cellmap->get_frame_height($this->_frame));
 
         $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
+=======
+        $table = TableFrameDecorator::find_parent_table($frame);
+        if ($table === null) {
+            throw new Exception("Parent table not found for table row");
+        }
+        $cellmap = $table->get_cellmap();
+
+        $style->set_used("width", $cellmap->get_frame_width($frame));
+        $style->set_used("height", $cellmap->get_frame_height($frame));
+
+        $frame->set_position($cellmap->get_frame_position($frame));
+>>>>>>> tundeseun/devtest
     }
 
     /**

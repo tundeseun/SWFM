@@ -41,6 +41,11 @@ use PHPUnit\Event\Test\WarningTriggered;
 use PHPUnit\Event\UnknownSubscriberTypeException;
 use PHPUnit\Framework\TestStatus\TestStatus;
 use PHPUnit\Logging\TestDox\TestResult as TestDoxTestMethod;
+<<<<<<< HEAD
+=======
+use PHPUnit\TextUI\Configuration\Source;
+use PHPUnit\TextUI\Configuration\SourceFilter;
+>>>>>>> tundeseun/devtest
 use ReflectionMethod;
 
 /**
@@ -50,6 +55,11 @@ use ReflectionMethod;
  */
 final class TestResultCollector
 {
+<<<<<<< HEAD
+=======
+    private readonly Source $source;
+
+>>>>>>> tundeseun/devtest
     /**
      * @psalm-var array<string, list<TestDoxTestMethod>>
      */
@@ -62,8 +72,15 @@ final class TestResultCollector
      * @throws EventFacadeIsSealedException
      * @throws UnknownSubscriberTypeException
      */
+<<<<<<< HEAD
     public function __construct(Facade $facade)
     {
+=======
+    public function __construct(Facade $facade, Source $source)
+    {
+        $this->source = $source;
+
+>>>>>>> tundeseun/devtest
         $this->registerSubscribers($facade);
     }
 
@@ -214,6 +231,25 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByTest()) {
+            return;
+        }
+
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfDeprecations() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictDeprecations() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::deprecation());
     }
 
@@ -223,6 +259,21 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfNotices() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictNotices() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::notice());
     }
 
@@ -232,6 +283,21 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfWarnings() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictWarnings() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::warning());
     }
 
@@ -241,6 +307,25 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByTest()) {
+            return;
+        }
+
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfPhpDeprecations() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictDeprecations() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::deprecation());
     }
 
@@ -250,6 +335,21 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfPhpNotices() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictNotices() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::notice());
     }
 
@@ -259,6 +359,21 @@ final class TestResultCollector
             return;
         }
 
+<<<<<<< HEAD
+=======
+        if ($event->ignoredByBaseline()) {
+            return;
+        }
+
+        if (!$this->source->ignoreSuppressionOfPhpWarnings() && $event->wasSuppressed()) {
+            return;
+        }
+
+        if ($this->source->restrictWarnings() && !(new SourceFilter)->includes($this->source, $event->file())) {
+            return;
+        }
+
+>>>>>>> tundeseun/devtest
         $this->updateTestStatus(TestStatus::warning());
     }
 

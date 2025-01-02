@@ -11,7 +11,11 @@ trait Termwind
 {
     protected function termwind(string $html)
     {
+<<<<<<< HEAD
         renderUsing($output = new BufferedConsoleOutput());
+=======
+        renderUsing($output = new BufferedConsoleOutput);
+>>>>>>> tundeseun/devtest
 
         render($html);
 

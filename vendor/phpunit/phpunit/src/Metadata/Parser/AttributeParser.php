@@ -11,7 +11,13 @@ namespace PHPUnit\Metadata\Parser;
 
 use const JSON_THROW_ON_ERROR;
 use function assert;
+<<<<<<< HEAD
 use function json_decode;
+=======
+use function class_exists;
+use function json_decode;
+use function method_exists;
+>>>>>>> tundeseun/devtest
 use function str_starts_with;
 use PHPUnit\Framework\Attributes\After;
 use PHPUnit\Framework\Attributes\AfterClass;
@@ -84,6 +90,11 @@ final class AttributeParser implements Parser
      */
     public function forClass(string $className): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+
+>>>>>>> tundeseun/devtest
         $result = [];
 
         foreach ((new ReflectionClass($className))->getAttributes() as $attribute) {
@@ -91,6 +102,13 @@ final class AttributeParser implements Parser
                 continue;
             }
 
+<<<<<<< HEAD
+=======
+            if (!class_exists($attribute->getName())) {
+                continue;
+            }
+
+>>>>>>> tundeseun/devtest
             $attributeInstance = $attribute->newInstance();
 
             switch ($attribute->getName()) {
@@ -335,6 +353,12 @@ final class AttributeParser implements Parser
      */
     public function forMethod(string $className, string $methodName): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+        assert(method_exists($className, $methodName));
+
+>>>>>>> tundeseun/devtest
         $result = [];
 
         foreach ((new ReflectionMethod($className, $methodName))->getAttributes() as $attribute) {
@@ -342,6 +366,13 @@ final class AttributeParser implements Parser
                 continue;
             }
 
+<<<<<<< HEAD
+=======
+            if (!class_exists($attribute->getName())) {
+                continue;
+            }
+
+>>>>>>> tundeseun/devtest
             $attributeInstance = $attribute->newInstance();
 
             switch ($attribute->getName()) {

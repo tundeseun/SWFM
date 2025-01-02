@@ -16,7 +16,11 @@ namespace Psy\Exception;
  */
 class RuntimeException extends \RuntimeException implements Exception
 {
+<<<<<<< HEAD
     private $rawMessage;
+=======
+    private string $rawMessage;
+>>>>>>> tundeseun/devtest
 
     /**
      * Make this bad boy.

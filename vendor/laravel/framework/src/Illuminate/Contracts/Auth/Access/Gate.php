@@ -29,7 +29,11 @@ interface Gate
      * @param  array|null  $abilities
      * @return $this
      */
+<<<<<<< HEAD
     public function resource($name, $class, array $abilities = null);
+=======
+    public function resource($name, $class, ?array $abilities = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Define a policy class for a given class type.

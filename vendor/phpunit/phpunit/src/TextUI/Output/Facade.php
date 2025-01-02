@@ -206,7 +206,11 @@ final class Facade
                 self::$printer,
                 true,
                 true,
+<<<<<<< HEAD
                 true,
+=======
+                $configuration->displayDetailsOnPhpunitDeprecations(),
+>>>>>>> tundeseun/devtest
                 false,
                 false,
                 true,
@@ -239,7 +243,11 @@ final class Facade
             self::$printer,
             true,
             true,
+<<<<<<< HEAD
             true,
+=======
+            $configuration->displayDetailsOnPhpunitDeprecations(),
+>>>>>>> tundeseun/devtest
             true,
             true,
             true,

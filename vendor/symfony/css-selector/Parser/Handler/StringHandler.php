@@ -31,6 +31,7 @@ use Symfony\Component\CssSelector\Parser\TokenStream;
  */
 class StringHandler implements HandlerInterface
 {
+<<<<<<< HEAD
     private TokenizerPatterns $patterns;
     private TokenizerEscaping $escaping;
 
@@ -38,6 +39,12 @@ class StringHandler implements HandlerInterface
     {
         $this->patterns = $patterns;
         $this->escaping = $escaping;
+=======
+    public function __construct(
+        private TokenizerPatterns $patterns,
+        private TokenizerEscaping $escaping,
+    ) {
+>>>>>>> tundeseun/devtest
     }
 
     public function handle(Reader $reader, TokenStream $stream): bool
@@ -52,7 +59,11 @@ class StringHandler implements HandlerInterface
         $match = $reader->findPattern($this->patterns->getQuotedStringPattern($quote));
 
         if (!$match) {
+<<<<<<< HEAD
             throw new InternalErrorException(sprintf('Should have found at least an empty match at %d.', $reader->getPosition()));
+=======
+            throw new InternalErrorException(\sprintf('Should have found at least an empty match at %d.', $reader->getPosition()));
+>>>>>>> tundeseun/devtest
         }
 
         // check unclosed strings

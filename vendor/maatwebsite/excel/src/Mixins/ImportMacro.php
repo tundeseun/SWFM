@@ -11,7 +11,11 @@ class ImportMacro
 {
     public function __invoke()
     {
+<<<<<<< HEAD
         return function (string $filename, string $disk = null, string $readerType = null) {
+=======
+        return function (string $filename, ?string $disk = null, ?string $readerType = null) {
+>>>>>>> tundeseun/devtest
             $import = new class(get_class($this->getModel())) implements ToModel, WithHeadingRow
             {
                 use Importable;

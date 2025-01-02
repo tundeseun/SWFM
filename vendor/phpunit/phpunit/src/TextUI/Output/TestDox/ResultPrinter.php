@@ -58,11 +58,14 @@ final class ResultPrinter
         }
     }
 
+<<<<<<< HEAD
     public function flush(): void
     {
         $this->printer->flush();
     }
 
+=======
+>>>>>>> tundeseun/devtest
     /**
      * @psalm-param string $prettifiedClassName
      */

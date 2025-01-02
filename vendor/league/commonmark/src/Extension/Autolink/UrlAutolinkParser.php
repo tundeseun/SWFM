@@ -34,7 +34,11 @@ final class UrlAutolinkParser implements InlineParserInterface
                 (?:
                     (?:xn--[a-z0-9-]++\.)*+xn--[a-z0-9-]++            # a domain name using punycode
                         |
+<<<<<<< HEAD
                     (?:[\pL\pN\pS\pM\-\_]++\.)+[\pL\pN\pM]++          # a multi-level domain name
+=======
+                    (?:[\pL\pN\pS\pM\-\_]++\.){1,127}[\pL\pN\pM]++    # a multi-level domain name; total length must be 253 bytes or less
+>>>>>>> tundeseun/devtest
                         |
                     [a-z0-9\-\_]++                                    # a single-level domain name
                 )\.?

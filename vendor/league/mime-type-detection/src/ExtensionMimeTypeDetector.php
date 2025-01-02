@@ -13,7 +13,11 @@ class ExtensionMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
      */
     private $extensions;
 
+<<<<<<< HEAD
     public function __construct(ExtensionToMimeTypeMap $extensions = null)
+=======
+    public function __construct(?ExtensionToMimeTypeMap $extensions = null)
+>>>>>>> tundeseun/devtest
     {
         $this->extensions = $extensions ?: new GeneratedExtensionToMimeTypeMap();
     }

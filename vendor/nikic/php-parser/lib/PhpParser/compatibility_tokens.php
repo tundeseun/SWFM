@@ -17,6 +17,14 @@ if (!\function_exists('PhpParser\defineCompatibilityTokens')) {
             'T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG',
             'T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG',
             'T_READONLY',
+<<<<<<< HEAD
+=======
+            // PHP 8.4
+            'T_PROPERTY_C',
+            'T_PUBLIC_SET',
+            'T_PROTECTED_SET',
+            'T_PRIVATE_SET',
+>>>>>>> tundeseun/devtest
         ];
 
         // PHP-Parser might be used together with another library that also emulates some or all

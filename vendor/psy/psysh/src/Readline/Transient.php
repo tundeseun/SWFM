@@ -18,9 +18,16 @@ use Psy\Exception\BreakException;
  */
 class Transient implements Readline
 {
+<<<<<<< HEAD
     private $history;
     private $historySize;
     private $eraseDups;
+=======
+    private array $history;
+    private int $historySize;
+    private bool $eraseDups;
+    /** @var resource */
+>>>>>>> tundeseun/devtest
     private $stdin;
 
     /**
@@ -49,7 +56,11 @@ class Transient implements Readline
         // don't do anything with the history file...
         $this->history = [];
         $this->historySize = $historySize;
+<<<<<<< HEAD
         $this->eraseDups = $eraseDups;
+=======
+        $this->eraseDups = $eraseDups ?? false;
+>>>>>>> tundeseun/devtest
     }
 
     /**

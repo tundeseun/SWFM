@@ -71,7 +71,11 @@ class RedirectResponse extends BaseRedirectResponse
      * @param  array|null  $input
      * @return $this
      */
+<<<<<<< HEAD
     public function withInput(array $input = null)
+=======
+    public function withInput(?array $input = null)
+>>>>>>> tundeseun/devtest
     {
         $this->session->flashInput($this->removeFilesFromInput(
             ! is_null($input) ? $input : $this->request->input()

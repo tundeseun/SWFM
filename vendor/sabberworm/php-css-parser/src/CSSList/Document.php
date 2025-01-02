@@ -128,6 +128,11 @@ class Document extends CSSBlockList
      * Expands all shorthand properties to their long value.
      *
      * @return void
+<<<<<<< HEAD
+=======
+     *
+     * @deprecated since 8.7.0, will be removed without substitution in version 9.0 in #511
+>>>>>>> tundeseun/devtest
      */
     public function expandShorthands()
     {
@@ -140,6 +145,11 @@ class Document extends CSSBlockList
      * Create shorthands properties whenever possible.
      *
      * @return void
+<<<<<<< HEAD
+=======
+     *
+     * @deprecated since 8.7.0, will be removed without substitution in version 9.0 in #511
+>>>>>>> tundeseun/devtest
      */
     public function createShorthands()
     {
@@ -155,7 +165,11 @@ class Document extends CSSBlockList
      *
      * @return string
      */
+<<<<<<< HEAD
     public function render(OutputFormat $oOutputFormat = null)
+=======
+    public function render($oOutputFormat = null)
+>>>>>>> tundeseun/devtest
     {
         if ($oOutputFormat === null) {
             $oOutputFormat = new OutputFormat();

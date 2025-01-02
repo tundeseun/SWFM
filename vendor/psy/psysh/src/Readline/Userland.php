@@ -25,6 +25,7 @@ use Psy\Readline\Hoa\Ustring as HoaUstring;
  */
 class Userland implements Readline
 {
+<<<<<<< HEAD
     /** @var HoaReadline */
     private $hoaReadline;
 
@@ -34,6 +35,13 @@ class Userland implements Readline
     private $tput;
     private $input;
     private $output;
+=======
+    private HoaReadline $hoaReadline;
+    private ?string $lastPrompt = null;
+    private HoaConsoleTput $tput;
+    private HoaConsoleInput $input;
+    private HoaConsoleOutput $output;
+>>>>>>> tundeseun/devtest
 
     public static function isSupported(): bool
     {

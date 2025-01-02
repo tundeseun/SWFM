@@ -361,7 +361,11 @@ trait FormatsMessages
      * @param  \Closure|null  $modifier
      * @return string
      */
+<<<<<<< HEAD
     protected function replaceIndexOrPositionPlaceholder($message, $attribute, $placeholder, Closure $modifier = null)
+=======
+    protected function replaceIndexOrPositionPlaceholder($message, $attribute, $placeholder, ?Closure $modifier = null)
+>>>>>>> tundeseun/devtest
     {
         $segments = explode('.', $attribute);
 

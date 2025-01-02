@@ -12,7 +12,11 @@ namespace PHPUnit\Runner\Baseline;
 use const DIRECTORY_SEPARATOR;
 use function assert;
 use function dirname;
+<<<<<<< HEAD
 use function file_exists;
+=======
+use function is_file;
+>>>>>>> tundeseun/devtest
 use function realpath;
 use function sprintf;
 use function str_replace;
@@ -36,7 +40,11 @@ final class Reader
      */
     public function read(string $baselineFile): Baseline
     {
+<<<<<<< HEAD
         if (!file_exists($baselineFile)) {
+=======
+        if (!is_file($baselineFile)) {
+>>>>>>> tundeseun/devtest
             throw new CannotLoadBaselineException(
                 sprintf(
                     'Cannot read baseline %s, file does not exist',

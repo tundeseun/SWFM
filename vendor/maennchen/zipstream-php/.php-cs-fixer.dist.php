@@ -50,7 +50,10 @@ return $config->setRules([
         'semicolon_after_instruction' => true,
         'short_scalar_cast' => true,
         'simplified_null_return' => true,
+<<<<<<< HEAD
         'single_blank_line_before_namespace' => true,
+=======
+>>>>>>> tundeseun/devtest
         'single_class_element_per_statement' => true,
         'single_line_comment_style' => true,
         'single_quote' => true,

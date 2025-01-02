@@ -18,11 +18,17 @@ namespace Symfony\Component\EventDispatcher;
  */
 class ImmutableEventDispatcher implements EventDispatcherInterface
 {
+<<<<<<< HEAD
     private EventDispatcherInterface $dispatcher;
 
     public function __construct(EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
+=======
+    public function __construct(
+        private EventDispatcherInterface $dispatcher,
+    ) {
+>>>>>>> tundeseun/devtest
     }
 
     public function dispatch(object $event, ?string $eventName = null): object
@@ -30,34 +36,50 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
         return $this->dispatcher->dispatch($event, $eventName);
     }
 
+<<<<<<< HEAD
     /**
      * @return never
      */
     public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0): never
+>>>>>>> tundeseun/devtest
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * @return never
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function addSubscriber(EventSubscriberInterface $subscriber): never
+>>>>>>> tundeseun/devtest
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * @return never
      */
     public function removeListener(string $eventName, callable|array $listener)
+=======
+    public function removeListener(string $eventName, callable|array $listener): never
+>>>>>>> tundeseun/devtest
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * @return never
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function removeSubscriber(EventSubscriberInterface $subscriber): never
+>>>>>>> tundeseun/devtest
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }

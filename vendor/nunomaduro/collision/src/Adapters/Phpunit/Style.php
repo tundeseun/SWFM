@@ -55,7 +55,11 @@ final class Style
     public function __construct(ConsoleOutputInterface $output)
     {
         if (! $output instanceof ConsoleOutput) {
+<<<<<<< HEAD
             throw new ShouldNotHappen();
+=======
+            throw new ShouldNotHappen;
+>>>>>>> tundeseun/devtest
         }
 
         $this->terminal = terminal();
@@ -173,7 +177,11 @@ final class Style
 
         array_map(function (TestResult $testResult): void {
             if (! $testResult->throwable instanceof Throwable) {
+<<<<<<< HEAD
                 throw new ShouldNotHappen();
+=======
+                throw new ShouldNotHappen;
+>>>>>>> tundeseun/devtest
             }
 
             renderUsing($this->output);
@@ -327,7 +335,11 @@ final class Style
      */
     public function writeError(Throwable $throwable): void
     {
+<<<<<<< HEAD
         $writer = (new Writer())->setOutput($this->output);
+=======
+        $writer = (new Writer)->setOutput($this->output);
+>>>>>>> tundeseun/devtest
 
         $throwable = new TestException($throwable, $this->output->isVerbose());
 

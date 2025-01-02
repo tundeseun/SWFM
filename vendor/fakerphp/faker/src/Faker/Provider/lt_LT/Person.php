@@ -330,7 +330,11 @@ class Person extends \Faker\Provider\Person
      *
      * @return string on format XXXXXXXXXXX
      */
+<<<<<<< HEAD
     public function personalIdentityNumber($gender = 'male', \DateTime $birthdate = null, $randomNumber = '')
+=======
+    public function personalIdentityNumber($gender = 'male', ?\DateTime $birthdate = null, $randomNumber = '')
+>>>>>>> tundeseun/devtest
     {
         if (!$birthdate) {
             $birthdate = \Faker\Provider\DateTime::dateTimeThisCentury();

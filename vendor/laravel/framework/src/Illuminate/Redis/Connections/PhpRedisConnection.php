@@ -36,7 +36,11 @@ class PhpRedisConnection extends Connection implements ConnectionContract
      * @param  array  $config
      * @return void
      */
+<<<<<<< HEAD
     public function __construct($client, callable $connector = null, array $config = [])
+=======
+    public function __construct($client, ?callable $connector = null, array $config = [])
+>>>>>>> tundeseun/devtest
     {
         $this->client = $client;
         $this->config = $config;
@@ -396,7 +400,11 @@ class PhpRedisConnection extends Connection implements ConnectionContract
      * @param  callable|null  $callback
      * @return \Redis|array
      */
+<<<<<<< HEAD
     public function pipeline(callable $callback = null)
+=======
+    public function pipeline(?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $pipeline = $this->client()->pipeline();
 
@@ -411,7 +419,11 @@ class PhpRedisConnection extends Connection implements ConnectionContract
      * @param  callable|null  $callback
      * @return \Redis|array
      */
+<<<<<<< HEAD
     public function transaction(callable $callback = null)
+=======
+    public function transaction(?callable $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $transaction = $this->client()->multi();
 

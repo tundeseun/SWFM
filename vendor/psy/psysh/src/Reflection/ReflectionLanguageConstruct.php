@@ -21,7 +21,11 @@ class ReflectionLanguageConstruct extends \ReflectionFunctionAbstract
     /**
      * Language construct parameter definitions.
      */
+<<<<<<< HEAD
     private static $languageConstructs = [
+=======
+    private const LANGUAGE_CONSTRUCTS = [
+>>>>>>> tundeseun/devtest
         'isset' => [
             'var' => [],
             '...' => [
@@ -117,7 +121,11 @@ class ReflectionLanguageConstruct extends \ReflectionFunctionAbstract
     public function getParameters(): array
     {
         $params = [];
+<<<<<<< HEAD
         foreach (self::$languageConstructs[$this->keyword] as $parameter => $opts) {
+=======
+        foreach (self::LANGUAGE_CONSTRUCTS[$this->keyword] as $parameter => $opts) {
+>>>>>>> tundeseun/devtest
             $params[] = new ReflectionLanguageConstructParameter($this->keyword, $parameter, $opts);
         }
 
@@ -154,6 +162,10 @@ class ReflectionLanguageConstruct extends \ReflectionFunctionAbstract
      */
     public static function isLanguageConstruct(string $keyword): bool
     {
+<<<<<<< HEAD
         return \array_key_exists($keyword, self::$languageConstructs);
+=======
+        return \array_key_exists($keyword, self::LANGUAGE_CONSTRUCTS);
+>>>>>>> tundeseun/devtest
     }
 }

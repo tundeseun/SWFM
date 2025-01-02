@@ -11,7 +11,10 @@ namespace PHPUnit\Event\Test;
 
 use const PHP_EOL;
 use function sprintf;
+<<<<<<< HEAD
 use PHPUnit\Event\Code;
+=======
+>>>>>>> tundeseun/devtest
 use PHPUnit\Event\Code\ClassMethod;
 use PHPUnit\Event\Event;
 use PHPUnit\Event\Telemetry;
@@ -49,7 +52,11 @@ final class DataProviderMethodFinished implements Event
     }
 
     /**
+<<<<<<< HEAD
      * @psalm-return list<Code\ClassMethod>
+=======
+     * @psalm-return list<ClassMethod>
+>>>>>>> tundeseun/devtest
      */
     public function calledMethods(): array
     {

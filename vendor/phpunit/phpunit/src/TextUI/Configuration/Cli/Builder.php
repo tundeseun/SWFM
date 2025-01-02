@@ -58,6 +58,10 @@ final class Builder
         'display-incomplete',
         'display-skipped',
         'display-deprecations',
+<<<<<<< HEAD
+=======
+        'display-phpunit-deprecations',
+>>>>>>> tundeseun/devtest
         'display-errors',
         'display-notices',
         'display-warnings',
@@ -101,6 +105,10 @@ final class Builder
         'static-backup',
         'stderr',
         'fail-on-deprecation',
+<<<<<<< HEAD
+=======
+        'fail-on-phpunit-deprecation',
+>>>>>>> tundeseun/devtest
         'fail-on-empty-test-suite',
         'fail-on-incomplete',
         'fail-on-notice',
@@ -188,6 +196,10 @@ final class Builder
         $displayIncomplete                 = null;
         $displaySkipped                    = null;
         $displayDeprecations               = null;
+<<<<<<< HEAD
+=======
+        $displayPhpunitDeprecations        = null;
+>>>>>>> tundeseun/devtest
         $displayErrors                     = null;
         $displayNotices                    = null;
         $displayWarnings                   = null;
@@ -196,6 +208,10 @@ final class Builder
         $executionOrder                    = null;
         $executionOrderDefects             = null;
         $failOnDeprecation                 = null;
+<<<<<<< HEAD
+=======
+        $failOnPhpunitDeprecation          = null;
+>>>>>>> tundeseun/devtest
         $failOnEmptyTestSuite              = null;
         $failOnIncomplete                  = null;
         $failOnNotice                      = null;
@@ -569,6 +585,14 @@ final class Builder
 
                     break;
 
+<<<<<<< HEAD
+=======
+                case '--fail-on-phpunit-deprecation':
+                    $failOnPhpunitDeprecation = true;
+
+                    break;
+
+>>>>>>> tundeseun/devtest
                 case '--fail-on-empty-test-suite':
                     $failOnEmptyTestSuite = true;
 
@@ -759,6 +783,14 @@ final class Builder
 
                     break;
 
+<<<<<<< HEAD
+=======
+                case '--display-phpunit-deprecations':
+                    $displayPhpunitDeprecations = true;
+
+                    break;
+
+>>>>>>> tundeseun/devtest
                 case '--display-errors':
                     $displayErrors = true;
 
@@ -911,6 +943,10 @@ final class Builder
             $executionOrder,
             $executionOrderDefects,
             $failOnDeprecation,
+<<<<<<< HEAD
+=======
+            $failOnPhpunitDeprecation,
+>>>>>>> tundeseun/devtest
             $failOnEmptyTestSuite,
             $failOnIncomplete,
             $failOnNotice,
@@ -966,6 +1002,10 @@ final class Builder
             $displayIncomplete,
             $displaySkipped,
             $displayDeprecations,
+<<<<<<< HEAD
+=======
+            $displayPhpunitDeprecations,
+>>>>>>> tundeseun/devtest
             $displayErrors,
             $displayNotices,
             $displayWarnings,

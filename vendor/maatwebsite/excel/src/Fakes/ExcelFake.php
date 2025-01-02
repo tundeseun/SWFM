@@ -7,6 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Queue;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Traits\Macroable;
+>>>>>>> tundeseun/devtest
 use Maatwebsite\Excel\Exporter;
 use Maatwebsite\Excel\Importer;
 use Maatwebsite\Excel\Reader;
@@ -16,6 +20,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ExcelFake implements Exporter, Importer
 {
+<<<<<<< HEAD
+=======
+    use Macroable;
+
+>>>>>>> tundeseun/devtest
     /**
      * @var array
      */
@@ -54,7 +63,11 @@ class ExcelFake implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function download($export, string $fileName, string $writerType = null, array $headers = [])
+=======
+    public function download($export, string $fileName, ?string $writerType = null, array $headers = [])
+>>>>>>> tundeseun/devtest
     {
         $this->downloads[$fileName] = $export;
 
@@ -66,7 +79,11 @@ class ExcelFake implements Exporter, Importer
      *
      * @param  string|null  $diskName  Fallback for usage with named properties
      */
+<<<<<<< HEAD
     public function store($export, string $filePath, string $disk = null, string $writerType = null, $diskOptions = [], string $diskName = null)
+=======
+    public function store($export, string $filePath, ?string $disk = null, ?string $writerType = null, $diskOptions = [], ?string $diskName = null)
+>>>>>>> tundeseun/devtest
     {
         if ($export instanceof ShouldQueue) {
             return $this->queue($export, $filePath, $disk ?: $diskName, $writerType);
@@ -80,7 +97,11 @@ class ExcelFake implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function queue($export, string $filePath, string $disk = null, string $writerType = null, $diskOptions = [])
+=======
+    public function queue($export, string $filePath, ?string $disk = null, ?string $writerType = null, $diskOptions = [])
+>>>>>>> tundeseun/devtest
     {
         Queue::fake();
 
@@ -121,7 +142,11 @@ class ExcelFake implements Exporter, Importer
      * @param  string|null  $readerType
      * @return Reader|PendingDispatch
      */
+<<<<<<< HEAD
     public function import($import, $file, string $disk = null, string $readerType = null)
+=======
+    public function import($import, $file, ?string $disk = null, ?string $readerType = null)
+>>>>>>> tundeseun/devtest
     {
         if ($import instanceof ShouldQueue) {
             return $this->queueImport($import, $file, $disk, $readerType);
@@ -141,7 +166,11 @@ class ExcelFake implements Exporter, Importer
      * @param  string|null  $readerType
      * @return array
      */
+<<<<<<< HEAD
     public function toArray($import, $file, string $disk = null, string $readerType = null): array
+=======
+    public function toArray($import, $file, ?string $disk = null, ?string $readerType = null): array
+>>>>>>> tundeseun/devtest
     {
         $filePath = ($file instanceof UploadedFile) ? $file->getFilename() : $file;
 
@@ -157,7 +186,11 @@ class ExcelFake implements Exporter, Importer
      * @param  string|null  $readerType
      * @return Collection
      */
+<<<<<<< HEAD
     public function toCollection($import, $file, string $disk = null, string $readerType = null): Collection
+=======
+    public function toCollection($import, $file, ?string $disk = null, ?string $readerType = null): Collection
+>>>>>>> tundeseun/devtest
     {
         $filePath = ($file instanceof UploadedFile) ? $file->getFilename() : $file;
 
@@ -173,7 +206,11 @@ class ExcelFake implements Exporter, Importer
      * @param  string  $readerType
      * @return PendingDispatch
      */
+<<<<<<< HEAD
     public function queueImport(ShouldQueue $import, $file, string $disk = null, string $readerType = null)
+=======
+    public function queueImport(ShouldQueue $import, $file, ?string $disk = null, ?string $readerType = null)
+>>>>>>> tundeseun/devtest
     {
         Queue::fake();
 

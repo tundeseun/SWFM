@@ -15,7 +15,11 @@ trait Has
      * @param  int|null  $length
      * @return $this
      */
+<<<<<<< HEAD
     public function count($key, int $length = null): self
+=======
+    public function count($key, ?int $length = null): self
+>>>>>>> tundeseun/devtest
     {
         if (is_null($length)) {
             $path = $this->dotPath();
@@ -48,7 +52,11 @@ trait Has
      * @param  \Closure|null  $callback
      * @return $this
      */
+<<<<<<< HEAD
     public function has($key, $length = null, Closure $callback = null): self
+=======
+    public function has($key, $length = null, ?Closure $callback = null): self
+>>>>>>> tundeseun/devtest
     {
         $prop = $this->prop();
 
@@ -185,7 +193,11 @@ trait Has
      * @param  string|null  $key
      * @return mixed
      */
+<<<<<<< HEAD
     abstract protected function prop(string $key = null);
+=======
+    abstract protected function prop(?string $key = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Instantiate a new "scope" at the path of the given key.

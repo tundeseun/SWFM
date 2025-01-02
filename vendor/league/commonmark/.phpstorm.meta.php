@@ -31,6 +31,10 @@ namespace PHPSTORM_META
         'html_input',
         'allow_unsafe_links',
         'max_nesting_level',
+<<<<<<< HEAD
+=======
+        'max_delimiters_per_line',
+>>>>>>> tundeseun/devtest
         'renderer',
         'renderer/block_separator',
         'renderer/inner_separator',
@@ -89,6 +93,10 @@ namespace PHPSTORM_META
         'table/alignment_attributes/left',
         'table/alignment_attributes/center',
         'table/alignment_attributes/right',
+<<<<<<< HEAD
+=======
+        'table/max_autocompleted_cells',
+>>>>>>> tundeseun/devtest
         'table_of_contents',
         'table_of_contents/html_class',
         'table_of_contents/max_heading_level',

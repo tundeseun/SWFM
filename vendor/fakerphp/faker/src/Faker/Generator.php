@@ -565,7 +565,11 @@ class Generator
      */
     private $uniqueGenerator;
 
+<<<<<<< HEAD
     public function __construct(ContainerInterface $container = null)
+=======
+    public function __construct(?ContainerInterface $container = null)
+>>>>>>> tundeseun/devtest
     {
         $this->container = $container ?: Container\ContainerBuilder::withDefaultExtensions()->build();
     }

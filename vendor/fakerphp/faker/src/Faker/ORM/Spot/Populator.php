@@ -17,7 +17,11 @@ class Populator
     /**
      * Populator constructor.
      */
+<<<<<<< HEAD
     public function __construct(\Faker\Generator $generator, Locator $locator = null)
+=======
+    public function __construct(\Faker\Generator $generator, ?Locator $locator = null)
+>>>>>>> tundeseun/devtest
     {
         $this->generator = $generator;
         $this->locator = $locator;

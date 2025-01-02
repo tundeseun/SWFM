@@ -16,7 +16,11 @@ use Monolog\Formatter\FormatterInterface;
 use Monolog\Level;
 use Monolog\Utils;
 use Monolog\LogRecord;
+<<<<<<< HEAD
 use Monolog\DateTimeImmutable;
+=======
+use Monolog\JsonSerializableDateTimeImmutable;
+>>>>>>> tundeseun/devtest
 
 /**
  * Handler sending logs to the ChromePHP extension (http://www.chromephp.com/)
@@ -62,6 +66,7 @@ class ChromePHPHandler extends AbstractProcessingHandler
 
     protected static bool $sendHeaders = true;
 
+<<<<<<< HEAD
     /**
      * @throws \RuntimeException If the function json_encode does not exist
      */
@@ -71,6 +76,11 @@ class ChromePHPHandler extends AbstractProcessingHandler
         if (!\function_exists('json_encode')) {
             throw new \RuntimeException('PHP\'s json extension is required to use Monolog\'s ChromePHPHandler');
         }
+=======
+    public function __construct(int|string|Level $level = Level::Debug, bool $bubble = true)
+    {
+        parent::__construct($level, $bubble);
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -156,7 +166,11 @@ class ChromePHPHandler extends AbstractProcessingHandler
                 message: 'Incomplete logs, chrome header size limit reached',
                 level: Level::Warning,
                 channel: 'monolog',
+<<<<<<< HEAD
                 datetime: new DateTimeImmutable(true),
+=======
+                datetime: new JsonSerializableDateTimeImmutable(true),
+>>>>>>> tundeseun/devtest
             );
             self::$json['rows'][\count(self::$json['rows']) - 1] = $this->getFormatter()->format($record);
             $json = Utils::jsonEncode(self::$json, Utils::DEFAULT_JSON_FLAGS & ~JSON_UNESCAPED_UNICODE, true);

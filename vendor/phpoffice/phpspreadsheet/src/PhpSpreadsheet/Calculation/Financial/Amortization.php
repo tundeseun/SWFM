@@ -80,6 +80,10 @@ class Amortization
         $amortiseCoeff = self::getAmortizationCoefficient($rate);
 
         $rate *= $amortiseCoeff;
+<<<<<<< HEAD
+=======
+        $rate = (float) (string) $rate; // ugly way to avoid rounding problem
+>>>>>>> tundeseun/devtest
         $fNRate = round($yearFrac * $rate * $cost, 0);
         $cost -= $fNRate;
         $fRest = $cost - $salvage;

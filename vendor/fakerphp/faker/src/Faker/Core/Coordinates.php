@@ -13,7 +13,11 @@ final class Coordinates implements Extension\Extension
 {
     private Extension\NumberExtension $numberExtension;
 
+<<<<<<< HEAD
     public function __construct(Extension\NumberExtension $numberExtension = null)
+=======
+    public function __construct(?Extension\NumberExtension $numberExtension = null)
+>>>>>>> tundeseun/devtest
     {
         $this->numberExtension = $numberExtension ?: new Number();
     }

@@ -11,7 +11,11 @@
 
 namespace Symfony\Component\String\Slugger;
 
+<<<<<<< HEAD
 use Symfony\Component\Intl\Transliterator\EmojiTransliterator;
+=======
+use Symfony\Component\Emoji\EmojiTransliterator;
+>>>>>>> tundeseun/devtest
 use Symfony\Component\String\AbstractUnicodeString;
 use Symfony\Component\String\UnicodeString;
 use Symfony\Contracts\Translation\LocaleAwareInterface;
@@ -55,7 +59,10 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
         'zh' => 'Han-Latin',
     ];
 
+<<<<<<< HEAD
     private ?string $defaultLocale;
+=======
+>>>>>>> tundeseun/devtest
     private \Closure|array $symbolsMap = [
         'en' => ['@' => 'at', '&' => 'and'],
     ];
@@ -68,6 +75,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      */
     private array $transliterators = [];
 
+<<<<<<< HEAD
     public function __construct(?string $defaultLocale = null, array|\Closure|null $symbolsMap = null)
     {
         $this->defaultLocale = $defaultLocale;
@@ -78,6 +86,16 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      * @return void
      */
     public function setLocale(string $locale)
+=======
+    public function __construct(
+        private ?string $defaultLocale = null,
+        array|\Closure|null $symbolsMap = null,
+    ) {
+        $this->symbolsMap = $symbolsMap ?? $this->symbolsMap;
+    }
+
+    public function setLocale(string $locale): void
+>>>>>>> tundeseun/devtest
     {
         $this->defaultLocale = $locale;
     }
@@ -95,7 +113,11 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
     public function withEmoji(bool|string $emoji = true): static
     {
         if (false !== $emoji && !class_exists(EmojiTransliterator::class)) {
+<<<<<<< HEAD
             throw new \LogicException(sprintf('You cannot use the "%s()" method as the "symfony/intl" package is not installed. Try running "composer require symfony/intl".', __METHOD__));
+=======
+            throw new \LogicException(\sprintf('You cannot use the "%s()" method as the "symfony/emoji" package is not installed. Try running "composer require symfony/emoji".', __METHOD__));
+>>>>>>> tundeseun/devtest
         }
 
         $new = clone $this;

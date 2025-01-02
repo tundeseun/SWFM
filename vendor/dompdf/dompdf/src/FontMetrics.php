@@ -6,6 +6,10 @@
  */
 namespace Dompdf;
 
+<<<<<<< HEAD
+=======
+use Dompdf\Css\Style;
+>>>>>>> tundeseun/devtest
 use FontLib\Font;
 
 /**
@@ -129,9 +133,12 @@ class FontMetrics
             $fontDir = $this->options->getFontDir();
             $rootDir = $this->options->getRootDir();
     
+<<<<<<< HEAD
             if (!defined("DOMPDF_DIR")) { define("DOMPDF_DIR", $rootDir); }
             if (!defined("DOMPDF_FONT_DIR")) { define("DOMPDF_FONT_DIR", $fontDir); }
     
+=======
+>>>>>>> tundeseun/devtest
             $cacheDataClosure = require $legacyCacheFile;
             $cacheData = is_array($cacheDataClosure) ? $cacheDataClosure : $cacheDataClosure($fontDir, $rootDir);
             if (is_array($cacheData)) {
@@ -224,7 +231,11 @@ class FontMetrics
             }
         }
 
+<<<<<<< HEAD
         list($remoteFileContent, $http_response_header) = @Helpers::getFileContent($remoteFile, $context);
+=======
+        [$remoteFileContent, $http_response_header] = @Helpers::getFileContent($remoteFile, $context);
+>>>>>>> tundeseun/devtest
         if ($remoteFileContent === null) {
             return false;
         }
@@ -327,6 +338,82 @@ class FontMetrics
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Maps substrings of text against the provided font list. This is achieved by
+     * parsing each character of the string against the supported glyphs for each
+     * font. Fonts preference is based on the order of the font list.
+     *
+     * Returns an array containing substring information that indicates the
+     * matched font (if any), start index, substring length, and (optionally)
+     * the actual text of the substring.
+     *
+     * @param string $text            The text to map
+     * @param array  $fontFamilies    List of font families to map against
+     * @param string $subtype         The font subtype (italic, bold, etc.)
+     * @param int    $count           The number of matches to return
+     * @param bool   $returnSubstring Should the actual matched text be returned
+     * @return array
+     */
+    public function mapTextToFonts(string $text, array $fontFamilies, string $subtype = "normal", int $count = -1, bool $returnSubstring = false): array
+    {
+        $char_mapping = [];
+        $fonts = [];
+
+        foreach ($fontFamilies as $family) {
+            $font = $this->getFont($family, $subtype);
+            if ($font !== null) {
+                $fonts[] = $font;
+            }
+        }
+
+        if (function_exists("mb_str_split")) {
+            $char_array = mb_str_split($text, 1, "UTF-8");
+        } else {
+            $char_array = preg_split("//u", $text, -1, PREG_SPLIT_NO_EMPTY);
+        }
+        $start_index = 0;
+        $char_index = -1;
+        while (isset($char_array[++$char_index])) {
+            $char = $char_array[$char_index];
+            if (preg_match('/[\x00-\x1F\x7F]/u', $char)) {
+                //non-printable, moving on
+                continue;
+            }
+            $mapped_font = null;
+            foreach ($fonts as $font) {
+                if ($this->canvas->font_supports_char($font, $char)) {
+                    $mapped_font = $font;
+                    break;
+                }
+            }
+
+            if (!isset($char_mapping[$start_index])) {
+                $char_mapping[$start_index] = ["font" => $mapped_font, "length" => 0, "text" => null];
+            }
+
+            if ($mapped_font !== $char_mapping[$start_index]["font"]) {
+                $char_mapping[$start_index]["length"] = $char_index - $start_index;
+                if ($count > 0 && count($char_mapping) === $count) {
+                    break;
+                }
+                $start_index = $char_index;
+                $char_mapping[$start_index] = ["font" => $mapped_font, "length" => 0, "text" => null];
+            }
+        }
+
+        if ($returnSubstring) {
+            // build the string for each mapping
+            foreach ($char_mapping as $start_index => &$info) {
+                $info["text"] = mb_substr($text, $start_index, $info["length"]);
+            }
+        }
+
+        return $char_mapping;
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * @param $font
      * @param $size
      * @return float

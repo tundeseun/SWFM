@@ -51,7 +51,11 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
     private array $ageDirectives = [
         'max-age' => null,
         's-maxage' => null,
+<<<<<<< HEAD
         'expires' => null,
+=======
+        'expires' => false,
+>>>>>>> tundeseun/devtest
     ];
 
     /**
@@ -82,6 +86,7 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
             return;
         }
 
+<<<<<<< HEAD
         $isHeuristicallyCacheable = $response->headers->hasCacheControlDirective('public');
         $maxAge = $response->headers->hasCacheControlDirective('max-age') ? (int) $response->headers->getCacheControlDirective('max-age') : null;
         $this->storeRelativeAgeDirective('max-age', $maxAge, $age, $isHeuristicallyCacheable);
@@ -91,6 +96,32 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
         $expires = $response->getExpires();
         $expires = null !== $expires ? (int) $expires->format('U') - (int) $response->getDate()->format('U') : null;
         $this->storeRelativeAgeDirective('expires', $expires >= 0 ? $expires : null, 0, $isHeuristicallyCacheable);
+=======
+        $maxAge = $response->headers->hasCacheControlDirective('max-age') ? (int) $response->headers->getCacheControlDirective('max-age') : null;
+        $sharedMaxAge = $response->headers->hasCacheControlDirective('s-maxage') ? (int) $response->headers->getCacheControlDirective('s-maxage') : $maxAge;
+        $expires = $response->getExpires();
+        $expires = null !== $expires ? (int) $expires->format('U') - (int) $response->getDate()->format('U') : null;
+
+        // See https://datatracker.ietf.org/doc/html/rfc7234#section-4.2.2
+        // If a response is "public" but does not have maximum lifetime, heuristics might be applied.
+        // Do not store NULL values so the final response can have more limiting value from other responses.
+        $isHeuristicallyCacheable = $response->headers->hasCacheControlDirective('public')
+            && null === $maxAge
+            && null === $sharedMaxAge
+            && null === $expires;
+
+        if (!$isHeuristicallyCacheable || null !== $maxAge || null !== $expires) {
+            $this->storeRelativeAgeDirective('max-age', $maxAge, $expires, $age);
+        }
+
+        if (!$isHeuristicallyCacheable || null !== $sharedMaxAge || null !== $expires) {
+            $this->storeRelativeAgeDirective('s-maxage', $sharedMaxAge, $expires, $age);
+        }
+
+        if (null !== $expires) {
+            $this->ageDirectives['expires'] = true;
+        }
+>>>>>>> tundeseun/devtest
 
         if (false !== $this->lastModified) {
             $lastModified = $response->getLastModified();
@@ -152,9 +183,15 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
             }
         }
 
+<<<<<<< HEAD
         if (is_numeric($this->ageDirectives['expires'])) {
             $date = clone $response->getDate();
             $date = $date->modify('+'.($this->ageDirectives['expires'] + $this->age).' seconds');
+=======
+        if ($this->ageDirectives['expires'] && null !== $maxAge) {
+            $date = clone $response->getDate();
+            $date = $date->modify('+'.$maxAge.' seconds');
+>>>>>>> tundeseun/devtest
             $response->setExpires($date);
         }
     }
@@ -204,6 +241,7 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
      * we have to subtract the age so that the value is normalized for an age of 0.
      *
      * If the value is lower than the currently stored value, we update the value, to keep a rolling
+<<<<<<< HEAD
      * minimal value of each instruction.
      *
      * If the value is NULL and the isHeuristicallyCacheable parameter is false, the directive will
@@ -227,10 +265,21 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
                  */
                 return;
             }
+=======
+     * minimal value of each instruction. If the value is NULL, the directive will not be set on the final response.
+     */
+    private function storeRelativeAgeDirective(string $directive, ?int $value, ?int $expires, int $age): void
+    {
+        if (null === $value && null === $expires) {
+>>>>>>> tundeseun/devtest
             $this->ageDirectives[$directive] = false;
         }
 
         if (false !== $this->ageDirectives[$directive]) {
+<<<<<<< HEAD
+=======
+            $value = min($value ?? PHP_INT_MAX, $expires ?? PHP_INT_MAX);
+>>>>>>> tundeseun/devtest
             $value -= $age;
             $this->ageDirectives[$directive] = null !== $this->ageDirectives[$directive] ? min($this->ageDirectives[$directive], $value) : $value;
         }

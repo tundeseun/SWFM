@@ -174,6 +174,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     {
         $class = new ReflectionClass($test);
 
+<<<<<<< HEAD
         if (!$class->isAbstract()) {
             $this->tests[] = $test;
             $this->clearCaches();
@@ -198,6 +199,34 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
                 $test->setGroups($groups);
             }
         }
+=======
+        if ($class->isAbstract()) {
+            return;
+        }
+
+        $this->tests[] = $test;
+        $this->clearCaches();
+
+        if ($test instanceof self && empty($groups)) {
+            $groups = $test->groups();
+        }
+
+        if ($this->containsOnlyVirtualGroups($groups)) {
+            $groups[] = 'default';
+        }
+
+        foreach ($groups as $group) {
+            if (!isset($this->groups[$group])) {
+                $this->groups[$group] = [$test];
+            } else {
+                $this->groups[$group][] = $test;
+            }
+        }
+
+        if ($test instanceof TestCase) {
+            $test->setGroups($groups);
+        }
+>>>>>>> tundeseun/devtest
     }
 
     /**
@@ -241,6 +270,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
      */
     public function addTestFile(string $filename): void
     {
+<<<<<<< HEAD
         if (str_ends_with($filename, '.phpt') && is_file($filename)) {
             try {
                 $this->addTest(new PhptTestCase($filename));
@@ -257,6 +287,16 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
             $this->addTestSuite(
                 (new TestSuiteLoader)->load($filename),
             );
+=======
+        try {
+            if (str_ends_with($filename, '.phpt') && is_file($filename)) {
+                $this->addTest(new PhptTestCase($filename));
+            } else {
+                $this->addTestSuite(
+                    (new TestSuiteLoader)->load($filename),
+                );
+            }
+>>>>>>> tundeseun/devtest
         } catch (RunnerException $e) {
             Event\Facade::emitter()->testRunnerTriggeredWarning(
                 $e->getMessage(),

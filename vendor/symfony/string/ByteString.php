@@ -11,6 +11,10 @@
 
 namespace Symfony\Component\String;
 
+<<<<<<< HEAD
+=======
+use Random\Randomizer;
+>>>>>>> tundeseun/devtest
 use Symfony\Component\String\Exception\ExceptionInterface;
 use Symfony\Component\String\Exception\InvalidArgumentException;
 use Symfony\Component\String\Exception\RuntimeException;
@@ -45,7 +49,11 @@ class ByteString extends AbstractString
     public static function fromRandom(int $length = 16, ?string $alphabet = null): self
     {
         if ($length <= 0) {
+<<<<<<< HEAD
             throw new InvalidArgumentException(sprintf('A strictly positive length is expected, "%d" given.', $length));
+=======
+            throw new InvalidArgumentException(\sprintf('A strictly positive length is expected, "%d" given.', $length));
+>>>>>>> tundeseun/devtest
         }
 
         $alphabet ??= self::ALPHABET_ALPHANUMERIC;
@@ -55,6 +63,13 @@ class ByteString extends AbstractString
             throw new InvalidArgumentException('The length of the alphabet must in the [2^1, 2^56] range.');
         }
 
+<<<<<<< HEAD
+=======
+        if (\PHP_VERSION_ID >= 80300) {
+            return new static((new Randomizer())->getBytesFromString($alphabet, $length));
+        }
+
+>>>>>>> tundeseun/devtest
         $ret = '';
         while ($length > 0) {
             $urandomLength = (int) ceil(2 * $length * $bits / 8.0);
@@ -335,7 +350,11 @@ class ByteString extends AbstractString
     public function slice(int $start = 0, ?int $length = null): static
     {
         $str = clone $this;
+<<<<<<< HEAD
         $str->string = (string) substr($this->string, $start, $length ?? \PHP_INT_MAX);
+=======
+        $str->string = substr($this->string, $start, $length ?? \PHP_INT_MAX);
+>>>>>>> tundeseun/devtest
 
         return $str;
     }
@@ -436,7 +455,11 @@ class ByteString extends AbstractString
         }
 
         if (!$validEncoding) {
+<<<<<<< HEAD
             throw new InvalidArgumentException(sprintf('Invalid "%s" string.', $fromEncoding ?? 'Windows-1252'));
+=======
+            throw new InvalidArgumentException(\sprintf('Invalid "%s" string.', $fromEncoding ?? 'Windows-1252'));
+>>>>>>> tundeseun/devtest
         }
 
         $u->string = mb_convert_encoding($this->string, 'UTF-8', $fromEncoding ?? 'Windows-1252');

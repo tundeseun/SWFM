@@ -232,7 +232,11 @@ class AboutCommand extends Command
      * @param  string|null  $value
      * @return void
      */
+<<<<<<< HEAD
     public static function add(string $section, $data, string $value = null)
+=======
+    public static function add(string $section, $data, ?string $value = null)
+>>>>>>> tundeseun/devtest
     {
         static::$customDataResolvers[] = fn () => static::addToSection($section, $data, $value);
     }
@@ -245,7 +249,11 @@ class AboutCommand extends Command
      * @param  string|null  $value
      * @return void
      */
+<<<<<<< HEAD
     protected static function addToSection(string $section, $data, string $value = null)
+=======
+    protected static function addToSection(string $section, $data, ?string $value = null)
+>>>>>>> tundeseun/devtest
     {
         if (is_array($data)) {
             foreach ($data as $key => $value) {
@@ -279,7 +287,11 @@ class AboutCommand extends Command
      * @param  (\Closure(mixed):(mixed))|null  $json
      * @return \Closure(bool):mixed
      */
+<<<<<<< HEAD
     public static function format($value, Closure $console = null, Closure $json = null)
+=======
+    public static function format($value, ?Closure $console = null, ?Closure $json = null)
+>>>>>>> tundeseun/devtest
     {
         return function ($isJson) use ($value, $console, $json) {
             if ($isJson === true && $json instanceof Closure) {

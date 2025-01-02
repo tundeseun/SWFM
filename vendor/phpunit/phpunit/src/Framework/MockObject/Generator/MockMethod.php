@@ -17,6 +17,10 @@ use function is_string;
 use function preg_match;
 use function preg_replace;
 use function sprintf;
+<<<<<<< HEAD
+=======
+use function str_contains;
+>>>>>>> tundeseun/devtest
 use function strlen;
 use function strpos;
 use function substr;
@@ -211,13 +215,28 @@ EOT;
 
         $template = $this->loadTemplate($templateFile);
 
+<<<<<<< HEAD
+=======
+        $argumentsCount = 0;
+
+        if (str_contains($this->argumentsForCall, '...')) {
+            $argumentsCount = null;
+        } elseif (!empty($this->argumentsForCall)) {
+            $argumentsCount = substr_count($this->argumentsForCall, ',') + 1;
+        }
+
+>>>>>>> tundeseun/devtest
         $template->setVar(
             [
                 'arguments_decl'     => $this->argumentsForDeclaration,
                 'arguments_call'     => $this->argumentsForCall,
                 'return_declaration' => !empty($this->returnType->asString()) ? (': ' . $this->returnType->asString()) : '',
                 'return_type'        => $this->returnType->asString(),
+<<<<<<< HEAD
                 'arguments_count'    => !empty($this->argumentsForCall) ? substr_count($this->argumentsForCall, ',') + 1 : 0,
+=======
+                'arguments_count'    => $argumentsCount,
+>>>>>>> tundeseun/devtest
                 'class_name'         => $this->className,
                 'method_name'        => $this->methodName,
                 'modifier'           => $this->modifier,

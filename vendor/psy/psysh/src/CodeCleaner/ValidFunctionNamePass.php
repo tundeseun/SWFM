@@ -27,7 +27,11 @@ use Psy\Exception\FatalErrorException;
  */
 class ValidFunctionNamePass extends NamespaceAwarePass
 {
+<<<<<<< HEAD
     private $conditionalScopes = 0;
+=======
+    private int $conditionalScopes = 0;
+>>>>>>> tundeseun/devtest
 
     /**
      * Store newly defined function names on the way in, to allow recursion.

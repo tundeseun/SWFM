@@ -35,7 +35,11 @@ class StartSession
      * @param  callable|null  $cacheFactoryResolver
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(SessionManager $manager, callable $cacheFactoryResolver = null)
+=======
+    public function __construct(SessionManager $manager, ?callable $cacheFactoryResolver = null)
+>>>>>>> tundeseun/devtest
     {
         $this->manager = $manager;
         $this->cacheFactoryResolver = $cacheFactoryResolver;
@@ -286,7 +290,11 @@ class StartSession
      * @param  array|null  $config
      * @return bool
      */
+<<<<<<< HEAD
     protected function sessionIsPersistent(array $config = null)
+=======
+    protected function sessionIsPersistent(?array $config = null)
+>>>>>>> tundeseun/devtest
     {
         $config = $config ?: $this->manager->getSessionConfig();
 

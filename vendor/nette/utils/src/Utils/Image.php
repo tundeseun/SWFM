@@ -163,10 +163,14 @@ class Image
 	 */
 	public static function fromFile(string $file, ?int &$type = null): static
 	{
+<<<<<<< HEAD
 		if (!extension_loaded('gd')) {
 			throw new Nette\NotSupportedException('PHP extension GD is not loaded.');
 		}
 
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		$type = self::detectTypeFromFile($file);
 		if (!$type) {
 			throw new UnknownImageFileException(is_file($file) ? "Unknown type of file '$file'." : "File '$file' not found.");
@@ -183,10 +187,14 @@ class Image
 	 */
 	public static function fromString(string $s, ?int &$type = null): static
 	{
+<<<<<<< HEAD
 		if (!extension_loaded('gd')) {
 			throw new Nette\NotSupportedException('PHP extension GD is not loaded.');
 		}
 
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		$type = self::detectTypeFromString($s);
 		if (!$type) {
 			throw new UnknownImageFileException('Unknown type of image.');
@@ -221,10 +229,14 @@ class Image
 	 */
 	public static function fromBlank(int $width, int $height, ImageColor|array|null $color = null): static
 	{
+<<<<<<< HEAD
 		if (!extension_loaded('gd')) {
 			throw new Nette\NotSupportedException('PHP extension GD is not loaded.');
 		}
 
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		if ($width < 1 || $height < 1) {
 			throw new Nette\InvalidArgumentException('Image width and height must be greater than zero.');
 		}
@@ -308,6 +320,10 @@ class Image
 	 */
 	public static function isTypeSupported(int $type): bool
 	{
+<<<<<<< HEAD
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		return (bool) (imagetypes() & match ($type) {
 			ImageType::JPEG => IMG_JPG,
 			ImageType::PNG => IMG_PNG,
@@ -323,6 +339,10 @@ class Image
 	/** @return  ImageType[] */
 	public static function getSupportedTypes(): array
 	{
+<<<<<<< HEAD
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		$flag = imagetypes();
 		return array_filter([
 			$flag & IMG_GIF ? ImageType::GIF : null,
@@ -640,6 +660,10 @@ class Image
 		array $options = [],
 	): array
 	{
+<<<<<<< HEAD
+=======
+		self::ensureExtension();
+>>>>>>> tundeseun/devtest
 		$box = imagettfbbox($size, $angle, $fontFile, $text, $options);
 		return [
 			'left' => $minX = min([$box[0], $box[2], $box[4], $box[6]]),
@@ -826,4 +850,15 @@ class Image
 		$color = $color instanceof ImageColor ? $color->toRGBA() : array_values($color);
 		return imagecolorallocatealpha($this->image, ...$color) ?: imagecolorresolvealpha($this->image, ...$color);
 	}
+<<<<<<< HEAD
+=======
+
+
+	private static function ensureExtension(): void
+	{
+		if (!extension_loaded('gd')) {
+			throw new Nette\NotSupportedException('PHP extension GD is not loaded.');
+		}
+	}
+>>>>>>> tundeseun/devtest
 }

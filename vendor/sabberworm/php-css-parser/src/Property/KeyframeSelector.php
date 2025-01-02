@@ -9,7 +9,11 @@ class KeyframeSelector extends Selector
      *
      * @var string
      *
+<<<<<<< HEAD
      * @internal
+=======
+     * @internal since 8.5.2
+>>>>>>> tundeseun/devtest
      */
     const SELECTOR_VALIDATION_RX = '/
     ^(

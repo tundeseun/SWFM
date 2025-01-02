@@ -8,7 +8,10 @@ namespace Dompdf\Renderer;
 
 use Dompdf\Frame;
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
+<<<<<<< HEAD
 use Dompdf\Helpers;
+=======
+>>>>>>> tundeseun/devtest
 
 /**
  * Renders block frames
@@ -17,7 +20,10 @@ use Dompdf\Helpers;
  */
 class Block extends AbstractRenderer
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> tundeseun/devtest
     /**
      * @param Frame $frame
      */
@@ -25,7 +31,10 @@ class Block extends AbstractRenderer
     {
         $style = $frame->get_style();
         $node = $frame->get_node();
+<<<<<<< HEAD
         $dompdf = $this->_dompdf;
+=======
+>>>>>>> tundeseun/devtest
 
         $this->_set_opacity($frame->get_opacity($style->opacity));
 
@@ -45,6 +54,7 @@ class Block extends AbstractRenderer
         $this->_render_border($frame, $border_box);
         $this->_render_outline($frame, $border_box);
 
+<<<<<<< HEAD
         // Handle anchors & links
         if ($node->nodeName === "a" && $href = $node->getAttribute("href")) {
             $href = Helpers::build_url($dompdf->getProtocol(), $dompdf->getBaseHost(), $dompdf->getBasePath(), $href) ?? $href;
@@ -60,6 +70,19 @@ class Block extends AbstractRenderer
     }
 
     protected function debugBlockLayout(Frame $frame, ?string $color, bool $lines = false): void
+=======
+        $this->addNamedDest($node);
+        $this->addHyperlink($node, $border_box);
+        $this->debugBlockLayout($frame, "red", false);
+    }
+
+    /**
+     * @param Frame        $frame
+     * @param array|string $color
+     * @param bool         $lines
+     */
+    protected function debugBlockLayout(Frame $frame, $color, bool $lines = false): void
+>>>>>>> tundeseun/devtest
     {
         $options = $this->_dompdf->getOptions();
         $debugLayout = $options->getDebugLayout();
@@ -68,11 +91,19 @@ class Block extends AbstractRenderer
             return;
         }
 
+<<<<<<< HEAD
         if ($color && $options->getDebugLayoutBlocks()) {
             $this->_debug_layout($frame->get_border_box(), $color);
 
             if ($options->getDebugLayoutPaddingBox()) {
                 $this->_debug_layout($frame->get_padding_box(), $color, [0.5, 0.5]);
+=======
+        if ($options->getDebugLayoutBlocks()) {
+            $this->debugLayout($frame->get_border_box(), $color);
+
+            if ($options->getDebugLayoutPaddingBox()) {
+                $this->debugLayout($frame->get_padding_box(), $color, [0.5, 0.5]);
+>>>>>>> tundeseun/devtest
             }
         }
 
@@ -81,7 +112,11 @@ class Block extends AbstractRenderer
 
             foreach ($frame->get_line_boxes() as $line) {
                 $lw = $cw - $line->left - $line->right;
+<<<<<<< HEAD
                 $this->_debug_layout([$cx + $line->left, $line->y, $lw, $line->h], "orange");
+=======
+                $this->debugLayout([$cx + $line->left, $line->y, $lw, $line->h], "orange");
+>>>>>>> tundeseun/devtest
             }
         }
     }

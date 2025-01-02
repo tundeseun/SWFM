@@ -49,8 +49,13 @@ final class NumericComparator extends ScalarComparator
                 sprintf(
                     'Failed asserting that %s matches expected %s.',
                     $exporter->export($actual),
+<<<<<<< HEAD
                     $exporter->export($expected)
                 )
+=======
+                    $exporter->export($expected),
+                ),
+>>>>>>> tundeseun/devtest
             );
         }
     }

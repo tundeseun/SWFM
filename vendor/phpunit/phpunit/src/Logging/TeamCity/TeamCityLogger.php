@@ -24,6 +24,10 @@ use PHPUnit\Event\EventFacadeIsSealedException;
 use PHPUnit\Event\Facade;
 use PHPUnit\Event\InvalidArgumentException;
 use PHPUnit\Event\Telemetry\HRTime;
+<<<<<<< HEAD
+=======
+use PHPUnit\Event\Test\BeforeFirstTestMethodErrored;
+>>>>>>> tundeseun/devtest
 use PHPUnit\Event\Test\ConsideredRisky;
 use PHPUnit\Event\Test\Errored;
 use PHPUnit\Event\Test\Failed;
@@ -32,6 +36,10 @@ use PHPUnit\Event\Test\MarkedIncomplete;
 use PHPUnit\Event\Test\Prepared;
 use PHPUnit\Event\Test\Skipped;
 use PHPUnit\Event\TestSuite\Finished as TestSuiteFinished;
+<<<<<<< HEAD
+=======
+use PHPUnit\Event\TestSuite\Skipped as TestSuiteSkipped;
+>>>>>>> tundeseun/devtest
 use PHPUnit\Event\TestSuite\Started as TestSuiteStarted;
 use PHPUnit\Event\TestSuite\TestSuiteForTestClass;
 use PHPUnit\Event\TestSuite\TestSuiteForTestMethodWithDataProvider;
@@ -146,7 +154,13 @@ final class TeamCityLogger
     public function testMarkedIncomplete(MarkedIncomplete $event): void
     {
         if ($this->time === null) {
+<<<<<<< HEAD
             $this->time = $event->telemetryInfo()->time();
+=======
+            // @codeCoverageIgnoreStart
+            $this->time = $event->telemetryInfo()->time();
+            // @codeCoverageIgnoreEnd
+>>>>>>> tundeseun/devtest
         }
 
         $this->writeMessage(
@@ -182,6 +196,49 @@ final class TeamCityLogger
     /**
      * @throws InvalidArgumentException
      */
+<<<<<<< HEAD
+=======
+    public function testSuiteSkipped(TestSuiteSkipped $event): void
+    {
+        if ($this->time === null) {
+            $this->time = $event->telemetryInfo()->time();
+        }
+
+        $parameters = [
+            'name'    => $event->testSuite()->name(),
+            'message' => $event->message(),
+        ];
+
+        $parameters['duration'] = $this->duration($event);
+
+        $this->writeMessage('testIgnored', $parameters);
+        $this->writeMessage('testSuiteFinished', $parameters);
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function beforeFirstTestMethodErrored(BeforeFirstTestMethodErrored $event): void
+    {
+        if ($this->time === null) {
+            $this->time = $event->telemetryInfo()->time();
+        }
+
+        $parameters = [
+            'name'     => $event->testClassName(),
+            'message'  => $this->message($event->throwable()),
+            'details'  => $this->details($event->throwable()),
+            'duration' => $this->duration($event),
+        ];
+
+        $this->writeMessage('testFailed', $parameters);
+        $this->writeMessage('testSuiteFinished', $parameters);
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     */
+>>>>>>> tundeseun/devtest
     public function testErrored(Errored $event): void
     {
         if ($this->time === null) {
@@ -205,7 +262,13 @@ final class TeamCityLogger
     public function testFailed(Failed $event): void
     {
         if ($this->time === null) {
+<<<<<<< HEAD
             $this->time = $event->telemetryInfo()->time();
+=======
+            // @codeCoverageIgnoreStart
+            $this->time = $event->telemetryInfo()->time();
+            // @codeCoverageIgnoreEnd
+>>>>>>> tundeseun/devtest
         }
 
         $parameters = [
@@ -230,7 +293,13 @@ final class TeamCityLogger
     public function testConsideredRisky(ConsideredRisky $event): void
     {
         if ($this->time === null) {
+<<<<<<< HEAD
             $this->time = $event->telemetryInfo()->time();
+=======
+            // @codeCoverageIgnoreStart
+            $this->time = $event->telemetryInfo()->time();
+            // @codeCoverageIgnoreEnd
+>>>>>>> tundeseun/devtest
         }
 
         $this->writeMessage(
@@ -280,8 +349,15 @@ final class TeamCityLogger
             new TestFailedSubscriber($this),
             new TestMarkedIncompleteSubscriber($this),
             new TestSkippedSubscriber($this),
+<<<<<<< HEAD
             new TestConsideredRiskySubscriber($this),
             new TestRunnerExecutionFinishedSubscriber($this),
+=======
+            new TestSuiteSkippedSubscriber($this),
+            new TestConsideredRiskySubscriber($this),
+            new TestRunnerExecutionFinishedSubscriber($this),
+            new TestSuiteBeforeFirstTestMethodErroredSubscriber($this),
+>>>>>>> tundeseun/devtest
         );
     }
 
@@ -296,7 +372,11 @@ final class TeamCityLogger
     {
         $this->printer->print(
             sprintf(
+<<<<<<< HEAD
                 "\n##teamcity[%s",
+=======
+                '##teamcity[%s',
+>>>>>>> tundeseun/devtest
                 $eventName,
             ),
         );
@@ -324,7 +404,13 @@ final class TeamCityLogger
     private function duration(Event $event): int
     {
         if ($this->time === null) {
+<<<<<<< HEAD
             return 0;
+=======
+            // @codeCoverageIgnoreStart
+            return 0;
+            // @codeCoverageIgnoreEnd
+>>>>>>> tundeseun/devtest
         }
 
         return (int) round($event->telemetryInfo()->time()->duration($this->time)->asFloat() * 1000);

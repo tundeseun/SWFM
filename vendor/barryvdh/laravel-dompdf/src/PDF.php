@@ -11,6 +11,11 @@ use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\HeaderUtils;
+>>>>>>> tundeseun/devtest
 
 /**
  * A Laravel wrapper for Dompdf
@@ -210,9 +215,17 @@ class PDF
     public function download(string $filename = 'document.pdf'): Response
     {
         $output = $this->output();
+<<<<<<< HEAD
         return new Response($output, 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'attachment; filename="' . $filename . '"',
+=======
+        $fallback = $this->fallbackName($filename);
+
+        return new Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $filename, $fallback),
+>>>>>>> tundeseun/devtest
             'Content-Length' => strlen($output),
         ]);
     }
@@ -223,9 +236,18 @@ class PDF
     public function stream(string $filename = 'document.pdf'): Response
     {
         $output = $this->output();
+<<<<<<< HEAD
         return new Response($output, 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' =>  'inline; filename="' . $filename . '"',
+=======
+        $fallback = $this->fallbackName($filename);
+
+
+        return new Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => HeaderUtils::makeDisposition('inline', $filename, $fallback),
+>>>>>>> tundeseun/devtest
         ]);
     }
 
@@ -301,4 +323,15 @@ class PDF
 
         throw new \UnexpectedValueException("Method [{$method}] does not exist on PDF instance.");
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Make a safe fallback filename
+     */
+    protected function fallbackName(string $filename): string
+    {
+        return str_replace('%', '', Str::ascii($filename));
+    }
+>>>>>>> tundeseun/devtest
 }

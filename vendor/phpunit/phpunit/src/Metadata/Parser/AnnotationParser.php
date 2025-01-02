@@ -11,6 +11,10 @@ namespace PHPUnit\Metadata\Parser;
 
 use function array_merge;
 use function assert;
+<<<<<<< HEAD
+=======
+use function class_exists;
+>>>>>>> tundeseun/devtest
 use function count;
 use function explode;
 use function method_exists;
@@ -50,6 +54,11 @@ final class AnnotationParser implements Parser
      */
     public function forClass(string $className): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+
+>>>>>>> tundeseun/devtest
         $result = [];
 
         foreach (AnnotationRegistry::getInstance()->forClassName($className)->symbolAnnotations() as $annotation => $values) {
@@ -183,6 +192,12 @@ final class AnnotationParser implements Parser
      */
     public function forMethod(string $className, string $methodName): MetadataCollection
     {
+<<<<<<< HEAD
+=======
+        assert(class_exists($className));
+        assert(method_exists($className, $methodName));
+
+>>>>>>> tundeseun/devtest
         $result = [];
 
         foreach (AnnotationRegistry::getInstance()->forMethod($className, $methodName)->symbolAnnotations() as $annotation => $values) {

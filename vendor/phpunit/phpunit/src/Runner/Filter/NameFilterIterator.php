@@ -14,6 +14,10 @@ use function implode;
 use function preg_match;
 use function sprintf;
 use function str_replace;
+<<<<<<< HEAD
+=======
+use function substr;
+>>>>>>> tundeseun/devtest
 use Exception;
 use PHPUnit\Framework\SelfDescribing;
 use PHPUnit\Framework\Test;
@@ -77,7 +81,11 @@ final class NameFilterIterator extends RecursiveFilterIterator
      */
     private function setFilter(string $filter): void
     {
+<<<<<<< HEAD
         if (@preg_match($filter, '') === false) {
+=======
+        if (preg_match('/[a-zA-Z0-9]/', substr($filter, 0, 1)) === 1 || @preg_match($filter, '') === false) {
+>>>>>>> tundeseun/devtest
             // Handles:
             //  * testAssertEqualsSucceeds#4
             //  * testAssertEqualsSucceeds#4-8

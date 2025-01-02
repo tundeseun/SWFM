@@ -73,7 +73,11 @@ HELP
             $doc = $this->getManualDoc($reflector) ?: DocblockFormatter::format($reflector);
         }
 
+<<<<<<< HEAD
         $db = $this->getApplication()->getManualDb();
+=======
+        $db = $this->getShell()->getManualDb();
+>>>>>>> tundeseun/devtest
 
         if ($output instanceof ShellOutput) {
             $output->startPaging();
@@ -242,7 +246,11 @@ HELP
 
     private function getManualDocById($id)
     {
+<<<<<<< HEAD
         if ($db = $this->getApplication()->getManualDb()) {
+=======
+        if ($db = $this->getShell()->getManualDb()) {
+>>>>>>> tundeseun/devtest
             $result = $db->query(\sprintf('SELECT doc FROM php_manual WHERE id = %s', $db->quote($id)));
             if ($result !== false) {
                 return $result->fetchColumn(0);

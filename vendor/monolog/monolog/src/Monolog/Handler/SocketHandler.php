@@ -386,7 +386,11 @@ class SocketHandler extends AbstractProcessingHandler
         $sent = 0;
         $this->lastSentBytes = $sent;
         while ($this->isConnected() && $sent < $length) {
+<<<<<<< HEAD
             if (0 == $sent) {
+=======
+            if (0 === $sent) {
+>>>>>>> tundeseun/devtest
                 $chunk = $this->fwrite($data);
             } else {
                 $chunk = $this->fwrite(substr($data, $sent));
@@ -412,7 +416,11 @@ class SocketHandler extends AbstractProcessingHandler
     private function writingIsTimedOut(int $sent): bool
     {
         // convert to ms
+<<<<<<< HEAD
         if (0.0 == $this->writingTimeout) {
+=======
+        if (0.0 === $this->writingTimeout) {
+>>>>>>> tundeseun/devtest
             return false;
         }
 

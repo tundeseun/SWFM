@@ -27,7 +27,11 @@ class ColumnTypeGuesser
         switch ($type) {
             case 'boolean':
                 return static function () use ($generator) {
+<<<<<<< HEAD
                     return $generator->boolean;
+=======
+                    return $generator->boolean();
+>>>>>>> tundeseun/devtest
                 };
 
             case 'decimal':
@@ -66,14 +70,22 @@ class ColumnTypeGuesser
 
             case 'text':
                 return static function () use ($generator) {
+<<<<<<< HEAD
                     return $generator->text;
+=======
+                    return $generator->text();
+>>>>>>> tundeseun/devtest
                 };
 
             case 'datetime':
             case 'date':
             case 'time':
                 return static function () use ($generator) {
+<<<<<<< HEAD
                     return $generator->datetime;
+=======
+                    return $generator->datetime();
+>>>>>>> tundeseun/devtest
                 };
 
             case 'datetime_immutable':

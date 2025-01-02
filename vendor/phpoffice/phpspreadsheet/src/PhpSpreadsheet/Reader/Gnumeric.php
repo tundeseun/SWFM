@@ -11,7 +11,10 @@ use PhpOffice\PhpSpreadsheet\Reader\Gnumeric\Styles;
 use PhpOffice\PhpSpreadsheet\Reader\Security\XmlScanner;
 use PhpOffice\PhpSpreadsheet\ReferenceHelper;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
+<<<<<<< HEAD
 use PhpOffice\PhpSpreadsheet\Settings;
+=======
+>>>>>>> tundeseun/devtest
 use PhpOffice\PhpSpreadsheet\Shared\File;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -114,7 +117,11 @@ class Gnumeric extends BaseReader
 
         $xml = new XMLReader();
         $contents = $this->gzfileGetContents($filename);
+<<<<<<< HEAD
         $xml->xml($contents, null, Settings::getLibXmlLoaderOptions());
+=======
+        $xml->xml($contents);
+>>>>>>> tundeseun/devtest
         $xml->setParserProperty(2, true);
 
         $worksheetNames = [];
@@ -147,7 +154,11 @@ class Gnumeric extends BaseReader
 
         $xml = new XMLReader();
         $contents = $this->gzfileGetContents($filename);
+<<<<<<< HEAD
         $xml->xml($contents, null, Settings::getLibXmlLoaderOptions());
+=======
+        $xml->xml($contents);
+>>>>>>> tundeseun/devtest
         $xml->setParserProperty(2, true);
 
         $worksheetInfo = [];
@@ -267,7 +278,11 @@ class Gnumeric extends BaseReader
 
         $gFileData = $this->gzfileGetContents($filename);
 
+<<<<<<< HEAD
         $xml2 = simplexml_load_string($gFileData, 'SimpleXMLElement', Settings::getLibXmlLoaderOptions());
+=======
+        $xml2 = simplexml_load_string($gFileData);
+>>>>>>> tundeseun/devtest
         $xml = self::testSimpleXml($xml2);
 
         $gnmXML = $xml->children(self::NAMESPACE_GNM);

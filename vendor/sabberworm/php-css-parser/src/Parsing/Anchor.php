@@ -2,6 +2,12 @@
 
 namespace Sabberworm\CSS\Parsing;
 
+<<<<<<< HEAD
+=======
+/**
+ * @internal since 8.7.0
+ */
+>>>>>>> tundeseun/devtest
 class Anchor
 {
     /**

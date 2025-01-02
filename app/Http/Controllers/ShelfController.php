@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ShelfController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      */
@@ -34,10 +35,16 @@ class ShelfController extends Controller
 
         $request->validate([
 
+=======
+    public function store(Request $request)
+    {
+        $request->validate([
+>>>>>>> tundeseun/devtest
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
+<<<<<<< HEAD
         $shelf = Shelf::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -78,5 +85,15 @@ class ShelfController extends Controller
     public function destroy(string $id)
     {
         //
+=======
+        $shelf = Shelf::create($request->all());
+
+        return response()->json($shelf, 201);
+    }
+
+    public function index()
+    {
+        return response()->json(Shelf::all());
+>>>>>>> tundeseun/devtest
     }
 }

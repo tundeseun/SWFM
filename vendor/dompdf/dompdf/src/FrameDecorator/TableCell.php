@@ -17,11 +17,18 @@ use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
  */
 class TableCell extends BlockFrameDecorator
 {
+<<<<<<< HEAD
 
     protected $_resolved_borders;
     protected $_content_height;
 
     //........................................................................
+=======
+    /**
+     * @var float
+     */
+    protected $content_height;
+>>>>>>> tundeseun/devtest
 
     /**
      * TableCell constructor.
@@ -31,6 +38,7 @@ class TableCell extends BlockFrameDecorator
     function __construct(Frame $frame, Dompdf $dompdf)
     {
         parent::__construct($frame, $dompdf);
+<<<<<<< HEAD
         $this->_resolved_borders = [];
         $this->_content_height = 0;
     }
@@ -65,6 +73,37 @@ class TableCell extends BlockFrameDecorator
      * @param $height
      */
     function set_cell_height($height)
+=======
+        $this->content_height = 0.0;
+    }
+
+    function reset()
+    {
+        parent::reset();
+        $this->content_height = 0.0;
+    }
+
+    /**
+     * @return float
+     */
+    public function get_content_height(): float
+    {
+        return $this->content_height;
+    }
+
+    /**
+     * @param float $height
+     */
+    public function set_content_height(float $height): void
+    {
+        $this->content_height = $height;
+    }
+
+    /**
+     * @param float $height
+     */
+    public function set_cell_height(float $height): void
+>>>>>>> tundeseun/devtest
     {
         $style = $this->get_style();
         $v_space = (float)$style->length_in_pt(
@@ -82,7 +121,11 @@ class TableCell extends BlockFrameDecorator
         $new_height = $height - $v_space;
         $style->set_used("height", $new_height);
 
+<<<<<<< HEAD
         if ($new_height > $this->_content_height) {
+=======
+        if ($new_height > $this->content_height) {
+>>>>>>> tundeseun/devtest
             $y_offset = 0;
 
             // Adjust our vertical alignment
@@ -96,11 +139,19 @@ class TableCell extends BlockFrameDecorator
                     return;
 
                 case "middle":
+<<<<<<< HEAD
                     $y_offset = ($new_height - $this->_content_height) / 2;
                     break;
 
                 case "bottom":
                     $y_offset = $new_height - $this->_content_height;
+=======
+                    $y_offset = ($new_height - $this->content_height) / 2;
+                    break;
+
+                case "bottom":
+                    $y_offset = $new_height - $this->content_height;
+>>>>>>> tundeseun/devtest
                     break;
             }
 
@@ -114,6 +165,7 @@ class TableCell extends BlockFrameDecorator
             }
         }
     }
+<<<<<<< HEAD
 
     /**
      * @param $side
@@ -140,4 +192,6 @@ class TableCell extends BlockFrameDecorator
     {
         return $this->_resolved_borders;
     }
+=======
+>>>>>>> tundeseun/devtest
 }

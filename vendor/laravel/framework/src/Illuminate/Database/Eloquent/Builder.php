@@ -203,7 +203,11 @@ class Builder implements BuilderContract
      * @param  array|null  $scopes
      * @return $this
      */
+<<<<<<< HEAD
     public function withoutGlobalScopes(array $scopes = null)
+=======
+    public function withoutGlobalScopes(?array $scopes = null)
+>>>>>>> tundeseun/devtest
     {
         if (! is_array($scopes)) {
             $scopes = array_keys($this->scopes);
@@ -525,7 +529,11 @@ class Builder implements BuilderContract
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|mixed
      */
+<<<<<<< HEAD
     public function findOr($id, $columns = ['*'], Closure $callback = null)
+=======
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -628,7 +636,11 @@ class Builder implements BuilderContract
      * @param  \Closure|null  $callback
      * @return \Illuminate\Database\Eloquent\Model|static|mixed
      */
+<<<<<<< HEAD
     public function firstOr($columns = ['*'], Closure $callback = null)
+=======
+    public function firstOr($columns = ['*'], ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($columns instanceof Closure) {
             $callback = $columns;

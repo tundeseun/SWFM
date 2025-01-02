@@ -15,7 +15,11 @@ class SuggestCorrectVariableNameSolution implements Solution
 
     protected ?string $suggested;
 
+<<<<<<< HEAD
     public function __construct(string $variableName = null, string $viewFile = null, string $suggested = null)
+=======
+    public function __construct(?string $variableName = null, ?string $viewFile = null, ?string $suggested = null)
+>>>>>>> tundeseun/devtest
     {
         $this->variableName = $variableName;
 

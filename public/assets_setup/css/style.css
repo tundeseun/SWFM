@@ -150,10 +150,13 @@ li a {
 	animation-delay: -0.16s;
 }
 
+<<<<<<< HEAD
 .menu-toggle{ 
 	color: white;
 }
 
+=======
+>>>>>>> tundeseun/devtest
 .loader:before,
 .loader:after {
 	position: absolute;

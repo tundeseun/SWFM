@@ -5,13 +5,21 @@ namespace Maatwebsite\Excel;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Traits\Macroable;
+>>>>>>> tundeseun/devtest
 use Maatwebsite\Excel\Files\Filesystem;
 use Maatwebsite\Excel\Files\TemporaryFile;
 use Maatwebsite\Excel\Helpers\FileTypeDetector;
 
 class Excel implements Exporter, Importer
 {
+<<<<<<< HEAD
     use RegistersCustomConcerns;
+=======
+    use Macroable, RegistersCustomConcerns;
+>>>>>>> tundeseun/devtest
 
     const XLSX     = 'Xlsx';
 
@@ -78,7 +86,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function download($export, string $fileName, string $writerType = null, array $headers = [])
+=======
+    public function download($export, string $fileName, ?string $writerType = null, array $headers = [])
+>>>>>>> tundeseun/devtest
     {
         // Clear output buffer to prevent stuff being prepended to the Excel output.
         if (ob_get_length() > 0) {
@@ -98,7 +110,11 @@ class Excel implements Exporter, Importer
      *
      * @param  string|null  $disk  Fallback for usage with named properties
      */
+<<<<<<< HEAD
     public function store($export, string $filePath, string $diskName = null, string $writerType = null, $diskOptions = [], string $disk = null)
+=======
+    public function store($export, string $filePath, ?string $diskName = null, ?string $writerType = null, $diskOptions = [], ?string $disk = null)
+>>>>>>> tundeseun/devtest
     {
         if ($export instanceof ShouldQueue) {
             return $this->queue($export, $filePath, $diskName ?: $disk, $writerType, $diskOptions);
@@ -119,7 +135,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function queue($export, string $filePath, string $disk = null, string $writerType = null, $diskOptions = [])
+=======
+    public function queue($export, string $filePath, ?string $disk = null, ?string $writerType = null, $diskOptions = [])
+>>>>>>> tundeseun/devtest
     {
         $writerType = FileTypeDetector::detectStrict($filePath, $writerType);
 
@@ -148,7 +168,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function import($import, $filePath, string $disk = null, string $readerType = null)
+=======
+    public function import($import, $filePath, ?string $disk = null, ?string $readerType = null)
+>>>>>>> tundeseun/devtest
     {
         $readerType = FileTypeDetector::detect($filePath, $readerType);
         $response   = $this->reader->read($import, $filePath, $readerType, $disk);
@@ -163,7 +187,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function toArray($import, $filePath, string $disk = null, string $readerType = null): array
+=======
+    public function toArray($import, $filePath, ?string $disk = null, ?string $readerType = null): array
+>>>>>>> tundeseun/devtest
     {
         $readerType = FileTypeDetector::detect($filePath, $readerType);
 
@@ -173,7 +201,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function toCollection($import, $filePath, string $disk = null, string $readerType = null): Collection
+=======
+    public function toCollection($import, $filePath, ?string $disk = null, ?string $readerType = null): Collection
+>>>>>>> tundeseun/devtest
     {
         $readerType = FileTypeDetector::detect($filePath, $readerType);
 
@@ -183,7 +215,11 @@ class Excel implements Exporter, Importer
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function queueImport(ShouldQueue $import, $filePath, string $disk = null, string $readerType = null)
+=======
+    public function queueImport(ShouldQueue $import, $filePath, ?string $disk = null, ?string $readerType = null)
+>>>>>>> tundeseun/devtest
     {
         return $this->import($import, $filePath, $disk, $readerType);
     }
@@ -196,7 +232,11 @@ class Excel implements Exporter, Importer
      *
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
+<<<<<<< HEAD
     protected function export($export, string $fileName, string $writerType = null): TemporaryFile
+=======
+    protected function export($export, string $fileName, ?string $writerType = null): TemporaryFile
+>>>>>>> tundeseun/devtest
     {
         $writerType = FileTypeDetector::detectStrict($fileName, $writerType);
 

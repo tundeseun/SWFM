@@ -14,10 +14,15 @@ use PhpOffice\PhpSpreadsheet\Reader\Xml\PageSettings;
 use PhpOffice\PhpSpreadsheet\Reader\Xml\Properties;
 use PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
+<<<<<<< HEAD
 use PhpOffice\PhpSpreadsheet\Settings;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Shared\File;
 use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+=======
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\File;
+>>>>>>> tundeseun/devtest
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use SimpleXMLElement;
@@ -77,10 +82,15 @@ class Xml extends BaseReader
         ];
 
         // Open file
+<<<<<<< HEAD
         $data = file_get_contents($filename) ?: '';
 
         // Why?
         //$data = str_replace("'", '"', $data); // fix headers with single quote
+=======
+        $data = (string) file_get_contents($filename);
+        $data = $this->getSecurityScannerOrThrow()->scan($data);
+>>>>>>> tundeseun/devtest
 
         $valid = true;
         foreach ($signature as $match) {
@@ -92,6 +102,7 @@ class Xml extends BaseReader
             }
         }
 
+<<<<<<< HEAD
         //    Retrieve charset encoding
         if (preg_match('/<?xml.*encoding=[\'"](.*?)[\'"].*?>/m', $data, $matches)) {
             $charSet = strtoupper($matches[1]);
@@ -100,6 +111,8 @@ class Xml extends BaseReader
                 $data = (string) preg_replace('/(<?xml.*encoding=[\'"]).*?([\'"].*?>)/um', '$1' . 'UTF-8' . '$2', $data, 1);
             }
         }
+=======
+>>>>>>> tundeseun/devtest
         $this->fileContents = $data;
 
         return $valid;
@@ -116,9 +129,14 @@ class Xml extends BaseReader
     {
         try {
             $xml = simplexml_load_string(
+<<<<<<< HEAD
                 $this->getSecurityScannerOrThrow()->scan($this->fileContents ?: file_get_contents($filename)),
                 'SimpleXMLElement',
                 Settings::getLibXmlLoaderOptions()
+=======
+                $this->getSecurityScannerOrThrow()
+                    ->scan($this->fileContents ?: file_get_contents($filename))
+>>>>>>> tundeseun/devtest
             );
         } catch (\Exception $e) {
             throw new Exception('Cannot load invalid XML file: ' . $filename, 0, $e);

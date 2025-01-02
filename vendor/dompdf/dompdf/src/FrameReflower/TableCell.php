@@ -6,8 +6,15 @@
  */
 namespace Dompdf\FrameReflower;
 
+<<<<<<< HEAD
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
 use Dompdf\FrameDecorator\Table as TableFrameDecorator;
+=======
+use Dompdf\Exception;
+use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
+use Dompdf\FrameDecorator\Table as TableFrameDecorator;
+use Dompdf\FrameDecorator\TableCell as TableCellFrameDecorator;
+>>>>>>> tundeseun/devtest
 use Dompdf\Helpers;
 
 /**
@@ -29,6 +36,7 @@ class TableCell extends Block
     /**
      * @param BlockFrameDecorator|null $block
      */
+<<<<<<< HEAD
     function reflow(BlockFrameDecorator $block = null)
     {
         // Counters and generated content
@@ -43,6 +51,27 @@ class TableCell extends Block
         $this->_frame->set_position($x, $y);
 
         $cells = $cellmap->get_spanned_cells($this->_frame);
+=======
+    function reflow(?BlockFrameDecorator $block = null)
+    {
+        /** @var TableCellFrameDecorator */
+        $frame = $this->_frame;
+        $table = TableFrameDecorator::find_parent_table($frame);
+        if ($table === null) {
+            throw new Exception("Parent table not found for table cell");
+        }
+
+        // Counters and generated content
+        $this->_set_content();
+
+        $style = $frame->get_style();
+        $cellmap = $table->get_cellmap();
+
+        [$x, $y] = $cellmap->get_frame_position($frame);
+        $frame->set_position($x, $y);
+
+        $cells = $cellmap->get_spanned_cells($frame);
+>>>>>>> tundeseun/devtest
 
         $w = 0;
         foreach ($cells["columns"] as $i) {
@@ -51,7 +80,11 @@ class TableCell extends Block
         }
 
         //FIXME?
+<<<<<<< HEAD
         $h = $this->_frame->get_containing_block("h");
+=======
+        $h = $frame->get_containing_block("h");
+>>>>>>> tundeseun/devtest
 
         $left_space = (float)$style->length_in_pt([$style->margin_left,
                 $style->padding_left,
@@ -80,6 +113,7 @@ class TableCell extends Block
 
         // Adjust the first line based on the text-indent property
         $indent = (float)$style->length_in_pt($style->text_indent, $w);
+<<<<<<< HEAD
         $this->_frame->increase_line_width($indent);
 
         $page = $this->_frame->get_root();
@@ -93,6 +127,21 @@ class TableCell extends Block
             $child->set_containing_block($content_x, $content_y, $cb_w, $h);
             $this->process_clear($child);
             $child->reflow($this->_frame);
+=======
+        $frame->increase_line_width($indent);
+
+        $page = $frame->get_root();
+
+        // Set the y position of the first line in the cell
+        $line_box = $frame->get_current_line_box();
+        $line_box->y = $line_y;
+
+        // Set the containing blocks and reflow each child
+        foreach ($frame->get_children() as $child) {
+            $child->set_containing_block($content_x, $content_y, $cb_w, $h);
+            $this->process_clear($child);
+            $child->reflow($frame);
+>>>>>>> tundeseun/devtest
             $this->process_float($child, $content_x, $cb_w);
 
             if ($page->is_full()) {
@@ -101,6 +150,7 @@ class TableCell extends Block
         }
 
         // Determine our height
+<<<<<<< HEAD
         $style_height = (float)$style->length_in_pt($style->height, $h);
 
         /** @var FrameDecorator\TableCell */
@@ -109,6 +159,13 @@ class TableCell extends Block
         $frame->set_content_height($this->_calculate_content_height());
 
         $height = max($style_height, (float)$frame->get_content_height());
+=======
+        $style_height = (float) $style->length_in_pt($style->height, $h);
+        $content_height = $this->_calculate_content_height();
+        $height = max($style_height, $content_height);
+
+        $frame->set_content_height($content_height);
+>>>>>>> tundeseun/devtest
 
         // Let the cellmap know our height
         $cell_height = $height / count($cells["rows"]);
@@ -127,7 +184,11 @@ class TableCell extends Block
         $this->vertical_align();
 
         // Handle relative positioning
+<<<<<<< HEAD
         foreach ($this->_frame->get_children() as $child) {
+=======
+        foreach ($frame->get_children() as $child) {
+>>>>>>> tundeseun/devtest
             $this->position_relative($child);
         }
     }

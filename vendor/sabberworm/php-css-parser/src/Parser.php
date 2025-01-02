@@ -21,7 +21,11 @@ class Parser
      * @param Settings|null $oParserSettings
      * @param int $iLineNo the line number (starting from 1, not from 0)
      */
+<<<<<<< HEAD
     public function __construct($sText, Settings $oParserSettings = null, $iLineNo = 1)
+=======
+    public function __construct($sText, $oParserSettings = null, $iLineNo = 1)
+>>>>>>> tundeseun/devtest
     {
         if ($oParserSettings === null) {
             $oParserSettings = Settings::create();
@@ -35,6 +39,11 @@ class Parser
      * @param string $sCharset
      *
      * @return void
+<<<<<<< HEAD
+=======
+     *
+     * @deprecated since 8.7.0, will be removed in version 9.0.0 with #687
+>>>>>>> tundeseun/devtest
      */
     public function setCharset($sCharset)
     {
@@ -45,6 +54,11 @@ class Parser
      * Returns the charset that is used if the CSS does not contain an `@charset` declaration.
      *
      * @return void
+<<<<<<< HEAD
+=======
+     *
+     * @deprecated since 8.7.0, will be removed in version 9.0.0 with #687
+>>>>>>> tundeseun/devtest
      */
     public function getCharset()
     {

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
+<<<<<<< HEAD
 Broadcast::channel('App.User.{id}', function ($user, $id) {
+=======
+Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+>>>>>>> tundeseun/devtest
     return (int) $user->id === (int) $id;
 });

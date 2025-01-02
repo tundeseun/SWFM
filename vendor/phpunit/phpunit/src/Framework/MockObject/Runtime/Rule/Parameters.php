@@ -12,6 +12,10 @@ namespace PHPUnit\Framework\MockObject\Rule;
 use function count;
 use function sprintf;
 use Exception;
+<<<<<<< HEAD
+=======
+use PHPUnit\Framework\Constraint\Callback;
+>>>>>>> tundeseun/devtest
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsAnything;
 use PHPUnit\Framework\Constraint\IsEqual;
@@ -87,7 +91,11 @@ final class Parameters implements ParametersRule
         }
 
         if ($this->invocation === null) {
+<<<<<<< HEAD
             throw new ExpectationFailedException('Mocked method does not exist.');
+=======
+            throw new ExpectationFailedException('Doubled method does not exist.');
+>>>>>>> tundeseun/devtest
         }
 
         if (count($this->invocation->parameters()) < count($this->parameters)) {
@@ -108,11 +116,23 @@ final class Parameters implements ParametersRule
         }
 
         foreach ($this->parameters as $i => $parameter) {
+<<<<<<< HEAD
             $parameter->evaluate(
                 $this->invocation->parameters()[$i],
                 sprintf(
                     'Parameter %s for invocation %s does not match expected ' .
                     'value.',
+=======
+            if ($parameter instanceof Callback && $parameter->isVariadic()) {
+                $other = $this->invocation->parameters();
+            } else {
+                $other = $this->invocation->parameters()[$i];
+            }
+            $parameter->evaluate(
+                $other,
+                sprintf(
+                    'Parameter %s for invocation %s does not match expected value.',
+>>>>>>> tundeseun/devtest
                     $i,
                     $this->invocation->toString(),
                 ),

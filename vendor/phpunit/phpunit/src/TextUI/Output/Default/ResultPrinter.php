@@ -146,11 +146,14 @@ final class ResultPrinter
         }
     }
 
+<<<<<<< HEAD
     public function flush(): void
     {
         $this->printer->flush();
     }
 
+=======
+>>>>>>> tundeseun/devtest
     private function printPhpunitErrors(TestResult $result): void
     {
         if (!$result->hasTestTriggeredPhpunitErrorEvents()) {

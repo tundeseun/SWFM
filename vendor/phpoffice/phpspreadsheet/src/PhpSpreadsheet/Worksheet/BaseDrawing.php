@@ -219,6 +219,7 @@ class BaseDrawing implements IComparable
     public function setWorksheet(?Worksheet $worksheet = null, bool $overrideOld = false): self
     {
         if ($this->worksheet === null) {
+<<<<<<< HEAD
             // Add drawing to \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
             if ($worksheet !== null) {
                 $this->worksheet = $worksheet;
@@ -228,6 +229,20 @@ class BaseDrawing implements IComparable
         } else {
             if ($overrideOld) {
                 // Remove drawing from old \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+=======
+            // Add drawing to Worksheet
+            if ($worksheet !== null) {
+                $this->worksheet = $worksheet;
+                if (!($this instanceof Drawing && $this->getPath() === '')) {
+                    $this->worksheet->getCell($this->coordinates);
+                }
+                $this->worksheet->getDrawingCollection()
+                    ->append($this);
+            }
+        } else {
+            if ($overrideOld) {
+                // Remove drawing from old Worksheet
+>>>>>>> tundeseun/devtest
                 $iterator = $this->worksheet->getDrawingCollection()->getIterator();
 
                 while ($iterator->valid()) {
@@ -239,10 +254,17 @@ class BaseDrawing implements IComparable
                     }
                 }
 
+<<<<<<< HEAD
                 // Set new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
                 $this->setWorksheet($worksheet);
             } else {
                 throw new PhpSpreadsheetException('A Worksheet has already been assigned. Drawings can only exist on one \\PhpOffice\\PhpSpreadsheet\\Worksheet.');
+=======
+                // Set new Worksheet
+                $this->setWorksheet($worksheet);
+            } else {
+                throw new PhpSpreadsheetException('A Worksheet has already been assigned. Drawings can only exist on one Worksheet.');
+>>>>>>> tundeseun/devtest
             }
         }
 
@@ -257,6 +279,14 @@ class BaseDrawing implements IComparable
     public function setCoordinates(string $coordinates): self
     {
         $this->coordinates = $coordinates;
+<<<<<<< HEAD
+=======
+        if ($this->worksheet !== null) {
+            if (!($this instanceof Drawing && $this->getPath() === '')) {
+                $this->worksheet->getCell($this->coordinates);
+            }
+        }
+>>>>>>> tundeseun/devtest
 
         return $this;
     }

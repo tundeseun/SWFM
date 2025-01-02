@@ -14,6 +14,23 @@ class Sanctum
     public static $personalAccessTokenModel = 'Laravel\\Sanctum\\PersonalAccessToken';
 
     /**
+<<<<<<< HEAD
+=======
+     * A callback that can get the token from the request.
+     *
+     * @var callable|null
+     */
+    public static $accessTokenRetrievalCallback;
+
+    /**
+     * A callback that can add to the validation of the access token.
+     *
+     * @var callable|null
+     */
+    public static $accessTokenAuthenticationCallback;
+
+    /**
+>>>>>>> tundeseun/devtest
      * Indicates if Sanctum's migrations will be run.
      *
      * @var bool
@@ -21,6 +38,21 @@ class Sanctum
     public static $runsMigrations = true;
 
     /**
+<<<<<<< HEAD
+=======
+     * Get the current application URL from the "APP_URL" environment variable - with port.
+     *
+     * @return string
+     */
+    public static function currentApplicationUrlWithPort()
+    {
+        $appUrl = config('app.url');
+
+        return $appUrl ? ','.parse_url($appUrl, PHP_URL_HOST).(parse_url($appUrl, PHP_URL_PORT) ? ':'.parse_url($appUrl, PHP_URL_PORT) : '') : '';
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * Set the current user for the application with the given abilities.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable|\Laravel\Sanctum\HasApiTokens  $user
@@ -65,6 +97,31 @@ class Sanctum
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Specify a callback that should be used to fetch the access token from the request.
+     *
+     * @param  callable|null  $callback
+     * @return void
+     */
+    public static function getAccessTokenFromRequestUsing(?callable $callback)
+    {
+        static::$accessTokenRetrievalCallback = $callback;
+    }
+
+    /**
+     * Specify a callback that should be used to authenticate access tokens.
+     *
+     * @param  callable  $callback
+     * @return void
+     */
+    public static function authenticateAccessTokensUsing(callable $callback)
+    {
+        static::$accessTokenAuthenticationCallback = $callback;
+    }
+
+    /**
+>>>>>>> tundeseun/devtest
      * Determine if Sanctum's migrations should be run.
      *
      * @return bool

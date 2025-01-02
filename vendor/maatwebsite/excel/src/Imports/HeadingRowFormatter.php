@@ -50,7 +50,11 @@ class HeadingRowFormatter
     /**
      * @param  string  $name
      */
+<<<<<<< HEAD
     public static function default(string $name = null)
+=======
+    public static function default(?string $name = null)
+>>>>>>> tundeseun/devtest
     {
         if (null !== $name && !isset(static::$customFormatters[$name]) && !in_array($name, static::$defaultFormatters, true)) {
             throw new InvalidArgumentException(sprintf('Formatter "%s" does not exist', $name));

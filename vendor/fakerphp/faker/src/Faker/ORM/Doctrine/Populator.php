@@ -48,7 +48,11 @@ class Populator
      *
      * @param int $batchSize
      */
+<<<<<<< HEAD
     public function __construct(Generator $generator, ObjectManager $manager = null, $batchSize = 1000)
+=======
+    public function __construct(Generator $generator, ?ObjectManager $manager = null, $batchSize = 1000)
+>>>>>>> tundeseun/devtest
     {
         $this->generator = $generator;
         $this->manager = $manager;

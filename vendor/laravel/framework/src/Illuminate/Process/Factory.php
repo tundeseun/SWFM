@@ -85,7 +85,11 @@ class Factory
      * @param  \Closure|array|null  $callback
      * @return $this
      */
+<<<<<<< HEAD
     public function fake(Closure|array $callback = null)
+=======
+    public function fake(Closure|array|null $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $this->recording = true;
 

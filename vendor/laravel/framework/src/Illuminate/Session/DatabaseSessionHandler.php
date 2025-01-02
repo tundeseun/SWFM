@@ -59,7 +59,11 @@ class DatabaseSessionHandler implements ExistenceAwareInterface, SessionHandlerI
      * @param  \Illuminate\Contracts\Container\Container|null  $container
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(ConnectionInterface $connection, $table, $minutes, Container $container = null)
+=======
+    public function __construct(ConnectionInterface $connection, $table, $minutes, ?Container $container = null)
+>>>>>>> tundeseun/devtest
     {
         $this->table = $table;
         $this->minutes = $minutes;

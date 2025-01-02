@@ -59,7 +59,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
 
         $result = [];
         while (\count($result) < $limit && $line = $this->readLineFromFile($file)) {
+<<<<<<< HEAD
             $values = str_getcsv($line);
+=======
+            $values = str_getcsv($line, ',', '"', '\\');
+>>>>>>> tundeseun/devtest
 
             if (7 > \count($values)) {
                 // skip invalid lines
@@ -193,7 +197,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
                 $profile->getParentToken(),
                 $profile->getStatusCode(),
                 $profile->getVirtualType() ?? 'request',
+<<<<<<< HEAD
             ]);
+=======
+            ], ',', '"', '\\');
+>>>>>>> tundeseun/devtest
             fclose($file);
 
             if (1 === mt_rand(1, 10)) {
@@ -334,7 +342,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
 
         while ($line = fgets($handle)) {
+<<<<<<< HEAD
             $values = str_getcsv($line);
+=======
+            $values = str_getcsv($line, ',', '"', '\\');
+>>>>>>> tundeseun/devtest
 
             if (7 > \count($values)) {
                 // skip invalid lines

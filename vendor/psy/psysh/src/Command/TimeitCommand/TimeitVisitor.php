@@ -31,7 +31,11 @@ use Psy\Command\TimeitCommand;
  */
 class TimeitVisitor extends NodeVisitorAbstract
 {
+<<<<<<< HEAD
     private $functionDepth;
+=======
+    private int $functionDepth = 0;
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}

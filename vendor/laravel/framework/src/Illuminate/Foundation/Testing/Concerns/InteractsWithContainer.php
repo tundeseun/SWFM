@@ -58,7 +58,11 @@ trait InteractsWithContainer
      * @param  \Closure|null  $mock
      * @return \Mockery\MockInterface
      */
+<<<<<<< HEAD
     protected function mock($abstract, Closure $mock = null)
+=======
+    protected function mock($abstract, ?Closure $mock = null)
+>>>>>>> tundeseun/devtest
     {
         return $this->instance($abstract, Mockery::mock(...array_filter(func_get_args())));
     }
@@ -70,7 +74,11 @@ trait InteractsWithContainer
      * @param  \Closure|null  $mock
      * @return \Mockery\MockInterface
      */
+<<<<<<< HEAD
     protected function partialMock($abstract, Closure $mock = null)
+=======
+    protected function partialMock($abstract, ?Closure $mock = null)
+>>>>>>> tundeseun/devtest
     {
         return $this->instance($abstract, Mockery::mock(...array_filter(func_get_args()))->makePartial());
     }
@@ -82,7 +90,11 @@ trait InteractsWithContainer
      * @param  \Closure|null  $mock
      * @return \Mockery\MockInterface
      */
+<<<<<<< HEAD
     protected function spy($abstract, Closure $mock = null)
+=======
+    protected function spy($abstract, ?Closure $mock = null)
+>>>>>>> tundeseun/devtest
     {
         return $this->instance($abstract, Mockery::spy(...array_filter(func_get_args())));
     }

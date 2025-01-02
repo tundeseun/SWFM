@@ -23,6 +23,7 @@ namespace Symfony\Component\CssSelector\XPath;
  */
 class XPathExpr
 {
+<<<<<<< HEAD
     private string $path;
     private string $element;
     private string $condition;
@@ -33,6 +34,14 @@ class XPathExpr
         $this->element = $element;
         $this->condition = $condition;
 
+=======
+    public function __construct(
+        private string $path = '',
+        private string $element = '*',
+        private string $condition = '',
+        bool $starPrefix = false,
+    ) {
+>>>>>>> tundeseun/devtest
         if ($starPrefix) {
             $this->addStarPrefix();
         }
@@ -46,9 +55,15 @@ class XPathExpr
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function addCondition(string $condition): static
     {
         $this->condition = $this->condition ? sprintf('(%s) and (%s)', $this->condition, $condition) : $condition;
+=======
+    public function addCondition(string $condition, string $operator = 'and'): static
+    {
+        $this->condition = $this->condition ? \sprintf('(%s) %s (%s)', $this->condition, $operator, $condition) : $condition;
+>>>>>>> tundeseun/devtest
 
         return $this;
     }
@@ -104,7 +119,11 @@ class XPathExpr
     public function __toString(): string
     {
         $path = $this->path.$this->element;
+<<<<<<< HEAD
         $condition = null === $this->condition || '' === $this->condition ? '' : '['.$this->condition.']';
+=======
+        $condition = '' === $this->condition ? '' : '['.$this->condition.']';
+>>>>>>> tundeseun/devtest
 
         return $path.$condition;
     }

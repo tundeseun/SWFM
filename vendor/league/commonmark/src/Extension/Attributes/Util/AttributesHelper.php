@@ -23,8 +23,13 @@ use League\CommonMark\Util\RegexHelper;
  */
 final class AttributesHelper
 {
+<<<<<<< HEAD
     private const SINGLE_ATTRIBUTE = '\s*([.]-?[_a-z][^\s}]*|[#][^\s}]+|' . RegexHelper::PARTIAL_ATTRIBUTENAME . RegexHelper::PARTIAL_ATTRIBUTEVALUESPEC . '?)\s*';
     private const ATTRIBUTE_LIST   = '/^{:?(' . self::SINGLE_ATTRIBUTE . ')+}(?!})/i';
+=======
+    private const SINGLE_ATTRIBUTE = '\s*([.]-?[_a-z][^\s}]*|[#][^\s}]+|' . RegexHelper::PARTIAL_ATTRIBUTENAME . RegexHelper::PARTIAL_ATTRIBUTEVALUESPEC . ')\s*';
+    private const ATTRIBUTE_LIST   = '/^{:?(' . self::SINGLE_ATTRIBUTE . ')+}/i';
+>>>>>>> tundeseun/devtest
 
     /**
      * @return array<string, mixed>
@@ -72,6 +77,7 @@ final class AttributesHelper
                 continue;
             }
 
+<<<<<<< HEAD
             $parts = \explode('=', $attribute, 2);
             if (\count($parts) === 1) {
                 $attributes[$attribute] = true;
@@ -81,6 +87,16 @@ final class AttributesHelper
             /** @psalm-suppress PossiblyUndefinedArrayOffset */
             [$name, $value] = $parts;
 
+=======
+            /** @psalm-suppress PossiblyUndefinedArrayOffset */
+            [$name, $value] = \explode('=', $attribute, 2);
+
+            if ($value === 'true') {
+                $attributes[$name] = true;
+                continue;
+            }
+
+>>>>>>> tundeseun/devtest
             $first = $value[0];
             $last  = \substr($value, -1);
             if (($first === '"' && $last === '"') || ($first === "'" && $last === "'") && \strlen($value) > 1) {

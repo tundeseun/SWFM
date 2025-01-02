@@ -123,8 +123,13 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
     public function __construct($name,
                                 UserProvider $provider,
                                 Session $session,
+<<<<<<< HEAD
                                 Request $request = null,
                                 Timebox $timebox = null)
+=======
+                                ?Request $request = null,
+                                ?Timebox $timebox = null)
+>>>>>>> tundeseun/devtest
     {
         $this->name = $name;
         $this->session = $session;

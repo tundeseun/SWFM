@@ -959,7 +959,11 @@ class Str
      * @param  callable|null  $factory
      * @return void
      */
+<<<<<<< HEAD
     public static function createRandomStringsUsing(callable $factory = null)
+=======
+    public static function createRandomStringsUsing(?callable $factory = null)
+>>>>>>> tundeseun/devtest
     {
         static::$randomStringFactory = $factory;
     }
@@ -1665,7 +1669,11 @@ class Str
      * @param  callable|null  $factory
      * @return void
      */
+<<<<<<< HEAD
     public static function createUuidsUsing(callable $factory = null)
+=======
+    public static function createUuidsUsing(?callable $factory = null)
+>>>>>>> tundeseun/devtest
     {
         static::$uuidFactory = $factory;
     }
@@ -1710,7 +1718,11 @@ class Str
      * @param  \Closure|null  $callback
      * @return \Ramsey\Uuid\UuidInterface
      */
+<<<<<<< HEAD
     public static function freezeUuids(Closure $callback = null)
+=======
+    public static function freezeUuids(?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $uuid = Str::uuid();
 
@@ -1772,7 +1784,11 @@ class Str
      * @param  callable|null  $factory
      * @return void
      */
+<<<<<<< HEAD
     public static function createUlidsUsing(callable $factory = null)
+=======
+    public static function createUlidsUsing(?callable $factory = null)
+>>>>>>> tundeseun/devtest
     {
         static::$ulidFactory = $factory;
     }
@@ -1817,7 +1833,11 @@ class Str
      * @param  Closure|null  $callback
      * @return Ulid
      */
+<<<<<<< HEAD
     public static function freezeUlids(Closure $callback = null)
+=======
+    public static function freezeUlids(?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         $ulid = Str::ulid();
 

@@ -13,6 +13,10 @@ use Spatie\FlareClient\Concerns\HasContext;
 use Spatie\FlareClient\Context\BaseContextProviderDetector;
 use Spatie\FlareClient\Context\ContextProviderDetector;
 use Spatie\FlareClient\Enums\MessageLevels;
+<<<<<<< HEAD
+=======
+use Spatie\FlareClient\Enums\OverriddenGrouping;
+>>>>>>> tundeseun/devtest
 use Spatie\FlareClient\FlareMiddleware\AddEnvironmentInformation;
 use Spatie\FlareClient\FlareMiddleware\AddGlows;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestBodyFields;
@@ -68,9 +72,18 @@ class Flare
 
     protected bool $withStackFrameArguments = true;
 
+<<<<<<< HEAD
     public static function make(
         string $apiKey = null,
         ContextProviderDetector $contextDetector = null
+=======
+    /** @var array<class-string, string> */
+    protected array $overriddenGroupings = [];
+
+    public static function make(
+        ?string $apiKey = null,
+        ?ContextProviderDetector $contextDetector = null
+>>>>>>> tundeseun/devtest
     ): self {
         $client = new Client($apiKey);
 
@@ -159,6 +172,21 @@ class Flare
         return $this;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @param class-string $exceptionClass
+     */
+    public function overrideGrouping(
+        string $exceptionClass,
+        string $type = OverriddenGrouping::ExceptionMessageAndClass,
+    ): self {
+        $this->overriddenGroupings[$exceptionClass] = $type;
+
+        return $this;
+    }
+
+>>>>>>> tundeseun/devtest
     public function version(): ?string
     {
         if (! $this->determineVersionCallable) {
@@ -175,7 +203,11 @@ class Flare
      */
     public function __construct(
         Client $client,
+<<<<<<< HEAD
         ContextProviderDetector $contextDetector = null,
+=======
+        ?ContextProviderDetector $contextDetector = null,
+>>>>>>> tundeseun/devtest
         array $middleware = [],
     ) {
         $this->client = $client;
@@ -317,7 +349,11 @@ class Flare
         return $this;
     }
 
+<<<<<<< HEAD
     public function report(Throwable $throwable, callable $callback = null, Report $report = null, ?bool $handled = null): ?Report
+=======
+    public function report(Throwable $throwable, ?callable $callback = null, ?Report $report = null, ?bool $handled = null): ?Report
+>>>>>>> tundeseun/devtest
     {
         if (! $this->shouldSendReport($throwable)) {
             return null;
@@ -362,7 +398,11 @@ class Flare
         return true;
     }
 
+<<<<<<< HEAD
     public function reportMessage(string $message, string $logLevel, callable $callback = null): void
+=======
+    public function reportMessage(string $message, string $logLevel, ?callable $callback = null): void
+>>>>>>> tundeseun/devtest
     {
         $report = $this->createReportFromMessage($message, $logLevel);
 
@@ -437,7 +477,12 @@ class Flare
             $this->applicationPath,
             $this->version(),
             $this->argumentReducers,
+<<<<<<< HEAD
             $this->withStackFrameArguments
+=======
+            $this->withStackFrameArguments,
+            $this->overriddenGroupings,
+>>>>>>> tundeseun/devtest
         );
 
         return $this->applyMiddlewareToReport($report);

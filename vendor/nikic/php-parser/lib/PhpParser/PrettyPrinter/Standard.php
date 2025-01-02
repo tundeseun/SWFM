@@ -23,7 +23,12 @@ class Standard extends PrettyPrinterAbstract {
              . ($node->byRef ? '&' : '')
              . ($node->variadic ? '...' : '')
              . $this->p($node->var)
+<<<<<<< HEAD
              . ($node->default ? ' = ' . $this->p($node->default) : '');
+=======
+             . ($node->default ? ' = ' . $this->p($node->default) : '')
+             . ($node->hooks ? ' {' . $this->pStmts($node->hooks) . $this->nl . '}' : '');
+>>>>>>> tundeseun/devtest
     }
 
     protected function pArg(Node\Arg $node): string {
@@ -125,6 +130,13 @@ class Standard extends PrettyPrinterAbstract {
         return '__TRAIT__';
     }
 
+<<<<<<< HEAD
+=======
+    protected function pScalar_MagicConst_Property(MagicConst\Property $node): string {
+        return '__PROPERTY__';
+    }
+
+>>>>>>> tundeseun/devtest
     // Scalars
 
     private function indentString(string $str): string {
@@ -827,7 +839,12 @@ class Standard extends PrettyPrinterAbstract {
         return $this->pAttrGroups($node->attrGroups)
             . (0 === $node->flags ? 'var ' : $this->pModifiers($node->flags))
             . ($node->type ? $this->p($node->type) . ' ' : '')
+<<<<<<< HEAD
             . $this->pCommaSeparated($node->props) . ';';
+=======
+            . $this->pCommaSeparated($node->props)
+            . ($node->hooks ? ' {' . $this->pStmts($node->hooks) . $this->nl . '}' : ';');
+>>>>>>> tundeseun/devtest
     }
 
     protected function pPropertyItem(Node\PropertyItem $node): string {
@@ -835,6 +852,18 @@ class Standard extends PrettyPrinterAbstract {
              . (null !== $node->default ? ' = ' . $this->p($node->default) : '');
     }
 
+<<<<<<< HEAD
+=======
+    protected function pPropertyHook(Node\PropertyHook $node): string {
+        return $this->pAttrGroups($node->attrGroups)
+             . $this->pModifiers($node->flags)
+             . ($node->byRef ? '&' : '') . $node->name
+             . ($node->params ? '(' . $this->pMaybeMultiline($node->params, $this->phpVersion->supportsTrailingCommaInParamList()) . ')' : '')
+             . (\is_array($node->body) ? ' {' . $this->pStmts($node->body) . $this->nl . '}'
+                : ($node->body !== null ? ' => ' . $this->p($node->body) : '') . ';');
+    }
+
+>>>>>>> tundeseun/devtest
     protected function pStmt_ClassMethod(Stmt\ClassMethod $node): string {
         return $this->pAttrGroups($node->attrGroups)
              . $this->pModifiers($node->flags)

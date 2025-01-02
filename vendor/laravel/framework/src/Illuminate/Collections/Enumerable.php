@@ -38,7 +38,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  callable|null  $callback
      * @return static
      */
+<<<<<<< HEAD
     public static function times($number, callable $callback = null);
+=======
+    public static function times($number, ?callable $callback = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Create a collection with the given range.
@@ -296,7 +300,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable(TValue): bool)|null  $callback
      * @return static
      */
+<<<<<<< HEAD
     public function filter(callable $callback = null);
+=======
+    public function filter(?callable $callback = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback if the given "value" is (or resolves to) truthy.
@@ -308,7 +316,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TWhenReturnType)|null  $default
      * @return $this|TWhenReturnType
      */
+<<<<<<< HEAD
     public function when($value, callable $callback = null, callable $default = null);
+=======
+    public function when($value, ?callable $callback = null, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback if the collection is empty.
@@ -319,7 +331,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TWhenEmptyReturnType)|null  $default
      * @return $this|TWhenEmptyReturnType
      */
+<<<<<<< HEAD
     public function whenEmpty(callable $callback, callable $default = null);
+=======
+    public function whenEmpty(callable $callback, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback if the collection is not empty.
@@ -330,7 +346,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TWhenNotEmptyReturnType)|null  $default
      * @return $this|TWhenNotEmptyReturnType
      */
+<<<<<<< HEAD
     public function whenNotEmpty(callable $callback, callable $default = null);
+=======
+    public function whenNotEmpty(callable $callback, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback if the given "value" is (or resolves to) truthy.
@@ -342,7 +362,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TUnlessReturnType)|null  $default
      * @return $this|TUnlessReturnType
      */
+<<<<<<< HEAD
     public function unless($value, callable $callback, callable $default = null);
+=======
+    public function unless($value, callable $callback, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback unless the collection is empty.
@@ -353,7 +377,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TUnlessEmptyReturnType)|null  $default
      * @return $this|TUnlessEmptyReturnType
      */
+<<<<<<< HEAD
     public function unlessEmpty(callable $callback, callable $default = null);
+=======
+    public function unlessEmpty(callable $callback, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Apply the callback unless the collection is not empty.
@@ -364,7 +392,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  (callable($this): TUnlessNotEmptyReturnType)|null  $default
      * @return $this|TUnlessNotEmptyReturnType
      */
+<<<<<<< HEAD
     public function unlessNotEmpty(callable $callback, callable $default = null);
+=======
+    public function unlessNotEmpty(callable $callback, ?callable $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Filter items by the given key value pair.
@@ -476,7 +508,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  TFirstDefault|(\Closure(): TFirstDefault)  $default
      * @return TValue|TFirstDefault
      */
+<<<<<<< HEAD
     public function first(callable $callback = null, $default = null);
+=======
+    public function first(?callable $callback = null, $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Get the first item by the given key value pair.
@@ -618,7 +654,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      * @param  TLastDefault|(\Closure(): TLastDefault)  $default
      * @return TValue|TLastDefault
      */
+<<<<<<< HEAD
     public function last(callable $callback = null, $default = null);
+=======
+    public function last(?callable $callback = null, $default = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Run a map over each of the items.

@@ -239,8 +239,13 @@ class Builder implements BuilderContract
      * @return void
      */
     public function __construct(ConnectionInterface $connection,
+<<<<<<< HEAD
                                 Grammar $grammar = null,
                                 Processor $processor = null)
+=======
+                                ?Grammar $grammar = null,
+                                ?Processor $processor = null)
+>>>>>>> tundeseun/devtest
     {
         $this->connection = $connection;
         $this->grammar = $grammar ?: $connection->getQueryGrammar();
@@ -1436,6 +1441,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $value = $this->flattenValue($value);
 
         if ($value instanceof DateTimeInterface) {
@@ -1477,6 +1492,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $value = $this->flattenValue($value);
 
         if ($value instanceof DateTimeInterface) {
@@ -1518,6 +1543,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $value = $this->flattenValue($value);
 
         if ($value instanceof DateTimeInterface) {
@@ -1563,6 +1598,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $value = $this->flattenValue($value);
 
         if ($value instanceof DateTimeInterface) {
@@ -1608,6 +1653,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $value = $this->flattenValue($value);
 
         if ($value instanceof DateTimeInterface) {
@@ -1974,6 +2029,16 @@ class Builder implements BuilderContract
             $value, $operator, func_num_args() === 2
         );
 
+<<<<<<< HEAD
+=======
+        // If the given operator is not found in the list of valid operators we will
+        // assume that the developer is just short-cutting the '=' operators and
+        // we will set the operators to '=' and set the values appropriately.
+        if ($this->invalidOperator($operator)) {
+            [$value, $operator] = [$operator, '='];
+        }
+
+>>>>>>> tundeseun/devtest
         $this->wheres[] = compact('type', 'column', 'operator', 'value', 'boolean');
 
         if (! $value instanceof ExpressionContract) {
@@ -2790,7 +2855,11 @@ class Builder implements BuilderContract
      * @param  \Closure|null  $callback
      * @return mixed|static
      */
+<<<<<<< HEAD
     public function findOr($id, $columns = ['*'], Closure $callback = null)
+=======
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null)
+>>>>>>> tundeseun/devtest
     {
         if ($columns instanceof Closure) {
             $callback = $columns;

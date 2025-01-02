@@ -13,6 +13,10 @@ namespace Psy\Exception;
 
 class UnexpectedTargetException extends RuntimeException
 {
+<<<<<<< HEAD
+=======
+    /** @var mixed */
+>>>>>>> tundeseun/devtest
     private $target;
 
     /**

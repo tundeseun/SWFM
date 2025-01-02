@@ -10,7 +10,11 @@ trait Debugging
      * @param  string|null  $prop
      * @return $this
      */
+<<<<<<< HEAD
     public function dump(string $prop = null): self
+=======
+    public function dump(?string $prop = null): self
+>>>>>>> tundeseun/devtest
     {
         dump($this->prop($prop));
 
@@ -23,7 +27,11 @@ trait Debugging
      * @param  string|null  $prop
      * @return never
      */
+<<<<<<< HEAD
     public function dd(string $prop = null): void
+=======
+    public function dd(?string $prop = null): void
+>>>>>>> tundeseun/devtest
     {
         dd($this->prop($prop));
     }
@@ -34,5 +42,9 @@ trait Debugging
      * @param  string|null  $key
      * @return mixed
      */
+<<<<<<< HEAD
     abstract protected function prop(string $key = null);
+=======
+    abstract protected function prop(?string $key = null);
+>>>>>>> tundeseun/devtest
 }

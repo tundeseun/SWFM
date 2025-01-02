@@ -6,10 +6,18 @@
  */
 namespace Dompdf\FrameReflower;
 
+<<<<<<< HEAD
 use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
 use Dompdf\FrameDecorator\Inline as InlineFrameDecorator;
 use Dompdf\FrameDecorator\Text as TextFrameDecorator;
 use Dompdf\FontMetrics;
+=======
+use Dompdf\Exception;
+use Dompdf\FontMetrics;
+use Dompdf\FrameDecorator\Block as BlockFrameDecorator;
+use Dompdf\FrameDecorator\Inline as InlineFrameDecorator;
+use Dompdf\FrameDecorator\Text as TextFrameDecorator;
+>>>>>>> tundeseun/devtest
 use Dompdf\Helpers;
 
 /**
@@ -127,7 +135,11 @@ class Text extends AbstractFrameReflower
      * @param BlockFrameDecorator $block
      * @param bool                $nowrap
      *
+<<<<<<< HEAD
      * @return bool|int
+=======
+     * @return int|false
+>>>>>>> tundeseun/devtest
      */
     protected function line_break(string $text, BlockFrameDecorator $block, bool $nowrap = false)
     {
@@ -162,8 +174,17 @@ class Text extends AbstractFrameReflower
             return false;
         }
 
+<<<<<<< HEAD
         if ($nowrap) {
             return $current_line_width == 0 ? false : 0;
+=======
+        $force_first = $current_line->left == 0
+            && $current_line->right == 0
+            && $current_line->is_empty();
+
+        if ($nowrap) {
+            return $force_first ? false : 0;
+>>>>>>> tundeseun/devtest
         }
 
         // Split the text into words
@@ -187,7 +208,11 @@ class Text extends AbstractFrameReflower
             $word_width = $fontMetrics->getTextWidth($word, $font, $size, $word_spacing, $letter_spacing);
             $used_width = $width + $word_width + $mbp_width;
 
+<<<<<<< HEAD
             if (Helpers::lengthGreater($used_width, $available_width)) {
+=======
+            if ($used_width > 0 && Helpers::lengthGreater($used_width, $available_width)) {
+>>>>>>> tundeseun/devtest
                 // If the previous split happened by soft hyphen, we have to
                 // append its width again because the last hyphen of a line
                 // won't be removed
@@ -214,7 +239,11 @@ class Text extends AbstractFrameReflower
 
         // The first word has overflowed. Force it onto the line, or as many
         // characters as fit if breaking words is allowed
+<<<<<<< HEAD
         if ($current_line_width == 0 && $width === 0.0) {
+=======
+        if ($force_first && $width === 0.0) {
+>>>>>>> tundeseun/devtest
             if ($sep === " ") {
                 $word .= $sep;
             }
@@ -225,8 +254,14 @@ class Text extends AbstractFrameReflower
 
             if ($break_word) {
                 $s = "";
+<<<<<<< HEAD
 
                 for ($j = 0; $j < mb_strlen($word); $j++) {
+=======
+                $len = mb_strlen($word);
+
+                for ($j = 0; $j < $len; $j++) {
+>>>>>>> tundeseun/devtest
                     $c = mb_substr($word, $j, 1);
                     $w = $fontMetrics->getTextWidth($s . $c, $font, $size, $word_spacing, $letter_spacing);
 
@@ -250,7 +285,11 @@ class Text extends AbstractFrameReflower
 
     /**
      * @param string $text
+<<<<<<< HEAD
      * @return bool|int
+=======
+     * @return int|false
+>>>>>>> tundeseun/devtest
      */
     protected function newline_break(string $text)
     {
@@ -274,7 +313,11 @@ class Text extends AbstractFrameReflower
         $text = $frame->get_text();
 
         // Trim leading white space if this is the first text on the line
+<<<<<<< HEAD
         if ($current_line->w === 0.0 && !$frame->is_pre()) {
+=======
+        if ($current_line->is_empty() && !$frame->is_pre()) {
+>>>>>>> tundeseun/devtest
             $text = ltrim($text, " ");
         }
 
@@ -348,7 +391,11 @@ class Text extends AbstractFrameReflower
         if ($split !== false && $split < mb_strlen($text)) {
             // Split the line
             $frame->set_text($text);
+<<<<<<< HEAD
             $frame->split_text($split);
+=======
+            $frame->split_text($split, true);
+>>>>>>> tundeseun/devtest
             $add_line = true;
 
             // Remove inner soft hyphens
@@ -373,8 +420,14 @@ class Text extends AbstractFrameReflower
 
     /**
      * @param BlockFrameDecorator|null $block
+<<<<<<< HEAD
      */
     function reflow(BlockFrameDecorator $block = null)
+=======
+     * @throws Exception
+     */
+    function reflow(?BlockFrameDecorator $block = null)
+>>>>>>> tundeseun/devtest
     {
         $frame = $this->_frame;
         $page = $frame->get_root();
@@ -384,17 +437,33 @@ class Text extends AbstractFrameReflower
             return;
         }
 
+<<<<<<< HEAD
         // Determine the text height
         $style = $frame->get_style();
+=======
+        $style = $frame->get_style();
+
+        // Handle text transform and white space
+        $frame->set_text($this->pre_process_text($frame->get_text()));
+
+        // map text to fonts based on supported Unicode range
+        $frame->apply_font_mapping();
+        $text = $frame->get_text();
+
+        // Determine the text height
+>>>>>>> tundeseun/devtest
         $size = $style->font_size;
         $font = $style->font_family;
         $font_height = $this->getFontMetrics()->getFontHeight($font, $size);
         $style->set_used("height", $font_height);
 
+<<<<<<< HEAD
         // Handle text transform and white space
         $text = $this->pre_process_text($frame->get_text());
         $frame->set_text($text);
 
+=======
+>>>>>>> tundeseun/devtest
         if ($block === null) {
             return;
         }
@@ -409,12 +478,21 @@ class Text extends AbstractFrameReflower
 
         // Skip wrapped white space between block-level elements in case white
         // space is collapsed
+<<<<<<< HEAD
         if ($frame->get_text() === "" && $frame->get_margin_width() === 0.0) {
+=======
+        $text = $frame->get_text();
+        if ($text === "" && $frame->get_margin_width() === 0.0) {
+>>>>>>> tundeseun/devtest
             return;
         }
 
         $line = $block->add_frame_to_line($frame);
+<<<<<<< HEAD
         $trimmed = trim($frame->get_text());
+=======
+        $trimmed = trim($text);
+>>>>>>> tundeseun/devtest
 
         // Split the text into words (used to determine spacing between
         // words on justified lines)
@@ -466,15 +544,29 @@ class Text extends AbstractFrameReflower
         $fontMetrics = $this->getFontMetrics();
         $frame = $this->_frame;
         $style = $frame->get_style();
+<<<<<<< HEAD
         $text = $frame->get_text();
+=======
+
+        // Handle text transform and white space
+        $frame->set_text($this->pre_process_text($frame->get_text()));
+
+        // map text to fonts based on supported Unicode range
+        $frame->apply_font_mapping();
+        $text = $frame->get_text();
+
+>>>>>>> tundeseun/devtest
         $font = $style->font_family;
         $size = $style->font_size;
         $word_spacing = $style->word_spacing;
         $letter_spacing = $style->letter_spacing;
 
+<<<<<<< HEAD
         // Handle text transform and white space
         $text = $this->pre_process_text($frame->get_text());
 
+=======
+>>>>>>> tundeseun/devtest
         if (!$frame->is_pre()) {
             // Determine whether the frame is at the start of its parent block.
             // Trim leading white space in that case

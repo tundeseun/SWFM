@@ -3,27 +3,36 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+<<<<<<< HEAD
 use Laravel\Passport\Console\ClientCommand;
 use Laravel\Passport\Console\InstallCommand;
 use Laravel\Passport\Console\KeysCommand;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Schema;
 
+=======
+>>>>>>> tundeseun/devtest
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+<<<<<<< HEAD
      *
      * @return void
      */
     public function register()
+=======
+     */
+    public function register(): void
+>>>>>>> tundeseun/devtest
     {
         //
     }
 
     /**
      * Bootstrap any application services.
+<<<<<<< HEAD
      *
      * @return void
      */
@@ -43,5 +52,11 @@ class AppServiceProvider extends ServiceProvider
                 Auth::shouldUse('store');
             }
         });
+=======
+     */
+    public function boot(): void
+    {
+        //
+>>>>>>> tundeseun/devtest
     }
 }

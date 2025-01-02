@@ -15,9 +15,15 @@ use function array_keys;
 use function array_merge;
 use function assert;
 use function explode;
+<<<<<<< HEAD
 use function file_exists;
 use function file_get_contents;
 use function ini_get_all;
+=======
+use function file_get_contents;
+use function ini_get_all;
+use function is_file;
+>>>>>>> tundeseun/devtest
 use function restore_error_handler;
 use function set_error_handler;
 use function trim;
@@ -140,7 +146,11 @@ abstract class AbstractPhpProcess
 
         $processResult = '';
 
+<<<<<<< HEAD
         if (file_exists($processResultFile)) {
+=======
+        if (is_file($processResultFile)) {
+>>>>>>> tundeseun/devtest
             $processResult = file_get_contents($processResultFile);
 
             @unlink($processResultFile);

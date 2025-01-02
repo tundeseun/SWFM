@@ -12,7 +12,11 @@ class StoreQueryMacro
 {
     public function __invoke()
     {
+<<<<<<< HEAD
         return function (string $filePath, string $disk = null, string $writerType = null, $withHeadings = false) {
+=======
+        return function (string $filePath, ?string $disk = null, ?string $writerType = null, $withHeadings = false) {
+>>>>>>> tundeseun/devtest
             $export = new class($this, $withHeadings) implements FromQuery, WithHeadings
             {
                 use Exportable;

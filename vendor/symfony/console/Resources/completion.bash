@@ -17,7 +17,11 @@ _sf_{{ COMMAND_NAME }}() {
     done
 
     # Use newline as only separator to allow space in completion values
+<<<<<<< HEAD
     IFS=$'\n'
+=======
+    local IFS=$'\n'
+>>>>>>> tundeseun/devtest
     local sf_cmd="${COMP_WORDS[0]}"
 
     # for an alias, get the real script behind it

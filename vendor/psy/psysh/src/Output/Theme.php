@@ -74,6 +74,7 @@ class Theme
 
     const ERROR_STYLES = ['info', 'warning', 'error', 'whisper', 'class'];
 
+<<<<<<< HEAD
     private $compact = false;
 
     private $prompt = '> ';
@@ -84,6 +85,18 @@ class Theme
     private $grayFallback = 'blue';
 
     private $styles = [];
+=======
+    private bool $compact = false;
+
+    private string $prompt = '> ';
+    private string $bufferPrompt = '. ';
+    private string $replayPrompt = '- ';
+    private string $returnValue = '= ';
+
+    private string $grayFallback = 'blue';
+
+    private array $styles = [];
+>>>>>>> tundeseun/devtest
 
     /**
      * @param string|array $config theme name or config options

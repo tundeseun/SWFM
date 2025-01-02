@@ -2,6 +2,11 @@
 
 namespace Laravel\Prompts;
 
+<<<<<<< HEAD
+=======
+use Closure;
+
+>>>>>>> tundeseun/devtest
 class PasswordPrompt extends Prompt
 {
     use Concerns\TypedValue;
@@ -15,6 +20,10 @@ class PasswordPrompt extends Prompt
         public bool|string $required = false,
         public mixed $validate = null,
         public string $hint = '',
+<<<<<<< HEAD
+=======
+        public ?Closure $transform = null,
+>>>>>>> tundeseun/devtest
     ) {
         $this->trackTypedValue();
     }

@@ -111,7 +111,11 @@ class Worker
                                 Dispatcher $events,
                                 ExceptionHandler $exceptions,
                                 callable $isDownForMaintenance,
+<<<<<<< HEAD
                                 callable $resetScope = null)
+=======
+                                ?callable $resetScope = null)
+>>>>>>> tundeseun/devtest
     {
         $this->events = $events;
         $this->manager = $manager;

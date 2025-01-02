@@ -92,8 +92,13 @@ class SendGridHandler extends MailHandler
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.sendgrid.com/api/mail.send.json');
+<<<<<<< HEAD
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+=======
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+>>>>>>> tundeseun/devtest
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($message));
         Curl\Util::execute($ch, 2);
     }

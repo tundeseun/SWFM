@@ -14,7 +14,11 @@ if (! function_exists('Termwind\renderUsing')) {
     /**
      * Sets the renderer implementation.
      */
+<<<<<<< HEAD
     function renderUsing(OutputInterface|null $renderer): void
+=======
+    function renderUsing(?OutputInterface $renderer): void
+>>>>>>> tundeseun/devtest
     {
         Termwind::renderUsing($renderer);
     }
@@ -24,9 +28,15 @@ if (! function_exists('Termwind\style')) {
     /**
      * Creates a new style.
      *
+<<<<<<< HEAD
      * @param (Closure(Styles $renderable, string|int ...$arguments): Styles)|null $callback
      */
     function style(string $name, Closure $callback = null): Style
+=======
+     * @param  (Closure(Styles $renderable, string|int ...$arguments): Styles)|null  $callback
+     */
+    function style(string $name, ?Closure $callback = null): Style
+>>>>>>> tundeseun/devtest
     {
         return StyleRepository::create($name, $callback);
     }
@@ -58,7 +68,11 @@ if (! function_exists('Termwind\ask')) {
      *
      * @param  iterable<array-key, string>|null  $autocomplete
      */
+<<<<<<< HEAD
     function ask(string $question, iterable $autocomplete = null): mixed
+=======
+    function ask(string $question, ?iterable $autocomplete = null): mixed
+>>>>>>> tundeseun/devtest
     {
         return (new Question)->ask($question, $autocomplete);
     }

@@ -11,12 +11,21 @@
 
 namespace Psy\VersionUpdater\Downloader;
 
+<<<<<<< HEAD
+=======
+use Psy\Exception\RuntimeException;
+>>>>>>> tundeseun/devtest
 use Psy\VersionUpdater\Downloader;
 
 class FileDownloader implements Downloader
 {
+<<<<<<< HEAD
     private $tempDir = null;
     private $outputFile = null;
+=======
+    private ?string $tempDir = null;
+    private ?string $outputFile = null;
+>>>>>>> tundeseun/devtest
 
     /** {@inheritDoc} */
     public function setTempDir(string $tempDir)
@@ -43,13 +52,24 @@ class FileDownloader implements Downloader
     /** {@inheritDoc} */
     public function getFilename(): string
     {
+<<<<<<< HEAD
+=======
+        if ($this->outputFile === null) {
+            throw new RuntimeException('Call download() first');
+        }
+
+>>>>>>> tundeseun/devtest
         return $this->outputFile;
     }
 
     /** {@inheritDoc} */
     public function cleanup()
     {
+<<<<<<< HEAD
         if (\file_exists($this->outputFile)) {
+=======
+        if ($this->outputFile !== null && \file_exists($this->outputFile)) {
+>>>>>>> tundeseun/devtest
             \unlink($this->outputFile);
         }
     }

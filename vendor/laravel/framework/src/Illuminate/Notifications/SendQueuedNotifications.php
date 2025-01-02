@@ -73,7 +73,11 @@ class SendQueuedNotifications implements ShouldQueue
      * @param  array|null  $channels
      * @return void
      */
+<<<<<<< HEAD
     public function __construct($notifiables, $notification, array $channels = null)
+=======
+    public function __construct($notifiables, $notification, ?array $channels = null)
+>>>>>>> tundeseun/devtest
     {
         $this->channels = $channels;
         $this->notification = $notification;

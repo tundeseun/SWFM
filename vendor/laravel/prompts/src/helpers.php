@@ -9,7 +9,11 @@ if (! function_exists('\Laravel\Prompts\text')) {
     /**
      * Prompt the user for text input.
      */
+<<<<<<< HEAD
     function text(string $label, string $placeholder = '', string $default = '', bool|string $required = false, mixed $validate = null, string $hint = ''): string
+=======
+    function text(string $label, string $placeholder = '', string $default = '', bool|string $required = false, mixed $validate = null, string $hint = '', ?Closure $transform = null): string
+>>>>>>> tundeseun/devtest
     {
         return (new TextPrompt(...func_get_args()))->prompt();
     }
@@ -19,9 +23,15 @@ if (! function_exists('\Laravel\Prompts\textarea')) {
     /**
      * Prompt the user for multiline text input.
      */
+<<<<<<< HEAD
     function textarea(string $label, string $placeholder = '', string $default = '', bool|string $required = false, ?Closure $validate = null, string $hint = '', int $rows = 5): string
     {
         return (new TextareaPrompt($label, $placeholder, $default, $required, $validate, $hint, $rows))->prompt();
+=======
+    function textarea(string $label, string $placeholder = '', string $default = '', bool|string $required = false, mixed $validate = null, string $hint = '', int $rows = 5, ?Closure $transform = null): string
+    {
+        return (new TextareaPrompt(...func_get_args()))->prompt();
+>>>>>>> tundeseun/devtest
     }
 }
 
@@ -29,7 +39,11 @@ if (! function_exists('\Laravel\Prompts\password')) {
     /**
      * Prompt the user for input, hiding the value.
      */
+<<<<<<< HEAD
     function password(string $label, string $placeholder = '', bool|string $required = false, mixed $validate = null, string $hint = ''): string
+=======
+    function password(string $label, string $placeholder = '', bool|string $required = false, mixed $validate = null, string $hint = '', ?Closure $transform = null): string
+>>>>>>> tundeseun/devtest
     {
         return (new PasswordPrompt(...func_get_args()))->prompt();
     }
@@ -42,7 +56,11 @@ if (! function_exists('\Laravel\Prompts\select')) {
      * @param  array<int|string, string>|Collection<int|string, string>  $options
      * @param  true|string  $required
      */
+<<<<<<< HEAD
     function select(string $label, array|Collection $options, int|string|null $default = null, int $scroll = 5, mixed $validate = null, string $hint = '', bool|string $required = true): int|string
+=======
+    function select(string $label, array|Collection $options, int|string|null $default = null, int $scroll = 5, mixed $validate = null, string $hint = '', bool|string $required = true, ?Closure $transform = null): int|string
+>>>>>>> tundeseun/devtest
     {
         return (new SelectPrompt(...func_get_args()))->prompt();
     }
@@ -56,7 +74,11 @@ if (! function_exists('\Laravel\Prompts\multiselect')) {
      * @param  array<int|string>|Collection<int, int|string>  $default
      * @return array<int|string>
      */
+<<<<<<< HEAD
     function multiselect(string $label, array|Collection $options, array|Collection $default = [], int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = 'Use the space bar to select options.'): array
+=======
+    function multiselect(string $label, array|Collection $options, array|Collection $default = [], int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = 'Use the space bar to select options.', ?Closure $transform = null): array
+>>>>>>> tundeseun/devtest
     {
         return (new MultiSelectPrompt(...func_get_args()))->prompt();
     }
@@ -66,7 +88,11 @@ if (! function_exists('\Laravel\Prompts\confirm')) {
     /**
      * Prompt the user to confirm an action.
      */
+<<<<<<< HEAD
     function confirm(string $label, bool $default = true, string $yes = 'Yes', string $no = 'No', bool|string $required = false, mixed $validate = null, string $hint = ''): bool
+=======
+    function confirm(string $label, bool $default = true, string $yes = 'Yes', string $no = 'No', bool|string $required = false, mixed $validate = null, string $hint = '', ?Closure $transform = null): bool
+>>>>>>> tundeseun/devtest
     {
         return (new ConfirmPrompt(...func_get_args()))->prompt();
     }
@@ -88,7 +114,11 @@ if (! function_exists('\Laravel\Prompts\suggest')) {
      *
      * @param  array<string>|Collection<int, string>|Closure(string): array<string>  $options
      */
+<<<<<<< HEAD
     function suggest(string $label, array|Collection|Closure $options, string $placeholder = '', string $default = '', int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = ''): string
+=======
+    function suggest(string $label, array|Collection|Closure $options, string $placeholder = '', string $default = '', int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = '', ?Closure $transform = null): string
+>>>>>>> tundeseun/devtest
     {
         return (new SuggestPrompt(...func_get_args()))->prompt();
     }
@@ -101,7 +131,11 @@ if (! function_exists('\Laravel\Prompts\search')) {
      * @param  Closure(string): array<int|string, string>  $options
      * @param  true|string  $required
      */
+<<<<<<< HEAD
     function search(string $label, Closure $options, string $placeholder = '', int $scroll = 5, mixed $validate = null, string $hint = '', bool|string $required = true): int|string
+=======
+    function search(string $label, Closure $options, string $placeholder = '', int $scroll = 5, mixed $validate = null, string $hint = '', bool|string $required = true, ?Closure $transform = null): int|string
+>>>>>>> tundeseun/devtest
     {
         return (new SearchPrompt(...func_get_args()))->prompt();
     }
@@ -114,7 +148,11 @@ if (! function_exists('\Laravel\Prompts\multisearch')) {
      * @param  Closure(string): array<int|string, string>  $options
      * @return array<int|string>
      */
+<<<<<<< HEAD
     function multisearch(string $label, Closure $options, string $placeholder = '', int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = 'Use the space bar to select options.'): array
+=======
+    function multisearch(string $label, Closure $options, string $placeholder = '', int $scroll = 5, bool|string $required = false, mixed $validate = null, string $hint = 'Use the space bar to select options.', ?Closure $transform = null): array
+>>>>>>> tundeseun/devtest
     {
         return (new MultiSearchPrompt(...func_get_args()))->prompt();
     }
@@ -244,6 +282,10 @@ if (! function_exists('\Laravel\Prompts\progress')) {
 if (! function_exists('\Laravel\Prompts\form')) {
     function form(): FormBuilder
     {
+<<<<<<< HEAD
         return new FormBuilder();
+=======
+        return new FormBuilder;
+>>>>>>> tundeseun/devtest
     }
 }

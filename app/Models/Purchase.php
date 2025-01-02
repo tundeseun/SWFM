@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+>>>>>>> tundeseun/devtest
 use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
+<<<<<<< HEAD
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
@@ -51,4 +56,20 @@ class Purchase extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+=======
+    use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'cost_price',
+        'quantity_bulk',
+        'quantity_units',
+        'supply_date',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+>>>>>>> tundeseun/devtest
 }

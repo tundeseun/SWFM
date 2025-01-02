@@ -296,7 +296,11 @@ class NotificationFake implements Fake, NotificationDispatcher, NotificationFact
      * @param  array|null  $channels
      * @return void
      */
+<<<<<<< HEAD
     public function sendNow($notifiables, $notification, array $channels = null)
+=======
+    public function sendNow($notifiables, $notification, ?array $channels = null)
+>>>>>>> tundeseun/devtest
     {
         if (! $notifiables instanceof Collection && ! is_array($notifiables)) {
             $notifiables = [$notifiables];

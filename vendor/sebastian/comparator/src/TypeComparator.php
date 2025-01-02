@@ -35,8 +35,13 @@ final class TypeComparator extends Comparator
                 sprintf(
                     '%s does not match expected type "%s".',
                     (new Exporter)->shortenedExport($actual),
+<<<<<<< HEAD
                     gettype($expected)
                 )
+=======
+                    gettype($expected),
+                ),
+>>>>>>> tundeseun/devtest
             );
         }
     }

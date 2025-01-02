@@ -21,6 +21,10 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Expr\Variable;
+<<<<<<< HEAD
+=======
+use PhpParser\Node\VariadicPlaceholder;
+>>>>>>> tundeseun/devtest
 use Psy\Exception\FatalErrorException;
 
 /**
@@ -61,6 +65,13 @@ class PassableByReferencePass extends CodeCleanerPass
 
             $args = [];
             foreach ($node->args as $position => $arg) {
+<<<<<<< HEAD
+=======
+                if ($arg instanceof VariadicPlaceholder) {
+                    continue;
+                }
+
+>>>>>>> tundeseun/devtest
                 $args[$arg->name !== null ? $arg->name->name : $position] = $arg;
             }
 

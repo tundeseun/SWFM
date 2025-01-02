@@ -20,8 +20,13 @@ use Symfony\Component\VarDumper\Dumper\CliDumper;
  */
 class Dumper extends CliDumper
 {
+<<<<<<< HEAD
     private $formatter;
     private $forceArrayIndexes;
+=======
+    private OutputFormatter $formatter;
+    private bool $forceArrayIndexes;
+>>>>>>> tundeseun/devtest
 
     private const ONLY_CONTROL_CHARS = '/^[\x00-\x1F\x7F]+$/';
     private const CONTROL_CHARS = '/([\x00-\x1F\x7F]+)/';

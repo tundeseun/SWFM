@@ -47,7 +47,11 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      * @param  array|null  $channels
      * @return void
      */
+<<<<<<< HEAD
     public function sendNow($notifiables, $notification, array $channels = null)
+=======
+    public function sendNow($notifiables, $notification, ?array $channels = null)
+>>>>>>> tundeseun/devtest
     {
         (new NotificationSender(
             $this, $this->container->make(Bus::class), $this->container->make(Dispatcher::class), $this->locale)

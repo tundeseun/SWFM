@@ -197,7 +197,11 @@ interface Container extends ContainerInterface
      * @param  \Closure|null  $callback
      * @return void
      */
+<<<<<<< HEAD
     public function beforeResolving($abstract, Closure $callback = null);
+=======
+    public function beforeResolving($abstract, ?Closure $callback = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Register a new resolving callback.
@@ -206,7 +210,11 @@ interface Container extends ContainerInterface
      * @param  \Closure|null  $callback
      * @return void
      */
+<<<<<<< HEAD
     public function resolving($abstract, Closure $callback = null);
+=======
+    public function resolving($abstract, ?Closure $callback = null);
+>>>>>>> tundeseun/devtest
 
     /**
      * Register a new after resolving callback.
@@ -215,5 +223,9 @@ interface Container extends ContainerInterface
      * @param  \Closure|null  $callback
      * @return void
      */
+<<<<<<< HEAD
     public function afterResolving($abstract, Closure $callback = null);
+=======
+    public function afterResolving($abstract, ?Closure $callback = null);
+>>>>>>> tundeseun/devtest
 }

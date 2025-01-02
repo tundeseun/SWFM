@@ -24,10 +24,17 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class SudoCommand extends Command
 {
+<<<<<<< HEAD
     private $readline;
     private $parser;
     private $traverser;
     private $printer;
+=======
+    private Readline $readline;
+    private CodeArgumentParser $parser;
+    private NodeTraverser $traverser;
+    private Printer $printer;
+>>>>>>> tundeseun/devtest
 
     /**
      * {@inheritdoc}
@@ -113,7 +120,12 @@ HELP
         $nodes = $this->traverser->traverse($this->parser->parse($code));
 
         $sudoCode = $this->printer->prettyPrint($nodes);
+<<<<<<< HEAD
         $shell = $this->getApplication();
+=======
+
+        $shell = $this->getShell();
+>>>>>>> tundeseun/devtest
         $shell->addCode($sudoCode, !$shell->hasCode());
 
         return 0;

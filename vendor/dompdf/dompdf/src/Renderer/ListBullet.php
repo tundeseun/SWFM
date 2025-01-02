@@ -22,6 +22,10 @@ class ListBullet extends AbstractRenderer
     /**
      * @param $type
      * @return mixed|string
+<<<<<<< HEAD
+=======
+     * @deprecated
+>>>>>>> tundeseun/devtest
      */
     static function get_counter_chars($type)
     {
@@ -35,26 +39,43 @@ class ListBullet extends AbstractRenderer
         $text = "";
 
         switch ($type) {
+<<<<<<< HEAD
             case "decimal-leading-zero":
             case "decimal":
             case "1":
+=======
+            default:
+            case "decimal":
+            case "decimal-leading-zero":
+>>>>>>> tundeseun/devtest
                 return "0123456789";
 
             case "upper-alpha":
             case "upper-latin":
+<<<<<<< HEAD
             case "A":
                 $uppercase = true;
             case "lower-alpha":
             case "lower-latin":
             case "a":
+=======
+                $uppercase = true;
+            case "lower-alpha":
+            case "lower-latin":
+>>>>>>> tundeseun/devtest
                 $text = "abcdefghijklmnopqrstuvwxyz";
                 break;
 
             case "upper-roman":
+<<<<<<< HEAD
             case "I":
                 $uppercase = true;
             case "lower-roman":
             case "i":
+=======
+                $uppercase = true;
+            case "lower-roman":
+>>>>>>> tundeseun/devtest
                 $text = "ivxlcdm";
                 break;
 
@@ -73,12 +94,18 @@ class ListBullet extends AbstractRenderer
     }
 
     /**
+<<<<<<< HEAD
      * @param int $n
      * @param string $type
+=======
+     * @param int      $n
+     * @param string   $type
+>>>>>>> tundeseun/devtest
      * @param int|null $pad
      *
      * @return string
      */
+<<<<<<< HEAD
     private function make_counter($n, $type, $pad = null)
     {
         $n = intval($n);
@@ -89,6 +116,16 @@ class ListBullet extends AbstractRenderer
             case "decimal-leading-zero":
             case "decimal":
             case "1":
+=======
+    private function make_counter(int $n, string $type, ?int $pad = null): string
+    {
+        $text = "";
+
+        switch ($type) {
+            default:
+            case "decimal":
+            case "decimal-leading-zero":
+>>>>>>> tundeseun/devtest
                 if ($pad) {
                     $text = str_pad($n, $pad, "0", STR_PAD_LEFT);
                 } else {
@@ -98,19 +135,34 @@ class ListBullet extends AbstractRenderer
 
             case "upper-alpha":
             case "upper-latin":
+<<<<<<< HEAD
             case "A":
                 $uppercase = true;
             case "lower-alpha":
             case "lower-latin":
             case "a":
+=======
+                $text = chr((($n - 1) % 26) + ord('A'));
+                break;
+
+            case "lower-alpha":
+            case "lower-latin":
+>>>>>>> tundeseun/devtest
                 $text = chr((($n - 1) % 26) + ord('a'));
                 break;
 
             case "upper-roman":
+<<<<<<< HEAD
             case "I":
                 $uppercase = true;
             case "lower-roman":
             case "i":
+=======
+                $text = strtoupper(Helpers::dec2roman($n));
+                break;
+
+            case "lower-roman":
+>>>>>>> tundeseun/devtest
                 $text = Helpers::dec2roman($n);
                 break;
 
@@ -119,10 +171,13 @@ class ListBullet extends AbstractRenderer
                 break;
         }
 
+<<<<<<< HEAD
         if ($uppercase) {
             $text = strtoupper($text);
         }
 
+=======
+>>>>>>> tundeseun/devtest
         return "$text.";
     }
 
@@ -158,7 +213,10 @@ class ListBullet extends AbstractRenderer
             $bullet_style = $style->list_style_type;
 
             switch ($bullet_style) {
+<<<<<<< HEAD
                 default:
+=======
+>>>>>>> tundeseun/devtest
                 case "disc":
                 case "circle":
                     [$x, $y] = $frame->get_position();
@@ -178,8 +236,14 @@ class ListBullet extends AbstractRenderer
                     $this->_canvas->filled_rectangle($x, $y, $w, $w, $style->color);
                     break;
 
+<<<<<<< HEAD
                 case "decimal-leading-zero":
                 case "decimal":
+=======
+                default:
+                case "decimal":
+                case "decimal-leading-zero":
+>>>>>>> tundeseun/devtest
                 case "lower-alpha":
                 case "lower-latin":
                 case "lower-roman":
@@ -187,11 +251,14 @@ class ListBullet extends AbstractRenderer
                 case "upper-alpha":
                 case "upper-latin":
                 case "upper-roman":
+<<<<<<< HEAD
                 case "1": // HTML 4.0 compatibility
                 case "a":
                 case "i":
                 case "A":
                 case "I":
+=======
+>>>>>>> tundeseun/devtest
                     $pad = null;
                     if ($bullet_style === "decimal-leading-zero") {
                         $pad = strlen($li->get_parent()->get_node()->getAttribute("dompdf-children-count"));
@@ -203,6 +270,7 @@ class ListBullet extends AbstractRenderer
                         return;
                     }
 
+<<<<<<< HEAD
                     $index = $node->getAttribute("dompdf-counter");
                     $text = $this->make_counter($index, $bullet_style, $pad);
 
@@ -210,6 +278,11 @@ class ListBullet extends AbstractRenderer
                         return;
                     }
 
+=======
+                    $index = (int) $node->getAttribute("dompdf-counter");
+                    $text = $this->make_counter($index, $bullet_style, $pad);
+
+>>>>>>> tundeseun/devtest
                     $word_spacing = $style->word_spacing;
                     $letter_spacing = $style->letter_spacing;
                     $text_width = $this->_dompdf->getFontMetrics()->getTextWidth($text, $font_family, $font_size, $word_spacing, $letter_spacing);
@@ -221,15 +294,22 @@ class ListBullet extends AbstractRenderer
                     $this->_canvas->text($x, $y, $text,
                         $font_family, $font_size,
                         $style->color, $word_spacing, $letter_spacing);
+<<<<<<< HEAD
+=======
+                    break;
+>>>>>>> tundeseun/devtest
 
                 case "none":
                     break;
             }
         }
+<<<<<<< HEAD
 
         $id = $frame->get_node()->getAttribute("id");
         if (strlen($id) > 0) {
             $this->_canvas->add_named_dest($id);
         }
+=======
+>>>>>>> tundeseun/devtest
     }
 }
