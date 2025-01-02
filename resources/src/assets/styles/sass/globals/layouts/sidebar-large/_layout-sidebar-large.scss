@@ -61,9 +61,9 @@
           text-align: center;
         }
         &.active {
-          color: $primary;
+          color: white;
           .nav-item-hold {
-            color: $primary;
+            color: white;
           }
         }
         .nav-item-hold {
@@ -87,6 +87,7 @@
             font-size: 13px;
             display: block;
             font-weight: 400;
+            color: white;
           }
           a {
             color: $heading;
@@ -100,7 +101,7 @@
           bottom: 0;
           border-style: solid;
           border-width: 0 0 30px 30px;
-          border-color: transparent transparent $primary transparent;
+          border-color: transparent transparent white transparent;
         }
       }
     }
@@ -139,15 +140,15 @@
             background: $gray-200;
           }
           &.open {
-            color: $primary;
+            color: white !important;
             .nav-icon {
-              color: $primary;
+              color: white !important;
             }
           }
           &.router-link-active {
-            color: $primary;
+            color: white !important;
             .nav-icon {
-              color: $primary;
+              color: white !important;
             }
           }
 
@@ -155,11 +156,12 @@
             font-size: 18px;
             margin-right: 8px;
             vertical-align: middle;
-            color: $gray-600;
+            color: white !important;
           }
           .item-name {
             vertical-align: middle;
             font-weight: 400;
+            color: white;
           }
           .dd-arrow {
             margin-left: auto;
@@ -320,6 +322,7 @@
         .nav-icon {
           margin-left: 8px;
           margin-right: 0;
+          color: white !important;
         }
       }
     }

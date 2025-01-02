@@ -173,17 +173,17 @@
             background: $gray-200;
           }
           &.open {
-            color: $primary;
+            color: white !important;
             background: $gray-200;
             .nav-icon {
-              color: $primary;
+              color: white !important;
             }
           }
           .nav-icon {
             font-size: 18px;
             margin-right: 8px;
             vertical-align: middle;
-            color: $gray-600;
+            color: white !important;
           }
           .item-name {
             vertical-align: middle;
@@ -343,6 +343,7 @@
         .nav-icon {
           margin-left: 8px;
           margin-right: 0;
+          color: white !important;
         }
       }
     }

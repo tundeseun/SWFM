@@ -1,13 +1,14 @@
 <template>
-  <div class="main-header" style="background-color: #782924;">
+  <div class="main-header">
     <div class="logo">
        <router-link to="/app/dashboard">
         <img :src="'/images/'+currentUser.logo" alt width="60" height="60">
        </router-link>
     </div>
 
-    <div @click="sideBarToggle" class="menu-toggle">
-      <div></div>
+    <div @click="sideBarToggle" 
+    class="menu-toggle">
+      <div style="color: white;"></div>
       <div></div>
       <div></div>
     </div>

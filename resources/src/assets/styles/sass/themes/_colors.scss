@@ -4,7 +4,7 @@ $solid-colors: (
   "indigo": #6366f1,
   "dark-purple": #322740,
   "white": white,
-  "purple": white,
+  "purple": #19196f,
 
   "pink": #ec4899,
   "red": #ef4444,
@@ -20,7 +20,7 @@ $solid-colors: (
 // Gradient colors
 $gradient-colors: (
   gradient-purple-indigo: (
-    "start-color": #008800,
+    "start-color": #19196f,
     "end-color": #33214b,
   ),
   gradient-black-blue: (

@@ -150,6 +150,10 @@ li a {
 	animation-delay: -0.16s;
 }
 
+.menu-toggle{ 
+	color: white;
+}
+
 .loader:before,
 .loader:after {
 	position: absolute;

@@ -52,6 +52,7 @@
                     type="submit"
                     tag="button"
                     class="btn-rounded btn-block mt-2"
+                    style="background-color: #19196f; color: white;"
                     variant="primary mt-2"
                     :disabled="loading"
                   >{{$t('SignIn')}}</b-button>

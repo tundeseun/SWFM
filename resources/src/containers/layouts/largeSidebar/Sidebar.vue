@@ -599,7 +599,7 @@ class="nav-item">
           >
             <router-link tag="a" class to="/app/adjustments/list">
               <i class="nav-icon i-Files"></i>
-              <span class="item-name">{{$t('ListAdjustments')}}vv</span>
+              <span class="item-name">{{$t('ListAdjustments')}}</span>
             </router-link>
           </li>
         </ul>
