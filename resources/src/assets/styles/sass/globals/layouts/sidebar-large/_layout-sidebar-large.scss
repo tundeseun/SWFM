@@ -120,6 +120,8 @@
     header {
       display: none;
     }
+
+    
     .childNav {
       list-style: none;
       padding: 0;
@@ -174,6 +176,8 @@
     & > .childNav {
       margin: 0;
     }
+
+    // submenus-open
     li.nav-item {
       &.open {
         > div {
@@ -185,6 +189,12 @@
           > .childNav {
             max-height: 1000px;
             overflow: visible;
+          }
+
+          > .submenusNav {
+            max-height: 1000px;
+            overflow: visible;
+            
           }
         }
       }
@@ -203,16 +213,120 @@
             padding: 12px 12px 12px 50px;
           }
         }
+
+        
+        > .submenusNav {
+          max-height: 0;
+          overflow: hidden;
+          background: $background;
+          transition: all 0.4s ease-in-out;
+          li.nav-item a {
+            padding: 12px 12px 12px 50px;
+          }
+        }
       }
     }
+
+
+    .submenusNav {
+      list-style: none;
+      padding: 0;
+      display: none;
+      li.nav-item {
+        display: block;
+        a {
+          color: $heading;
+          text-transform: capitalize;
+          display: flex;
+          align-items: center;
+          font-size: 13px;
+          cursor: pointer;
+          padding: 12px 24px;
+          transition: 0.15s all ease-in;
+
+          &:hover {
+            background: $gray-200;
+          }
+          &.open {
+            color: white !important;
+            .nav-icon {
+              color: white !important;
+            }
+          }
+          &.router-link-active {
+            color: white !important;
+            .nav-icon {
+              color: white !important;
+            }
+          }
+
+          .nav-icon {
+            font-size: 18px;
+            margin-right: 8px;
+            vertical-align: middle;
+            color: white !important;
+          }
+          .item-name {
+            vertical-align: middle;
+            font-weight: 400;
+            color: white;
+          }
+          .dd-arrow {
+            margin-left: auto;
+            font-size: 11px;
+            transition: all 0.3s ease-in;
+          }
+        }
+      }
+    }
+    & > .submenusNav {
+      margin: 0;
+    }
   }
+  
+
+  .sidebar-submenu {
+    position: relative;
+    height: 100%; /* Ensure it stretches the full height */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for the background color */
+  }
+  
+  .sidebar-submenu:hover {
+    background-color: #19196f; /* Sidebar background color on hover */
+  }
+  
+  .sidebar-submenu.open {
+    background-color: #19196f; /* Keep the background visible when submenu is open */
+    height: 300px; /* Adjust the height as per your requirements */
+  }
+  
+  .submenusNav {
+    height: auto; /* Adjust height based on content */
+  }
+  
+  .submenusNav.d-block {
+    display: block; /* Show submenu when it's active */
+  }
+  
+  .nav-item {
+    padding: 10px;
+    color: white;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
   .sidebar-overlay {
     display: none;
     position: fixed;
-    width: calc(
-      100% - #{$sidebar-left-width} - #{$sidebar-left-secondary-width}
-    );
-    height: calc(100vh - #{$topbar-height});
+    width: 30%;
+    height: 100vh;
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0);
@@ -335,4 +449,23 @@
       cursor: e-resize;
     }
   }
+}
+
+
+.submenusNav {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: #19196f;
+  width: 200px;
+  z-index: 1000;
+}
+
+.submenusNav.d-block {
+  display: block;
+}
+
+.nav-item {
+  position: relative;
 }
