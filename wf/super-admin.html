@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Super Admin Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Dashboard Overview]
+            
+            %% System Configuration Flow
+            Dashboard --> Config{System Configuration?}
+            Config -->|Yes| Tax[Set Tax Rates]
+            Tax --> Pricing[Define Pricing Rules]
+            Pricing --> Notify[Configure Notifications]
+            Notify --> Local[Adjust Localization Settings]
+            Local --> ConfigEnd((End System Configuration))
+            Config -->|No| SkipConfig[Skip to Next Task]
+
+            %% Location Management Flow
+            Dashboard --> Location{Manage Locations?}
+            Location -->|Yes| CreateLoc[Create New Store/Warehouse]
+            CreateLoc --> UpdateLoc[Update Location Details]
+            UpdateLoc --> DeactivateLoc[Deactivate Location]
+            DeactivateLoc --> LocEnd((End Location Management))
+            Location -->|No| SkipLocation[Skip to Next Task]
+
+            %% User Management Flow
+            Dashboard --> UserMgmt{Manage Users?}
+            UserMgmt -->|Yes| CreateUser[Create New User]
+            CreateUser --> EditUser[Edit Existing User]
+            EditUser --> DeactivateUser[Deactivate User]
+            DeactivateUser --> UserLogs[Review User Activity Logs]
+            UserLogs --> UserEnd((End User Management))
+            UserMgmt -->|No| SkipUsers[Skip to Next Task]
+
+            %% Financial Management Flow
+            Dashboard --> Finance{Manage Finances?}
+            Finance -->|Yes| PL[Generate Profit & Loss Reports]
+            PL --> Payroll[Approve Payroll Adjustments]
+            Payroll --> TaxReports[Export Tax Reports]
+            TaxReports --> FinEnd((End Financial Management))
+            Finance -->|No| SkipFinance[Skip to Next Task]
+
+            %% Inventory Oversight Flow
+            Dashboard --> Inventory{Oversee Inventory?}
+            Inventory -->|Yes| MonitorStock[Monitor Inventory Levels]
+            MonitorStock --> ApproveStock[Approve Stock Adjustments]
+            ApproveStock --> SeasonalStock[Review Seasonal Stock Recommendations]
+            SeasonalStock --> InvEnd((End Inventory Oversight))
+            Inventory -->|No| SkipInventory[Skip to Next Task]
+
+            %% Communication Flow
+            Dashboard --> Comm{Send Announcements?}
+            Comm -->|Yes| Announcements[Send Announcements]
+            Announcements --> Messaging[Chat with Admins/Managers]
+            Messaging --> CommEnd((End Communication))
+            Comm -->|No| SkipComm[Skip to Next Task]
+
+            %% Audit and Compliance Flow
+            Dashboard --> Audit{Review Audit Logs?}
+            Audit -->|Yes| Logs[Review User Activity Logs]
+            Logs --> ApproveEscalations[Approve Escalation Requests]
+            ApproveEscalations --> ResolveIssues[Resolve Critical Issues]
+            ResolveIssues --> AuditEnd((End Audit and Compliance))
+            Audit -->|No| SkipAudit[Skip to Next Task]
+
+            %% End Workflow
+            SkipConfig --> SkipLocation --> SkipUsers --> SkipFinance --> SkipInventory --> SkipComm --> SkipAudit --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>

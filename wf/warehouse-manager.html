@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Manager Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Warehouse Manager Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Warehouse Dashboard]
+
+            %% Inventory Management Flow
+            Dashboard --> InventoryMgmt{Manage Inventory}
+            InventoryMgmt -->|Yes| RecordStock[Log Incoming Stock]
+            RecordStock --> UpdateStock[Update Stock Levels]
+            UpdateStock --> Spoilage[Log Spoiled Items]
+            Spoilage --> Expiry[Track Expiry Dates]
+            Expiry --> InventoryEnd((End Inventory Management))
+            InventoryMgmt -->|No| SkipInventory[Skip Inventory Tasks]
+
+            %% Order Fulfillment Flow
+            Dashboard --> OrderFulfillment{Fulfill Orders}
+            OrderFulfillment -->|Yes| ReviewPOs[Review Purchase Orders]
+            ReviewPOs --> AllocateStock[Allocate Items to Pallets]
+            AllocateStock --> GenerateWaybill[Create Waybills]
+            GenerateWaybill --> TrackDispatch[Track Dispatch]
+            TrackDispatch --> FulfillmentEnd((End Order Fulfillment))
+            OrderFulfillment -->|No| SkipFulfillment[Skip Fulfillment Tasks]
+
+            %% Seasonal Stock Flow
+            Dashboard --> SeasonalStockMgmt{Manage Seasonal Stock}
+            SeasonalStockMgmt -->|Yes| ReviewTrends[Analyze Seasonal Trends]
+            ReviewTrends --> ProcureSeasonalStock[Stock Seasonal Items]
+            ProcureSeasonalStock --> AdjustLevels[Adjust Inventory Thresholds]
+            AdjustLevels --> SeasonalEnd((End Seasonal Stock Tasks))
+            SeasonalStockMgmt -->|No| SkipSeasonal[Skip Seasonal Tasks]
+
+            %% Reporting Flow
+            Dashboard --> Reporting{Generate Reports}
+            Reporting -->|Yes| InventoryReport[Inventory Summary]
+            InventoryReport --> WastageReport[Wastage Report]
+            WastageReport --> DispatchReport[Dispatch Summary]
+            DispatchReport --> ReportingEnd((End Reporting Tasks))
+            Reporting -->|No| SkipReporting[Skip Reporting Tasks]
+
+            %% Dispute Resolution Flow
+            Dashboard --> Disputes{Resolve Stock Disputes}
+            Disputes -->|Yes| ReviewDiscrepancies[Check Discrepancies]
+            ReviewDiscrepancies --> AdjustRecords[Update Records]
+            AdjustRecords --> NotifyStores[Notify Store Managers]
+            NotifyStores --> DisputeEnd((End Dispute Tasks))
+            Disputes -->|No| SkipDisputes[Skip Dispute Tasks]
+
+            %% End Workflow
+            SkipInventory --> SkipFulfillment --> SkipSeasonal --> SkipReporting --> SkipDisputes --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat Shop Manager Workflow</title>
+    <!-- Include Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Meat Shop Manager Workflow</h1>
+    <!-- Mermaid Flowchart -->
+    <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login[Login to System]
+            Login --> Dashboard[Access Meat Market Dashboard]
+
+            %% Inventory Management Flow
+            Dashboard --> InventoryMgmt{Manage Inventory}
+            InventoryMgmt -->|Yes| CheckStock[Review Stock Levels]
+            CheckStock --> LogSpoilage[Log Spoiled or Damaged Meat Items]
+            LogSpoilage --> RequestRestock[Submit Restocking Request to Store Manager]
+            RequestRestock --> TrackDelivery[Track Warehouse Delivery]
+            TrackDelivery --> InventoryEnd((End Inventory Management))
+            InventoryMgmt -->|No| SkipInventory[Skip Inventory Tasks]
+
+            %% Sales Performance Flow
+            Dashboard --> SalesPerformance{Monitor Section Sales}
+            SalesPerformance -->|Yes| AnalyzeSales[Review Sales Trends]
+            AnalyzeSales --> Promotions[Suggest Promotions for Slow-Moving Items]
+            Promotions --> AdjustOrders[Adjust Future Stock Orders Based on Trends]
+            AdjustOrders --> SalesEnd((End Sales Performance Monitoring))
+            SalesPerformance -->|No| SkipSales[Skip Sales Tasks]
+
+            %% Quality Control Flow
+            Dashboard --> QualityControl{Monitor Quality of Meat Items}
+            QualityControl -->|Yes| InspectStock[Inspect Freshness of Meat]
+            InspectStock --> FlagIssues[Flag Quality Issues for Immediate Action]
+            FlagIssues --> NotifyManager[Notify Store Manager of Issues]
+            NotifyManager --> QualityEnd((End Quality Control Tasks))
+            QualityControl -->|No| SkipQuality[Skip Quality Control Tasks]
+
+            %% Staff Coordination Flow
+            Dashboard --> StaffCoordination{Coordinate with Staff}
+            StaffCoordination -->|Yes| AssignTasks[Assign Daily Tasks to Staff]
+            AssignTasks --> MonitorAttendance[Monitor Attendance and Punctuality]
+            MonitorAttendance --> AddressConcerns[Address Staff Concerns or Issues]
+            AddressConcerns --> StaffEnd((End Staff Coordination))
+            StaffCoordination -->|No| SkipStaff[Skip Staff Coordination Tasks]
+
+            %% Reporting Flow
+            Dashboard --> Reporting{Generate Reports}
+            Reporting -->|Yes| SalesReport[Generate Section Sales Report]
+            SalesReport --> SpoilageReport[Log and Report Spoilage]
+            SpoilageReport --> QualityReport[Submit Quality Control Reports]
+            QualityReport --> ReportingEnd((End Reporting Tasks))
+            Reporting -->|No| SkipReporting[Skip Reporting Tasks]
+
+            %% End Workflow
+            SkipInventory --> SkipSales --> SkipQuality --> SkipStaff --> SkipReporting --> FinalEnd((End Workflow))
+    </div>
+</body>
+</html>
